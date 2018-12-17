@@ -51,11 +51,7 @@ public class StringUtil {
 		if(string == null || string.length() <= 0){
 				return null;
 		}else{
-			System.out.println(getEncoding(string));
-			System.out.println(string);
 			String utf8=new String(string.getBytes(getEncoding(string)),"gbk");
-			System.out.println(utf8);
-			System.out.println();
 			return utf8;
 		}
 
@@ -66,11 +62,7 @@ public class StringUtil {
         if(string == null || string.length() <= 0){
             return null;
         }else {
-            System.out.println(getEncoding(string));
-            System.out.println(string);
             String utf8 = new String(string.getBytes("GBK"), "ISO-8859-1");
-            System.out.println(utf8);
-            System.out.println();
             return utf8;
         }
     }

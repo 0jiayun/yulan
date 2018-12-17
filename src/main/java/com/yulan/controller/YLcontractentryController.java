@@ -93,7 +93,6 @@ public class YLcontractentryController {
     @RequestMapping(value = "createYLcontract")
     @ResponseBody
     public Map createYLcontract(@RequestBody YLcontract_v2015 yLcontract_v2015)throws IOException {
-        System.out.println(yLcontract_v2015);
         if(yLcontractentryService.createYLcontract_v2015(yLcontract_v2015)){
             return response.getResponseMap(0,"SUCCESS",null);
         }else{

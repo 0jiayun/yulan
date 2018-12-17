@@ -27,7 +27,6 @@ public class Web_userController {
     @RequestMapping("login")
     @ResponseBody
     public Map<String,Object> login(@RequestParam("loginName") String loginName, @RequestParam("password") String password, HttpServletRequest request) throws UnsupportedEncodingException {
-        System.out.println(loginName);
         Web_user web_user = web_userService.login(loginName,password);
         if(web_user==null) {
             Map map= Response.getResponseMap(1,"账号与密码不相符",null);

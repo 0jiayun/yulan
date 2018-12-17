@@ -90,7 +90,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                     String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                     entry.setValue(origin);
                 }
-                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
             return mapUtils.mapToBean(map,CustomerInfoCard.class);
         }
@@ -111,7 +110,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                     String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                     entry.setValue(origin);
                 }
-                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
             return mapUtils.mapToBean(map,YLcontract_v2015_paa.class);
         }
@@ -126,7 +124,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             if(entry.getValue() instanceof String){
                 String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
-                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
 
         }
@@ -145,7 +142,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             if(entry.getValue() instanceof String){
                 String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
-                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
         }
 
