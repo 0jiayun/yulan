@@ -19,6 +19,11 @@ public class AreaRegionController {
     @Autowired
     private AreaRegionService areaRegionService;
 
+    /**
+     * 省区地址接口
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "getProvince")
     @ResponseBody
     public Map getProvince()throws IOException {
@@ -27,6 +32,13 @@ public class AreaRegionController {
         map.put("province",areaList);
         return map;
     }
+
+    /**
+     * 市级地址
+     * @param areaRegion
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "getCity")
     @ResponseBody
     public Map getCity(@RequestBody AreaRegion areaRegion)throws IOException{
@@ -35,6 +47,13 @@ public class AreaRegionController {
         map.put("city",areaList);
         return map;
     }
+
+    /**
+     * 县区地址
+     * @param areaRegion
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "getCountry")
     @ResponseBody
     public Map getCountry(@RequestBody AreaRegion areaRegion)throws IOException{

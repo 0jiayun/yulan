@@ -23,23 +23,42 @@ public class InfoStateServiceImpl implements InfoStateService {
 
     @Override
     public String getCustomerInfoCardState(String cid) throws IOException {
+        String customerInfo = null;
         customerInfoCard = customerInfoService.getCustomerInfo(cid);
         String customerInfoCardState = customerInfoCard.getState();
-        if(customerInfoCardState == null || customerInfoCardState.equals("")){
-            return null;
+
+        if(customerInfoCardState.equals("CUSTOMERPORCESSING2")){
+            customerInfo = "资料卡被退回请重新填写";
+        }else if(customerInfoCardState.equals("BUSINESSCHECKING")){
+            customerInfo = "业务员审核中";
+        }else if(customerInfoCardState.equals("APPROVED")){
+            customerInfo = "资料卡通过";
         }else{
-            return customerInfoCardState;
+            customerInfo = "暂无最新消息";
         }
+        return customerInfo;
     }
 
     @Override
     public String getYLcontractState(String cid) throws IOException{
+        String yLcontractInfo = null;
        yLcontractentry = yLcontractentryService.getYLcontractentry(cid);
        String yLcontractentryState = yLcontractentry.getState();
-       if( yLcontractentryState == null||yLcontractentryState.equals(("")) ){
-           return null;
+       if( yLcontractentryState.equals("CUSTOMERAFFIRM") ){
+           yLcontractInfo ="客户查看确认协议数据中";
+       }else if(yLcontractentryState.equals("SALEMANFILLING")){
+            yLcontractInfo = "业务员填写中";
+       }else if(yLcontractentryState.equals("SALEMANMODIFYING")){
+           yLcontractInfo = "业务员修改中";
+       }else if(yLcontractentryState.equals("DEP_MARKET_CHECK")){
+           yLcontractInfo = "市场部审核中";
+       }else if(yLcontractentryState.equals("CSA_CHECK")){
+           yLcontractInfo = "销售副总批准中";
+       }else if(yLcontractentryState.equals("APPROVED")){
+            yLcontractInfo = "协议书通过";
        }else{
-           return yLcontractentryState;
+           yLcontractInfo = "暂无最新消息";
        }
+       return yLcontractInfo;
     }
 }

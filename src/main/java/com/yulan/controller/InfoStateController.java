@@ -1,6 +1,10 @@
 package com.yulan.controller;
 
+import com.yulan.pojo.CustomerInfoCard;
+import com.yulan.pojo.YLcontractentry;
+import com.yulan.service.CustomerInfoService;
 import com.yulan.service.InfoStateService;
+import com.yulan.service.YLcontractentryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,8 +18,16 @@ import java.util.Map;
 @Controller
 @RequestMapping("infoState")
 public class InfoStateController {
+
+    private YLcontractentry yLcontractentry;
     @Autowired
     private InfoStateService infoStateService;
+    @Autowired
+    private YLcontractentryService yLcontractentryService;
+    @Autowired
+    private CustomerInfoService customerInfoService;
+
+    private CustomerInfoCard customerInfoCard;
 
     /**
      * 获取公告信息
@@ -29,9 +41,13 @@ public class InfoStateController {
     public Map getNoticeInfo(@RequestBody Map<String,Object> data)throws IOException {
             Map<String,Object> map = new HashMap<>();
             String cid = (String)data.get("cid");
-            String customerInfoCardState = infoStateService.getCustomerInfoCardState(cid);
-            String yLcontractState = infoStateService.getYLcontractState(cid);
+
             String customerInfo = null;
+            customerInfoCard = customerInfoService.getCustomerInfo(cid);
+            String customerInfoCardState = customerInfoCard.getState();
+
+            yLcontractentry = yLcontractentryService.getYLcontractentry(cid);
+            String yLcontractentryState = yLcontractentry.getState();
             String yLcontractInfo = null;
 
             if(customerInfoCardState.equals("CUSTOMERPORCESSING2")){
@@ -39,7 +55,7 @@ public class InfoStateController {
             }else{
                 customerInfo = "暂无最新消息";
             }
-            if(yLcontractState.equals("CUSTOMERAFFIRM")){
+            if(yLcontractentryState.equals("CUSTOMERAFFIRM")){
                 yLcontractInfo = "协议书已发下，请尽快确认";
             }else{
                 yLcontractInfo = "暂无最新消息";
@@ -48,5 +64,37 @@ public class InfoStateController {
             map.put("yLcontractState",yLcontractInfo);
 
             return map;
+    }
+
+    /**
+     * 客户资料卡评审记录
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "getCustomerInfoCardState")
+    @ResponseBody
+    public Map getCustomerInfoCardState(@RequestBody Map<String,Object> data)throws IOException{
+        String cid = (String)data.get("cid");
+        Map<String,Object> map = new HashMap<>();
+        String customerInfo = infoStateService.getCustomerInfoCardState(cid);
+        map.put("customerInfoCardState",customerInfo);
+        return map;
+    }
+
+    /**
+     * 协议书评审记录
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "getYLcontractentryState")
+    @ResponseBody
+    public Map getYLcontractentryState(@RequestBody Map<String,Object> data)throws IOException{
+        String cid = (String)data.get("cid");
+        Map<String,Object> map = new HashMap<>();
+        String yLcontractInfo = infoStateService.getYLcontractState(cid);
+        map.put("yLcontractState",yLcontractInfo);
+        return map;
     }
 }
