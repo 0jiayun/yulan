@@ -1,10 +1,11 @@
 package com.yulan.service;
 
 import java.io.IOException;
+import java.util.Map;
 
 public interface InfoStateService {
 
-    String getCustomerInfoCardState(String cid)throws IOException;
+    Map getCustomerInfoCardState(String cid)throws IOException;
 
-    String getYLcontractState(String cid)throws IOException;
+    Map getYLcontractState(String cid)throws IOException;
 }

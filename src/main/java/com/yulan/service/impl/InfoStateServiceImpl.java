@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class InfoStateServiceImpl implements InfoStateService {
@@ -22,11 +24,12 @@ public class InfoStateServiceImpl implements InfoStateService {
     private CustomerInfoCard customerInfoCard;
 
     @Override
-    public String getCustomerInfoCardState(String cid) throws IOException {
+    public Map getCustomerInfoCardState(String cid) throws IOException {
+        Map<String,Object> map = new HashMap<>();
         String customerInfo = null;
         customerInfoCard = customerInfoService.getCustomerInfo(cid);
         String customerInfoCardState = customerInfoCard.getState();
-
+        String memo = customerInfoCard.getMemo();
         if(customerInfoCardState.equals("CUSTOMERPORCESSING2")){
             customerInfo = "资料卡被退回请重新填写";
         }else if(customerInfoCardState.equals("BUSINESSCHECKING")){
@@ -36,14 +39,18 @@ public class InfoStateServiceImpl implements InfoStateService {
         }else{
             customerInfo = "暂无最新消息";
         }
-        return customerInfo;
+        map.put("customerInfo",customerInfo);
+        map.put("memo",memo);
+        return map;
     }
 
     @Override
-    public String getYLcontractState(String cid) throws IOException{
+    public Map getYLcontractState(String cid) throws IOException{
+        Map<String,Object> map = new HashMap<>();
         String yLcontractInfo = null;
        yLcontractentry = yLcontractentryService.getYLcontractentry(cid);
        String yLcontractentryState = yLcontractentry.getState();
+       String yLcontractentryMemo = yLcontractentry.getWfmemo();
        if( yLcontractentryState.equals("CUSTOMERAFFIRM") ){
            yLcontractInfo ="客户查看确认协议数据中";
        }else if(yLcontractentryState.equals("SALEMANFILLING")){
@@ -59,6 +66,8 @@ public class InfoStateServiceImpl implements InfoStateService {
        }else{
            yLcontractInfo = "暂无最新消息";
        }
-       return yLcontractInfo;
+       map.put("yLcontractInfo",yLcontractInfo);
+       map.put("yLcontractentryMemo",yLcontractentryMemo);
+       return map;
     }
 }

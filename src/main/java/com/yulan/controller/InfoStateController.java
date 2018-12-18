@@ -45,13 +45,16 @@ public class InfoStateController {
             String customerInfo = null;
             customerInfoCard = customerInfoService.getCustomerInfo(cid);
             String customerInfoCardState = customerInfoCard.getState();
+            String customerMemo =  customerInfoCard.getMemo();;
 
             yLcontractentry = yLcontractentryService.getYLcontractentry(cid);
             String yLcontractentryState = yLcontractentry.getState();
             String yLcontractInfo = null;
+            String yLcontractMemo = yLcontractentry.getWfmemo();
 
             if(customerInfoCardState.equals("CUSTOMERPORCESSING2")){
                 customerInfo = "资料卡被退回请重新填写";
+
             }else{
                 customerInfo = "暂无最新消息";
             }
@@ -61,7 +64,9 @@ public class InfoStateController {
                 yLcontractInfo = "暂无最新消息";
             }
             map.put("customerInfoCardState",customerInfo);
+            map.put("customerMemo",customerMemo);
             map.put("yLcontractState",yLcontractInfo);
+            map.put("yLcontractMemo",yLcontractMemo);
 
             return map;
     }
@@ -77,8 +82,7 @@ public class InfoStateController {
     public Map getCustomerInfoCardState(@RequestBody Map<String,Object> data)throws IOException{
         String cid = (String)data.get("cid");
         Map<String,Object> map = new HashMap<>();
-        String customerInfo = infoStateService.getCustomerInfoCardState(cid);
-        map.put("customerInfoCardState",customerInfo);
+        map = infoStateService.getCustomerInfoCardState(cid);
         return map;
     }
 
@@ -93,8 +97,7 @@ public class InfoStateController {
     public Map getYLcontractentryState(@RequestBody Map<String,Object> data)throws IOException{
         String cid = (String)data.get("cid");
         Map<String,Object> map = new HashMap<>();
-        String yLcontractInfo = infoStateService.getYLcontractState(cid);
-        map.put("yLcontractState",yLcontractInfo);
+        map = infoStateService.getYLcontractState(cid);
         return map;
     }
 }
