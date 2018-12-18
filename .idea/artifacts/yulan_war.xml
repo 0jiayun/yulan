@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="yulan:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="yulan.war">
+      <element id="artifact" artifact-name="yulan:war exploded" />
+    </root>
+  </artifact>
+</component>
