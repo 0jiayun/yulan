@@ -1,6 +1,7 @@
 package com.yulan.service;
 
 import com.yulan.pojo.YLcontract_v2015;
+import com.yulan.pojo.YLcontractentry;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -19,6 +20,8 @@ public interface YLcontractentryService {
     boolean createYLcontract_v2015(YLcontract_v2015 yLcontract_v2015)throws IOException;
 
     String getYLcontractHTML(String cid)throws IOException;
+
+    YLcontractentry getYLcontractentry(String cid)throws IOException;
 
 
 }
