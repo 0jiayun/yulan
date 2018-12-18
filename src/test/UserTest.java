@@ -1,5 +1,7 @@
+import com.yulan.dao.AreaRegionDao;
 import com.yulan.dao.CustomerInfoDao;
 import com.yulan.dao.UserDao;
+import com.yulan.pojo.AreaRegion;
 import com.yulan.pojo.CustomerInfoCard;
 import com.yulan.service.CustomerInfoService;
 import com.yulan.utils.MapUtils;
@@ -11,7 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
-import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
@@ -22,6 +23,8 @@ public class UserTest {
     private CustomerInfoDao customerInfoDao;
     @Autowired
     private CustomerInfoService customerInfoService;
+    @Autowired
+    private AreaRegionDao areaRegionDao;
 
     private CustomerInfoCard customerInfoCard;
 
@@ -31,10 +34,15 @@ public class UserTest {
 
     @Test
     public void test1() throws Exception{
-        List<Map<String,Object>> list=customerInfoDao.getAllArea("00294");
+        /*List<Map<String,Object>> list=customerInfoDao.getAllArea("00294");
         for (Map m:list){
             System.out.println(m.get("AREA_CODE"));
+        }*/
+        List<AreaRegion> list = areaRegionDao.getProvince();
+        for(AreaRegion a : list){
+            System.out.println(stringUtil.getUtf8(a.getRegionName()));
         }
+
     }
 
 }
