@@ -33,4 +33,6 @@ public interface CustomerInfoService {
     String getXDistrict(String xDistrict)throws IOException;
 
     List<Map> getAllStatisticsInfo(String userCID,String userCName,String managerCID);
+
+
 }

@@ -10,4 +10,7 @@ public interface Web_userDao {
 
     //检查账号密码
     String check(String loginName);
+
+    //
+    boolean updateuserState(@Param("userState")String userState,@Param("cid")String cid);
 }

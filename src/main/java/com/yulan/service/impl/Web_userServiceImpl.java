@@ -29,4 +29,10 @@ public class Web_userServiceImpl implements Web_userService {
 
         return null;
     }
+
+    @Override
+    public boolean updateuserState(String userState, String cid) {
+        System.out.println(cid);
+        return web_userDao.updateuserState(userState,cid);
+    }
 }

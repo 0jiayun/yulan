@@ -7,6 +7,7 @@ import com.yulan.utils.TimeUtil;
 import com.yulan.utils.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -64,6 +65,20 @@ public class Web_userController {
         } else {
             return Response.getResponseMap(1,"用户未登录",null);
         }
+    }
+
+    @RequestMapping("updateUserState")
+    @ResponseBody
+    public Map<String,Object> updateUserState(@RequestBody Map<String,Object> m){
+        String cid=m.get("cid").toString();
+        String userState=m.get("userState").toString();
+        System.out.println(cid+":"+userState);
+        if(web_userService.updateuserState(userState,cid)) {
+            return Response.getResponseMap(0,"修改成功",null);
+        } else {
+            return Response.getResponseMap(1,"修改失败",null);
+        }
+
     }
 
 }

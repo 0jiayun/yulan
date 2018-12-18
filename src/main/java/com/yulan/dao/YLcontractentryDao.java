@@ -25,7 +25,8 @@ public interface YLcontractentryDao {
 
     List<Map<String,Object>> getAllStates();
 
-    String getState(@Param("CID")String CID,@Param("year")Integer year);
+    //获取状态
+    String getState(@Param("CID")String CID,@Param("year")Integer year,@Param("state")String state);
 
 
     YLcontract_v2015 getYLcontract_v2015(@Param("CCID") String ccid);
