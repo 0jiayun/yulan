@@ -345,4 +345,12 @@
         group by state
     </select>
 
+    <update id="businessCheckCustomerInfoCard" parameterType="java.util.Map">
+        update CUSTOMERINFOCARD
+        set
+        STATE = #{STATE} ,
+        MEMO = MEMO || #{MEMO}
+        where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
+    </update>
+
 </mapper>

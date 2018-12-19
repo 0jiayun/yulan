@@ -36,4 +36,6 @@ public interface YLcontractentryDao {
     YLcontractentryShow getYLcontractHTML(@Param("ID") Integer ID);
 
     YLcontractentry getYLcontractentry(@Param("CID") String cid);
+
+    boolean checkYLcontractentry(@Param("CID") String cid,@Param("STATE") String state,@Param("WFMEMO") String wfmemo);
 }

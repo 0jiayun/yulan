@@ -5,6 +5,7 @@ import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
 import com.yulan.service.InfoStateService;
 import com.yulan.service.YLcontractentryService;
+import com.yulan.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +29,8 @@ public class InfoStateController {
     private CustomerInfoService customerInfoService;
 
     private CustomerInfoCard customerInfoCard;
+
+    private Response response;
 
     /**
      * 获取公告信息
@@ -99,5 +102,43 @@ public class InfoStateController {
         Map<String,Object> map = new HashMap<>();
         map = infoStateService.getYLcontractState(cid);
         return map;
+    }
+
+    /**
+     * 业务员/订单部审核资料卡
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "bussinessCheckCustomerInfoCard")
+    @ResponseBody
+    public Map businessCheckCustomerInfoCard(@RequestBody Map<String,Object> data)throws IOException{
+        String cid = (String)data.get("cid");
+        String state = (String)data.get("state");
+        String memo = (String)data.get("memo");
+        if(infoStateService.businessCheckCustomerInfoCard(cid,state,memo)){
+            return response.getResponseMap(0,"SUCCESS" ,null);
+        }else{
+            return response.getResponseMap(1,"更新失败" ,null);
+        }
+    }
+
+    /**
+     * 协议书审查接口
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "checkYLcontractentryState")
+    @ResponseBody
+    public Map checkYLcontractentryState(@RequestBody Map<String,Object> data)throws IOException{
+        String cid = (String)data.get("cid");
+        String state = (String)data.get("state");
+        String wfmemo = (String)data.get("wfmemo");
+        if(infoStateService.checkYLcontractentryState(cid,state,wfmemo)){
+            return response.getResponseMap(0,"SUCCESS" ,null);
+        }else{
+            return response.getResponseMap(1,"更新失败" ,null);
+        }
     }
 }

@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Map;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class UserTest {
@@ -63,10 +61,11 @@ public class UserTest {
         for (String l: list2){
             System.out.println(l);
         }*/
-        Map<String,Object> map = infoStateService.getYLcontractState("C15056");
+        /*Map<String,Object> map = infoStateService.getYLcontractState("C15056");
         for (Map.Entry<String,Object> entry : map.entrySet()) {
             System.out.println(entry.getKey() + entry.getValue());
-        }
+        }*/
+       // System.out.println(customerInfoDao.businessCheckCustomerInfoCard("C15093","1234","4321"));
 
     }
 

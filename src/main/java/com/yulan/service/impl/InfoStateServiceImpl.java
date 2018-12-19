@@ -1,5 +1,7 @@
 package com.yulan.service.impl;
 
+import com.yulan.dao.CustomerInfoDao;
+import com.yulan.dao.YLcontractentryDao;
 import com.yulan.pojo.CustomerInfoCard;
 import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
@@ -23,6 +25,10 @@ public class InfoStateServiceImpl implements InfoStateService {
     private CustomerInfoService customerInfoService;
     @Autowired
     private YLcontractentryService yLcontractentryService;
+    @Autowired
+    private CustomerInfoDao customerInfoDao;
+    @Autowired
+    private YLcontractentryDao yLcontractentryDao;
 
     private YLcontractentry yLcontractentry;
 
@@ -112,5 +118,21 @@ public class InfoStateServiceImpl implements InfoStateService {
        map.put("yLcontractInfo",yLcontractInfo);
        map.put("yLcontractentryMemo",memoReplaced);
        return map;
+    }
+
+    @Override
+    public boolean businessCheckCustomerInfoCard(String cid, String state,
+                                                  String memo) throws IOException {
+         state = stringUtil.setUtf8(state);
+         memo = stringUtil.setUtf8(memo);
+        return customerInfoDao.businessCheckCustomerInfoCard(cid,state,memo);
+    }
+
+    @Override
+    public boolean checkYLcontractentryState(String cid, String state,
+                                             String wfmemo) throws IOException {
+        state = stringUtil.setUtf8(state);
+        wfmemo = stringUtil.setUtf8(wfmemo);
+        return yLcontractentryDao.checkYLcontractentry(cid,state,wfmemo);
     }
 }

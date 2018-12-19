@@ -64,6 +64,6 @@ public interface CustomerInfoDao {
 
     int countInfoandYlc(@Param("find")String find,@Param("year")String year,
                         @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
-
-
+    //业务员审核资料卡
+    boolean businessCheckCustomerInfoCard(@Param("CID") String cid ,@Param("STATE") String state,@Param("MEMO") String memo);
 }
