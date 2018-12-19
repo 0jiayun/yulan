@@ -2,6 +2,7 @@ package com.yulan.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -91,5 +92,9 @@ public class StringUtil {
 			i++;
 		}
 		return result;
+	}
+
+	public static String createStringID() {
+		return UUID.randomUUID().toString().replace("-", "");
 	}
 }

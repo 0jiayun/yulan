@@ -1,107 +1,205 @@
 package com.yulan.pojo;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 public class Customer {
-
     private String customerCode;
+
     private String customerName;
-    private String statusID;
+
+    private String statusId;
+
     private String customerBelong;
+
     private String areaCode;
+
     private String shortName;
+
     private String customerType;
+
     private String customerCode3;
+
     private String district;
+
     private String city;
+
     private String cityType;
+
     private String agencyStatus;
-    private String customerZT;
+
+    private String customerZt;
+
     private String o2oFlag;
+
     private String areaDistrict;
-    private Double balanceReceive;
+
+    private BigDecimal balanceReceive;
+
     private String creditCode;
-    private String currencyID;
+
+    private String currencyId;
+
     private Date dateCre;
+
     private Date dateUpdate;
-    private String deptNO;
+
+    private String deptNo;
+
     private String email;
+
     private String fax;
+
     private String financeCode;
+
     private String intranet;
+
     private String juridicPerson;
+
     private String notes;
+
     private String officeTel;
+
     private String postAddress;
-    private Double quotaSale;
+
+    private BigDecimal quotaSale;
+
     private String salesman;
+
     private String scale;
-    private String taxNO;
+
+    private String taxNo;
+
     private String tradeDesc;
+
     private String tAccount;
+
     private String zipCode;
+
     private String importantFlag;
-    private String deliveryAddress;
+
+    private String deliveryAdress;
+
     private String customerClassify;
+
     private String followCode;
-    private Double invoiceReceiveStart;
+
+    private BigDecimal invoiceRecieveStart;
+
     private Date dateChangeStatus;
+
     private String operaterChangeStatus;
+
     private String reasonChangeStatus;
-    private Double balanceReceiveZT;
-    private Double receiveMonthStart;
-    private Double receiveMonthStartZT;
+
+    private BigDecimal balanceReceiveZt;
+
+    private BigDecimal receiveMonthStart;
+
+    private BigDecimal receiveMonthStartZt;
+
     private String areaDistrict2;
+
     private String creator;
+
     private String updater;
+
     private String consignmentType;
+
     private String pricePolicy;
-    private Integer levelNO;
+
+    private Integer levelNo;
+
     private String customerAccount;
+
     private String customerGroup;
-    private String customerDMSL;
-    private String customerFXSSL;
-    private Integer dateCrts;
+
+    private String customerDmsl;
+
+    private String customerFxssl;
+
+    private Short dateCrts;
+
     private String customerAgent;
+
     private String areaDistrict3;
+
     private String officeTel1;
+
     private String handset;
+
     private String customerLevel;
-    private String transcompanyID;
+
+    private String transcompanyId;
+
     private String manager;
-    private String stockNO;
+
+    private String stockNo;
+
     private String customerBelong2;
+
     private String manager1;
+
     private String invoice;
-    private Double receiveMonthStartSal;
-    private Double receiveMonthStartZTSal;
+
+    private BigDecimal receiveMonthStartSal;
+
+    private BigDecimal receiveMonthStartZtSal;
+
     private String handset2;
+
     private String transFlag;
+
     private Date passDate;
+
     private String signFlag;
-    private Double moneyRebate;
+
+    private BigDecimal moneyRebate;
+
     private String juridicPersonHandsetD;
+
     private String qqD;
-    private String faxWLD;
-    private String zipCodeWLD;
+
+    private String faxWlD;
+
+    private String zipCodeWlD;
+
     private Integer shopAreaD;
+
     private String businessWay;
-    private String businessLicenseNO;
-    private String organizationNO;
-    private String generalTaxPayerStatus;
+
+    private String businessLicenseNo;
+
+    private String organizationNo;
+
+    private String generaltaxpayerStatus;
+
     private String customerNameOld;
+
     private String examineFlag;
+
     private String dgzh;
+
     private String customerCode4;
+
     private String idcardNo;
+
     private String flagSalItem;
-    private String businessLicenseDateEnd;
-    private String customerPPFlag;
+
+    private String businesslicenseDateEnd;
+
+    private String customerPpFlag;
+
     private String taxAddress;
+
     private String taxTel;
+
     private String taxBank;
-    private String taxBankNO;
+
+    private String taxBankNo;
+
     private String customerAgent1;
+
     private String importantLevel;
 
     public String getCustomerCode() {
@@ -109,7 +207,7 @@ public class Customer {
     }
 
     public void setCustomerCode(String customerCode) {
-        this.customerCode = customerCode;
+        this.customerCode = customerCode == null ? null : customerCode.trim();
     }
 
     public String getCustomerName() {
@@ -117,15 +215,15 @@ public class Customer {
     }
 
     public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+        this.customerName = customerName == null ? null : customerName.trim();
     }
 
-    public String getStatusID() {
-        return statusID;
+    public String getStatusId() {
+        return statusId;
     }
 
-    public void setStatusID(String statusID) {
-        this.statusID = statusID;
+    public void setStatusId(String statusId) {
+        this.statusId = statusId == null ? null : statusId.trim();
     }
 
     public String getCustomerBelong() {
@@ -133,7 +231,7 @@ public class Customer {
     }
 
     public void setCustomerBelong(String customerBelong) {
-        this.customerBelong = customerBelong;
+        this.customerBelong = customerBelong == null ? null : customerBelong.trim();
     }
 
     public String getAreaCode() {
@@ -141,7 +239,7 @@ public class Customer {
     }
 
     public void setAreaCode(String areaCode) {
-        this.areaCode = areaCode;
+        this.areaCode = areaCode == null ? null : areaCode.trim();
     }
 
     public String getShortName() {
@@ -149,7 +247,7 @@ public class Customer {
     }
 
     public void setShortName(String shortName) {
-        this.shortName = shortName;
+        this.shortName = shortName == null ? null : shortName.trim();
     }
 
     public String getCustomerType() {
@@ -157,7 +255,7 @@ public class Customer {
     }
 
     public void setCustomerType(String customerType) {
-        this.customerType = customerType;
+        this.customerType = customerType == null ? null : customerType.trim();
     }
 
     public String getCustomerCode3() {
@@ -165,7 +263,7 @@ public class Customer {
     }
 
     public void setCustomerCode3(String customerCode3) {
-        this.customerCode3 = customerCode3;
+        this.customerCode3 = customerCode3 == null ? null : customerCode3.trim();
     }
 
     public String getDistrict() {
@@ -173,7 +271,7 @@ public class Customer {
     }
 
     public void setDistrict(String district) {
-        this.district = district;
+        this.district = district == null ? null : district.trim();
     }
 
     public String getCity() {
@@ -181,7 +279,7 @@ public class Customer {
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.city = city == null ? null : city.trim();
     }
 
     public String getCityType() {
@@ -189,7 +287,7 @@ public class Customer {
     }
 
     public void setCityType(String cityType) {
-        this.cityType = cityType;
+        this.cityType = cityType == null ? null : cityType.trim();
     }
 
     public String getAgencyStatus() {
@@ -197,15 +295,15 @@ public class Customer {
     }
 
     public void setAgencyStatus(String agencyStatus) {
-        this.agencyStatus = agencyStatus;
+        this.agencyStatus = agencyStatus == null ? null : agencyStatus.trim();
     }
 
-    public String getCustomerZT() {
-        return customerZT;
+    public String getCustomerZt() {
+        return customerZt;
     }
 
-    public void setCustomerZT(String customerZT) {
-        this.customerZT = customerZT;
+    public void setCustomerZt(String customerZt) {
+        this.customerZt = customerZt == null ? null : customerZt.trim();
     }
 
     public String getO2oFlag() {
@@ -213,7 +311,7 @@ public class Customer {
     }
 
     public void setO2oFlag(String o2oFlag) {
-        this.o2oFlag = o2oFlag;
+        this.o2oFlag = o2oFlag == null ? null : o2oFlag.trim();
     }
 
     public String getAreaDistrict() {
@@ -221,14 +319,14 @@ public class Customer {
     }
 
     public void setAreaDistrict(String areaDistrict) {
-        this.areaDistrict = areaDistrict;
+        this.areaDistrict = areaDistrict == null ? null : areaDistrict.trim();
     }
 
-    public Double getBalanceReceive() {
+    public BigDecimal getBalanceReceive() {
         return balanceReceive;
     }
 
-    public void setBalanceReceive(Double balanceReceive) {
+    public void setBalanceReceive(BigDecimal balanceReceive) {
         this.balanceReceive = balanceReceive;
     }
 
@@ -237,15 +335,15 @@ public class Customer {
     }
 
     public void setCreditCode(String creditCode) {
-        this.creditCode = creditCode;
+        this.creditCode = creditCode == null ? null : creditCode.trim();
     }
 
-    public String getCurrencyID() {
-        return currencyID;
+    public String getCurrencyId() {
+        return currencyId;
     }
 
-    public void setCurrencyID(String currencyID) {
-        this.currencyID = currencyID;
+    public void setCurrencyId(String currencyId) {
+        this.currencyId = currencyId == null ? null : currencyId.trim();
     }
 
     public Date getDateCre() {
@@ -264,12 +362,12 @@ public class Customer {
         this.dateUpdate = dateUpdate;
     }
 
-    public String getDeptNO() {
-        return deptNO;
+    public String getDeptNo() {
+        return deptNo;
     }
 
-    public void setDeptNO(String deptNO) {
-        this.deptNO = deptNO;
+    public void setDeptNo(String deptNo) {
+        this.deptNo = deptNo == null ? null : deptNo.trim();
     }
 
     public String getEmail() {
@@ -277,7 +375,7 @@ public class Customer {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? null : email.trim();
     }
 
     public String getFax() {
@@ -285,7 +383,7 @@ public class Customer {
     }
 
     public void setFax(String fax) {
-        this.fax = fax;
+        this.fax = fax == null ? null : fax.trim();
     }
 
     public String getFinanceCode() {
@@ -293,7 +391,7 @@ public class Customer {
     }
 
     public void setFinanceCode(String financeCode) {
-        this.financeCode = financeCode;
+        this.financeCode = financeCode == null ? null : financeCode.trim();
     }
 
     public String getIntranet() {
@@ -301,7 +399,7 @@ public class Customer {
     }
 
     public void setIntranet(String intranet) {
-        this.intranet = intranet;
+        this.intranet = intranet == null ? null : intranet.trim();
     }
 
     public String getJuridicPerson() {
@@ -309,7 +407,7 @@ public class Customer {
     }
 
     public void setJuridicPerson(String juridicPerson) {
-        this.juridicPerson = juridicPerson;
+        this.juridicPerson = juridicPerson == null ? null : juridicPerson.trim();
     }
 
     public String getNotes() {
@@ -317,7 +415,7 @@ public class Customer {
     }
 
     public void setNotes(String notes) {
-        this.notes = notes;
+        this.notes = notes == null ? null : notes.trim();
     }
 
     public String getOfficeTel() {
@@ -325,7 +423,7 @@ public class Customer {
     }
 
     public void setOfficeTel(String officeTel) {
-        this.officeTel = officeTel;
+        this.officeTel = officeTel == null ? null : officeTel.trim();
     }
 
     public String getPostAddress() {
@@ -333,14 +431,14 @@ public class Customer {
     }
 
     public void setPostAddress(String postAddress) {
-        this.postAddress = postAddress;
+        this.postAddress = postAddress == null ? null : postAddress.trim();
     }
 
-    public Double getQuotaSale() {
+    public BigDecimal getQuotaSale() {
         return quotaSale;
     }
 
-    public void setQuotaSale(Double quotaSale) {
+    public void setQuotaSale(BigDecimal quotaSale) {
         this.quotaSale = quotaSale;
     }
 
@@ -349,7 +447,7 @@ public class Customer {
     }
 
     public void setSalesman(String salesman) {
-        this.salesman = salesman;
+        this.salesman = salesman == null ? null : salesman.trim();
     }
 
     public String getScale() {
@@ -357,15 +455,15 @@ public class Customer {
     }
 
     public void setScale(String scale) {
-        this.scale = scale;
+        this.scale = scale == null ? null : scale.trim();
     }
 
-    public String getTaxNO() {
-        return taxNO;
+    public String getTaxNo() {
+        return taxNo;
     }
 
-    public void setTaxNO(String taxNO) {
-        this.taxNO = taxNO;
+    public void setTaxNo(String taxNo) {
+        this.taxNo = taxNo == null ? null : taxNo.trim();
     }
 
     public String getTradeDesc() {
@@ -373,7 +471,7 @@ public class Customer {
     }
 
     public void setTradeDesc(String tradeDesc) {
-        this.tradeDesc = tradeDesc;
+        this.tradeDesc = tradeDesc == null ? null : tradeDesc.trim();
     }
 
     public String gettAccount() {
@@ -381,7 +479,7 @@ public class Customer {
     }
 
     public void settAccount(String tAccount) {
-        this.tAccount = tAccount;
+        this.tAccount = tAccount == null ? null : tAccount.trim();
     }
 
     public String getZipCode() {
@@ -389,7 +487,7 @@ public class Customer {
     }
 
     public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+        this.zipCode = zipCode == null ? null : zipCode.trim();
     }
 
     public String getImportantFlag() {
@@ -397,15 +495,15 @@ public class Customer {
     }
 
     public void setImportantFlag(String importantFlag) {
-        this.importantFlag = importantFlag;
+        this.importantFlag = importantFlag == null ? null : importantFlag.trim();
     }
 
-    public String getDeliveryAddress() {
-        return deliveryAddress;
+    public String getDeliveryAdress() {
+        return deliveryAdress;
     }
 
-    public void setDeliveryAddress(String deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
+    public void setDeliveryAdress(String deliveryAdress) {
+        this.deliveryAdress = deliveryAdress == null ? null : deliveryAdress.trim();
     }
 
     public String getCustomerClassify() {
@@ -413,7 +511,7 @@ public class Customer {
     }
 
     public void setCustomerClassify(String customerClassify) {
-        this.customerClassify = customerClassify;
+        this.customerClassify = customerClassify == null ? null : customerClassify.trim();
     }
 
     public String getFollowCode() {
@@ -421,15 +519,15 @@ public class Customer {
     }
 
     public void setFollowCode(String followCode) {
-        this.followCode = followCode;
+        this.followCode = followCode == null ? null : followCode.trim();
     }
 
-    public Double getInvoiceReceiveStart() {
-        return invoiceReceiveStart;
+    public BigDecimal getInvoiceRecieveStart() {
+        return invoiceRecieveStart;
     }
 
-    public void setInvoiceReceiveStart(Double invoiceReceiveStart) {
-        this.invoiceReceiveStart = invoiceReceiveStart;
+    public void setInvoiceRecieveStart(BigDecimal invoiceRecieveStart) {
+        this.invoiceRecieveStart = invoiceRecieveStart;
     }
 
     public Date getDateChangeStatus() {
@@ -445,7 +543,7 @@ public class Customer {
     }
 
     public void setOperaterChangeStatus(String operaterChangeStatus) {
-        this.operaterChangeStatus = operaterChangeStatus;
+        this.operaterChangeStatus = operaterChangeStatus == null ? null : operaterChangeStatus.trim();
     }
 
     public String getReasonChangeStatus() {
@@ -453,31 +551,31 @@ public class Customer {
     }
 
     public void setReasonChangeStatus(String reasonChangeStatus) {
-        this.reasonChangeStatus = reasonChangeStatus;
+        this.reasonChangeStatus = reasonChangeStatus == null ? null : reasonChangeStatus.trim();
     }
 
-    public Double getBalanceReceiveZT() {
-        return balanceReceiveZT;
+    public BigDecimal getBalanceReceiveZt() {
+        return balanceReceiveZt;
     }
 
-    public void setBalanceReceiveZT(Double balanceReceiveZT) {
-        this.balanceReceiveZT = balanceReceiveZT;
+    public void setBalanceReceiveZt(BigDecimal balanceReceiveZt) {
+        this.balanceReceiveZt = balanceReceiveZt;
     }
 
-    public Double getReceiveMonthStart() {
+    public BigDecimal getReceiveMonthStart() {
         return receiveMonthStart;
     }
 
-    public void setReceiveMonthStart(Double receiveMonthStart) {
+    public void setReceiveMonthStart(BigDecimal receiveMonthStart) {
         this.receiveMonthStart = receiveMonthStart;
     }
 
-    public Double getReceiveMonthStartZT() {
-        return receiveMonthStartZT;
+    public BigDecimal getReceiveMonthStartZt() {
+        return receiveMonthStartZt;
     }
 
-    public void setReceiveMonthStartZT(Double receiveMonthStartZT) {
-        this.receiveMonthStartZT = receiveMonthStartZT;
+    public void setReceiveMonthStartZt(BigDecimal receiveMonthStartZt) {
+        this.receiveMonthStartZt = receiveMonthStartZt;
     }
 
     public String getAreaDistrict2() {
@@ -485,7 +583,7 @@ public class Customer {
     }
 
     public void setAreaDistrict2(String areaDistrict2) {
-        this.areaDistrict2 = areaDistrict2;
+        this.areaDistrict2 = areaDistrict2 == null ? null : areaDistrict2.trim();
     }
 
     public String getCreator() {
@@ -493,7 +591,7 @@ public class Customer {
     }
 
     public void setCreator(String creator) {
-        this.creator = creator;
+        this.creator = creator == null ? null : creator.trim();
     }
 
     public String getUpdater() {
@@ -501,7 +599,7 @@ public class Customer {
     }
 
     public void setUpdater(String updater) {
-        this.updater = updater;
+        this.updater = updater == null ? null : updater.trim();
     }
 
     public String getConsignmentType() {
@@ -509,7 +607,7 @@ public class Customer {
     }
 
     public void setConsignmentType(String consignmentType) {
-        this.consignmentType = consignmentType;
+        this.consignmentType = consignmentType == null ? null : consignmentType.trim();
     }
 
     public String getPricePolicy() {
@@ -517,15 +615,15 @@ public class Customer {
     }
 
     public void setPricePolicy(String pricePolicy) {
-        this.pricePolicy = pricePolicy;
+        this.pricePolicy = pricePolicy == null ? null : pricePolicy.trim();
     }
 
-    public Integer getLevelNO() {
-        return levelNO;
+    public Integer getLevelNo() {
+        return levelNo;
     }
 
-    public void setLevelNO(Integer levelNO) {
-        this.levelNO = levelNO;
+    public void setLevelNo(Integer levelNo) {
+        this.levelNo = levelNo;
     }
 
     public String getCustomerAccount() {
@@ -533,7 +631,7 @@ public class Customer {
     }
 
     public void setCustomerAccount(String customerAccount) {
-        this.customerAccount = customerAccount;
+        this.customerAccount = customerAccount == null ? null : customerAccount.trim();
     }
 
     public String getCustomerGroup() {
@@ -541,30 +639,30 @@ public class Customer {
     }
 
     public void setCustomerGroup(String customerGroup) {
-        this.customerGroup = customerGroup;
+        this.customerGroup = customerGroup == null ? null : customerGroup.trim();
     }
 
-    public String getCustomerDMSL() {
-        return customerDMSL;
+    public String getCustomerDmsl() {
+        return customerDmsl;
     }
 
-    public void setCustomerDMSL(String customerDMSL) {
-        this.customerDMSL = customerDMSL;
+    public void setCustomerDmsl(String customerDmsl) {
+        this.customerDmsl = customerDmsl == null ? null : customerDmsl.trim();
     }
 
-    public String getCustomerFXSSL() {
-        return customerFXSSL;
+    public String getCustomerFxssl() {
+        return customerFxssl;
     }
 
-    public void setCustomerFXSSL(String customerFXSSL) {
-        this.customerFXSSL = customerFXSSL;
+    public void setCustomerFxssl(String customerFxssl) {
+        this.customerFxssl = customerFxssl == null ? null : customerFxssl.trim();
     }
 
-    public Integer getDateCrts() {
+    public Short getDateCrts() {
         return dateCrts;
     }
 
-    public void setDateCrts(Integer dateCrts) {
+    public void setDateCrts(Short dateCrts) {
         this.dateCrts = dateCrts;
     }
 
@@ -573,7 +671,7 @@ public class Customer {
     }
 
     public void setCustomerAgent(String customerAgent) {
-        this.customerAgent = customerAgent;
+        this.customerAgent = customerAgent == null ? null : customerAgent.trim();
     }
 
     public String getAreaDistrict3() {
@@ -581,7 +679,7 @@ public class Customer {
     }
 
     public void setAreaDistrict3(String areaDistrict3) {
-        this.areaDistrict3 = areaDistrict3;
+        this.areaDistrict3 = areaDistrict3 == null ? null : areaDistrict3.trim();
     }
 
     public String getOfficeTel1() {
@@ -589,7 +687,7 @@ public class Customer {
     }
 
     public void setOfficeTel1(String officeTel1) {
-        this.officeTel1 = officeTel1;
+        this.officeTel1 = officeTel1 == null ? null : officeTel1.trim();
     }
 
     public String getHandset() {
@@ -597,7 +695,7 @@ public class Customer {
     }
 
     public void setHandset(String handset) {
-        this.handset = handset;
+        this.handset = handset == null ? null : handset.trim();
     }
 
     public String getCustomerLevel() {
@@ -605,15 +703,15 @@ public class Customer {
     }
 
     public void setCustomerLevel(String customerLevel) {
-        this.customerLevel = customerLevel;
+        this.customerLevel = customerLevel == null ? null : customerLevel.trim();
     }
 
-    public String getTranscompanyID() {
-        return transcompanyID;
+    public String getTranscompanyId() {
+        return transcompanyId;
     }
 
-    public void setTranscompanyID(String transcompanyID) {
-        this.transcompanyID = transcompanyID;
+    public void setTranscompanyId(String transcompanyId) {
+        this.transcompanyId = transcompanyId == null ? null : transcompanyId.trim();
     }
 
     public String getManager() {
@@ -621,15 +719,15 @@ public class Customer {
     }
 
     public void setManager(String manager) {
-        this.manager = manager;
+        this.manager = manager == null ? null : manager.trim();
     }
 
-    public String getStockNO() {
-        return stockNO;
+    public String getStockNo() {
+        return stockNo;
     }
 
-    public void setStockNO(String stockNO) {
-        this.stockNO = stockNO;
+    public void setStockNo(String stockNo) {
+        this.stockNo = stockNo == null ? null : stockNo.trim();
     }
 
     public String getCustomerBelong2() {
@@ -637,7 +735,7 @@ public class Customer {
     }
 
     public void setCustomerBelong2(String customerBelong2) {
-        this.customerBelong2 = customerBelong2;
+        this.customerBelong2 = customerBelong2 == null ? null : customerBelong2.trim();
     }
 
     public String getManager1() {
@@ -645,7 +743,7 @@ public class Customer {
     }
 
     public void setManager1(String manager1) {
-        this.manager1 = manager1;
+        this.manager1 = manager1 == null ? null : manager1.trim();
     }
 
     public String getInvoice() {
@@ -653,23 +751,23 @@ public class Customer {
     }
 
     public void setInvoice(String invoice) {
-        this.invoice = invoice;
+        this.invoice = invoice == null ? null : invoice.trim();
     }
 
-    public Double getReceiveMonthStartSal() {
+    public BigDecimal getReceiveMonthStartSal() {
         return receiveMonthStartSal;
     }
 
-    public void setReceiveMonthStartSal(Double receiveMonthStartSal) {
+    public void setReceiveMonthStartSal(BigDecimal receiveMonthStartSal) {
         this.receiveMonthStartSal = receiveMonthStartSal;
     }
 
-    public Double getReceiveMonthStartZTSal() {
-        return receiveMonthStartZTSal;
+    public BigDecimal getReceiveMonthStartZtSal() {
+        return receiveMonthStartZtSal;
     }
 
-    public void setReceiveMonthStartZTSal(Double receiveMonthStartZTSal) {
-        this.receiveMonthStartZTSal = receiveMonthStartZTSal;
+    public void setReceiveMonthStartZtSal(BigDecimal receiveMonthStartZtSal) {
+        this.receiveMonthStartZtSal = receiveMonthStartZtSal;
     }
 
     public String getHandset2() {
@@ -677,7 +775,7 @@ public class Customer {
     }
 
     public void setHandset2(String handset2) {
-        this.handset2 = handset2;
+        this.handset2 = handset2 == null ? null : handset2.trim();
     }
 
     public String getTransFlag() {
@@ -685,7 +783,7 @@ public class Customer {
     }
 
     public void setTransFlag(String transFlag) {
-        this.transFlag = transFlag;
+        this.transFlag = transFlag == null ? null : transFlag.trim();
     }
 
     public Date getPassDate() {
@@ -701,14 +799,14 @@ public class Customer {
     }
 
     public void setSignFlag(String signFlag) {
-        this.signFlag = signFlag;
+        this.signFlag = signFlag == null ? null : signFlag.trim();
     }
 
-    public Double getMoneyRebate() {
+    public BigDecimal getMoneyRebate() {
         return moneyRebate;
     }
 
-    public void setMoneyRebate(Double moneyRebate) {
+    public void setMoneyRebate(BigDecimal moneyRebate) {
         this.moneyRebate = moneyRebate;
     }
 
@@ -717,7 +815,7 @@ public class Customer {
     }
 
     public void setJuridicPersonHandsetD(String juridicPersonHandsetD) {
-        this.juridicPersonHandsetD = juridicPersonHandsetD;
+        this.juridicPersonHandsetD = juridicPersonHandsetD == null ? null : juridicPersonHandsetD.trim();
     }
 
     public String getQqD() {
@@ -725,23 +823,23 @@ public class Customer {
     }
 
     public void setQqD(String qqD) {
-        this.qqD = qqD;
+        this.qqD = qqD == null ? null : qqD.trim();
     }
 
-    public String getFaxWLD() {
-        return faxWLD;
+    public String getFaxWlD() {
+        return faxWlD;
     }
 
-    public void setFaxWLD(String faxWLD) {
-        this.faxWLD = faxWLD;
+    public void setFaxWlD(String faxWlD) {
+        this.faxWlD = faxWlD == null ? null : faxWlD.trim();
     }
 
-    public String getZipCodeWLD() {
-        return zipCodeWLD;
+    public String getZipCodeWlD() {
+        return zipCodeWlD;
     }
 
-    public void setZipCodeWLD(String zipCodeWLD) {
-        this.zipCodeWLD = zipCodeWLD;
+    public void setZipCodeWlD(String zipCodeWlD) {
+        this.zipCodeWlD = zipCodeWlD == null ? null : zipCodeWlD.trim();
     }
 
     public Integer getShopAreaD() {
@@ -757,31 +855,31 @@ public class Customer {
     }
 
     public void setBusinessWay(String businessWay) {
-        this.businessWay = businessWay;
+        this.businessWay = businessWay == null ? null : businessWay.trim();
     }
 
-    public String getBusinessLicenseNO() {
-        return businessLicenseNO;
+    public String getBusinessLicenseNo() {
+        return businessLicenseNo;
     }
 
-    public void setBusinessLicenseNO(String businessLicenseNO) {
-        this.businessLicenseNO = businessLicenseNO;
+    public void setBusinessLicenseNo(String businessLicenseNo) {
+        this.businessLicenseNo = businessLicenseNo == null ? null : businessLicenseNo.trim();
     }
 
-    public String getOrganizationNO() {
-        return organizationNO;
+    public String getOrganizationNo() {
+        return organizationNo;
     }
 
-    public void setOrganizationNO(String organizationNO) {
-        this.organizationNO = organizationNO;
+    public void setOrganizationNo(String organizationNo) {
+        this.organizationNo = organizationNo == null ? null : organizationNo.trim();
     }
 
-    public String getGeneralTaxPayerStatus() {
-        return generalTaxPayerStatus;
+    public String getGeneraltaxpayerStatus() {
+        return generaltaxpayerStatus;
     }
 
-    public void setGeneralTaxPayerStatus(String generalTaxPayerStatus) {
-        this.generalTaxPayerStatus = generalTaxPayerStatus;
+    public void setGeneraltaxpayerStatus(String generaltaxpayerStatus) {
+        this.generaltaxpayerStatus = generaltaxpayerStatus == null ? null : generaltaxpayerStatus.trim();
     }
 
     public String getCustomerNameOld() {
@@ -789,7 +887,7 @@ public class Customer {
     }
 
     public void setCustomerNameOld(String customerNameOld) {
-        this.customerNameOld = customerNameOld;
+        this.customerNameOld = customerNameOld == null ? null : customerNameOld.trim();
     }
 
     public String getExamineFlag() {
@@ -797,7 +895,7 @@ public class Customer {
     }
 
     public void setExamineFlag(String examineFlag) {
-        this.examineFlag = examineFlag;
+        this.examineFlag = examineFlag == null ? null : examineFlag.trim();
     }
 
     public String getDgzh() {
@@ -805,7 +903,7 @@ public class Customer {
     }
 
     public void setDgzh(String dgzh) {
-        this.dgzh = dgzh;
+        this.dgzh = dgzh == null ? null : dgzh.trim();
     }
 
     public String getCustomerCode4() {
@@ -813,7 +911,7 @@ public class Customer {
     }
 
     public void setCustomerCode4(String customerCode4) {
-        this.customerCode4 = customerCode4;
+        this.customerCode4 = customerCode4 == null ? null : customerCode4.trim();
     }
 
     public String getIdcardNo() {
@@ -821,7 +919,7 @@ public class Customer {
     }
 
     public void setIdcardNo(String idcardNo) {
-        this.idcardNo = idcardNo;
+        this.idcardNo = idcardNo == null ? null : idcardNo.trim();
     }
 
     public String getFlagSalItem() {
@@ -829,23 +927,23 @@ public class Customer {
     }
 
     public void setFlagSalItem(String flagSalItem) {
-        this.flagSalItem = flagSalItem;
+        this.flagSalItem = flagSalItem == null ? null : flagSalItem.trim();
     }
 
-    public String getBusinessLicenseDateEnd() {
-        return businessLicenseDateEnd;
+    public String getBusinesslicenseDateEnd() {
+        return businesslicenseDateEnd;
     }
 
-    public void setBusinessLicenseDateEnd(String businessLicenseDateEnd) {
-        this.businessLicenseDateEnd = businessLicenseDateEnd;
+    public void setBusinesslicenseDateEnd(String businesslicenseDateEnd) {
+        this.businesslicenseDateEnd = businesslicenseDateEnd == null ? null : businesslicenseDateEnd.trim();
     }
 
-    public String getCustomerPPFlag() {
-        return customerPPFlag;
+    public String getCustomerPpFlag() {
+        return customerPpFlag;
     }
 
-    public void setCustomerPPFlag(String customerPPFlag) {
-        this.customerPPFlag = customerPPFlag;
+    public void setCustomerPpFlag(String customerPpFlag) {
+        this.customerPpFlag = customerPpFlag == null ? null : customerPpFlag.trim();
     }
 
     public String getTaxAddress() {
@@ -853,7 +951,7 @@ public class Customer {
     }
 
     public void setTaxAddress(String taxAddress) {
-        this.taxAddress = taxAddress;
+        this.taxAddress = taxAddress == null ? null : taxAddress.trim();
     }
 
     public String getTaxTel() {
@@ -861,7 +959,7 @@ public class Customer {
     }
 
     public void setTaxTel(String taxTel) {
-        this.taxTel = taxTel;
+        this.taxTel = taxTel == null ? null : taxTel.trim();
     }
 
     public String getTaxBank() {
@@ -869,15 +967,15 @@ public class Customer {
     }
 
     public void setTaxBank(String taxBank) {
-        this.taxBank = taxBank;
+        this.taxBank = taxBank == null ? null : taxBank.trim();
     }
 
-    public String getTaxBankNO() {
-        return taxBankNO;
+    public String getTaxBankNo() {
+        return taxBankNo;
     }
 
-    public void setTaxBankNO(String taxBankNO) {
-        this.taxBankNO = taxBankNO;
+    public void setTaxBankNo(String taxBankNo) {
+        this.taxBankNo = taxBankNo == null ? null : taxBankNo.trim();
     }
 
     public String getCustomerAgent1() {
@@ -885,7 +983,7 @@ public class Customer {
     }
 
     public void setCustomerAgent1(String customerAgent1) {
-        this.customerAgent1 = customerAgent1;
+        this.customerAgent1 = customerAgent1 == null ? null : customerAgent1.trim();
     }
 
     public String getImportantLevel() {
@@ -893,6 +991,111 @@ public class Customer {
     }
 
     public void setImportantLevel(String importantLevel) {
-        this.importantLevel = importantLevel;
+        this.importantLevel = importantLevel == null ? null : importantLevel.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerCode='" + customerCode + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", statusId='" + statusId + '\'' +
+                ", customerBelong='" + customerBelong + '\'' +
+                ", areaCode='" + areaCode + '\'' +
+                ", shortName='" + shortName + '\'' +
+                ", customerType='" + customerType + '\'' +
+                ", customerCode3='" + customerCode3 + '\'' +
+                ", district='" + district + '\'' +
+                ", city='" + city + '\'' +
+                ", cityType='" + cityType + '\'' +
+                ", agencyStatus='" + agencyStatus + '\'' +
+                ", customerZt='" + customerZt + '\'' +
+                ", o2oFlag='" + o2oFlag + '\'' +
+                ", areaDistrict='" + areaDistrict + '\'' +
+                ", balanceReceive=" + balanceReceive +
+                ", creditCode='" + creditCode + '\'' +
+                ", currencyId='" + currencyId + '\'' +
+                ", dateCre=" + dateCre +
+                ", dateUpdate=" + dateUpdate +
+                ", deptNo='" + deptNo + '\'' +
+                ", email='" + email + '\'' +
+                ", fax='" + fax + '\'' +
+                ", financeCode='" + financeCode + '\'' +
+                ", intranet='" + intranet + '\'' +
+                ", juridicPerson='" + juridicPerson + '\'' +
+                ", notes='" + notes + '\'' +
+                ", officeTel='" + officeTel + '\'' +
+                ", postAddress='" + postAddress + '\'' +
+                ", quotaSale=" + quotaSale +
+                ", salesman='" + salesman + '\'' +
+                ", scale='" + scale + '\'' +
+                ", taxNo='" + taxNo + '\'' +
+                ", tradeDesc='" + tradeDesc + '\'' +
+                ", tAccount='" + tAccount + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", importantFlag='" + importantFlag + '\'' +
+                ", deliveryAdress='" + deliveryAdress + '\'' +
+                ", customerClassify='" + customerClassify + '\'' +
+                ", followCode='" + followCode + '\'' +
+                ", invoiceRecieveStart=" + invoiceRecieveStart +
+                ", dateChangeStatus=" + dateChangeStatus +
+                ", operaterChangeStatus='" + operaterChangeStatus + '\'' +
+                ", reasonChangeStatus='" + reasonChangeStatus + '\'' +
+                ", balanceReceiveZt=" + balanceReceiveZt +
+                ", receiveMonthStart=" + receiveMonthStart +
+                ", receiveMonthStartZt=" + receiveMonthStartZt +
+                ", areaDistrict2='" + areaDistrict2 + '\'' +
+                ", creator='" + creator + '\'' +
+                ", updater='" + updater + '\'' +
+                ", consignmentType='" + consignmentType + '\'' +
+                ", pricePolicy='" + pricePolicy + '\'' +
+                ", levelNo=" + levelNo +
+                ", customerAccount='" + customerAccount + '\'' +
+                ", customerGroup='" + customerGroup + '\'' +
+                ", customerDmsl='" + customerDmsl + '\'' +
+                ", customerFxssl='" + customerFxssl + '\'' +
+                ", dateCrts=" + dateCrts +
+                ", customerAgent='" + customerAgent + '\'' +
+                ", areaDistrict3='" + areaDistrict3 + '\'' +
+                ", officeTel1='" + officeTel1 + '\'' +
+                ", handset='" + handset + '\'' +
+                ", customerLevel='" + customerLevel + '\'' +
+                ", transcompanyId='" + transcompanyId + '\'' +
+                ", manager='" + manager + '\'' +
+                ", stockNo='" + stockNo + '\'' +
+                ", customerBelong2='" + customerBelong2 + '\'' +
+                ", manager1='" + manager1 + '\'' +
+                ", invoice='" + invoice + '\'' +
+                ", receiveMonthStartSal=" + receiveMonthStartSal +
+                ", receiveMonthStartZtSal=" + receiveMonthStartZtSal +
+                ", handset2='" + handset2 + '\'' +
+                ", transFlag='" + transFlag + '\'' +
+                ", passDate=" + passDate +
+                ", signFlag='" + signFlag + '\'' +
+                ", moneyRebate=" + moneyRebate +
+                ", juridicPersonHandsetD='" + juridicPersonHandsetD + '\'' +
+                ", qqD='" + qqD + '\'' +
+                ", faxWlD='" + faxWlD + '\'' +
+                ", zipCodeWlD='" + zipCodeWlD + '\'' +
+                ", shopAreaD=" + shopAreaD +
+                ", businessWay='" + businessWay + '\'' +
+                ", businessLicenseNo='" + businessLicenseNo + '\'' +
+                ", organizationNo='" + organizationNo + '\'' +
+                ", generaltaxpayerStatus='" + generaltaxpayerStatus + '\'' +
+                ", customerNameOld='" + customerNameOld + '\'' +
+                ", examineFlag='" + examineFlag + '\'' +
+                ", dgzh='" + dgzh + '\'' +
+                ", customerCode4='" + customerCode4 + '\'' +
+                ", idcardNo='" + idcardNo + '\'' +
+                ", flagSalItem='" + flagSalItem + '\'' +
+                ", businesslicenseDateEnd='" + businesslicenseDateEnd + '\'' +
+                ", customerPpFlag='" + customerPpFlag + '\'' +
+                ", taxAddress='" + taxAddress + '\'' +
+                ", taxTel='" + taxTel + '\'' +
+                ", taxBank='" + taxBank + '\'' +
+                ", taxBankNo='" + taxBankNo + '\'' +
+                ", customerAgent1='" + customerAgent1 + '\'' +
+                ", importantLevel='" + importantLevel + '\'' +
+                '}';
     }
 }

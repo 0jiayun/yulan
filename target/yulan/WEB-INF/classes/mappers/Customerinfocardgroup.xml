@@ -47,9 +47,11 @@
         select customer_type_name from CUSTOMER_TYPE where customer_type_id=#{customer_type}
     </select>
 
+    <select id="getCustomerInfoCardGroupByName" parameterType="Map" resultType="Customerinfocardgroup">
+        select * from CUSTOMERINFOCARDGROUP where descp = #{descp}
+    </select>
+
     <update id="updateDelete" parameterType="Customerinfocardgroup" >
          update customerinfocardgroup set deleted=#{deleted} where Id=#{Id}
     </update>
-
-
 </mapper>

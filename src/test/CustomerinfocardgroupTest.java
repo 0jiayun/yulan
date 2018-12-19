@@ -1,27 +1,29 @@
-import com.yulan.dao.CustomerinfocardgroupDao;
-import com.yulan.pojo.Customerinfocardgroup;
-import com.yulan.utils.StringUtil;
+import com.yulan.dao.CustomerDao;
+import com.yulan.dao.CustomerInfoCardDao;
+import com.yulan.pojo.CustomerInfoCard;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class CustomerinfocardgroupTest {
-    @Autowired
-    private CustomerinfocardgroupDao customerinfocardgroupDao;
-
+    @Autowired private CustomerDao customerDao;
+    @Autowired private CustomerInfoCardDao customerInfoCardDao;
     @Test
-    public void test1() throws UnsupportedEncodingException {
-
-        List<Customerinfocardgroup> list=customerinfocardgroupDao.getCustomerinfocardgroups(1,10, StringUtil.setUtf8("2017年"),0);
-        for (Customerinfocardgroup c:list){
-            System.out.println(c.getDescp());
-        }
+    public void test1() {
+        List<CustomerInfoCard> customerInfoCards = new ArrayList<>();
+        CustomerInfoCard customerInfoCard = new CustomerInfoCard();
+        customerInfoCard.setGroupid("1");
+        CustomerInfoCard customerInfoCard1 = new CustomerInfoCard();
+        customerInfoCard1.setGroupid("2");
+        customerInfoCards.add(customerInfoCard);
+        customerInfoCards.add(customerInfoCard1);
+        System.out.println(customerInfoCardDao.addCustomerInfoCard(customerInfoCard));
     }
 }
