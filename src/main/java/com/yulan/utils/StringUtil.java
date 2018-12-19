@@ -1,6 +1,7 @@
 package com.yulan.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -93,6 +94,27 @@ public class StringUtil {
 			String replace = replaces.get(i).toString();
 			result = result.replaceFirst(beReplaced,replace);
 			i++;
+		}
+		return result;
+	}
+
+	/**
+	 * 替换特定文本
+	 * @param text
+	 * @param beReplaced
+	 * @param replaces
+	 * @return
+	 */
+
+	public static List<String> replaceState(List<String> text, String beReplaced, String replaces) {
+		Pattern pattern = Pattern.compile(beReplaced);
+		List<String> result = new ArrayList<>();
+		for(String t : text){
+			Matcher matcher = pattern.matcher(t);
+			while(matcher.find()) {
+				t=t.replaceFirst(beReplaced, replaces);
+			}
+			result.add(t);
 		}
 		return result;
 	}
