@@ -126,9 +126,61 @@
             and c.cid like  '%'||#{find}||'%' or c.cname like '%'||#{find}||'%'
         </if>
 
-        ) tm where rm &gt;= #{start} and rm &lt;= #{number }
+        ) tm
+        <if test="start!=null">
+          where rm &gt;= #{start} and rm &lt;= #{number }
+        </if>
+    </select>
+    
+    <select id="getInfoandYlc" resultType="Map">
+        select * from(
+        select rownum rm, c.*  from
+
+          (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid)c
+
+        where 1=1
+
+        <if test="infoState!=null">
+            and c.state=#{infoState}
+        </if>
+        <if test="ylcState!=null">
+            and c.bstate=#{ylcState}
+        </if>
+        <if test="find!=null">
+            and c.cid like  '%'||#{find}||'%'
+        </if>
+        <if test="year!=null">
+            and c.contractyear=#{year}
+        </if>
+
+        ) tm
+        <if test="start!=null">
+            where rm &gt;= #{start} and rm &lt;= #{number }
+        </if>
+
+
+
 
     </select>
+
+    <select id="countInfoandYlc" resultType="int">
+         select count(*) from
+        (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid)c
+          where 1=1
+        <if test="infoState!=null">
+            and c.state=#{infoState}
+        </if>
+        <if test="ylcState!=null">
+            and c.bstate=#{ylcState}
+        </if>
+        <if test="find!=null">
+            and c.cid like  '%'||#{find}||'%'
+        </if>
+        <if test="year!=null">
+            and c.contractyear=#{year}
+        </if>
+    </select>
+
 
 
 

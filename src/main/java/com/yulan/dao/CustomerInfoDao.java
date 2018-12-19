@@ -59,5 +59,11 @@ public interface CustomerInfoDao {
     List<Map<String,Object>> getAllStatisticsInfo(@Param("market") String market,@Param("userCID") String userCID,
                                                   @Param("userCName") String userCName);
 
+    List<Map<String,Object>> getInfoandYlc(@Param("find")String find,@Param("year")String year,
+                                           @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
+
+    int countInfoandYlc(@Param("find")String find,@Param("year")String year,
+                        @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
+
 
 }

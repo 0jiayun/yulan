@@ -61,36 +61,19 @@ public class YLc_infoServiceImpl implements YLc_infoService {
             yLc_info.setJuridic_person_handset(c.getJuridicPersonHandset());
             yLc_info.setMarketName(StringUtil.getUtf8(c.getMarketname()));
             yLc_info.setMarketManagerName(StringUtil.getUtf8(c.getMarketmanagername()));
-            yLc_info.setYlcState(yLcontractentryDao.getState(c.getCid(),(int)c.getContractyear()));
-
-           datas.add(yLc_info);
-
-        }
-        if (ylc_state!=null){
-
-          Iterator<YLc_info> iter = datas.iterator();
-            while(iter.hasNext()){
-                String s=iter.next().getYlcState();
-
-                if(s==null||!s.equals(ylc_state)){
-                    iter.remove();
-                    count--;
-                }
+            String ylcState=yLcontractentryDao.getState(c.getCid(),(int)c.getContractyear(),ylc_state);
+            if(ylcState==null){
+                String cid=c.getCid();
+                continue;
+            }else{
+                yLc_info.setYlcState(ylcState);
+                datas.add(yLc_info);
             }
 
-            /*  for(int i=0;i<datas.size();i++){
-                String s=datas.get(i).getYlcState();
-                if(s==null){
-                    System.out.println(datas.get(i).getCustomerId());
-                    System.out.println(datas.get(i).getCustomerName());
-                }
-                if(!s.equals(ylc_state)){
-                    datas.remove(i);
-                    count--;
-                }
 
-            }*/
         }
+
+
         map.put("data",datas);
         map.put("count",count);
         return map;
@@ -141,7 +124,7 @@ public class YLc_infoServiceImpl implements YLc_infoService {
                     yLc_info.setJuridic_person_handset(c.getJuridicPersonHandset());
                     yLc_info.setMarketName(StringUtil.getUtf8(c.getMarketname()));
                     yLc_info.setMarketManagerName(StringUtil.getUtf8(c.getMarketmanagername()));
-                    yLc_info.setYlcState(yLcontractentryDao.getState(c.getCid(),(int)c.getContractyear()));
+
 
                     datas.add(yLc_info);
                 }
@@ -154,6 +137,22 @@ public class YLc_infoServiceImpl implements YLc_infoService {
         map.put("data",datas);
         map.put("count",count);
         return map;
+    }
+
+    @Override
+    public Map getInfoandylc(String find, String year, String infoStat, String ylcState) throws UnsupportedEncodingException {
+        Map map=new HashMap<String,Object>(2);
+        List<Map<String,Object>> list=customerInfoDao.getInfoandYlc(find,year,infoStat,ylcState);
+        for(Map m:list){
+            m.put("CNAME",StringUtil.getUtf8(m.get("CNAME").toString()));
+            m.put("X_JURIDIC_PERSON",StringUtil.getUtf8(m.get("X_JURIDIC_PERSON").toString()));//法人
+            m.put("TX_AGENT_NAME",StringUtil.getUtf8(m.get("TX_AGENT_NAME").toString()));//联系人
+            m.put("SUBMARKETNAME",StringUtil.getUtf8(m.get("SUBMARKETNAME").toString()));//片区
+            m.put("SUBMARKETMANAGERNAME",StringUtil.getUtf8(m.get("SUBMARKETMANAGERNAME").toString()));//片区负责人
+
+        }
+
+        return null;
     }
 
     public String getStateName(String state){

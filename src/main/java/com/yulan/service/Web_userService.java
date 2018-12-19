@@ -7,5 +7,5 @@ import java.io.UnsupportedEncodingException;
 public interface Web_userService {
     Web_user login(String loginName,String password) throws UnsupportedEncodingException;
 
-
+    boolean updateuserState(String userState,String cid);
 }

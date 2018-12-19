@@ -56,8 +56,16 @@
     </select>
 
     <select id="getState" resultType="String">
-        select state from ylcontractentry where  cYear=#{year } and CID=#{CID}
+        select state from ylcontractentry where  CID=#{CID}
+        <if test="year!=null">
+            and  cYear=#{year }
+        </if>
+        <if test="state!=null">
+            and  state=#{state }
+        </if>
+
     </select>
+
 
     <resultMap id="BaseResultMap" type="com.yulan.pojo.YLcontract_v2015" >
         <result column="CCYEAR" property="ccyear" jdbcType="DECIMAL" />
