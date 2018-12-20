@@ -14,6 +14,14 @@
         <result column="erpcopyed" property="erpcopyed" />
     </resultMap>
 
+    <insert id="addCustomerInfoCardGroup" parameterType="Customerinfocardgroup">
+        insert into
+        CUSTOMERINFOCARDGROUP
+        (ID,DESCP)
+        values
+        (#{Id},#{descp})
+    </insert>
+
     <select id="getCustomerinfocardgroups" resultMap="customerinfocardgroupList">
         select
           *

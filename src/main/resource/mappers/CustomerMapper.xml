@@ -105,7 +105,7 @@
     <select id="getCustomers" parameterType="Map" resultMap="BaseResultMap">
         select * from CUSTOMER where 1=1
         <if test="customerCode!=null">
-            and CUSTOMER_CODE=#{customerCode}
+            and (CUSTOMER_CODE=#{customerCode} or CUSTOMER_NAME=#{customerCode})
         </if>
         <if test="areaCodes!=null">
             and (

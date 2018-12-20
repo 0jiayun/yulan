@@ -58,7 +58,7 @@ public interface CustomerinfocardgroupDao {
      * @param descp 备注
      * @return
      */
-    Customerinfocardgroup getCustomerInfoCardGroupByName(@Param("Descp")String descp);
+    Customerinfocardgroup getCustomerInfoCardGroupByName(@Param("descp")String descp);
 
     /**
      * 标记删除
