@@ -119,12 +119,24 @@ public class YLcontractentryController {
 
     }
 
+    /**
+     * 协议列表
+     * @param m
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @RequestMapping(value = "getAllYlcs")
     @ResponseBody
     public Map getAllYlcs(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
         Integer limit=Integer.parseInt(m.get("limit").toString());
         Integer page=Integer.parseInt(m.get("page").toString());
         String signed=m.get("signed").toString();
+        Integer year=Integer.parseInt(m.get("year").toString());
+        String cid=m.get("cid").toString();
+
+        if(year.equals("")){
+            year=null;
+        }
         Integer lastNum=null;
         if(limit==null||page==null) {
             page=null;
@@ -136,7 +148,7 @@ public class YLcontractentryController {
         if(signed.equals("")){
             signed=null;
         }
-        Map map=yLcontractentryService.getAllYlcs(page,lastNum,signed);
+        Map map=yLcontractentryService.getAllYlcs(page,lastNum,signed,year,cid);
         map.put("code",0);
         map.put("msg","");
 

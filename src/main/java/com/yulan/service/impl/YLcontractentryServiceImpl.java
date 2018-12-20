@@ -295,6 +295,8 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         return html;
     }
 
+
+
     @Override
     public YLcontractentry getYLcontractentry(String cid) throws IOException {
         if(yLcontractentryDao.getYLcontractentry(cid) == null){
@@ -313,6 +315,34 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             }
             return mapUtils.mapToBean(map,YLcontractentry.class);
         }
+    }
+
+    /**
+     * 协议书列表获取
+     * @param start
+     * @param number
+     * @param signed
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @Override
+    public Map getAllYlcs(Integer start, Integer number, String signed,Integer year,String cid) throws UnsupportedEncodingException {
+        Map<String,Object> map=new HashMap<>();
+        int count =yLcontractentryDao.countYlcs(signed);
+        List<YLcontractentry> list=yLcontractentryDao.getAllYlcs(start,number,signed);
+        List<YLcontractentry> data=new ArrayList<>();
+        for (YLcontractentry y:list){
+            Map<String,Object> m= MapUtils.beanToMap(y);
+            for (Map.Entry<String,Object> entry:m.entrySet()){
+                String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+            }
+            y=MapUtils.mapToBean(m,YLcontractentry.class);
+            data.add(y);
+        }
+        map.put("data",data);
+        map.put("count",count);
+        return map;
     }
 
 }

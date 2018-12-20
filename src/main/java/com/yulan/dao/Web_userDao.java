@@ -13,4 +13,8 @@ public interface Web_userDao {
 
     //
     boolean updateuserState(@Param("userState")String userState,@Param("cid")String cid);
+
+    Web_user getUser(@Param("cid")String cid);
+
+    String getPosition(@Param("cid")String cid,@Param("year")Integer year);
 }

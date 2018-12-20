@@ -166,7 +166,10 @@
         </if>
     </select>
     <select id="countYlcs" resultType="int">
-        select count(*) from 
+        select count(*) from YLCONTRACTENTRY
+        <if test="signed!=null">
+            and c.signed = #{signed}
+        </if>
     </select>
 
 </mapper>

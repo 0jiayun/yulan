@@ -25,4 +25,18 @@
         where LOGINNAME = #{cid}
     </update>
 
+    <select id="getUser" resultType="Web_user">
+         select
+          LOGINNAME,PASSWORD,REALNAME,COMPANY, TEL
+          ,EMAIL,MEMO,to_char(TS,'yyyy-mm-dd'),USERID,to_char(MODIFYDATE,'yyyy-mm-dd')
+          ,MACADDRESS,TYPE,PASSWORDX,STOPPED,CREATADMIN,USERSTATE
+        from WEB_USER where LOGINNAME = #{cid}
+    </select>
+
+    <select id="getPosition" resultType="String">
+        select descp from
+       (select b.descp,a.* from WEBCONTRACTWFMEMBER a,WEBCONTRACTWFROLE b where a.roleid=b.id)c
+        where
+        c.binduserid=#{cid} and cyear=#{year}
+    </select>
 </mapper>
