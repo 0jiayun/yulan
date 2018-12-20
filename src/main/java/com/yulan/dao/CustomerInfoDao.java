@@ -19,7 +19,8 @@ public interface CustomerInfoDao {
 
     List<CustomerInfoCard> getAllinfo(@Param("start")Integer start, @Param("number") Integer number,
                                       @Param("year")String year,@Param("state")String state,
-                                      @Param("find")String find);
+                                      @Param("find")String find,@Param("area_1")String area_1,
+                                      @Param("area_2")String area_2);
 
     int countInfo(@Param("year")String year,@Param("state")String state,
                   @Param("find")String find);

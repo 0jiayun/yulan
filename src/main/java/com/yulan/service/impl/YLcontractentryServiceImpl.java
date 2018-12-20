@@ -6,6 +6,7 @@ import com.yulan.pojo.YLcontract_v2015;
 import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
 import com.yulan.service.YLcontractentryService;
+import com.yulan.utils.MapUtils;
 import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -287,6 +288,34 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         String html = stringUtil.replace(test,"AAAA",list);
 
         return html;
+    }
+
+    /**
+     * 协议书列表获取
+     * @param start
+     * @param number
+     * @param signed
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @Override
+    public Map getAllYlcs(Integer start, Integer number, String signed) throws UnsupportedEncodingException {
+        Map<String,Object> map=new HashMap<>();
+        int count =yLcontractentryDao.countYlcs(signed);
+        List<YLcontractentry> list=yLcontractentryDao.getAllYlcs(start,number,signed);
+        List<YLcontractentry> data=new ArrayList<>();
+        for (YLcontractentry y:list){
+            Map<String,Object> m= MapUtils.beanToMap(y);
+            for (Map.Entry<String,Object> entry:m.entrySet()){
+                String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+            }
+            y=MapUtils.mapToBean(m,YLcontractentry.class);
+            data.add(y);
+        }
+        map.put("data",data);
+        map.put("count",count);
+        return map;
     }
 
 }

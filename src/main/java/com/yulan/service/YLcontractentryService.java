@@ -20,5 +20,6 @@ public interface YLcontractentryService {
 
     String getYLcontractHTML(String cid)throws IOException;
 
+    Map getAllYlcs(Integer start,Integer number,String signed) throws UnsupportedEncodingException;
 
 }
