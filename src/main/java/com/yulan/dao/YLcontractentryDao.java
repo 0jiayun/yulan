@@ -36,4 +36,8 @@ public interface YLcontractentryDao {
     YLcontractentryShow getYLcontractHTML(@Param("ID") Integer ID);
 
     YLcontractentry getYLcontractentry(@Param("CID") String cid);
+
+    List<YLcontractentry> getAllYlcs(@Param("start")Integer start,@Param("number") Integer number,@Param("signed")String signed);
+    int countYlcs(@Param("signed")String signed);
+
 }

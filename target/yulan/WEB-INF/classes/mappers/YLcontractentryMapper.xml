@@ -94,11 +94,34 @@
         <result column="REWORDPERCENT2" property="rewordpercent2" jdbcType="DECIMAL" />
     </resultMap>
 
+    <resultMap id="YlContractentryResultMap" type="YlContractentry" >
+        <result column="CYEAR" property="cyear" jdbcType="DECIMAL" />
+        <result column="CID" property="cid" jdbcType="VARCHAR" />
+        <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+        <result column="X_DISTRICT" property="xDistrict" jdbcType="VARCHAR" />
+        <result column="X_AREA_DISTRICT_2" property="xAreaDistrict2" jdbcType="VARCHAR" />
+        <result column="X_AREA_DISTRICT_3" property="xAreaDistrict3" jdbcType="VARCHAR" />
+        <result column="START_DATE" property="startDate" jdbcType="TIMESTAMP" />
+        <result column="END_DATE" property="endDate" jdbcType="TIMESTAMP" />
+        <result column="TYPEID" property="typeid" jdbcType="VARCHAR" />
+        <result column="TABLENAME" property="tablename" jdbcType="VARCHAR" />
+        <result column="PAGENAME" property="pagename" jdbcType="VARCHAR" />
+        <result column="STATE" property="state" jdbcType="VARCHAR" />
+        <result column="WFMEMO" property="wfmemo" jdbcType="VARCHAR" />
+        <result column="A_OWNER" property="aOwner" jdbcType="VARCHAR" />
+        <result column="SIGNTS" property="signts" jdbcType="TIMESTAMP" />
+        <result column="SIGNED" property="signed" jdbcType="DECIMAL" />
+        <result column="LEGALCHECKED" property="legalchecked" jdbcType="DECIMAL" />
+        <result column="RW_UPDATE" property="rwUpdate" jdbcType="VARCHAR" />
+    </resultMap>
+
     <resultMap id="YLcontractHTMLMAP" type="com.yulan.pojo.YLcontractentryShow">
         <id column="ID" property="ID" />
         <result column="NAME" property="name" jdbcType="LONGVARBINARY"/>
         <result column="TEST" property="test" jdbcType="LONGVARBINARY"/>
     </resultMap>
+
+
 
     <select id="getYLcontract_v2015" parameterType="java.util.Map" resultType="YLcontract_v2015">
         select * from ( select * from YLCONTRACT_V2015 t where t.ccid=#{CCID} ORDER BY t.ccyear desc )WHERE ROWNUM =1
@@ -129,6 +152,21 @@
 
     <select id="getYLcontractentry" parameterType="java.util.Map" resultType="YLcontractentry">
         select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1
+    </select>
+
+    <select id="getAllYlcs" resultMap="YlContractentryResultMap">
+        select * from(
+        select rownum rm, c.*  from YLCONTRACTENTRY c where 1=1
+        <if test="signed!=null">
+            and c.signed = #{signed}
+        </if>
+        ) tm
+        <if test="start!=null">
+            where rm &gt;= #{start} and rm &lt;= #{number }
+        </if>
+    </select>
+    <select id="countYlcs" resultType="int">
+        select count(*) from 
     </select>
 
 </mapper>
