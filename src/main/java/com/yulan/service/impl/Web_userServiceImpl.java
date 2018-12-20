@@ -31,6 +31,7 @@ public class Web_userServiceImpl implements Web_userService {
             String position=web_userDao.getPosition(web_user.getLoginName(),year);
             map.put("position",StringUtil.getUtf8(position));
             map.put("data",web_user);
+            map.put("code",0);
             return map;
         }
 
@@ -46,6 +47,7 @@ public class Web_userServiceImpl implements Web_userService {
             map.put("position",StringUtil.getUtf8(position));
             map.put("data",web_user);
             map.put("code",0);
+            map.put("msg","修改成功");
         }else {
             map= Response.getResponseMap(1,"修改失败",null);
         }

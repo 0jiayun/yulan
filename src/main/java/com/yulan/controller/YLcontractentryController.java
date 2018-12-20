@@ -130,7 +130,7 @@ public class YLcontractentryController {
     public Map getAllYlcs(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
         Integer limit=Integer.parseInt(m.get("limit").toString());
         Integer page=Integer.parseInt(m.get("page").toString());
-        String signed=m.get("signed").toString();
+        String signed=m.get("signed").toString();//协议书通过标志
         Integer year=Integer.parseInt(m.get("year").toString());
         String cid=m.get("cid").toString();
 
