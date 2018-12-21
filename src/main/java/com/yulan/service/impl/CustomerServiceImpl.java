@@ -17,4 +17,9 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getCustomers(String customerCode, List<String> areaCode, List<String> areaDistrict, List<String> customerType) {
         return customerDao.getCustomers(customerCode,areaCode,areaDistrict,customerType);
     }
+
+    @Override
+    public List<Customer> getCustomersByGroupID(String groupID) {
+        return customerDao.getCustomersByGroupID(groupID);
+    }
 }

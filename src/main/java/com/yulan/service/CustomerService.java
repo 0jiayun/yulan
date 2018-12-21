@@ -14,4 +14,5 @@ public interface CustomerService {
      * @return
      */
     List<Customer> getCustomers(String customerCode,List<String> areaCode,List<String> areaDistrict,List<String> customerType);
+    List<Customer> getCustomersByGroupID(String groupID);
 }

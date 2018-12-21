@@ -113,7 +113,7 @@
                         <hr>
                         <table width="100%">
                             <tbody><tr><th>客户号</th><td><input type="TEXT" placeholder="请输入正确的客户号" id="WCWFCustomerCard_SINGLEID" onclick="javascritp:this.value='';">
-                            </td><td><input type="BUTTON" value="创建资料卡" onclick="javascript:WCWFCustomerCard_SingleCreate()">
+                            </td><td><input type="BUTTON" value="创建资料卡" onclick="javascript:createDataCardByCustomerCode();">
                             </td></tr><tr><td colspan="3">
                                 <select id="WCWFCustomerCard_GROUPID">
                                     <option value="0">--------请选择所属分组，如无请先创建----------</option>
@@ -403,20 +403,44 @@
             }
         }
         var all = {areaCodes:areaCodes,areaDistricts:areaDistricts,customerTypes:customerTypes};
-        all.customerCode = document.getElementById("WCWFCustomerCard_SINGLEID").value;
         all.descp = document.getElementById("$1DESCP").value;
-        $.ajax({
-            type: "POST",
-            url:  remoteURL+"/customer/createDataCards.do",
-            data: JSON.stringify(all),
-            contentType : "application/json",
-            dataType: "json",
-            success: function(res){
-                layui.use('layer',function() {
-                    var layer = layui.layer;
+        layui.use('layer',function() {
+            layer.load();
+            $.ajax({
+                type: "POST",
+                url:  remoteURL+"/customer/createDataCards.do",
+                data: JSON.stringify(all),
+                contentType : "application/json",
+                dataType: "json",
+                success: function(res){
+                    layer.closeAll("loading");
                     layer.alert(res.msg);
-                });
-            }
+                },
+                error:function() {
+                    layer.closeAll("loading");
+                }
+            });
+        })
+    }
+    function createDataCardByCustomerCode() {
+        var all = {customerCode:document.getElementById("WCWFCustomerCard_SINGLEID").value};
+        all.descp = document.getElementById("$1DESCP").value;
+        layui.use('layer',function() {
+            layer.load();
+            $.ajax({
+                type: "POST",
+                url:  remoteURL+"/customer/createDataCards.do",
+                data: JSON.stringify(all),
+                contentType : "application/json",
+                dataType: "json",
+                success: function(res){
+                    layer.closeAll("loading");
+                    layer.alert(res.msg);
+                },
+                error:function() {
+                    layer.closeAll("loading");
+                }
+            });
         });
     }
     function selectAll(checkClass,name) {

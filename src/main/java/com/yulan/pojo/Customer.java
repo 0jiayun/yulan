@@ -2,6 +2,7 @@ package com.yulan.pojo;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.util.Objects;
 
 public class Customer {
     private String customerCode;
@@ -992,6 +993,112 @@ public class Customer {
 
     public void setImportantLevel(String importantLevel) {
         this.importantLevel = importantLevel == null ? null : importantLevel.trim();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(getCustomerCode(), customer.getCustomerCode()) &&
+                Objects.equals(getCustomerName(), customer.getCustomerName()) &&
+                Objects.equals(getStatusId(), customer.getStatusId()) &&
+                Objects.equals(getCustomerBelong(), customer.getCustomerBelong()) &&
+                Objects.equals(getAreaCode(), customer.getAreaCode()) &&
+                Objects.equals(getShortName(), customer.getShortName()) &&
+                Objects.equals(getCustomerType(), customer.getCustomerType()) &&
+                Objects.equals(getCustomerCode3(), customer.getCustomerCode3()) &&
+                Objects.equals(getDistrict(), customer.getDistrict()) &&
+                Objects.equals(getCity(), customer.getCity()) &&
+                Objects.equals(getCityType(), customer.getCityType()) &&
+                Objects.equals(getAgencyStatus(), customer.getAgencyStatus()) &&
+                Objects.equals(getCustomerZt(), customer.getCustomerZt()) &&
+                Objects.equals(getO2oFlag(), customer.getO2oFlag()) &&
+                Objects.equals(getAreaDistrict(), customer.getAreaDistrict()) &&
+                Objects.equals(getBalanceReceive(), customer.getBalanceReceive()) &&
+                Objects.equals(getCreditCode(), customer.getCreditCode()) &&
+                Objects.equals(getCurrencyId(), customer.getCurrencyId()) &&
+                Objects.equals(getDateCre(), customer.getDateCre()) &&
+                Objects.equals(getDateUpdate(), customer.getDateUpdate()) &&
+                Objects.equals(getDeptNo(), customer.getDeptNo()) &&
+                Objects.equals(getEmail(), customer.getEmail()) &&
+                Objects.equals(getFax(), customer.getFax()) &&
+                Objects.equals(getFinanceCode(), customer.getFinanceCode()) &&
+                Objects.equals(getIntranet(), customer.getIntranet()) &&
+                Objects.equals(getJuridicPerson(), customer.getJuridicPerson()) &&
+                Objects.equals(getNotes(), customer.getNotes()) &&
+                Objects.equals(getOfficeTel(), customer.getOfficeTel()) &&
+                Objects.equals(getPostAddress(), customer.getPostAddress()) &&
+                Objects.equals(getQuotaSale(), customer.getQuotaSale()) &&
+                Objects.equals(getSalesman(), customer.getSalesman()) &&
+                Objects.equals(getScale(), customer.getScale()) &&
+                Objects.equals(getTaxNo(), customer.getTaxNo()) &&
+                Objects.equals(getTradeDesc(), customer.getTradeDesc()) &&
+                Objects.equals(gettAccount(), customer.gettAccount()) &&
+                Objects.equals(getZipCode(), customer.getZipCode()) &&
+                Objects.equals(getImportantFlag(), customer.getImportantFlag()) &&
+                Objects.equals(getDeliveryAdress(), customer.getDeliveryAdress()) &&
+                Objects.equals(getCustomerClassify(), customer.getCustomerClassify()) &&
+                Objects.equals(getFollowCode(), customer.getFollowCode()) &&
+                Objects.equals(getInvoiceRecieveStart(), customer.getInvoiceRecieveStart()) &&
+                Objects.equals(getDateChangeStatus(), customer.getDateChangeStatus()) &&
+                Objects.equals(getOperaterChangeStatus(), customer.getOperaterChangeStatus()) &&
+                Objects.equals(getReasonChangeStatus(), customer.getReasonChangeStatus()) &&
+                Objects.equals(getBalanceReceiveZt(), customer.getBalanceReceiveZt()) &&
+                Objects.equals(getReceiveMonthStart(), customer.getReceiveMonthStart()) &&
+                Objects.equals(getReceiveMonthStartZt(), customer.getReceiveMonthStartZt()) &&
+                Objects.equals(getAreaDistrict2(), customer.getAreaDistrict2()) &&
+                Objects.equals(getCreator(), customer.getCreator()) &&
+                Objects.equals(getUpdater(), customer.getUpdater()) &&
+                Objects.equals(getConsignmentType(), customer.getConsignmentType()) &&
+                Objects.equals(getPricePolicy(), customer.getPricePolicy()) &&
+                Objects.equals(getLevelNo(), customer.getLevelNo()) &&
+                Objects.equals(getCustomerAccount(), customer.getCustomerAccount()) &&
+                Objects.equals(getCustomerGroup(), customer.getCustomerGroup()) &&
+                Objects.equals(getCustomerDmsl(), customer.getCustomerDmsl()) &&
+                Objects.equals(getCustomerFxssl(), customer.getCustomerFxssl()) &&
+                Objects.equals(getDateCrts(), customer.getDateCrts()) &&
+                Objects.equals(getCustomerAgent(), customer.getCustomerAgent()) &&
+                Objects.equals(getAreaDistrict3(), customer.getAreaDistrict3()) &&
+                Objects.equals(getOfficeTel1(), customer.getOfficeTel1()) &&
+                Objects.equals(getHandset(), customer.getHandset()) &&
+                Objects.equals(getCustomerLevel(), customer.getCustomerLevel()) &&
+                Objects.equals(getTranscompanyId(), customer.getTranscompanyId()) &&
+                Objects.equals(getManager(), customer.getManager()) &&
+                Objects.equals(getStockNo(), customer.getStockNo()) &&
+                Objects.equals(getCustomerBelong2(), customer.getCustomerBelong2()) &&
+                Objects.equals(getManager1(), customer.getManager1()) &&
+                Objects.equals(getInvoice(), customer.getInvoice()) &&
+                Objects.equals(getReceiveMonthStartSal(), customer.getReceiveMonthStartSal()) &&
+                Objects.equals(getReceiveMonthStartZtSal(), customer.getReceiveMonthStartZtSal()) &&
+                Objects.equals(getHandset2(), customer.getHandset2()) &&
+                Objects.equals(getTransFlag(), customer.getTransFlag()) &&
+                Objects.equals(getPassDate(), customer.getPassDate()) &&
+                Objects.equals(getSignFlag(), customer.getSignFlag()) &&
+                Objects.equals(getMoneyRebate(), customer.getMoneyRebate()) &&
+                Objects.equals(getJuridicPersonHandsetD(), customer.getJuridicPersonHandsetD()) &&
+                Objects.equals(getQqD(), customer.getQqD()) &&
+                Objects.equals(getFaxWlD(), customer.getFaxWlD()) &&
+                Objects.equals(getZipCodeWlD(), customer.getZipCodeWlD()) &&
+                Objects.equals(getShopAreaD(), customer.getShopAreaD()) &&
+                Objects.equals(getBusinessWay(), customer.getBusinessWay()) &&
+                Objects.equals(getBusinessLicenseNo(), customer.getBusinessLicenseNo()) &&
+                Objects.equals(getOrganizationNo(), customer.getOrganizationNo()) &&
+                Objects.equals(getGeneraltaxpayerStatus(), customer.getGeneraltaxpayerStatus()) &&
+                Objects.equals(getCustomerNameOld(), customer.getCustomerNameOld()) &&
+                Objects.equals(getExamineFlag(), customer.getExamineFlag()) &&
+                Objects.equals(getDgzh(), customer.getDgzh()) &&
+                Objects.equals(getCustomerCode4(), customer.getCustomerCode4()) &&
+                Objects.equals(getIdcardNo(), customer.getIdcardNo()) &&
+                Objects.equals(getFlagSalItem(), customer.getFlagSalItem()) &&
+                Objects.equals(getBusinesslicenseDateEnd(), customer.getBusinesslicenseDateEnd()) &&
+                Objects.equals(getCustomerPpFlag(), customer.getCustomerPpFlag()) &&
+                Objects.equals(getTaxAddress(), customer.getTaxAddress()) &&
+                Objects.equals(getTaxTel(), customer.getTaxTel()) &&
+                Objects.equals(getTaxBank(), customer.getTaxBank()) &&
+                Objects.equals(getTaxBankNo(), customer.getTaxBankNo()) &&
+                Objects.equals(getCustomerAgent1(), customer.getCustomerAgent1()) &&
+                Objects.equals(getImportantLevel(), customer.getImportantLevel());
     }
 
     @Override

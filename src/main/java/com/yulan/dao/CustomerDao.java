@@ -16,4 +16,5 @@ public interface CustomerDao {
      */
     List<Customer> getCustomers(@Param("customerCode")String customerCode, @Param("areaCodes")List<String> areaCodes,
                                 @Param("areaDistricts")List<String> areaDistricts, @Param("customerTypes")List<String> customerTypes);
+    List<Customer> getCustomersByGroupID(@Param("groupID")String groupID);
 }
