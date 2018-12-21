@@ -1,0 +1,246 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yulan.dao.YLcontractentryDao">
+
+    <select id="getYLcBySate" resultType="HashMap">
+        select count(*) nums ,state from ylcontractentry y where 1=1
+        <if test="year!=null">
+           and y.cyear=#{year}
+        </if>
+         group by state
+    </select>
+
+    <select id="getYLcbyStateandCID" resultType="HashMap">
+        select
+        *
+
+        from(
+        select rownum rm, a.* from(select  count(*) nums ,state,CID from ylcontractentry y where 1=1
+        <if test="year!=null">
+          and  y.cyear=#{year}
+        </if>
+        group by state, CID) a
+        ) tm where rm &gt;= #{start} and rm &lt;= #{number }
+
+    </select>
+
+    <select id="count" resultType="int">
+        select count (*) from (select * from ylcontractentry y where 1=1
+        <if test="year!=null">
+          and  y.cyear=#{year}
+        </if>
+         group by state ,CID)
+    </select>
+
+    <select id="getArea_code" resultType="String">
+        select Area_code from customer where customer_code=#{CID}
+    </select>
+
+    <select id="getAreaName" resultType="String">
+        select Area_name from Area_code where area_code=#{area_code,jdbcType=VARCHAR}
+    </select>
+
+
+
+
+    <select id="getCenter_mangerId" resultType="String">
+        select center_manager from Area_owner where area_code=#{area_code,jdbcType=VARCHAR}  group by center_manager
+    </select>
+
+    <select id="getName" resultType="String">
+        select t.name from HES_EMPLOYEE t where employee_no=#{owner,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAllStates" resultType="Map">
+        select state from ylcontractentry group by state
+    </select>
+
+    <select id="getState" resultType="String">
+        select state from ylcontractentry where  CID=#{CID}
+        <if test="year!=null">
+            and  cYear=#{year }
+        </if>
+        <if test="state!=null">
+            and  state=#{state }
+        </if>
+
+    </select>
+
+
+    <resultMap id="BaseResultMap" type="com.yulan.pojo.YLcontract_v2015" >
+        <result column="CCYEAR" property="ccyear" jdbcType="DECIMAL" />
+        <result column="CCID" property="ccid" jdbcType="VARCHAR" />
+        <result column="A_RETAILING" property="aRetailing" jdbcType="DECIMAL" />
+        <result column="B_ENGINEERING" property="bEngineering" jdbcType="DECIMAL" />
+        <result column="C_MATCHING" property="cMatching" jdbcType="DECIMAL" />
+        <result column="M1" property="m1" jdbcType="DECIMAL" />
+        <result column="M2" property="m2" jdbcType="DECIMAL" />
+        <result column="M3" property="m3" jdbcType="DECIMAL" />
+        <result column="M4" property="m4" jdbcType="DECIMAL" />
+        <result column="M5" property="m5" jdbcType="DECIMAL" />
+        <result column="M6" property="m6" jdbcType="DECIMAL" />
+        <result column="M7" property="m7" jdbcType="DECIMAL" />
+        <result column="M8" property="m8" jdbcType="DECIMAL" />
+        <result column="M9" property="m9" jdbcType="DECIMAL" />
+        <result column="M10" property="m10" jdbcType="DECIMAL" />
+        <result column="M11" property="m11" jdbcType="DECIMAL" />
+        <result column="M12" property="m12" jdbcType="DECIMAL" />
+        <result column="STOCKPERCENT" property="stockpercent" jdbcType="DECIMAL" />
+        <result column="REWORDPERCENT" property="rewordpercent" jdbcType="DECIMAL" />
+        <result column="PAYMINIMUM" property="payminimum" jdbcType="DECIMAL" />
+        <result column="MEMO2" property="memo2" jdbcType="VARCHAR" />
+        <result column="PREFEREDBRAND" property="preferedbrand" jdbcType="VARCHAR" />
+        <result column="PRIVATE_ACCOUNT_AUTHED" property="privateAccountAuthed" jdbcType="VARCHAR" />
+        <result column="REWORDPERCENT2" property="rewordpercent2" jdbcType="DECIMAL" />
+    </resultMap>
+
+    <resultMap id="YlContractentryResultMap" type="YlContractentry" >
+        <result column="CYEAR" property="cyear" jdbcType="DECIMAL" />
+        <result column="CID" property="cid" jdbcType="VARCHAR" />
+        <result column="CNAME" property="cname" jdbcType="VARCHAR" />
+        <result column="X_DISTRICT" property="xDistrict" jdbcType="VARCHAR" />
+        <result column="X_AREA_DISTRICT_2" property="xAreaDistrict2" jdbcType="VARCHAR" />
+        <result column="X_AREA_DISTRICT_3" property="xAreaDistrict3" jdbcType="VARCHAR" />
+        <result column="START_DATE" property="startDate" jdbcType="TIMESTAMP" />
+        <result column="END_DATE" property="endDate" jdbcType="TIMESTAMP" />
+        <result column="TYPEID" property="typeid" jdbcType="VARCHAR" />
+        <result column="TABLENAME" property="tablename" jdbcType="VARCHAR" />
+        <result column="PAGENAME" property="pagename" jdbcType="VARCHAR" />
+        <result column="STATE" property="state" jdbcType="VARCHAR" />
+        <result column="WFMEMO" property="wfmemo" jdbcType="VARCHAR" />
+        <result column="A_OWNER" property="aOwner" jdbcType="VARCHAR" />
+        <result column="SIGNTS" property="signts" jdbcType="TIMESTAMP" />
+        <result column="SIGNED" property="signed" jdbcType="DECIMAL" />
+        <result column="LEGALCHECKED" property="legalchecked" jdbcType="DECIMAL" />
+        <result column="RW_UPDATE" property="rwUpdate" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="YLcontractHTMLMAP" type="com.yulan.pojo.YLcontractentryShow">
+        <id column="ID" property="ID" />
+        <result column="NAME" property="name" jdbcType="LONGVARBINARY"/>
+        <result column="TEST" property="test" jdbcType="LONGVARBINARY"/>
+    </resultMap>
+
+
+
+    <select id="getYLcontract_v2015" parameterType="java.util.Map" resultType="YLcontract_v2015">
+        select * from ( select * from YLCONTRACT_V2015 t where t.ccid=#{CCID} ORDER BY t.ccyear desc )WHERE ROWNUM =1
+    </select>
+
+    <insert id="createYLcontract_v2015" parameterType="YLcontract_v2015" >
+    insert into YLCONTRACT_V2015 (CCYEAR, CCID, A_RETAILING,
+      B_ENGINEERING, C_MATCHING, M1,
+      M2, M3, M4, M5,
+      M6, M7, M8, M9,
+      M10, M11, M12, STOCKPERCENT,
+      REWORDPERCENT, PAYMINIMUM, MEMO2,
+      PREFEREDBRAND, PRIVATE_ACCOUNT_AUTHED, REWORDPERCENT2
+      )
+    values (#{ccyear,jdbcType=DECIMAL}, #{ccid,jdbcType=VARCHAR}, #{aRetailing,jdbcType=DECIMAL},
+      #{bEngineering,jdbcType=DECIMAL}, #{cMatching,jdbcType=DECIMAL}, #{m1,jdbcType=DECIMAL},
+      #{m2,jdbcType=DECIMAL}, #{m3,jdbcType=DECIMAL}, #{m4,jdbcType=DECIMAL}, #{m5,jdbcType=DECIMAL},
+      #{m6,jdbcType=DECIMAL}, #{m7,jdbcType=DECIMAL}, #{m8,jdbcType=DECIMAL}, #{m9,jdbcType=DECIMAL},
+      #{m10,jdbcType=DECIMAL}, #{m11,jdbcType=DECIMAL}, #{m12,jdbcType=DECIMAL}, #{stockpercent,jdbcType=DECIMAL},
+      #{rewordpercent,jdbcType=DECIMAL}, #{payminimum,jdbcType=DECIMAL}, #{memo2,jdbcType=VARCHAR},
+      #{preferedbrand,jdbcType=VARCHAR}, #{privateAccountAuthed,jdbcType=VARCHAR}, #{rewordpercent2,jdbcType=DECIMAL}
+      )
+  </insert>
+
+    <select id="getYLcontractHTML" parameterType="java.lang.Integer" resultMap="YLcontractHTMLMAP">
+        select TEST from YLCONTRACTENTRY_SHOW WHERE ID =#{ID}
+    </select>
+
+    <select id="getYLcontractentry" parameterType="java.util.Map" resultType="YLcontractentry">
+        select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1
+    </select>
+
+    <select id="getAllYlcs" resultMap="YlContractentryResultMap">
+        select * from(
+        select rownum rm, c.*  from YLCONTRACTENTRY c where 1=1
+        <if test="signed!=null">
+            and c.signed = #{signed}
+        </if>
+        ) tm
+        <if test="start!=null">
+            where rm &gt;= #{start} and rm &lt;= #{number }
+        </if>
+    </select>
+    <select id="countYlcs" resultType="int">
+        select count(*) from YLCONTRACTENTRY
+        <if test="signed!=null">
+            and c.signed = #{signed}
+        </if>
+    </select>
+
+    <update id="checkYLcontractentry" parameterType="java.util.Map">
+        update YLCONTRACTENTRY
+        set
+        STATE = #{STATE} ,
+        WFMEMO = WFMEMO || #{WFMEMO,jdbcType=VARCHAR}
+        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
+    </update>
+
+    <select id="getAllYs" resultType="Map">
+
+        select
+        *
+
+        from(
+        select rownum rm, f.*  from
+
+        (select a.area_name,b.* from
+            (select c.area_code ,c.district,t.* from
+            YLCONTRACTENTRY t,customer c,(select * from AREA_USER t where t.userid=#{cid}) e
+            where t.cid=c.customer_code and e.area_code=c.area_code) b, area_code a
+        where a.area_code=b.area_code)f
+
+        where 1=1
+        <if test="year!=null">
+            and cyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and area_name=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and district=#{area_2}
+        </if>
+        <if test="signed!=null">
+            and signed=#{signed}
+        </if>
+        <if test="find!=null">
+            and f.cid=#{find}
+        </if>
+
+
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+
+
+    </select>
+    <select id="countYs" resultType="int">
+        select count (*) from
+          (select a.area_name,b.* from
+        (select c.area_code ,c.district,t.* from
+        YLCONTRACTENTRY t,customer c,(select * from AREA_USER t where t.userid=#{cid}) e
+        where t.cid=c.customer_code and e.area_code=c.area_code) b, area_code a
+        where a.area_code=b.area_code)f
+        where 1=1
+        <if test="year!=null">
+            and cyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and area_name=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and district=#{area_2}
+        </if>
+        <if test="signed!=null">
+            and signed=#{signed}
+        </if>
+        <if test="find!=null">
+            and f.cid=#{find}
+        </if>
+
+    </select>
+
+</mapper>
