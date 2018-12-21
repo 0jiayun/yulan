@@ -172,6 +172,14 @@
         </if>
     </select>
 
+    <update id="checkYLcontractentry" parameterType="java.util.Map">
+        update YLCONTRACTENTRY
+        set
+        STATE = #{STATE} ,
+        WFMEMO = WFMEMO || #{WFMEMO,jdbcType=VARCHAR}
+        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
+    </update>
+
     <select id="getAllYs" resultType="Map">
 
         select

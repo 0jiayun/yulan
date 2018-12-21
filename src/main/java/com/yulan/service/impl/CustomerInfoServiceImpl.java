@@ -44,8 +44,12 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         List<Map<String,Object>> list=customerInfoDao.getAllStates();
         List<Map<String,Object>> states=new ArrayList<>();
         for (Map m:list){
+            if(m==null||m.get("STATE").equals("1234")){
+                continue;
+            }
             Map<String,Object> map=new HashMap<>();
             map.put("id",m.get("STATE"));
+
             switch (m.get("STATE").toString()){
                 case "ONCREATE":
                     map.put("name","初始状态");
