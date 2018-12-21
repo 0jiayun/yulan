@@ -180,4 +180,66 @@
         where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
     </update>
 
+    <select id="getAllYs" resultType="Map">
+
+        select
+        *
+
+        from(
+        select rownum rm, f.*  from
+
+        (select a.area_name,b.* from
+            (select c.area_code ,c.district,t.* from
+            YLCONTRACTENTRY t,customer c,(select * from AREA_USER t where t.userid=#{cid}) e
+            where t.cid=c.customer_code and e.area_code=c.area_code) b, area_code a
+        where a.area_code=b.area_code)f
+
+        where 1=1
+        <if test="year!=null">
+            and cyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and area_name=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and district=#{area_2}
+        </if>
+        <if test="signed!=null">
+            and signed=#{signed}
+        </if>
+        <if test="find!=null">
+            and f.cid=#{find}
+        </if>
+
+
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+
+
+    </select>
+    <select id="countYs" resultType="int">
+        select count (*) from
+          (select a.area_name,b.* from
+        (select c.area_code ,c.district,t.* from
+        YLCONTRACTENTRY t,customer c,(select * from AREA_USER t where t.userid=#{cid}) e
+        where t.cid=c.customer_code and e.area_code=c.area_code) b, area_code a
+        where a.area_code=b.area_code)f
+        where 1=1
+        <if test="year!=null">
+            and cyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and area_name=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and district=#{area_2}
+        </if>
+        <if test="signed!=null">
+            and signed=#{signed}
+        </if>
+        <if test="find!=null">
+            and f.cid=#{find}
+        </if>
+
+    </select>
+
 </mapper>

@@ -2,6 +2,7 @@ package com.yulan.dao;
 
 import com.yulan.pojo.YLcontract_v2015;
 import com.yulan.pojo.YLcontractentry;
+
 import com.yulan.pojo.YLcontractentryShow;
 import org.apache.ibatis.annotations.Param;
 
@@ -42,4 +43,12 @@ public interface YLcontractentryDao {
     List<YLcontractentry> getAllYlcs(@Param("start")Integer start,@Param("number") Integer number,@Param("signed")String signed);
     int countYlcs(@Param("signed")String signed);
 
+    //联表查询获取所需协议书集合
+    List<Map<String,Object>> getAllYs(@Param("start")Integer start,@Param("number") Integer number,
+                                      @Param("signed")Integer signed,@Param("cid")String cid,
+                                      @Param("year")Integer year,@Param("area_1")String area_1,
+                                      @Param("area_2")String area_2,@Param("find")String find);
+    int countYs(@Param("signed")Integer signed,@Param("cid")String cid,
+                @Param("year")Integer year,@Param("area_1")String area_1,
+                @Param("area_2")String area_2,@Param("find")String find);
 }
