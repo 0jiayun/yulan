@@ -27,12 +27,19 @@ public class Web_userServiceImpl implements Web_userService {
                 String position=web_userDao.getPosition(web_user.getUserId(),year);
                 web_user.setCompany(StringUtil.getUtf8(web_user.getCompany()));
                 web_user.setRealName(StringUtil.getUtf8(web_user.getRealName()));
+                if(position==null){
+                    map.put("position","");
+                }else{
+                    map.put("position",StringUtil.getUtf8(position));
+                }
+
+                map.put("data",web_user);
+                map.put("code",0);
+                return map;
             }
-            String position=web_userDao.getPosition(web_user.getLoginName(),year);
-            map.put("position",StringUtil.getUtf8(position));
-            map.put("data",web_user);
-            map.put("code",0);
-            return map;
+
+
+
         }
 
         return null;

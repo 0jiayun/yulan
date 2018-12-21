@@ -317,6 +317,27 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         }
     }
 
+    @Override
+        public Map getYlcsbySigned(Integer start, Integer number, Integer signed, Integer year, String cid,String area_1,
+                                   String area_2,String find) throws UnsupportedEncodingException {
+        Map<String,Object> map=new HashMap<>();
+        List<Map<String,Object>> list=yLcontractentryDao.getAllYs(start,number,signed,cid,year,area_1,area_2,find);
+        List<Map<String,Object>> data=new ArrayList<>();
+        map.put("count",yLcontractentryDao.countYs(signed,cid,year,area_1,area_2,find));
+        for (Map<String,Object> m:list) {
+            for (Map.Entry<String, Object> entry : m.entrySet()) {
+                if (entry.getValue() instanceof String) {
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+            }
+            data.add(m);
+        }
+        map.put("data",data);
+
+        return map;
+    }
+
     /**
      * 协议书列表获取
      * @param start

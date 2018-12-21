@@ -31,6 +31,7 @@ public class Web_userController {
         Map map = web_userService.login(loginName,password,year);
         if(map==null) {
              map= Response.getResponseMap(1,"账号与密码不相符",null);
+             System.out.println(map.get("code"));
             return map;
         }
         else {
