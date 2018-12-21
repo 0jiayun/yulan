@@ -49,6 +49,8 @@
 	function login() {
 		var userName=$("#userName").val();
 		var password=$("#password").val();
+		var year='2018';
+		var all={loginName:userName,password:password,year:year};
         console.log(userName+":"+password);
 		if(userName=="") {
             warn("请输入用户名");
@@ -61,7 +63,8 @@
         $.ajax({
             type: "POST",
             url:  remoteURL+"/web_user/login.do",
-            data: {loginName:userName,password:password},
+			contentType:"application/json",
+            data: JSON.stringify(all),
             dataType: "json",
             success: function(data){
                 console.log(data);

@@ -1,6 +1,7 @@
 package com.yulan.utils;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.regex.Matcher;
@@ -96,5 +97,26 @@ public class StringUtil {
 
 	public static String createStringID() {
 		return UUID.randomUUID().toString().replace("-", "");
+	}
+
+	/**
+	 * 替换特定文本
+	 * @param text
+	 * @param beReplaced
+	 * @param replaces
+	 * @return
+	 */
+
+	public static List<String> replaceState(List<String> text, String beReplaced, String replaces) {
+		Pattern pattern = Pattern.compile(beReplaced);
+		List<String> result = new ArrayList<>();
+		for(String t : text){
+			Matcher matcher = pattern.matcher(t);
+			while(matcher.find()) {
+				t=t.replaceFirst(beReplaced, replaces);
+			}
+			result.add(t);
+		}
+		return result;
 	}
 }

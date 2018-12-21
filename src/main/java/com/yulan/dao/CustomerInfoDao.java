@@ -19,7 +19,8 @@ public interface CustomerInfoDao {
 
     List<CustomerInfoCard> getAllinfo(@Param("start")Integer start, @Param("number") Integer number,
                                       @Param("year")String year,@Param("state")String state,
-                                      @Param("find")String find);
+                                      @Param("find")String find,@Param("area_1")String area_1,
+                                      @Param("area_2")String area_2);
 
     int countInfo(@Param("year")String year,@Param("state")String state,
                   @Param("find")String find);
@@ -59,5 +60,13 @@ public interface CustomerInfoDao {
     List<Map<String,Object>> getAllStatisticsInfo(@Param("market") String market,@Param("userCID") String userCID,
                                                   @Param("userCName") String userCName);
 
+    List<Map<String,Object>> getInfoandYlc(@Param("find")String find,@Param("year")String year,
+                                           @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
 
+    int countInfoandYlc(@Param("find")String find,@Param("year")String year,
+                        @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
+    //业务员审核资料卡
+    boolean businessCheckCustomerInfoCard(@Param("CID") String cid ,@Param("STATE") String state,@Param("MEMO") String memo);
+
+    //资料卡执行汇总
 }

@@ -4,34 +4,52 @@ package com.yulan.pojo;
  */
 
 
-import java.sql.Date;
+import java.util.Date;
 
 public class YLcontractentry {
 
-    private Integer cYear;
+    private Integer cyear;
+
     private String cid;
+
+    private String cname;
+
     private String xDistrict;
+
     private String xAreaDistrict2;
+
     private String xAreaDistrict3;
-    private Date startDate;
-    private Date endDate;
-    private String typeID;
-    private String tableName;
-    private String pageName;
+
+    private java.util.Date startDate;
+
+    private java.util.Date endDate;
+
+    private String typeid;
+
+    private String tablename;
+
+    private String pagename;
+
     private String state;
-    private String wfMemo;
+
+    private String wfmemo;
+
     private String aOwner;
-    private Date signts;
-    private Integer signed;
-    private Integer legalChecked;
+
+    private java.util.Date signts;
+
+    private Short signed;
+
+    private Short legalchecked;
+
     private String rwUpdate;
 
-    public Integer getcYear() {
-        return cYear;
+    public Integer getCyear() {
+        return cyear;
     }
 
-    public void setcYear(Integer cYear) {
-        this.cYear = cYear;
+    public void setCyear(Integer cyear) {
+        this.cyear = cyear;
     }
 
     public String getCid() {
@@ -39,7 +57,15 @@ public class YLcontractentry {
     }
 
     public void setCid(String cid) {
-        this.cid = cid;
+        this.cid = cid == null ? null : cid.trim();
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname == null ? null : cname.trim();
     }
 
     public String getxDistrict() {
@@ -47,7 +73,7 @@ public class YLcontractentry {
     }
 
     public void setxDistrict(String xDistrict) {
-        this.xDistrict = xDistrict;
+        this.xDistrict = xDistrict == null ? null : xDistrict.trim();
     }
 
     public String getxAreaDistrict2() {
@@ -55,7 +81,7 @@ public class YLcontractentry {
     }
 
     public void setxAreaDistrict2(String xAreaDistrict2) {
-        this.xAreaDistrict2 = xAreaDistrict2;
+        this.xAreaDistrict2 = xAreaDistrict2 == null ? null : xAreaDistrict2.trim();
     }
 
     public String getxAreaDistrict3() {
@@ -63,47 +89,47 @@ public class YLcontractentry {
     }
 
     public void setxAreaDistrict3(String xAreaDistrict3) {
-        this.xAreaDistrict3 = xAreaDistrict3;
+        this.xAreaDistrict3 = xAreaDistrict3 == null ? null : xAreaDistrict3.trim();
     }
 
-    public Date getStartDate() {
+    public java.util.Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(java.util.Date startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public java.util.Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(java.util.Date endDate) {
         this.endDate = endDate;
     }
 
-    public String getTypeID() {
-        return typeID;
+    public String getTypeid() {
+        return typeid;
     }
 
-    public void setTypeID(String typeID) {
-        this.typeID = typeID;
+    public void setTypeid(String typeid) {
+        this.typeid = typeid == null ? null : typeid.trim();
     }
 
-    public String getTableName() {
-        return tableName;
+    public String getTablename() {
+        return tablename;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
+    public void setTablename(String tablename) {
+        this.tablename = tablename == null ? null : tablename.trim();
     }
 
-    public String getPageName() {
-        return pageName;
+    public String getPagename() {
+        return pagename;
     }
 
-    public void setPageName(String pageName) {
-        this.pageName = pageName;
+    public void setPagename(String pagename) {
+        this.pagename = pagename == null ? null : pagename.trim();
     }
 
     public String getState() {
@@ -111,15 +137,15 @@ public class YLcontractentry {
     }
 
     public void setState(String state) {
-        this.state = state;
+        this.state = state == null ? null : state.trim();
     }
 
-    public String getWfMemo() {
-        return wfMemo;
+    public String getWfmemo() {
+        return wfmemo;
     }
 
-    public void setWfMemo(String wfMemo) {
-        this.wfMemo = wfMemo;
+    public void setWfmemo(String wfmemo) {
+        this.wfmemo = wfmemo == null ? null : wfmemo.trim();
     }
 
     public String getaOwner() {
@@ -127,10 +153,10 @@ public class YLcontractentry {
     }
 
     public void setaOwner(String aOwner) {
-        this.aOwner = aOwner;
+        this.aOwner = aOwner == null ? null : aOwner.trim();
     }
 
-    public Date getSignts() {
+    public java.util.Date getSignts() {
         return signts;
     }
 
@@ -138,20 +164,20 @@ public class YLcontractentry {
         this.signts = signts;
     }
 
-    public Integer getSigned() {
+    public Short getSigned() {
         return signed;
     }
 
-    public void setSigned(Integer signed) {
+    public void setSigned(Short signed) {
         this.signed = signed;
     }
 
-    public Integer getLegalChecked() {
-        return legalChecked;
+    public Short getLegalchecked() {
+        return legalchecked;
     }
 
-    public void setLegalChecked(Integer legalChecked) {
-        this.legalChecked = legalChecked;
+    public void setLegalchecked(Short legalchecked) {
+        this.legalchecked = legalchecked;
     }
 
     public String getRwUpdate() {
@@ -159,6 +185,30 @@ public class YLcontractentry {
     }
 
     public void setRwUpdate(String rwUpdate) {
-        this.rwUpdate = rwUpdate;
+        this.rwUpdate = rwUpdate == null ? null : rwUpdate.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "YLcontractentry{" +
+                "cyear=" + cyear +
+                ", cid='" + cid + '\'' +
+                ", cname='" + cname + '\'' +
+                ", xDistrict='" + xDistrict + '\'' +
+                ", xAreaDistrict2='" + xAreaDistrict2 + '\'' +
+                ", xAreaDistrict3='" + xAreaDistrict3 + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", typeid='" + typeid + '\'' +
+                ", tablename='" + tablename + '\'' +
+                ", pagename='" + pagename + '\'' +
+                ", state='" + state + '\'' +
+                ", wfmemo='" + wfmemo + '\'' +
+                ", aOwner='" + aOwner + '\'' +
+                ", signts=" + signts +
+                ", signed=" + signed +
+                ", legalchecked=" + legalchecked +
+                ", rwUpdate='" + rwUpdate + '\'' +
+                '}';
     }
 }

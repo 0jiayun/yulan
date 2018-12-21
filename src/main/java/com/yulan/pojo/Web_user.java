@@ -17,6 +17,34 @@ public class Web_user {
     private String type;
     private String passwordX;
     private Integer stopped;
+    private String userState;//账号状态，""第一次，“10”未修改初始名密码但已经阅读了网络签定提示书，“01”修改了初始密码，但未阅读网络签定书，‘11’修改
+
+    public String getUserState() {
+        return userState;
+    }
+
+    public void setUserState(String userState) {
+        this.userState = userState;
+    }
+
+    public Web_user(String loginName, String password, String realName, String company, String tel, String email, String memo, Date ts, String userId, Date modifyDate, String macAddress, String type, String passwordX, Integer stopped, String userState, String creatAdmin) {
+        this.loginName = loginName;
+        this.password = password;
+        this.realName = realName;
+        this.company = company;
+        this.tel = tel;
+        this.email = email;
+        this.memo = memo;
+        this.ts = ts;
+        this.userId = userId;
+        this.modifyDate = modifyDate;
+        this.macAddress = macAddress;
+        this.type = type;
+        this.passwordX = passwordX;
+        this.stopped = stopped;
+        this.userState = userState;
+        this.creatAdmin = creatAdmin;
+    }
 
     public String getCompany() {
         return company;

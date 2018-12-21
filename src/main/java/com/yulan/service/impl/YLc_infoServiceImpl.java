@@ -21,139 +21,180 @@ public class YLc_infoServiceImpl implements YLc_infoService {
 
     @Override
     public Map getAllYLc_info(Integer start, Integer number, String year, String info_state, String ylc_state, String find) throws UnsupportedEncodingException {
+          return null;
+//        Map map=new HashMap<String,Object>(2);
+//        int count=customerInfoDao.countInfo(year,info_state,find);
+//        List<YLc_info> datas=new ArrayList<>();
+//        List<CustomerInfoCard> list=customerInfoDao.getAllinfo(start,number,year,info_state,find);
+//        for(CustomerInfoCard c:list){
+//
+//            YLc_info yLc_info=new YLc_info();
+//            yLc_info.setCustomerId(c.getCid());
+//            yLc_info.setCustomerName(StringUtil.getUtf8(c.getCname()));
+//            yLc_info.setCardState(c.getState());
+//            if (c.getFile1Idcard()==null){
+//                yLc_info.setFile_1_idcard(0);
+//            }else{
+//                yLc_info.setFile_1_idcard(1);
+//            }
+//
+//            if (c.getFile2Businesslicense()==null){
+//                yLc_info.setFile_2_businesslicense(0);
+//            }else{
+//                yLc_info.setFile_2_businesslicense(1);
+//            }
+//
+//            if (c.getFile3Orgcode()==null){
+//                yLc_info.setFile_3_orgcode(0);
+//            }else{
+//                yLc_info.setFile_3_orgcode(1);
+//            }
+//
+//            if (c.getFile4Gtqc()==null){
+//                yLc_info.setFile_4_gtqc(0);
+//            }else{
+//                yLc_info.setFile_4_gtqc(1);
+//            }
+//
+//            yLc_info.setTx_agent_name(StringUtil.getUtf8(c.getTxAgentName()));
+//            yLc_info.setX_juridic_person(StringUtil.getUtf8(c.getxJuridicPerson()));
+//            yLc_info.setJuridic_person_handset(c.getJuridicPersonHandset());
+//            yLc_info.setMarketName(StringUtil.getUtf8(c.getMarketname()));
+//            yLc_info.setMarketManagerName(StringUtil.getUtf8(c.getMarketmanagername()));
+//            String ylcState=yLcontractentryDao.getState(c.getCid(),(int)c.getContractyear(),ylc_state);
+//            if(ylcState==null){
+//                String cid=c.getCid();
+//                continue;
+//            }else{
+//                yLc_info.setYlcState(ylcState);
+//                datas.add(yLc_info);
+//            }
+//
+//
+//        }
+//
+//
+//        map.put("data",datas);
+//        map.put("count",count);
+//        return map;
+    }
 
+    @Override
+    public Map getAllinfo(Integer start, Integer number, String year, String info_state, String find,String cid,
+                          String area_1,String area_2) throws UnsupportedEncodingException {
         Map map=new HashMap<String,Object>(2);
         int count=customerInfoDao.countInfo(year,info_state,find);
         List<YLc_info> datas=new ArrayList<>();
-        List<CustomerInfoCard> list=customerInfoDao.getAllinfo(start,number,year,info_state,find);
-        for(CustomerInfoCard c:list){
+        List<Map<String,Object>> areas=customerInfoDao.getAllArea(cid);
+        List<CustomerInfoCard> list=customerInfoDao.getAllinfo(start,number,year,info_state,find,area_1,area_2);
+        if (area_1==null&&area_2==null){
+            for(CustomerInfoCard c:list){
+                for (Map m:areas){
 
-            YLc_info yLc_info=new YLc_info();
-            yLc_info.setCustomerId(c.getCid());
-            yLc_info.setCustomerName(StringUtil.getUtf8(c.getCname()));
-            yLc_info.setCardState(c.getState());
-            if (c.getFile1Idcard()==null){
-                yLc_info.setFile_1_idcard(0);
-            }else{
-                yLc_info.setFile_1_idcard(1);
+                    if (m.get("AREA_CODE").equals(c.getMarket())){
+                        YLc_info yLc_info=new YLc_info();
+                        yLc_info.setCustomerId(c.getCid());
+                        yLc_info.setCustomerName(StringUtil.getUtf8(c.getCname()));
+                        yLc_info.setCardState(c.getState());
+                        if (c.getFile1Idcard()==null){
+                            yLc_info.setFile_1_idcard(0);
+                        }else{
+                            yLc_info.setFile_1_idcard(1);
+                        }
+
+                        if (c.getFile2Businesslicense()==null){
+                            yLc_info.setFile_2_businesslicense(0);
+                        }else{
+                            yLc_info.setFile_2_businesslicense(1);
+                        }
+
+                        if (c.getFile3Orgcode()==null){
+                            yLc_info.setFile_3_orgcode(0);
+                        }else{
+                            yLc_info.setFile_3_orgcode(1);
+                        }
+
+                        if (c.getFile4Gtqc()==null){
+                            yLc_info.setFile_4_gtqc(0);
+                        }else{
+                            yLc_info.setFile_4_gtqc(1);
+                        }
+
+                        yLc_info.setTx_agent_name(StringUtil.getUtf8(c.getTxAgentName()));
+                        yLc_info.setX_juridic_person(StringUtil.getUtf8(c.getxJuridicPerson()));
+                        yLc_info.setJuridic_person_handset(c.getJuridicPersonHandset());
+                        yLc_info.setMarketName(StringUtil.getUtf8(c.getMarketname()));
+                        yLc_info.setMarketManagerName(StringUtil.getUtf8(c.getMarketmanagername()));
+
+
+                        datas.add(yLc_info);
+                    }
+
+                }
+
+
             }
+        }else{
+            for(CustomerInfoCard c:list){
+                YLc_info yLc_info=new YLc_info();
+                yLc_info.setCustomerId(c.getCid());
+                yLc_info.setCustomerName(StringUtil.getUtf8(c.getCname()));
+                yLc_info.setCardState(c.getState());
+                if (c.getFile1Idcard()==null){
+                    yLc_info.setFile_1_idcard(0);
+                }else{
+                    yLc_info.setFile_1_idcard(1);
+                }
 
-            if (c.getFile2Businesslicense()==null){
-                yLc_info.setFile_2_businesslicense(0);
-            }else{
-                yLc_info.setFile_2_businesslicense(1);
+                if (c.getFile2Businesslicense()==null){
+                    yLc_info.setFile_2_businesslicense(0);
+                }else{
+                    yLc_info.setFile_2_businesslicense(1);
+                }
+
+                if (c.getFile3Orgcode()==null){
+                    yLc_info.setFile_3_orgcode(0);
+                }else{
+                    yLc_info.setFile_3_orgcode(1);
+                }
+
+                if (c.getFile4Gtqc()==null){
+                    yLc_info.setFile_4_gtqc(0);
+                }else{
+                    yLc_info.setFile_4_gtqc(1);
+                }
+
+                yLc_info.setTx_agent_name(StringUtil.getUtf8(c.getTxAgentName()));
+                yLc_info.setX_juridic_person(StringUtil.getUtf8(c.getxJuridicPerson()));
+                yLc_info.setJuridic_person_handset(c.getJuridicPersonHandset());
+                yLc_info.setMarketName(StringUtil.getUtf8(c.getMarketname()));
+                yLc_info.setMarketManagerName(StringUtil.getUtf8(c.getMarketmanagername()));
+
+
+                datas.add(yLc_info);
             }
-
-            if (c.getFile3Orgcode()==null){
-                yLc_info.setFile_3_orgcode(0);
-            }else{
-                yLc_info.setFile_3_orgcode(1);
-            }
-
-            if (c.getFile4Gtqc()==null){
-                yLc_info.setFile_4_gtqc(0);
-            }else{
-                yLc_info.setFile_4_gtqc(1);
-            }
-
-            yLc_info.setTx_agent_name(StringUtil.getUtf8(c.getTxAgentName()));
-            yLc_info.setX_juridic_person(StringUtil.getUtf8(c.getxJuridicPerson()));
-            yLc_info.setJuridic_person_handset(c.getJuridicPersonHandset());
-            yLc_info.setMarketName(StringUtil.getUtf8(c.getMarketname()));
-            yLc_info.setMarketManagerName(StringUtil.getUtf8(c.getMarketmanagername()));
-            yLc_info.setYlcState(yLcontractentryDao.getState(c.getCid(),(int)c.getContractyear()));
-
-           datas.add(yLc_info);
-
         }
-        if (ylc_state!=null){
 
-          Iterator<YLc_info> iter = datas.iterator();
-            while(iter.hasNext()){
-                String s=iter.next().getYlcState();
 
-                if(s==null||!s.equals(ylc_state)){
-                    iter.remove();
-                    count--;
-                }
-            }
-
-            /*  for(int i=0;i<datas.size();i++){
-                String s=datas.get(i).getYlcState();
-                if(s==null){
-                    System.out.println(datas.get(i).getCustomerId());
-                    System.out.println(datas.get(i).getCustomerName());
-                }
-                if(!s.equals(ylc_state)){
-                    datas.remove(i);
-                    count--;
-                }
-
-            }*/
-        }
         map.put("data",datas);
         map.put("count",count);
         return map;
     }
 
     @Override
-    public Map getAllinfo(Integer start, Integer number, String year, String info_state, String find,String cid) throws UnsupportedEncodingException {
+    public Map getInfoandylc(String find, String year, String infoStat, String ylcState) throws UnsupportedEncodingException {
         Map map=new HashMap<String,Object>(2);
-        int count=customerInfoDao.countInfo(year,info_state,find);
-        List<YLc_info> datas=new ArrayList<>();
-        List<Map<String,Object>> areas=customerInfoDao.getAllArea(cid);
-        List<CustomerInfoCard> list=customerInfoDao.getAllinfo(start,number,year,info_state,find);
-        for(CustomerInfoCard c:list){
-
-            for (Map m:areas){
-
-                if (m.get("AREA_CODE").equals(c.getMarket())){
-                    YLc_info yLc_info=new YLc_info();
-                    yLc_info.setCustomerId(c.getCid());
-                    yLc_info.setCustomerName(StringUtil.getUtf8(c.getCname()));
-                    yLc_info.setCardState(c.getState());
-                    if (c.getFile1Idcard()==null){
-                        yLc_info.setFile_1_idcard(0);
-                    }else{
-                        yLc_info.setFile_1_idcard(1);
-                    }
-
-                    if (c.getFile2Businesslicense()==null){
-                        yLc_info.setFile_2_businesslicense(0);
-                    }else{
-                        yLc_info.setFile_2_businesslicense(1);
-                    }
-
-                    if (c.getFile3Orgcode()==null){
-                        yLc_info.setFile_3_orgcode(0);
-                    }else{
-                        yLc_info.setFile_3_orgcode(1);
-                    }
-
-                    if (c.getFile4Gtqc()==null){
-                        yLc_info.setFile_4_gtqc(0);
-                    }else{
-                        yLc_info.setFile_4_gtqc(1);
-                    }
-
-                    yLc_info.setTx_agent_name(StringUtil.getUtf8(c.getTxAgentName()));
-                    yLc_info.setX_juridic_person(StringUtil.getUtf8(c.getxJuridicPerson()));
-                    yLc_info.setJuridic_person_handset(c.getJuridicPersonHandset());
-                    yLc_info.setMarketName(StringUtil.getUtf8(c.getMarketname()));
-                    yLc_info.setMarketManagerName(StringUtil.getUtf8(c.getMarketmanagername()));
-                    yLc_info.setYlcState(yLcontractentryDao.getState(c.getCid(),(int)c.getContractyear()));
-
-                    datas.add(yLc_info);
-                }
-
-            }
-
+        List<Map<String,Object>> list=customerInfoDao.getInfoandYlc(find,year,infoStat,ylcState);
+        for(Map m:list){
+            m.put("CNAME",StringUtil.getUtf8(m.get("CNAME").toString()));
+            m.put("X_JURIDIC_PERSON",StringUtil.getUtf8(m.get("X_JURIDIC_PERSON").toString()));//法人
+            m.put("TX_AGENT_NAME",StringUtil.getUtf8(m.get("TX_AGENT_NAME").toString()));//联系人
+            m.put("SUBMARKETNAME",StringUtil.getUtf8(m.get("SUBMARKETNAME").toString()));//片区
+            m.put("SUBMARKETMANAGERNAME",StringUtil.getUtf8(m.get("SUBMARKETMANAGERNAME").toString()));//片区负责人
 
         }
 
-        map.put("data",datas);
-        map.put("count",count);
-        return map;
+        return null;
     }
 
     public String getStateName(String state){
