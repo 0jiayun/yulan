@@ -125,6 +125,12 @@
         <if test="find!=null">
             and c.cid like  '%'||#{find}||'%' or c.cname like '%'||#{find}||'%'
         </if>
+        <if test="area_1!=null">
+            and c.marketname=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and c.submarketname=#{area_2}
+        </if>
 
         ) tm
         <if test="start!=null">

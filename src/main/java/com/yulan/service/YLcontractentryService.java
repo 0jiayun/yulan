@@ -21,7 +21,8 @@ public interface YLcontractentryService {
 
     String getYLcontractHTML(String cid)throws IOException;
 
-    YLcontractentry getYLcontractentry(String cid)throws IOException;
+    Map getAllYlcs(Integer start,Integer number,String signed,Integer year,String cid) throws UnsupportedEncodingException;
 
+    YLcontractentry getYLcontractentry(String cid) throws IOException;
 
 }

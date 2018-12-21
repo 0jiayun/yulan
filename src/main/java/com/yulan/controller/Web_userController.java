@@ -1,15 +1,12 @@
 package com.yulan.controller;
 
-import com.yulan.pojo.Web_user;
 import com.yulan.service.Web_userService;
 import com.yulan.utils.Response;
 import com.yulan.utils.TimeUtil;
-import com.yulan.utils.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,11 +24,13 @@ public class Web_userController {
 
     @RequestMapping("login")
     @ResponseBody
-    public Map<String,Object> login(@RequestParam("loginName") String loginName, @RequestParam("password") String password, HttpServletRequest request) throws UnsupportedEncodingException {
-        System.out.println(loginName);
-        Web_user web_user = web_userService.login(loginName,password);
-        if(web_user==null) {
-            Map map= Response.getResponseMap(1,"账号与密码不相符",null);
+    public Map<String,Object> login(@RequestBody Map<String,Object> m)throws UnsupportedEncodingException {
+        String loginName=m.get("loginName").toString();
+        String password=m.get("password").toString();
+        Integer year=Integer.parseInt(m.get("year").toString());
+        Map map = web_userService.login(loginName,password,year);
+        if(map==null) {
+             map= Response.getResponseMap(1,"账号与密码不相符",null);
             return map;
         }
         else {
@@ -43,12 +42,12 @@ public class Web_userController {
                 case  "SALEMAN":code=4;break;
                 case  "QUERY":code=5;break;
             }*/
-            Map map=Response.getResponseMap(0,"",web_user);
-            String token= Token.createToken(web_user);
-            HttpSession session = request.getSession();
+//            Map map=Response.getResponseMap(0,"",web_user);
+//            String token= Token.createToken(web_user);
+
             /*session.setAttribute("token",token);
             sessions.put(token,session);*/
-            map.put("token", token );
+//            map.put("token", token );
             map.put("logintime", TimeUtil.getTime());
             return map;
         }
@@ -69,15 +68,11 @@ public class Web_userController {
 
     @RequestMapping("updateUserState")
     @ResponseBody
-    public Map<String,Object> updateUserState(@RequestBody Map<String,Object> m){
+    public Map<String,Object> updateUserState(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
         String cid=m.get("cid").toString();
         String userState=m.get("userState").toString();
-        System.out.println(cid+":"+userState);
-        if(web_userService.updateuserState(userState,cid)) {
-            return Response.getResponseMap(0,"修改成功",null);
-        } else {
-            return Response.getResponseMap(1,"修改失败",null);
-        }
+        Integer year=Integer.parseInt(m.get("year").toString());
+        return web_userService.updateuserState(userState,cid,year);
 
     }
 

@@ -1,6 +1,7 @@
 package com.yulan.controller;
 
 import com.yulan.service.YLc_infoService;
+import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,6 +64,8 @@ public class YLc_infoController {
         String infoState=m.get("infoState").toString();
         String cid=m.get("cid").toString();
         String find=m.get("find").toString();
+        String area_1=m.get("area_1").toString();
+        String area_2=m.get("area_2").toString();
         /*@RequestParam(name = "limit", required = false) Integer limit,
         @RequestParam(name = "page", required = false) Integer page,
         @RequestParam("year")String year,
@@ -93,7 +96,8 @@ public class YLc_infoController {
         }
 
 
-        Map map=yLc_infoService.getAllinfo(page,lastNum ,year,infoState,find,cid);
+        Map map=yLc_infoService.getAllinfo(page,lastNum ,year,infoState,find,cid, StringUtil.setUtf8(area_1),
+                                            StringUtil.setUtf8(area_2));
         map.put("code",0);
         map.put("msg","");
         return map;

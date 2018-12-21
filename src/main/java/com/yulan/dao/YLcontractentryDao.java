@@ -38,4 +38,8 @@ public interface YLcontractentryDao {
     YLcontractentry getYLcontractentry(@Param("CID") String cid);
 
     boolean checkYLcontractentry(@Param("CID") String cid,@Param("STATE") String state,@Param("WFMEMO") String wfmemo);
+
+    List<YLcontractentry> getAllYlcs(@Param("start")Integer start,@Param("number") Integer number,@Param("signed")String signed);
+    int countYlcs(@Param("signed")String signed);
+
 }
