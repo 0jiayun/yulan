@@ -66,4 +66,6 @@ public interface CustomerInfoDao {
                         @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
     //业务员审核资料卡
     boolean businessCheckCustomerInfoCard(@Param("CID") String cid ,@Param("STATE") String state,@Param("MEMO") String memo);
+
+    //资料卡执行汇总
 }

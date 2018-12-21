@@ -1,6 +1,8 @@
 import com.yulan.dao.AreaRegionDao;
 import com.yulan.dao.CustomerInfoDao;
 import com.yulan.dao.UserDao;
+import com.yulan.pojo.AreaCode;
+import com.yulan.pojo.AreaUser;
 import com.yulan.pojo.CustomerInfoCard;
 import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
@@ -13,6 +15,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
@@ -66,6 +71,17 @@ public class UserTest {
             System.out.println(entry.getKey() + entry.getValue());
         }*/
        // System.out.println(customerInfoDao.businessCheckCustomerInfoCard("C15093","1234","4321"));
+       List<AreaUser> map = areaRegionDao.getAreaUserCode("DRP0054");
+       List<String> list2 = new ArrayList<>();
+        for (AreaUser list : map) {
+            System.out.println(list.getAreaCode());
+            list2.add(list.getAreaCode());
+        }
+        List<AreaCode> list = areaRegionDao.getAreaCodeName(list2 );
+        for (AreaCode l : list) {
+            System.out.println(l);
+        }
+
 
     }
 
