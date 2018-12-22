@@ -11,6 +11,7 @@ public interface YLc_infoService {
                    String info_state,String find,String cid,String area_1,String area_2) throws UnsupportedEncodingException;
 
     //新的获取资料卡和网签列表
-    Map getInfoandylc(String find,String year,
+    Map getInfoandylc(Integer start, Integer number,
+                      String find,Integer year,
                       String infoStat,String ylcState) throws UnsupportedEncodingException;
 }

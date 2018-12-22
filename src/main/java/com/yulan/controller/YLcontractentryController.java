@@ -3,6 +3,7 @@ package com.yulan.controller;
 import com.yulan.pojo.YLcontract_v2015;
 import com.yulan.service.YLcontractentryService;
 import com.yulan.utils.Response;
+import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -93,7 +94,6 @@ public class YLcontractentryController {
     @RequestMapping(value = "createYLcontract")
     @ResponseBody
     public Map createYLcontract(@RequestBody YLcontract_v2015 yLcontract_v2015)throws IOException {
-        System.out.println(yLcontract_v2015);
         if(yLcontractentryService.createYLcontract_v2015(yLcontract_v2015)){
             return response.getResponseMap(0,"SUCCESS",null);
         }else{
@@ -152,6 +152,53 @@ public class YLcontractentryController {
         map.put("code",0);
         map.put("msg","");
 
+
+        return map;
+    }
+
+    @RequestMapping(value = "getYlcsbysigned")
+    @ResponseBody
+    public Map getYlcsbysigned(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
+        Integer limit=Integer.parseInt(m.get("limit").toString());
+        Integer page=Integer.parseInt(m.get("page").toString());
+        Integer signed=Integer.parseInt(m.get("signed").toString());//协议书通过标志
+        Integer year=Integer.parseInt(m.get("year").toString());
+        String cid=m.get("cid").toString();
+        String area_1=m.get("area_1").toString();
+        String area_2=m.get("area_2").toString();
+        String find=m.get("find").toString();
+
+        if(year.equals("")){
+            year=null;
+        }
+        if(area_1.equals("")){
+            area_1=null;
+        }else{
+            area_1= StringUtil.setUtf8(area_1);
+        }
+
+        if(area_2.equals("")){
+            area_2=null;
+        }else{
+            area_2=StringUtil.setUtf8(area_2);
+        }
+        if(find.equals("")){
+            find=null;
+        }
+        Integer lastNum=null;
+        if(limit==null||page==null) {
+            page=null;
+            limit=null;
+        } else {
+            page=(page-1)*limit+1;
+            lastNum=page+limit-1;
+        }
+        if(signed.equals("")){
+            signed=null;
+        }
+        Map map=yLcontractentryService.getYlcsbySigned(page,lastNum,signed,year,cid,area_1,area_2,find);
+        map.put("code",0);
+        map.put("msg","");
 
         return map;
     }

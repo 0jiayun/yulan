@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yulan.dao.CustomerInfoDao">
@@ -137,12 +138,12 @@
           where rm &gt;= #{start} and rm &lt;= #{number }
         </if>
     </select>
-    
+
     <select id="getInfoandYlc" resultType="Map">
         select * from(
         select rownum rm, c.*  from
 
-          (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid)c
+          (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid and a.contractyear=b.cyear)c
 
         where 1=1
 
@@ -171,7 +172,7 @@
 
     <select id="countInfoandYlc" resultType="int">
          select count(*) from
-        (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid)c
+        (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid and a.contractyear=b.cyear)c
           where 1=1
         <if test="infoState!=null">
             and c.state=#{infoState}

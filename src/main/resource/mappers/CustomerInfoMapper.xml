@@ -142,7 +142,7 @@
         select * from(
         select rownum rm, c.*  from
 
-          (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid)c
+          (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid and a.contractyear=b.cyear)c
 
         where 1=1
 
@@ -171,7 +171,7 @@
 
     <select id="countInfoandYlc" resultType="int">
          select count(*) from
-        (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid)c
+        (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid and a.contractyear=b.cyear)c
           where 1=1
         <if test="infoState!=null">
             and c.state=#{infoState}

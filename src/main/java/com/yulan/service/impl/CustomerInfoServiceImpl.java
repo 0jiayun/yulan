@@ -44,8 +44,12 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         List<Map<String,Object>> list=customerInfoDao.getAllStates();
         List<Map<String,Object>> states=new ArrayList<>();
         for (Map m:list){
+            if(m==null||m.get("STATE").equals("1234")){
+                continue;
+            }
             Map<String,Object> map=new HashMap<>();
             map.put("id",m.get("STATE"));
+
             switch (m.get("STATE").toString()){
                 case "ONCREATE":
                     map.put("name","初始状态");
@@ -90,7 +94,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                     String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                     entry.setValue(origin);
                 }
-      //          System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
             return mapUtils.mapToBean(map,CustomerInfoCard.class);
         }
@@ -111,7 +114,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                     String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                     entry.setValue(origin);
                 }
-      //          System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
             return mapUtils.mapToBean(map,YLcontract_v2015_paa.class);
         }
@@ -126,7 +128,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             if(entry.getValue() instanceof String){
                 String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
-       //         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
 
         }
@@ -145,7 +146,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             if(entry.getValue() instanceof String){
                 String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
-     //           System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
         }
 
@@ -272,7 +272,5 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         }
         return result;
     }
-
-
 
 }

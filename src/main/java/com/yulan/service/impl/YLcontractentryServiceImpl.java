@@ -209,14 +209,12 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         account2Location
           */
         customerInfoCard = customerInfoService.getCustomerInfo(cid);
-        System.out.println("123" +customerInfoCard);
         /*
         YLCONTRACTENTRY
         startDate
         endDate
          */
         yLcontractentry = yLcontractentryDao.getYLcontractentry(cid);
-        System.out.println("123" +yLcontractentry);
         /*
         YLCONTRACT_V2015
         总任务 = 玉兰+尚居
@@ -242,7 +240,6 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         PRIVATE_ACCOUNT_AUTHED 客户授权配偶账号
         */
         yLcontract_v2015 = getYLcontract_v2015(cid);
-        System.out.println("123" + yLcontract_v2015);
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Double total = (yLcontract_v2015.getM1()+yLcontract_v2015.getM2()+yLcontract_v2015.getM3()+yLcontract_v2015.getM4()+yLcontract_v2015.getM5()
@@ -286,7 +283,6 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(customerInfoCard.getAccount2Location());
         list.add(yLcontract_v2015.getPrivateAccountAuthed());
 
-        System.out.println(yLcontractentryDao.getYLcontractHTML(1).getTest());
         String test = yLcontractentryDao.getYLcontractHTML(1).getTest();
         test = StringUtil.getUtf8(test);
 
@@ -315,6 +311,27 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             }
             return mapUtils.mapToBean(map,YLcontractentry.class);
         }
+    }
+
+    @Override
+        public Map getYlcsbySigned(Integer start, Integer number, Integer signed, Integer year, String cid,String area_1,
+                                   String area_2,String find) throws UnsupportedEncodingException {
+        Map<String,Object> map=new HashMap<>();
+        List<Map<String,Object>> list=yLcontractentryDao.getAllYs(start,number,signed,cid,year,area_1,area_2,find);
+        List<Map<String,Object>> data=new ArrayList<>();
+        map.put("count",yLcontractentryDao.countYs(signed,cid,year,area_1,area_2,find));
+        for (Map<String,Object> m:list) {
+            for (Map.Entry<String, Object> entry : m.entrySet()) {
+                if (entry.getValue() instanceof String) {
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+            }
+            data.add(m);
+        }
+        map.put("data",data);
+
+        return map;
     }
 
     /**

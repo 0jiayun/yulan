@@ -181,20 +181,34 @@ public class YLc_infoServiceImpl implements YLc_infoService {
         return map;
     }
 
+    /**
+     * 新的获取资料卡-协议书
+     * @param start
+     * @param number
+     * @param find
+     * @param year
+     * @param infoStat
+     * @param ylcState
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @Override
-    public Map getInfoandylc(String find, String year, String infoStat, String ylcState) throws UnsupportedEncodingException {
+    public Map getInfoandylc(Integer start, Integer number,String find, Integer year, String infoStat, String ylcState) throws UnsupportedEncodingException {
         Map map=new HashMap<String,Object>(2);
-        List<Map<String,Object>> list=customerInfoDao.getInfoandYlc(find,year,infoStat,ylcState);
-        for(Map m:list){
-            m.put("CNAME",StringUtil.getUtf8(m.get("CNAME").toString()));
-            m.put("X_JURIDIC_PERSON",StringUtil.getUtf8(m.get("X_JURIDIC_PERSON").toString()));//法人
-            m.put("TX_AGENT_NAME",StringUtil.getUtf8(m.get("TX_AGENT_NAME").toString()));//联系人
-            m.put("SUBMARKETNAME",StringUtil.getUtf8(m.get("SUBMARKETNAME").toString()));//片区
-            m.put("SUBMARKETMANAGERNAME",StringUtil.getUtf8(m.get("SUBMARKETMANAGERNAME").toString()));//片区负责人
-
+        List<Map<String,Object>> list=customerInfoDao.getInfoandYlc(start,number,find,year,infoStat,ylcState);
+        List<Map<String,Object>> data=new ArrayList<>();
+        for(Map<String, Object> m:list){
+            for (Map.Entry<String, Object> entry : m.entrySet()) {
+                if (entry.getValue() instanceof String) {
+                    String origin = StringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+            }
+            data.add(m);
         }
-
-        return null;
+        map.put("count",customerInfoDao.countInfoandYlc(find,year,infoStat,ylcState));
+        map.put("data",data);
+        return map;
     }
 
     public String getStateName(String state){
