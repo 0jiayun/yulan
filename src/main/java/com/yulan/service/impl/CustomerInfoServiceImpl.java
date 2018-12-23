@@ -184,6 +184,9 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         Map<String,Object> map=new HashMap<>();
         List<Map> list=customerInfoDao.getInfoBySate(year);
         for(Map m:list){
+            if(m==null||m.get("STATE")==null||m.get("STATE").equals("1234")){
+                continue;
+            }
             switch (m.get("STATE").toString()){
                 case "ONCREATE":
                     y.add("初始状态");

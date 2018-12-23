@@ -193,7 +193,7 @@ public class YLc_infoServiceImpl implements YLc_infoService {
      * @throws UnsupportedEncodingException
      */
     @Override
-    public Map getInfoandylc(Integer start, Integer number,String find, Integer year, String infoStat, String ylcState) throws UnsupportedEncodingException {
+    public Map getInfoandylc(Integer start, Integer number,String find, String year, String infoStat, String ylcState) throws UnsupportedEncodingException {
         Map map=new HashMap<String,Object>(2);
         List<Map<String,Object>> list=customerInfoDao.getInfoandYlc(start,number,find,year,infoStat,ylcState);
         List<Map<String,Object>> data=new ArrayList<>();

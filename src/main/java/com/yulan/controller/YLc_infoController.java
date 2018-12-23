@@ -58,7 +58,7 @@ public class YLc_infoController {
     @ResponseBody
     public Map getAllyfs(@RequestParam(name = "limit", required = false) Integer limit,
                       @RequestParam(name = "page", required = false) Integer page,
-                      @RequestParam("year")Integer year,
+                      @RequestParam("year")String year,
                       @RequestParam("infoState")String infoState,
                       @RequestParam("ylcState")String ylcState,
                       @RequestParam("find")String find) throws UnsupportedEncodingException {

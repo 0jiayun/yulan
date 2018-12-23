@@ -61,10 +61,10 @@ public interface CustomerInfoDao {
                                                   @Param("userCName") String userCName);
 
     List<Map<String,Object>> getInfoandYlc(@Param("start")Integer start,@Param("number") Integer number,
-                                           @Param("find")String find,@Param("year")Integer year,
+                                           @Param("find")String find,@Param("year")String year,
                                            @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
 
-    int countInfoandYlc(@Param("find")String find,@Param("year")Integer year,
+    int countInfoandYlc(@Param("find")String find,@Param("year")String year,
                         @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
     //业务员审核资料卡
     boolean businessCheckCustomerInfoCard(@Param("CID") String cid ,@Param("STATE") String state,@Param("MEMO") String memo);
