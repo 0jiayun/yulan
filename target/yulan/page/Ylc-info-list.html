@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -274,7 +273,7 @@
                     layer.confirm('真的删除行么', function(index){
                         $.ajax({
                             type: "POST",
-                            url:  remoteURL+"/webcontractwfmember/delete.do",
+                            url:  remoteURL+"/Ylc_info/getAllyfs.do",
                             data: {wfUserId:data.wfUserId,cYear:data.cYear},
                             dataType: "json",
                             success: function(res){
@@ -294,15 +293,24 @@
             });
             var $ = layui.$, active = {
                 reload: function(){
-                    var nameReload=$('#nameReload').val();
+
+                    var table=layui.table;
+                    var $=layui.$;
+                    var year =$("#test1").val();
+                    var infoState=$("#module").val();
+                    var ylcState=$("#type").val();
+                    var finds=$("#nameReload").val();
                     //执行重载
                     table.reload('Ylc-info-list', {
-                        url: remoteURL+"/webcontractwfmember/getWebcontractwfmembers.do"
+                        url: remoteURL+"/Ylc_info/getAllyfs.do"
                         ,page: {
                             curr: 1 //重新从第 1 页开始
                         }
                         ,where: {
-                            wfUserId:nameReload
+                            year:year,
+                            infoState:infoState,
+                            ylcState:ylcState,
+                            find:finds
                         }
                     });
                 }
@@ -318,8 +326,8 @@
     </script>
     <script type="text/html" id="bar">
 
-        <a class="layui-btn layui-btn-xs " lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+        <a class="layui-btn layui-btn-xs " lay-event="edit">查看资料卡</a>
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">查看协议书</a>
 
 
         <!-- 这里同样支持 laytpl 语法，如： -->
@@ -350,6 +358,7 @@
                 ,type: 'year'
                 ,isInitValue: false
                 ,change: function(value, date, endDate){
+
                     console.log(value); //得到日期生成的值，如：2017-08-18
                     console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
                     console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
@@ -402,9 +411,9 @@
                     break;
                 default:break;
             }
-
+            
         }
-
+        
     </script>
     <script>
         function selectReload() {
@@ -432,7 +441,7 @@
                 });
             })
         }
-
+        
     </script>
 
 

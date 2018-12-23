@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yulan.dao.CustomerInfoDao">
@@ -138,7 +137,7 @@
           where rm &gt;= #{start} and rm &lt;= #{number }
         </if>
     </select>
-
+    
     <select id="getInfoandYlc" resultType="Map">
         select * from(
         select rownum rm, c.*  from

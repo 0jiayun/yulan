@@ -273,7 +273,7 @@
                     layer.confirm('真的删除行么', function(index){
                         $.ajax({
                             type: "POST",
-                            url:  remoteURL+"/webcontractwfmember/delete.do",
+                            url:  remoteURL+"/Ylc_info/getAllyfs.do",
                             data: {wfUserId:data.wfUserId,cYear:data.cYear},
                             dataType: "json",
                             success: function(res){
@@ -293,15 +293,24 @@
             });
             var $ = layui.$, active = {
                 reload: function(){
-                    var nameReload=$('#nameReload').val();
+
+                    var table=layui.table;
+                    var $=layui.$;
+                    var year =$("#test1").val();
+                    var infoState=$("#module").val();
+                    var ylcState=$("#type").val();
+                    var finds=$("#nameReload").val();
                     //执行重载
                     table.reload('Ylc-info-list', {
-                        url: remoteURL+"/webcontractwfmember/getWebcontractwfmembers.do"
+                        url: remoteURL+"/Ylc_info/getAllyfs.do"
                         ,page: {
                             curr: 1 //重新从第 1 页开始
                         }
                         ,where: {
-                            wfUserId:nameReload
+                            year:year,
+                            infoState:infoState,
+                            ylcState:ylcState,
+                            find:finds
                         }
                     });
                 }
@@ -317,8 +326,8 @@
     </script>
     <script type="text/html" id="bar">
 
-        <a class="layui-btn layui-btn-xs " lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+        <a class="layui-btn layui-btn-xs " lay-event="edit">查看资料卡</a>
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">查看协议书</a>
 
 
         <!-- 这里同样支持 laytpl 语法，如： -->

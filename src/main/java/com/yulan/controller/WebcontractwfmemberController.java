@@ -72,10 +72,10 @@ public class WebcontractwfmemberController {
 
     @RequestMapping("delete")
     @ResponseBody
-    public Map<String,Object> delete(@RequestParam("wfUserId")String wfUserId,@RequestParam("cYear")int cYear) throws UnsupportedEncodingException {
+    public Map<String,Object> delete(@RequestParam("wfUserId")String wfUserId,@RequestParam("cYear")String cYear) throws UnsupportedEncodingException {
 
-
-        if(webcontractwfmemberService.delete(wfUserId,cYear)!=0) {
+        Integer year=Integer.parseInt(cYear);
+        if(webcontractwfmemberService.delete(wfUserId,year)!=0) {
 
             return Response.getResponseMap(0,"删除成功",null);
         } else {
