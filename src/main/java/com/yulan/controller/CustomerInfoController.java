@@ -30,6 +30,8 @@ public class CustomerInfoController {
     private static final String CUSTOMER_DIRECTORY = "/customer-image";
     private static final String YLcontract_Directory = "/YLcontract-image";
 
+    private  CustomerInfoCard customerInfoCard;
+
     /*
     *这里的CID应该是客户的loginName
      */
@@ -198,21 +200,13 @@ public class CustomerInfoController {
     @RequestMapping(value = "getAuthorization")
     @ResponseBody
     public Map getAuthorization(@RequestBody Map<String,Object> data)throws IOException {
+        String cid = (String)data.get("cid");
         Map<String,Object> map = new HashMap<>();
+        customerInfoCard = customerInfoService.getCustomerInfo(cid);
         //省
-        String xDistrict = (String)data.get("xDistrict");
-        xDistrict = customerInfoService.getXDistrict(xDistrict);
-        //市
-        String xAreaDistrict2 = (String)data.get("xAreaDistrict2");
-        xAreaDistrict2 = customerInfoService.getXAreaDistrictName(xAreaDistrict2);
-
-        //县
-        String xAreaDistrict3 = (String)data.get("xAreaDistrict3");
-        xAreaDistrict3 = customerInfoService.getXAreaDistrictName(xAreaDistrict3);
-
-        map.put("xDistrict",xDistrict);
-        map.put("xAreaDistrict2",xAreaDistrict2);
-        map.put("xAreaDistrict3",xAreaDistrict3);
+        map.put("districtText",customerInfoCard.getDistrictText());
+        map.put("areaDistrict2Text",customerInfoCard.getAreaDistrict3Text());
+        map.put("areaDistrict3Text",customerInfoCard.getAreaDistrict3Text());
 
         return  map;
     }
