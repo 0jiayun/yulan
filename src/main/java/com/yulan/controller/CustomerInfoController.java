@@ -30,7 +30,7 @@ public class CustomerInfoController {
     private static final String CUSTOMER_DIRECTORY = "/customer-image";
     private static final String YLcontract_Directory = "/YLcontract-image";
 
-    private CustomerInfoCard customerInfoCard;
+    private CustomerInfoCard customerInfoCard;;
 
     /*
     *这里的CID应该是客户的loginName
