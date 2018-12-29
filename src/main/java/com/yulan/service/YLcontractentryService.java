@@ -29,4 +29,6 @@ public interface YLcontractentryService {
     Map getYlcsbySigned(Integer start,Integer number,Integer signed,Integer year,String cid,String area_1,String area_2,String find) throws UnsupportedEncodingException;
 
     List<Map<String,Object>> getAllYLcontractentryState(String year);
+
+    List<Map<String,Object>> getYLcontractentryStateByArea(String year)throws IOException;
 }

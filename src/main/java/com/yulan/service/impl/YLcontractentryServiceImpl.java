@@ -334,12 +334,6 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         return map;
     }
 
-    @Override
-    public List<Map<String, Object>> getAllYLcontractentryState(String year) {
-        List<Map<String, Object>> list = yLcontractentryDao.getAllYLcontractentryState(year);
-        return list;
-    }
-
     /**
      * 协议书列表获取
      * @param start
@@ -366,6 +360,23 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("data",data);
         map.put("count",count);
         return map;
+    }
+
+    @Override
+    public List<Map<String, Object>> getAllYLcontractentryState(String year) {
+        List<Map<String, Object>> list = yLcontractentryDao.getAllYLcontractentryState(year);
+        return list;
+    }
+
+    public List<Map<String,Object>> getYLcontractentryStateByArea(String year)throws IOException{
+        List<Map<String, Object>> list = yLcontractentryDao.getYLcontractentryStateByArea(year);
+        for (Map<String, Object> map : list) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+            }
+        }
+        return list;
     }
 
 }

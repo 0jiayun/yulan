@@ -216,4 +216,18 @@ public class YLcontractentryController {
         return list;
     }
 
+    /**
+     * 协议网签执行汇总（按大区）
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "getYLcontractentryStateByArea")
+    @ResponseBody
+    public List<Map<String,Object>> getYLcontractentryStateByArea(@RequestBody Map<String,Object> data)throws IOException{
+        String year = (String)data.get("year");
+        List<Map<String,Object>> list = yLcontractentryService.getYLcontractentryStateByArea(year);
+        return list;
+    }
+
 }

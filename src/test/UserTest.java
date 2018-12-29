@@ -93,7 +93,7 @@ public class UserTest {
                 }
             }
         }*/
-       List<Map<String, Object>> list2 = yLcontractentryDao.getAllYLcontractentryState("2018");
+       List<Map<String, Object>> list2 = yLcontractentryDao.getYLcontractentryStateByArea("2018");
         for (Map<String, Object> map : list2) {
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
