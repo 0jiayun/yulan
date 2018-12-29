@@ -34,5 +34,9 @@ public interface CustomerInfoService {
 
     List<Map> getAllStatisticsInfo(String userCID,String userCName,String managerCID);
 
+    List<Map<String,Object>> getAllCustomerInfoCardState(String year);
+
+    List<Map<String,Object>> getCustomerInfoCardStateByArea(String year)throws IOException;
+
 
 }

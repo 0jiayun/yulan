@@ -353,4 +353,16 @@
         where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
     </update>
 
+    <select id="getAllCustomerInfoCardState" resultType="Map">
+        select STATE,count(STATE) from  CUSTOMERINFOCARD where CONTRACTYEAR = #{CONTRACTYEAR} group by STATE
+    </select>
+
+    <select id="getAllCustomerInfoCardArea" resultType="Map">
+        select MARKETNAME from CUSTOMERINFOCARD where CONTRACTYEAR = #{CONTRACTYEAR} group by MARKETNAME
+    </select>
+
+    <select id="getCustomerInfoCardStateByArea" resultType="Map">
+        select MARKETNAME,STATE,count(STATE) from  CUSTOMERINFOCARD where CONTRACTYEAR = #{CONTRACTYEAR} group by MARKETNAME,STATE
+    </select>
+
 </mapper>

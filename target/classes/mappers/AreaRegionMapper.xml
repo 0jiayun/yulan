@@ -45,11 +45,11 @@
         select * from AREA_USER t where t.userid = #{USERID}
     </select>
 
-    <select id="getAreaCodeName" parameterType="list" resultMap="AreaCodeMap">
+    <!--<select id="getAreaCodeName" parameterType="list" resultMap="AreaCodeMap">
         select * from AREA_CODE t where t.area_code =
         <foreach collection="list" item="list"  separator="or">
         #{list}
         </foreach>
-    </select>
+    </select>-->
 
 </mapper>

@@ -231,9 +231,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             if (m.get("SUBMARKETMANAGERNAME")!=null){
                 m.put("SUBMARKETMANAGERNAME",StringUtil.getUtf8(m.get("SUBMARKETMANAGERNAME").toString()));
             }
-
-
-
             list2.add(m);
         }
         map.put("data",list2);
@@ -273,6 +270,23 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         return result;
     }
 
+    @Override
+    public List<Map<String,Object>> getAllCustomerInfoCardState(String year) {
+        List<Map<String,Object>> list = customerInfoDao.getAllCustomerInfoCardState(year);
+        return list;
+    }
+
+    @Override
+    public List<Map<String, Object>> getCustomerInfoCardStateByArea(String year) throws IOException{
+        List<Map<String, Object>> list = customerInfoDao.getCustomerInfoCardStateByArea(2018);
+        for (Map<String, Object> map : list) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+            }
+        }
+        return list;
+    }
 
 
 }

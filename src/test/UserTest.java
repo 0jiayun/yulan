@@ -1,8 +1,6 @@
 import com.yulan.dao.AreaRegionDao;
 import com.yulan.dao.CustomerInfoDao;
 import com.yulan.dao.UserDao;
-import com.yulan.pojo.AreaCode;
-import com.yulan.pojo.AreaUser;
 import com.yulan.pojo.CustomerInfoCard;
 import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
@@ -16,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
@@ -45,7 +43,7 @@ public class UserTest {
     private YLcontractentry yLcontractentry;
 
     @Test
-    public void test1() throws Exception{
+    public void test1() throws Exception {
         /*List<Map<String,Object>> list=customerInfoDao.getAllArea("00294");
         for (Map m:list){
             System.out.println(m.get("AREA_CODE"));
@@ -70,8 +68,8 @@ public class UserTest {
         for (Map.Entry<String,Object> entry : map.entrySet()) {
             System.out.println(entry.getKey() + entry.getValue());
         }*/
-       // System.out.println(customerInfoDao.businessCheckCustomerInfoCard("C15093","1234","4321"));
-       List<AreaUser> map = areaRegionDao.getAreaUserCode("DRP0054");
+        // System.out.println(customerInfoDao.businessCheckCustomerInfoCard("C15093","1234","4321"));
+      /* List<AreaUser> map = areaRegionDao.getAreaUserCode("DRP0054");
        List<String> list2 = new ArrayList<>();
         for (AreaUser list : map) {
             System.out.println(list.getAreaCode());
@@ -80,9 +78,26 @@ public class UserTest {
         List<AreaCode> list = areaRegionDao.getAreaCodeName(list2 );
         for (AreaCode l : list) {
             System.out.println(l);
+        }*/
+       /* List<Map<String, Object>> list = customerInfoDao.getAllCustomerInfoCardArea("2018");
+        for (Map<String, Object> map : list) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+                List<Map<String, Object>> list2 = customerInfoDao.getCustomerInfoCardStateByArea("2018",(String)entry.getValue());
+                for (Map<String, Object> m : list2) {
+                    System.out.println(m);
+                }
+            }
+        }*/
+       List<Map<String, Object>> list2 = customerInfoDao.getCustomerInfoCardStateByArea(2018);
+        for (Map<String, Object> map : list2) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+            }
+            System.out.println(map);
         }
-
-
     }
-
 }
+

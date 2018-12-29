@@ -217,5 +217,31 @@ public class CustomerInfoController {
         return Response.getResponseMap(0,"",customerInfoService.getAllStatisticsInfo(userCID,userCName,managerCID));
     }
 
+    /**
+     * 获取所有资料卡的状态统计
+     * @param data
+     * @return
+     */
+    @RequestMapping(value = "getAllCustomerInfoCardState")
+    @ResponseBody
+    public List<Map<String,Object>> getAllCustomerInfoCardState(@RequestBody Map<String,Object> data){
+        String year = (String)data.get("year");
+        List<Map<String,Object>> list = customerInfoService.getAllCustomerInfoCardState(year);
+        return list;
+    }
+
+    /**
+     * 获取每个大区下的资料卡执行状态统计
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "getCustomerInfoCardStateByArea")
+    @ResponseBody
+    public List<Map<String,Object>> getCustomerInfoCardStateByArea(@RequestBody Map<String,Object> data)throws IOException{
+        String year = (String)data.get("year");
+        List<Map<String,Object>> list = customerInfoService.getCustomerInfoCardStateByArea(year);
+        return  list;
+    }
 
 }
