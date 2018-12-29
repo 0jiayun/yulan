@@ -203,4 +203,17 @@ public class YLcontractentryController {
         return map;
     }
 
+    /**
+     * 协议网签执行汇总
+     * @param data
+     * @return
+     */
+    @RequestMapping(value = "getAllYLcontractentryState")
+    @ResponseBody
+    public List<Map<String,Object>> getAllYLcontractentryState(@RequestBody Map<String,Object> data){
+        String year = (String)data.get("year");
+        List<Map<String,Object>> list = yLcontractentryService.getAllYLcontractentryState(year);
+        return list;
+    }
+
 }

@@ -1,6 +1,7 @@
 import com.yulan.dao.AreaRegionDao;
 import com.yulan.dao.CustomerInfoDao;
 import com.yulan.dao.UserDao;
+import com.yulan.dao.YLcontractentryDao;
 import com.yulan.pojo.CustomerInfoCard;
 import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
@@ -30,6 +31,8 @@ public class UserTest {
     private AreaRegionDao areaRegionDao;
     @Autowired
     private InfoStateService infoStateService;
+    @Autowired
+    private YLcontractentryDao yLcontractentryDao;
 
     private CustomerInfoCard customerInfoCard;
 
@@ -90,7 +93,7 @@ public class UserTest {
                 }
             }
         }*/
-       List<Map<String, Object>> list2 = customerInfoDao.getCustomerInfoCardStateByArea(2018);
+       List<Map<String, Object>> list2 = yLcontractentryDao.getAllYLcontractentryState("2018");
         for (Map<String, Object> map : list2) {
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));

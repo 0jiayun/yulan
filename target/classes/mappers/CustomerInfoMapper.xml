@@ -368,7 +368,7 @@
     </select>
 
     <select id="getCustomerInfoCardStateByArea" resultType="Map">
-        select MARKETNAME,STATE,count(STATE) from  CUSTOMERINFOCARD where CONTRACTYEAR = #{CONTRACTYEAR} group by MARKETNAME,STATE
+        select MARKETNAME,MARKETMANAGERNAME,STATE,count(STATE) from  CUSTOMERINFOCARD where CONTRACTYEAR = #{CONTRACTYEAR} group by MARKETNAME,MARKETMANAGERNAME,STATE
     </select>
 
 </mapper>

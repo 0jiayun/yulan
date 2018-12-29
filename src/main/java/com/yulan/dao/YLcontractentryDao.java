@@ -51,4 +51,8 @@ public interface YLcontractentryDao {
     int countYs(@Param("signed")Integer signed,@Param("cid")String cid,
                 @Param("year")Integer year,@Param("area_1")String area_1,
                 @Param("area_2")String area_2,@Param("find")String find);
+    //协议书执行状态汇总
+    List<Map<String,Object>> getAllYLcontractentryState(@Param("CYEAR") String year);
+
+    List<Map<String,Object>> getYLcontractentryStateByArea(@Param("CYEAR") String year);
 }

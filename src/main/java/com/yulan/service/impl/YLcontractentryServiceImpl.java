@@ -334,6 +334,12 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         return map;
     }
 
+    @Override
+    public List<Map<String, Object>> getAllYLcontractentryState(String year) {
+        List<Map<String, Object>> list = yLcontractentryDao.getAllYLcontractentryState(year);
+        return list;
+    }
+
     /**
      * 协议书列表获取
      * @param start

@@ -242,4 +242,8 @@
 
     </select>
 
+    <select id="getAllYLcontractentryState" resultType="Map">
+        select STATE,count(STATE) from  YLCONTRACTENTRY where CYEAR = #{CYEAR} group by STATE
+    </select>
+
 </mapper>
