@@ -1,6 +1,7 @@
 package com.yulan.controller;
 
 import com.yulan.service.YLc_infoService;
+import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,6 +54,40 @@ public class YLc_infoController {
         return map;
     }
 
+    @RequestMapping("getAllyfs")
+    @ResponseBody
+    public Map getAllyfs(@RequestParam(name = "limit", required = false) Integer limit,
+                      @RequestParam(name = "page", required = false) Integer page,
+                      @RequestParam("year")String year,
+                      @RequestParam("infoState")String infoState,
+                      @RequestParam("ylcState")String ylcState,
+                      @RequestParam("find")String find) throws UnsupportedEncodingException {
+        if (year==null||year.equals("")){
+            year=null;
+        }
+        if (infoState.equals("")){
+            infoState=null;
+        }
+        if (ylcState.equals("")){
+            ylcState=null;
+        }
+        if (find.equals("")){
+            find=null;
+        }
+        Integer lastNum=null;
+        if(limit==null||page==null) {
+            page=null;
+            limit=null;
+        } else {
+            page=(page-1)*limit+1;
+            lastNum=page+limit-1;
+        }
+        Map map=yLc_infoService.getInfoandylc(page,lastNum,find,year,infoState,ylcState);
+        map.put("code",0);
+        map.put("msg","");
+        return map;
+    }
+
     @RequestMapping("getAllf")
     @ResponseBody
     public Map getAllf(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
@@ -63,6 +98,8 @@ public class YLc_infoController {
         String infoState=m.get("infoState").toString();
         String cid=m.get("cid").toString();
         String find=m.get("find").toString();
+        String area_1=m.get("area_1").toString();
+        String area_2=m.get("area_2").toString();
         /*@RequestParam(name = "limit", required = false) Integer limit,
         @RequestParam(name = "page", required = false) Integer page,
         @RequestParam("year")String year,
@@ -93,7 +130,8 @@ public class YLc_infoController {
         }
 
 
-        Map map=yLc_infoService.getAllinfo(page,lastNum ,year,infoState,find,cid);
+        Map map=yLc_infoService.getAllinfo(page,lastNum ,year,infoState,find,cid, StringUtil.setUtf8(area_1),
+                                            StringUtil.setUtf8(area_2));
         map.put("code",0);
         map.put("msg","");
         return map;

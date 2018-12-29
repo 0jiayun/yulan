@@ -49,15 +49,15 @@
     </select>
 
     <update id="update" parameterType="Webcontractwfmember" >
-         update WEBCONTRACTWFMEMBER set bindUserId=#{bindUserId}, bindUserName=#{bindUserName},disabled=#{disabled} where wfUserId=#{wfUserId}
+         update WEBCONTRACTWFMEMBER set bindUserId=#{bindUserId,jdbcType=VARCHAR}, bindUserName=#{bindUserName,jdbcType=VARCHAR},disabled=#{disabled} where wfUserId=#{wfUserId}
     </update>
 
     <insert id="add" parameterType="Webcontractwfmember">
-        insert into WEBCONTRACTWFMEMBER values (#{roleId},#{cYear},#{wfUserId},#{bindUserId,jdbcType=VARCHAR}
-        ,#{bindUserName,jdbcType=VARCHAR},#{disabled})
+        insert into WEBCONTRACTWFMEMBER values (#{roleId},#{cYear,jdbcType=DECIMAL},#{wfUserId},#{bindUserId,jdbcType=VARCHAR}
+        ,#{bindUserName,jdbcType=VARCHAR},#{disabled,jdbcType=DECIMAL})
     </insert>
 
-    <delete id="delete" parameterType="String">
+    <delete id="delete" >
         delete from WEBCONTRACTWFMEMBER where wfUserId=#{wfUserId} and cYear=#{cYear}
     </delete>
 

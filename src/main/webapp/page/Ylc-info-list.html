@@ -135,7 +135,7 @@
             var finds=$("#nameReload").val();
             table.render({
                 elem: '#Ylc-info-list'
-                ,url:remoteURL+"/Ylc_info/getAllyf.do"
+                ,url:remoteURL+"/Ylc_info/getAllyfs.do"
                 ,page:true
                 ,where:{
 
@@ -146,23 +146,23 @@
                 }
                 ,cols: [[
 
-                    {field:'customerId', title: '客户号',align:"center"}
-                    ,{field:'customerName', title: '客户名称'}
+                    {field:'CID', title: '客户号',align:"center"}
+                    ,{field:'CNAME', title: '客户名称'}
                     ,{ title: '资料卡状态',templet:function (data) {
-                           return getState(data.cardState);
+                           return getState(data.STATE);
                         }}
                     ,{title: '资质文件' ,templet:function (data) {
                             var file="";
-                            if(data.file_1_idcard==1){
+                            if(data.FILE_1_IDCARD!=''){
                                file+="(身份证)";
                             }
-                            if(data.file_2_businesslicense==1){
+                            if(data.FILE_2_BUSINESSLICENSE!=''){
                                 file+="(营业执照)";
                             }
-                            if(data.file_3_orgcode==1){
+                            if(data.FILE_3_ORGCODE!=''){
                                 file+="(组织机构)";
                             }
-                            if(data.file_4_gtqc==1){
+                            if(data.FILE_4_GTQC!=''){
                                 file+="(纳税资格)";
                             }
                             return file;
@@ -170,12 +170,12 @@
                         }
                      }
                     ,{ title: '法人/联系人' ,templet:function (data) {
-                            return data.tx_agent_name+"/"+data.x_juridic_person;
+                            return data.TX_AGENT_NAME+"/"+data.X_JURIDIC_PERSON;
 
                         }}
-                    ,{field:'juridic_person_handset', title: '联系电话'}
+                    ,{field:'JURIDIC_PERSON_HANDSET', title: '联系电话'}
                     ,{title: '协议书状态',templet:function (data) {
-                           return getState(data.ylcState);
+                           return getState(data.BSTATE);
                         }}
 
                     ,{align:'center',class:"jdk", toolbar: '#bar',title:'账号管理'}
@@ -189,7 +189,7 @@
                 var finds=$("#nameReload").val();
                 //执行重载
                 table.reload('Ylc-info-list', {
-                    url: remoteURL+"/Ylc_info/getAllyf.do"
+                    url: remoteURL+"/Ylc_info/getAllyfs.do"
 
                     ,page: {
                         curr: 1 //重新从第 1 页开始
@@ -210,7 +210,7 @@
                 var finds=$("#nameReload").val();
                 //执行重载
                 table.reload('Ylc-info-list', {
-                    url: remoteURL+"/Ylc_info/getAllyf.do"
+                    url: remoteURL+"/Ylc_info/getAllyfs.do"
 
                     ,page: {
                         curr: 1 //重新从第 1 页开始
@@ -273,7 +273,7 @@
                     layer.confirm('真的删除行么', function(index){
                         $.ajax({
                             type: "POST",
-                            url:  remoteURL+"/webcontractwfmember/delete.do",
+                            url:  remoteURL+"/Ylc_info/getAllyfs.do",
                             data: {wfUserId:data.wfUserId,cYear:data.cYear},
                             dataType: "json",
                             success: function(res){
@@ -293,15 +293,24 @@
             });
             var $ = layui.$, active = {
                 reload: function(){
-                    var nameReload=$('#nameReload').val();
+
+                    var table=layui.table;
+                    var $=layui.$;
+                    var year =$("#test1").val();
+                    var infoState=$("#module").val();
+                    var ylcState=$("#type").val();
+                    var finds=$("#nameReload").val();
                     //执行重载
                     table.reload('Ylc-info-list', {
-                        url: remoteURL+"/webcontractwfmember/getWebcontractwfmembers.do"
+                        url: remoteURL+"/Ylc_info/getAllyfs.do"
                         ,page: {
                             curr: 1 //重新从第 1 页开始
                         }
                         ,where: {
-                            wfUserId:nameReload
+                            year:year,
+                            infoState:infoState,
+                            ylcState:ylcState,
+                            find:finds
                         }
                     });
                 }
@@ -317,8 +326,8 @@
     </script>
     <script type="text/html" id="bar">
 
-        <a class="layui-btn layui-btn-xs " lay-event="edit">编辑</a>
-        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
+        <a class="layui-btn layui-btn-xs " lay-event="edit">查看资料卡</a>
+        <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">查看协议书</a>
 
 
         <!-- 这里同样支持 laytpl 语法，如： -->
@@ -417,7 +426,7 @@
                 var finds=$("#nameReload").val();
                 //执行重载
                 table.reload('Ylc-info-list', {
-                    url: remoteURL+"/Ylc_info/getAllyf.do"
+                    url: remoteURL+"/Ylc_info/getAllyfs.do"
 
                     ,page: {
                         curr: 1 //重新从第 1 页开始

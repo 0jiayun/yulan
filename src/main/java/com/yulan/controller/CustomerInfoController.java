@@ -30,7 +30,7 @@ public class CustomerInfoController {
     private static final String CUSTOMER_DIRECTORY = "/customer-image";
     private static final String YLcontract_Directory = "/YLcontract-image";
 
-    private  CustomerInfoCard customerInfoCard;
+    private CustomerInfoCard customerInfoCard;;
 
     /*
     *这里的CID应该是客户的loginName
@@ -132,7 +132,6 @@ public class CustomerInfoController {
     @ResponseBody
     public Map getCustomerInfo(@RequestBody Map<String,Object> data)throws Exception{
         String cID = (String)data.get("CID");
-        System.out.println(cID);
         if(customerInfoService.getCustomerInfo(cID) == null){
             return response.getResponseMap(1,"用户数据不存在" ,customerInfoService.getCustomerInfo(cID));
         }else{
@@ -150,7 +149,6 @@ public class CustomerInfoController {
     @RequestMapping(value = "updateCustomerInfo")
     @ResponseBody
     public Map updateCustomerInfo(@RequestBody CustomerInfoCard customerInfoCard)throws Exception{
-        System.out.println(customerInfoCard);
         if(customerInfoService.updateCustomerInfo(customerInfoCard)){
             return Response.getResponseMap(0,"更新成功",null);
         }else{
@@ -203,11 +201,9 @@ public class CustomerInfoController {
         String cid = (String)data.get("cid");
         Map<String,Object> map = new HashMap<>();
         customerInfoCard = customerInfoService.getCustomerInfo(cid);
-        //省
         map.put("districtText",customerInfoCard.getDistrictText());
-        map.put("areaDistrict2Text",customerInfoCard.getAreaDistrict3Text());
+        map.put("areaDistrict2Text",customerInfoCard.getAreaDistrict2Text());
         map.put("areaDistrict3Text",customerInfoCard.getAreaDistrict3Text());
-
         return  map;
     }
 

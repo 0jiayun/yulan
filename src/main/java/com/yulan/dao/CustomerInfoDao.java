@@ -19,7 +19,8 @@ public interface CustomerInfoDao {
 
     List<CustomerInfoCard> getAllinfo(@Param("start")Integer start, @Param("number") Integer number,
                                       @Param("year")String year,@Param("state")String state,
-                                      @Param("find")String find);
+                                      @Param("find")String find,@Param("area_1")String area_1,
+                                      @Param("area_2")String area_2);
 
     int countInfo(@Param("year")String year,@Param("state")String state,
                   @Param("find")String find);
@@ -59,7 +60,8 @@ public interface CustomerInfoDao {
     List<Map<String,Object>> getAllStatisticsInfo(@Param("market") String market,@Param("userCID") String userCID,
                                                   @Param("userCName") String userCName);
 
-    List<Map<String,Object>> getInfoandYlc(@Param("find")String find,@Param("year")String year,
+    List<Map<String,Object>> getInfoandYlc(@Param("start")Integer start,@Param("number") Integer number,
+                                           @Param("find")String find,@Param("year")String year,
                                            @Param("infoState")String infoStat,@Param("ylcState")String ylcState);
 
     int countInfoandYlc(@Param("find")String find,@Param("year")String year,

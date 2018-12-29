@@ -20,6 +20,11 @@ public class CustomerinfocardgroupServiceImpl implements CustomerinfocardgroupSe
     private CustomerinfocardgroupDao customerinfocardgroupDao;
 
     @Override
+    public boolean addCustomerInfoCardGroup(Customerinfocardgroup customerinfocardgroup) {
+        return customerinfocardgroupDao.addCustomerInfoCardGroup(customerinfocardgroup)>0;
+    }
+
+    @Override
     public Map getCustomerinfocardgroups(Integer start, Integer number, String descp,int deleted) throws UnsupportedEncodingException {
         Map map=new HashMap<String,Object>(2);
         List<Customerinfocardgroup> list2=new ArrayList<>();
@@ -40,11 +45,15 @@ public class CustomerinfocardgroupServiceImpl implements CustomerinfocardgroupSe
     }
 
     @Override
+    public Customerinfocardgroup getCustomerInfoCardGroupByName(String descp) {
+        return customerinfocardgroupDao.getCustomerInfoCardGroupByName(descp);
+    }
+
+    @Override
     public int updateDelete(String Id) {
         Integer deleted=1;
         return customerinfocardgroupDao.updateDelete(Id,deleted);
     }
-
 
     /**
      * 获取名

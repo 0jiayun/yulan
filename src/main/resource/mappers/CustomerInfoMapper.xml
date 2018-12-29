@@ -125,6 +125,12 @@
         <if test="find!=null">
             and c.cid like  '%'||#{find}||'%' or c.cname like '%'||#{find}||'%'
         </if>
+        <if test="area_1!=null">
+            and c.marketname=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and c.submarketname=#{area_2}
+        </if>
 
         ) tm
         <if test="start!=null">
@@ -136,7 +142,7 @@
         select * from(
         select rownum rm, c.*  from
 
-          (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid)c
+          (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid and a.contractyear=b.cyear)c
 
         where 1=1
 
@@ -165,7 +171,7 @@
 
     <select id="countInfoandYlc" resultType="int">
          select count(*) from
-        (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid)c
+        (select a.*,b.state bstate from customerinfocard a,ylcontractentry b where a.cid =b.cid and a.contractyear=b.cyear)c
           where 1=1
         <if test="infoState!=null">
             and c.state=#{infoState}

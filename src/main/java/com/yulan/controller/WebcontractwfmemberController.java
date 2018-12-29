@@ -52,7 +52,6 @@ public class WebcontractwfmemberController {
     public Map<String,Object> checkUser(@RequestParam("userId") String userId) throws UnsupportedEncodingException {
 
         if(webcontractwfmemberService.checkUser(userId)!=null) {
-            System.out.println(webcontractwfmemberService.checkUser(userId));
             return Response.getResponseMap(0,"成功",webcontractwfmemberService.checkUser(userId));
         } else {
             return Response.getResponseMap(1,"用户账号错误",null);
@@ -63,7 +62,6 @@ public class WebcontractwfmemberController {
     @ResponseBody
     public Map<String,Object> update(@RequestBody Webcontractwfmember webcontractwfmember) throws UnsupportedEncodingException {
         webcontractwfmember.setBindUserName(StringUtil.setUtf8(webcontractwfmember.getBindUserName()));
-        System.out.println(webcontractwfmember.getBindUserName());
         if(webcontractwfmemberService.update(webcontractwfmember)!=0) {
 
             return Response.getResponseMap(0,"修改成功",null);
@@ -74,10 +72,10 @@ public class WebcontractwfmemberController {
 
     @RequestMapping("delete")
     @ResponseBody
-    public Map<String,Object> delete(@RequestParam("wfUserId")String wfUserId,@RequestParam("cYear")int cYear) throws UnsupportedEncodingException {
+    public Map<String,Object> delete(@RequestParam("wfUserId")String wfUserId,@RequestParam("cYear")String cYear) throws UnsupportedEncodingException {
 
-
-        if(webcontractwfmemberService.delete(wfUserId,cYear)!=0) {
+        Integer year=Integer.parseInt(cYear);
+        if(webcontractwfmemberService.delete(wfUserId,year)!=0) {
 
             return Response.getResponseMap(0,"删除成功",null);
         } else {
@@ -87,7 +85,6 @@ public class WebcontractwfmemberController {
     @RequestMapping("add")
     @ResponseBody
     public Map<String,Object> add(@RequestBody Webcontractwfmember webcontractwfmember)  {
-        System.out.println(webcontractwfmember.getRoleId()+":"+webcontractwfmember.getWfUserId()+":"+webcontractwfmember.getcYear());
         webcontractwfmember.setDisabled(1);
 
         if(webcontractwfmemberService.add(webcontractwfmember)!=0) {

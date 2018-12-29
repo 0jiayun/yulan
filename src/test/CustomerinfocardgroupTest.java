@@ -1,27 +1,53 @@
-import com.yulan.dao.CustomerinfocardgroupDao;
-import com.yulan.pojo.Customerinfocardgroup;
-import com.yulan.utils.StringUtil;
+import com.yulan.dao.CustomerDao;
+import com.yulan.dao.CustomerInfoCardDao;
+import com.yulan.pojo.Customer;
+import com.yulan.pojo.CustomerInfoCard;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class CustomerinfocardgroupTest {
-    @Autowired
-    private CustomerinfocardgroupDao customerinfocardgroupDao;
-
+    @Autowired private CustomerDao customerDao;
+    @Autowired private CustomerInfoCardDao customerInfoCardDao;
     @Test
-    public void test1() throws UnsupportedEncodingException {
-
-        List<Customerinfocardgroup> list=customerinfocardgroupDao.getCustomerinfocardgroups(1,10, StringUtil.setUtf8("2017年"),0);
-        for (Customerinfocardgroup c:list){
-            System.out.println(c.getDescp());
+    public void test1() {
+        List<CustomerInfoCard> customerInfoCards = new ArrayList<>();
+        CustomerInfoCard customerInfoCard = new CustomerInfoCard();
+        customerInfoCard.setGroupid("1");
+        CustomerInfoCard customerInfoCard1 = new CustomerInfoCard();
+        customerInfoCard1.setGroupid("2");
+        customerInfoCards.add(customerInfoCard);
+        customerInfoCards.add(customerInfoCard1);
+        System.out.println(customerInfoCardDao.addCustomerInfoCard(customerInfoCard));
+    }
+    @Test
+    public void test2() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Customer customer = new Customer();
+        Class cl = customer.getClass();
+//        Method[] methods = cl.getMethods();
+//        for (Method method:methods) {
+//            System.out.println(method.getReturnType()+":"+method.getName());
+//        }
+        Field[] fields = cl.getDeclaredFields();
+        for (Field field:fields) {
+            if (field.getType().toString().equals("class java.lang.String")) {
+                Method method = cl.getDeclaredMethod("set"+toUpper(field.getName()));
+                System.out.println(cl.getMethod("get"+toUpper(field.getName())).invoke(null));
+                method.invoke(cl.getMethod("get"+toUpper(field.getName())).invoke(null));
+            }
         }
+    }
+    private String toUpper(String origin) {
+        return Character.toUpperCase(origin.charAt(0)) + origin.substring(1);
     }
 }
