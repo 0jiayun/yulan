@@ -247,7 +247,7 @@
     </select>
 
     <select id="getYLcontractentryStateByArea" resultType="Map">
-        select marketname,marketmanagername,count(f.state)
+        select marketname,marketmanagername,state,count(state)
         from (select c.marketname,c.marketmanagername, t.state,c.contractyear from YLCONTRACTENTRY t,customerinfocard c where t.cid=c.cid)f
         where contractyear=#{CYEAR} group by marketname,marketmanagername,state
     </select>

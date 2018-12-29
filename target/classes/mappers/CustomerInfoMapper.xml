@@ -246,7 +246,7 @@
     <select id="getYLcontract" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
         select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} ORDER BY t.ccyear desc )WHERE ROWNUM =1
     </select>
-
+<!--
     <update id="updateCustomerInfo" parameterType="CustomerInfoCard">
         update CUSTOMERINFOCARD
         set
@@ -282,6 +282,109 @@
         FILE_4_OP = #{file4Op,jdbcType=VARCHAR},
         FILE_5_IDCARD_BG = #{file5IdcardBg,jdbcType=VARCHAR},
         FILE_5_OP = #{file5Op,jdbcType=VARCHAR}
+        where CID = #{cid} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{cid} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
+  </update>-->
+
+    <update id="updateCustomerInfo" parameterType="CustomerInfoCard">
+        update CUSTOMERINFOCARD
+        <set>
+            <if test="preferedbrand != null">
+        PREFEREDBRAND = #{preferedbrand,jdbcType=VARCHAR},
+            </if>
+            <if test="currentProduct != null">
+        CURRENT_PRODUCT = #{currentProduct,jdbcType=VARCHAR},
+            </if>
+            <if test="invoiceType != null">
+        INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
+            </if>
+            <if test="shopArea != null">
+        SHOP_AREA = #{shopArea},
+            </if>
+            <if test="juridicPersonHandset != null">
+        JURIDIC_PERSON_HANDSET = #{juridicPersonHandset,jdbcType=VARCHAR},
+            </if>
+            <if test="recipeTargetMb != null">
+        RECIPE_TARGET_MB = #{recipeTargetMb,jdbcType=VARCHAR},
+            </if>
+            <if test="invAddress != null">
+        INV_ADDRESS = #{invAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="invTelephone != null">
+        INV_TELEPHONE = #{invTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="invBankname != null">
+        INV_BANKNAME = #{invBankname,jdbcType=VARCHAR},
+            </if>
+            <if test="invBanmaccount!= null">
+        INV_BANMACCOUNT = #{invBanmaccount,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+        QQ = #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="xFax != null">
+        X_FAX = #{xFax,jdbcType=VARCHAR},
+            </if>
+            <if test="xEmail != null">
+        X_EMAIL = #{xEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="xZipCode != null">
+        X_ZIP_CODE = #{xZipCode,jdbcType=VARCHAR},
+            </if>
+            <if test="faxWl != null">
+        FAX_WL = #{faxWl,jdbcType=VARCHAR},
+            </if>
+            <if test="zipCodeWl != null">
+        ZIP_CODE_WL = #{zipCodeWl,jdbcType=VARCHAR},
+            </if>
+            <if test="hasPublicAccount != null">
+        HAS_PUBLIC_ACCOUNT = #{hasPublicAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="account1Bank != null">
+        ACCOUNT1_BANK = #{account1Bank,jdbcType=VARCHAR},
+            </if>
+            <if test="account1 != null">
+        ACCOUNT1 = #{account1,jdbcType=VARCHAR},
+            </if>
+            <if test="account1Location != null">
+        ACCOUNT1_LOCATION = #{account1Location,jdbcType=VARCHAR},
+            </if>
+            <if test="account2Bank != null">
+        ACCOUNT2_BANK = #{account2Bank,jdbcType=VARCHAR},
+            </if>
+            <if test="account2 != null">
+        ACCOUNT2 = #{account2,jdbcType=VARCHAR},
+            </if>
+            <if test="account2Location != null">
+        ACCOUNT2_LOCATION = #{account2Location,jdbcType=VARCHAR},
+            </if>
+            <if test="customerentitytypex != null">
+        CUSTOMERENTITYTYPEX = #{customerentitytypex,jdbcType=CHAR},
+            </if>
+            <if test="file1Idcard != null">
+        FILE_1_IDCARD = #{file1Idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="file1Op != null">
+        FILE_1_OP = #{file1Op,jdbcType=VARCHAR},
+            </if>
+            <if test="file2Businesslicense != null">
+        FILE_2_BUSINESSLICENSE = #{file2Businesslicense,jdbcType=VARCHAR},
+            </if>
+            <if test="file2Op != null">
+        FILE_2_OP = #{file2Op,jdbcType=VARCHAR},
+            </if>
+            <if test="file4Gtqc != null">
+        FILE_4_GTQC = #{file4Gtqc,jdbcType=VARCHAR},
+            </if>
+            <if test="file4Op != null">
+        FILE_4_OP = #{file4Op,jdbcType=VARCHAR},
+            </if>
+            <if test="file5IdcardBg != null">
+        FILE_5_IDCARD_BG = #{file5IdcardBg,jdbcType=VARCHAR},
+            </if>
+            <if test="file5Op != null">
+        FILE_5_OP = #{file5Op,jdbcType=VARCHAR}
+            </if>
+        </set>
         where CID = #{cid} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{cid} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
   </update>
 
