@@ -161,7 +161,11 @@ public class YLcontractentryController {
     public Map getYlcsbysigned(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
         Integer limit=Integer.parseInt(m.get("limit").toString());
         Integer page=Integer.parseInt(m.get("page").toString());
-        Integer signed=Integer.parseInt(m.get("signed").toString());//协议书通过标志
+        Integer signed=null;
+        if(m.get("signed")!=null&&!m.get("signed").equals("")){
+           signed=Integer.parseInt(m.get("signed").toString());//协议书通过标志
+        }
+
         Integer year=Integer.parseInt(m.get("year").toString());
         String cid=m.get("cid").toString();
         String area_1=m.get("area_1").toString();
@@ -193,9 +197,7 @@ public class YLcontractentryController {
             page=(page-1)*limit+1;
             lastNum=page+limit-1;
         }
-        if(signed.equals("")){
-            signed=null;
-        }
+
         Map map=yLcontractentryService.getYlcsbySigned(page,lastNum,signed,year,cid,area_1,area_2,find);
         map.put("code",0);
         map.put("msg","");

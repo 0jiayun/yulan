@@ -119,4 +119,30 @@ public class StringUtil {
 		}
 		return result;
 	}
+
+    /**
+     *
+     * @param resource 源文本
+     * @param norm 匹配的正则
+     * @param term 替换为空的部分
+     * @return
+     */
+    public static String getName(String resource,String norm,String term){
+	    if(resource==null||resource.equals("")){
+	        return "";
+        }
+        Pattern pattern = Pattern.compile(norm);
+        Matcher matcher = pattern.matcher(resource);
+        String result = "";
+
+        if(matcher.find()) {
+
+            int start = matcher.start();
+            int finish = matcher.end();
+            result = resource.substring(start, finish);
+            result = result.replaceAll(term, "");
+        }
+        return result;
+
+    }
 }

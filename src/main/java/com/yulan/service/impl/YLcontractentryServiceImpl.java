@@ -327,6 +327,15 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                     entry.setValue(origin);
                 }
             }
+            if(m.get("WFMEMO")!=null){
+                m.put("MARKET",StringUtil.getName(m.get("WFMEMO").toString(),"#DEP_MARKET_CHECK#.+DEP_MARKET_CHECK#","#DEP_MARKET_CHECK#"));//获取市场部审核人员
+                m.put("CSA",StringUtil.getName(m.get("WFMEMO").toString(),"#CSA_CHECK#.+CSA_CHECK#","#CSA_CHECK#"));//营销部
+            }else{
+                m.put("MARKET","");//获取市场部审核人员
+                m.put("CSA","");//营销部
+            }
+
+
             data.add(m);
         }
         map.put("data",data);
