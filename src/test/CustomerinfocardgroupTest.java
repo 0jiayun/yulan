@@ -3,6 +3,7 @@ import com.yulan.dao.CustomerInfoCardDao;
 import com.yulan.dao.YLcontractentryDao;
 import com.yulan.pojo.Customer;
 import com.yulan.pojo.CustomerInfoCard;
+import com.yulan.utils.StringUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,14 @@ public class CustomerinfocardgroupTest {
     private YLcontractentryDao yLcontractentryDao;
     @Test
     public void test5(){
-        System.out.println(yLcontractentryDao.getYLcontractentry("00294"));
-//        List<Map<String,Object>> list=yLcontractentryDao.getAllYs(1,10,1,"00294",2018,"","","");
-//        for (Map<String,Object> m:list){
-//            System.out.println(m.get("AREA_NAME"));
-//        }
+       String resource="<LI>2018-02-09 10:09 谢铁岩提交;</LI><LI>2018-02-09 14:14 被广元市城区康宝装饰材料经营部 通过协议文本;</LI>" +
+               "<LI>2018-03-01 16:56 被刘伟 通过协议文本;</LI><LI>2018-03-27 15:44 " +
+                        "被#DEP_MARKET_CHECK#黄诗adhdsa燕#DEP_MARKET_CHECK#打回[<SPAN CLASS=REJECTREASON>" +
+               "兰居最低签约任务不得低于5万。</SPAN>];</LI><LI>2018-03-27 17:05 谢铁岩提交;" +
+               "</LI><LI>2018-03-27 17:33 被广元市城区康宝装饰材料经营部否决[<SPAN CLASS=REJECTREASON>金额不对</SPAN>];" +
+               "</LI><LI>2018-03-27 17:37 谢铁岩提交;</LI><LI>2018-03-27 17:38 被广元市城区康宝装饰材料经营部 通过协议文本;</LI><LI>2018-03-27 17:44 被刘伟 通过协议文本;" +
+               "</LI><LI>2018-03-28 14:00 被#DEP_MARKET_CHECK#黄诗燕2#DEP_MARKET_CHECK# 审核通过协议文本;</LI><LI>2018-04-24 14:59 被#CSA_CHECK#周志强#CSA_CHECK# 审核批准协议文本;</LI>";
+     System.out.println("hah"+ StringUtil.getName(resource,"#DEP_MARKET_CHECK#(.*?)#DEP_MARKET_CHECK#","#CSA_CHECK#"));
     }
 
     @Test

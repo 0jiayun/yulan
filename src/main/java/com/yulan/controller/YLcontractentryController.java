@@ -172,16 +172,17 @@ public class YLcontractentryController {
            signed=Integer.parseInt(m.get("signed").toString());//协议书通过标志
         }
 
-        Integer year=Integer.parseInt(m.get("year").toString());
+        Integer year=null;
+        if (m.get("year")!=null&&!m.get("year").equals("")){
+            year=Integer.parseInt(m.get("year").toString());
+        }
         String cid=m.get("cid").toString();
         String area_1=m.get("area_1").toString();
         String area_2=m.get("area_2").toString();
         String find=StringUtil.setUtf8(m.get("find").toString());
 
 
-        if(year.equals("")){
-            year=null;
-        }
+
         if(area_1.equals("")){
             area_1=null;
         }else{
