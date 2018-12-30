@@ -174,9 +174,14 @@
 
     <update id="checkYLcontractentry" parameterType="java.util.Map">
         update YLCONTRACTENTRY
-        set
+        <set>
+            <if test="STATE!=null">
         STATE = #{STATE} ,
+            </if>
+            <if test="WFMEMO!=null">
         WFMEMO = WFMEMO || #{WFMEMO,jdbcType=VARCHAR}
+            </if>
+        </set>
         where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
     </update>
 

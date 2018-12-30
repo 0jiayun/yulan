@@ -405,16 +405,23 @@
     )
   </insert>
 
-    <update id="updateYLcontractImg" parameterType="java.util.Map">
+    <!--<update id="updateYLcontractImg" parameterType="java.util.Map">
         update YLCONTRACT_V2015_PAA
-        set
+        <set>
+            <if test="authfileIamge != null">
         AUTHFILE_IAMGE = #{authfileIamge,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardIamge1 != null">
         IDCARD_IAMGE1 = #{idcardIamge1,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardIamge2 != null">
         IDCARD_IAMGE2 = #{idcardIamge2,jdbcType=VARCHAR}
+            </if>
+        </set>
         where CCID = #{ccid}
-      </update>
+      </update>-->
 
-    <update id="updateCustomerImg" parameterType="java.util.Map" >
+    <!--<update id="updateCustomerImg" parameterType="java.util.Map" >
         update CUSTOMERINFOCARD
         set
         FILE_1_IDCARD = #{file1Idcard,jdbcType=VARCHAR},
@@ -426,7 +433,7 @@
         FILE_5_IDCARD_BG = #{file5IdcardBg,jdbcType=VARCHAR},
         FILE_5_OP = #{file5Op,jdbcType=VARCHAR},
         where CID = #{cid,jdbcType=VARCHAR}
-  </update>
+  </update>-->
 
     <select id="getXAreaDistrictName" parameterType="java.util.Map" resultType="string">
         select REGION_NAME from AREA_REGION WHERE REGION_ID =#{REGION_ID}
@@ -456,9 +463,14 @@
 
     <update id="businessCheckCustomerInfoCard" parameterType="java.util.Map">
         update CUSTOMERINFOCARD
-        set
+        <set>
+            <if test="STATE!=null">
         STATE = #{STATE} ,
+            </if>
+            <if test="MEMO!=null">
         MEMO = MEMO || #{MEMO}
+            </if>
+        </set>
         where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
     </update>
 

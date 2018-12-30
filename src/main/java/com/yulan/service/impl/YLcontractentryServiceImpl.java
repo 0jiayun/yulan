@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -192,6 +193,8 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
     @Override
     public String getYLcontractHTML(String cid) throws IOException {
+        //保留两位小数的方法
+        DecimalFormat df = new DecimalFormat("0.00");
         List<Object> list = new ArrayList<Object>();
         /*
         CustomerInfoCard
@@ -237,7 +240,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         REWORDPERCENT2兰居返点
         STOCKPERCENT备货比例
         人名币 = 总任务 * 备货比例
-        PRIVATE_ACCOUNT_AUTHED 客户授权配偶账号
+        PRIVATE_ACCOUNT_AUTHED 客户授权配偶账号（这个在那是不要了）
         */
         yLcontract_v2015 = getYLcontract_v2015(cid);
 
@@ -253,37 +256,42 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(sdf.format(yLcontractentry.getStartDate()));
         list.add(sdf.format(yLcontractentry.getEndDate()));
         list.add(yLcontract_v2015.getPreferedbrand());
-        list.add(Double.toString(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
-        list.add(Double.toString(yLcontract_v2015.getaRetailing()));
-        list.add(Double.toString(yLcontract_v2015.getcMatching()));
-        list.add(Double.toString(yLcontract_v2015.getM1()));
-        list.add(Double.toString(yLcontract_v2015.getM2()));
-        list.add(Double.toString(yLcontract_v2015.getM3()));
-        list.add(Double.toString(yLcontract_v2015.getM4()));
-        list.add(Double.toString(yLcontract_v2015.getM5()));
-        list.add(Double.toString(yLcontract_v2015.getM6()));
-        list.add(Double.toString(yLcontract_v2015.getM7()));
-        list.add(Double.toString(yLcontract_v2015.getM8()));
-        list.add(Double.toString(yLcontract_v2015.getM9()));
-        list.add(Double.toString(yLcontract_v2015.getM10()));
-        list.add(Double.toString(yLcontract_v2015.getM11()));
-        list.add(Double.toString(yLcontract_v2015.getM12()));
-        list.add(Double.toString(total));
-        list.add(Double.toString(yLcontract_v2015.getRewordpercent()));
-        list.add(Double.toString(yLcontract_v2015.getRewordpercent2()));
-        list.add(Double.toString(yLcontract_v2015.getStockpercent()));
-        list.add(Double.toString(yLcontract_v2015.getStockpercent() * total));
-        list.add(customerInfoCard.getAccount1Name());
-        list.add(customerInfoCard.getAccount2Name());
-        list.add(customerInfoCard.getAccount1Bank());
-        list.add(customerInfoCard.getAccount2Bank());
-        list.add(customerInfoCard.getAccount1());
-        list.add(customerInfoCard.getAccount2());
-        list.add(customerInfoCard.getAccount1Location());
-        list.add(customerInfoCard.getAccount2Location());
-        list.add(yLcontract_v2015.getPrivateAccountAuthed());
+        list.add(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
+        list.add(df.format(yLcontract_v2015.getaRetailing()));
+        list.add(df.format(yLcontract_v2015.getcMatching()));
+        list.add(df.format(yLcontract_v2015.getM1()));
+        list.add(df.format(yLcontract_v2015.getM2()));
+        list.add(df.format(yLcontract_v2015.getM3()));
+        list.add(df.format(yLcontract_v2015.getM4()));
+        list.add(df.format(yLcontract_v2015.getM5()));
+        list.add(df.format(yLcontract_v2015.getM6()));
+        list.add(df.format(yLcontract_v2015.getM7()));
+        list.add(df.format(yLcontract_v2015.getM8()));
+        list.add(df.format(yLcontract_v2015.getM9()));
+        list.add(df.format(yLcontract_v2015.getM10()));
+        list.add(df.format(yLcontract_v2015.getM11()));
+        list.add(df.format(yLcontract_v2015.getM12()));
+        list.add(df.format(total));
+        list.add(df.format(yLcontract_v2015.getRewordpercent()));
+        list.add(df.format(yLcontract_v2015.getRewordpercent2()));
+        list.add(df.format(yLcontract_v2015.getStockpercent()));
+        list.add(df.format(yLcontract_v2015.getStockpercent() * total));
+        if(customerInfoCard.getHasPublicAccount().equals("Y")){
+            list.add("公司汇款账号信息");
+            list.add(customerInfoCard.getAccount1Name());
+            list.add(customerInfoCard.getAccount1Bank());
+            list.add(customerInfoCard.getAccount1());
+            list.add(customerInfoCard.getAccount1Location());
+        }else{
+            list.add("个人汇款账号信息");
+            list.add(customerInfoCard.getAccount2Name());
+            list.add(customerInfoCard.getAccount2Bank());
+            list.add(customerInfoCard.getAccount2());
+            list.add(customerInfoCard.getAccount2Location());
+        }
+        //   list.add(yLcontract_v2015.getPrivateAccountAuthed());
 
-        String test = yLcontractentryDao.getYLcontractHTML(1).getTest();
+        String test = yLcontractentryDao.getYLcontractHTML(3).getTest();
         test = StringUtil.getUtf8(test);
 
         String html = stringUtil.replace(test,"AAAA",list);
