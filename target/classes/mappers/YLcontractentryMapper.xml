@@ -212,7 +212,7 @@
             and signed=#{signed}
         </if>
         <if test="find!=null">
-            and f.cid=#{find}
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
         </if>
 
 
@@ -239,7 +239,7 @@
             and signed=#{signed}
         </if>
         <if test="find!=null">
-            and f.cid=#{find}
+           and f.cid like  '%'||#{find}||'%' or  f.CNAME like  '%'||#{find}||'%'
         </if>
 
     </select>

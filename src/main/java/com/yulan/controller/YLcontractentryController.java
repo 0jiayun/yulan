@@ -156,6 +156,12 @@ public class YLcontractentryController {
         return map;
     }
 
+    /**
+     * 协议书审核列表获取
+     * @param m
+     * @return
+     * @throws UnsupportedEncodingException
+     */
     @RequestMapping(value = "getYlcsbysigned")
     @ResponseBody
     public Map getYlcsbysigned(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
@@ -170,7 +176,8 @@ public class YLcontractentryController {
         String cid=m.get("cid").toString();
         String area_1=m.get("area_1").toString();
         String area_2=m.get("area_2").toString();
-        String find=m.get("find").toString();
+        String find=StringUtil.setUtf8(m.get("find").toString());
+
 
         if(year.equals("")){
             year=null;
@@ -186,9 +193,7 @@ public class YLcontractentryController {
         }else{
             area_2=StringUtil.setUtf8(area_2);
         }
-        if(find.equals("")){
-            find=null;
-        }
+
         Integer lastNum=null;
         if(limit==null||page==null) {
             page=null;
