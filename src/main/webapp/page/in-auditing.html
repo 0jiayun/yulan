@@ -68,6 +68,9 @@
             table.render({
                 elem: '#webcontractwfmember-list'
                 ,url:remoteURL+"/webcontractwfmember/getWebcontractwfmembers.do"
+                ,where:{
+                   year:'2018'
+                }
                 ,page:true
                 ,cols: [[
                     {field:'roleName', title: '角色权限',align:"center", sort: true ,templet:function (data) {
@@ -216,7 +219,9 @@
             laydate.render({
                 elem: '#test1' //指定元素
                 ,type: 'year'
-                ,isInitValue: false
+                ,value: '2018'
+
+                ,isInitValue: true
                 ,change: function(value, date, endDate){
 
                     console.log(value); //得到日期生成的值，如：2017-08-18
