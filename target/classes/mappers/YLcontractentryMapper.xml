@@ -186,18 +186,22 @@
     </update>
 
     <select id="getAllYs" resultType="Map">
-
         select
         *
 
         from(
-        select rownum rm, f.*  from
+        select rownum rm, l.*  from
+
+        (select r.realName,f.* from
 
         (select a.area_name,b.* from
-            (select c.area_code ,c.district,t.* from
-            YLCONTRACTENTRY t,customer c,(select * from AREA_USER t where t.userid=#{cid}) e
-            where t.cid=c.customer_code and e.area_code=c.area_code) b, area_code a
-        where a.area_code=b.area_code)f
+        (select c.area_code ,c.district,t.* from
+        YLCONTRACTENTRY t,customer c,(select * from AREA_USER t where t.userid=#{cid}) e
+        where t.cid=c.customer_code and e.area_code=c.area_code) b, area_code a
+        where a.area_code=b.area_code)f,
+
+        (select w.realname, a.area from WEB_USER w,AREA_OWNER a where w.loginname=a.owner)r
+        where f.area_code=r.area) l
 
         where 1=1
         <if test="year!=null">
@@ -213,13 +217,11 @@
             and signed=#{signed}
         </if>
         <if test="find!=null">
-            and f.cid=#{find}
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
         </if>
 
 
         ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
-
-
     </select>
     <select id="countYs" resultType="int">
         select count (*) from
@@ -242,7 +244,7 @@
             and signed=#{signed}
         </if>
         <if test="find!=null">
-            and f.cid=#{find}
+           and f.cid like  '%'||#{find}||'%' or  f.CNAME like  '%'||#{find}||'%'
         </if>
 
     </select>

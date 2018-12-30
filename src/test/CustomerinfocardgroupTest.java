@@ -1,5 +1,6 @@
 import com.yulan.dao.CustomerDao;
 import com.yulan.dao.CustomerInfoCardDao;
+import com.yulan.dao.YLcontractentryDao;
 import com.yulan.pojo.Customer;
 import com.yulan.pojo.CustomerInfoCard;
 import org.junit.Test;
@@ -19,6 +20,17 @@ import java.util.List;
 public class CustomerinfocardgroupTest {
     @Autowired private CustomerDao customerDao;
     @Autowired private CustomerInfoCardDao customerInfoCardDao;
+    @Autowired
+    private YLcontractentryDao yLcontractentryDao;
+    @Test
+    public void test5(){
+        System.out.println(yLcontractentryDao.getYLcontractentry("00294"));
+//        List<Map<String,Object>> list=yLcontractentryDao.getAllYs(1,10,1,"00294",2018,"","","");
+//        for (Map<String,Object> m:list){
+//            System.out.println(m.get("AREA_NAME"));
+//        }
+    }
+
     @Test
     public void test1() {
         List<CustomerInfoCard> customerInfoCards = new ArrayList<>();

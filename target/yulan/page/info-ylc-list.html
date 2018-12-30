@@ -50,7 +50,7 @@
             ,page:true
             ,where:{
                 token:token,
-                year:year
+                year:'2018'
             }
             ,cols: [[
                 {field:'MARKETNAME', title: '大区'}
@@ -142,13 +142,14 @@
 	*/
     function dayComment(url,chartId, legend_name) {
         var year =$("#test1").val();
+
         $.ajax({//Ajax请求你要展现的数据
             url :remoteURL+url,
             type : 'post',
             cache : false,
             dataType : 'json',
             async:false,	//改为同步
-            data : {year:year },	//查看方式
+            data : {year:'2018' },	//查看方式
             success : function(data) {
                 chartTool.registerFunnelChart( chartId,data.textname,  legend_name, data.y, data.x);
             },
@@ -289,6 +290,8 @@
             elem: '#test1' //指定元素
             ,type: 'year'
             ,isInitValue: false
+            ,value: '2018'
+            ,isInitValue: true
             ,change: function(value, date, endDate){
 
                 console.log(value); //得到日期生成的值，如：2017-08-18
