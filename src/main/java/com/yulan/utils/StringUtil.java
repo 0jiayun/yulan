@@ -85,7 +85,7 @@ public class StringUtil {
 			if(replaces.size()<i+1) {
 				break;
 			}
-			if(replaces.get(i)==null) {
+			if(replaces.get(i) == null || replaces.get(i).equals("")) {
 				replaces.add(i,"");
 			}
 			String replace = replaces.get(i).toString();

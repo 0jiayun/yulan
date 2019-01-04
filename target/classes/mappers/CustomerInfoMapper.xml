@@ -297,7 +297,7 @@
             <if test="invoiceType != null">
         INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
             </if>
-            <if test="shopArea != null">
+            <if test="shopArea != 0">
         SHOP_AREA = #{shopArea},
             </if>
             <if test="juridicPersonHandset != null">
@@ -369,6 +369,12 @@
             <if test="file2Businesslicense != null">
         FILE_2_BUSINESSLICENSE = #{file2Businesslicense,jdbcType=VARCHAR},
             </if>
+            <if test="file2BusinesslicenseNo != null">
+        FILE_2_BUSINESSLICENSE_NO = #{file2BusinesslicenseNo,jdbcType=VARCHAR},
+            </if>
+            <if test="file2BusinesslicenseEnd != null">
+        FILE_2_BUSINESSLICENSE_END = #{file2BusinesslicenseEnd,jdbcType=VARCHAR},
+            </if>
             <if test="file2Op != null">
         FILE_2_OP = #{file2Op,jdbcType=VARCHAR},
             </if>
@@ -377,6 +383,9 @@
             </if>
             <if test="file4Op != null">
         FILE_4_OP = #{file4Op,jdbcType=VARCHAR},
+            </if>
+            <if test="file4GtqcNo != null">
+        FILE_4_GTQC_NO = #{file4GtqcNo,jdbcType=VARCHAR},
             </if>
             <if test="file5IdcardBg != null">
         FILE_5_IDCARD_BG = #{file5IdcardBg,jdbcType=VARCHAR},
