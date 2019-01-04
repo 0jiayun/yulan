@@ -299,6 +299,62 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         return html;
     }
 
+    @Override
+    public Map<String,Object> getYLcontractAPP(String cid) throws IOException {
+        //保留两位小数的方法
+        DecimalFormat df = new DecimalFormat("0.00");
+        Map<String,Object> map = new HashMap();
+        customerInfoCard = customerInfoService.getCustomerInfo(cid);
+        yLcontractentry = yLcontractentryDao.getYLcontractentry(cid);
+        yLcontract_v2015 = getYLcontract_v2015(cid);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Double total = (yLcontract_v2015.getM1()+yLcontract_v2015.getM2()+yLcontract_v2015.getM3()+yLcontract_v2015.getM4()+yLcontract_v2015.getM5()
+                +yLcontract_v2015.getM6()+yLcontract_v2015.getM7()+yLcontract_v2015.getM8()+yLcontract_v2015.getM9()
+                +yLcontract_v2015.getM10()+yLcontract_v2015.getM11()+yLcontract_v2015.getM12());
+        map.put("cname",customerInfoCard.getCname());
+        map.put("xPostAddress",customerInfoCard.getxPostAddress());
+        map.put("xDistrict",customerInfoService.getXDistrict(customerInfoCard.getxDistrict()));
+        map.put("xAreaDistrict2",customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict2()));
+        map.put("xAreaDistrict3",customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3()));
+        map.put("startDate",sdf.format(yLcontractentry.getStartDate()));
+        map.put("endDate",sdf.format(yLcontractentry.getEndDate()));
+        map.put("preferedbrand",yLcontract_v2015.getPreferedbrand());
+        map.put("total",df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
+        map.put("aRetailing",df.format(yLcontract_v2015.getaRetailing()));
+        map.put("cMatching",df.format(yLcontract_v2015.getcMatching()));
+        map.put("m1",df.format(yLcontract_v2015.getM1()));
+        map.put("m2",df.format(yLcontract_v2015.getM2()));
+        map.put("m3",df.format(yLcontract_v2015.getM3()));
+        map.put("m4",df.format(yLcontract_v2015.getM4()));
+        map.put("m5",df.format(yLcontract_v2015.getM5()));
+        map.put("m6",df.format(yLcontract_v2015.getM6()));
+        map.put("m7",df.format(yLcontract_v2015.getM7()));
+        map.put("m8",df.format(yLcontract_v2015.getM8()));
+        map.put("m9",df.format(yLcontract_v2015.getM9()));
+        map.put("m10",df.format(yLcontract_v2015.getM10()));
+        map.put("m11",df.format(yLcontract_v2015.getM11()));
+        map.put("m12",df.format(yLcontract_v2015.getM12()));
+        map.put("totalm",df.format(total));
+        map.put("rewordpercent",df.format(yLcontract_v2015.getRewordpercent()));
+        map.put("rewordpercent2",df.format(yLcontract_v2015.getRewordpercent2()));
+        map.put("Stockpercen",df.format(yLcontract_v2015.getStockpercent()));
+        map.put("人名币",df.format(yLcontract_v2015.getStockpercent() * total));
+        if(customerInfoCard.getHasPublicAccount().equals("Y")){
+            map.put("State","公司汇款账号信息");
+            map.put("Account1Name",customerInfoCard.getAccount1Name());
+            map.put("Account1Bank",customerInfoCard.getAccount1Bank());
+            map.put("Account1",customerInfoCard.getAccount1());
+            map.put("Account1Location",customerInfoCard.getAccount1Location());
+        }else{
+            map.put("State","个人汇款账号信息");
+            map.put("Account2Name",customerInfoCard.getAccount2Name());
+            map.put("Account2Bank",customerInfoCard.getAccount2Bank());
+            map.put("Account2",customerInfoCard.getAccount2());
+            map.put("Account2Location",customerInfoCard.getAccount2Location());
+        }
+        return map;
+    }
 
 
     @Override

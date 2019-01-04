@@ -102,7 +102,7 @@ public class YLcontractentryController {
     }
 
     /**
-     * 获得协议书的HTML
+     * 获得协议书的HTML(PC)
      * @param data
      * @return
      */
@@ -117,6 +117,19 @@ public class YLcontractentryController {
             return response.getResponseMap(0,"SUCCESS" ,yLcontractHTML);
         }
 
+    }
+
+    /**
+     * 获得协议书APP端的数据
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "getYLcontractAPP")
+    @ResponseBody
+    public Map<String,Object> getYLcontractAPP(@RequestBody Map<String,Object> data)throws IOException{
+        String cid = (String)data.get("cid");
+        return yLcontractentryService.getYLcontractAPP(cid);
     }
 
     /**
