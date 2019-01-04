@@ -124,7 +124,7 @@ public class StringUtil {
      *
      * @param resource 源文本
      * @param norm 匹配的正则
-     * @param term 替换为空的部分
+     * @param
      * @return
      */
     public static String getName(String resource,String norm,String term){
@@ -133,15 +133,15 @@ public class StringUtil {
         }
         Pattern pattern = Pattern.compile(norm);
         Matcher matcher = pattern.matcher(resource);
-        String result = "";
+        String result ="";
+		int i=0;
+        while(matcher.find()) {
 
-        if(matcher.find()) {
+            result=matcher.group(i);
 
-            int start = matcher.start();
-            int finish = matcher.end();
-            result = resource.substring(start, finish);
-            result = result.replaceAll(term, "");
+			i++;
         }
+		result = result.replaceAll(term, "");
         return result;
 
     }

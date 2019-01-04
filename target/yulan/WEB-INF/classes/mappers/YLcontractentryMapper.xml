@@ -192,26 +192,25 @@
         from(
         select rownum rm, l.*  from
 
-        (select r.realName,f.* from
-
-        (select a.area_name,b.* from
-        (select c.area_code ,c.district,t.* from
-        YLCONTRACTENTRY t,customer c,(select * from AREA_USER t where t.userid=#{cid}) e
-        where t.cid=c.customer_code and e.area_code=c.area_code) b, area_code a
-        where a.area_code=b.area_code)f,
-
-        (select w.realname, a.area from WEB_USER w,AREA_OWNER a where w.loginname=a.owner)r
-        where f.area_code=r.area) l
+        (select u.realName Sname,s.* from
+        (select w.realname Mname ,f.* from
+        (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        YLCONTRACTENTRY t,customerinfocard c,(select * from AREA_USER t where t.userid='00294') e
+        where t.cid=c.cid and e.area_code=c.market)f,web_user w
+        where
+        w.loginname=f.MARKETMANAGER)s,web_user u
+        where
+        u.loginName=s.SUBMARKETMANAGER ) l
 
         where 1=1
         <if test="year!=null">
             and cyear=#{year}
         </if>
         <if test="area_1!=null">
-            and area_name=#{area_1}
+            and MARKETNAME=#{area_1}
         </if>
         <if test="area_2!=null">
-            and district=#{area_2}
+            and SUBMARKETNAME=#{area_2}
         </if>
         <if test="signed!=null">
             and signed=#{signed}
@@ -225,20 +224,18 @@
     </select>
     <select id="countYs" resultType="int">
         select count (*) from
-          (select a.area_name,b.* from
-        (select c.area_code ,c.district,t.* from
-        YLCONTRACTENTRY t,customer c,(select * from AREA_USER t where t.userid=#{cid}) e
-        where t.cid=c.customer_code and e.area_code=c.area_code) b, area_code a
-        where a.area_code=b.area_code)f
+          (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        YLCONTRACTENTRY t,customerinfocard c,(select * from AREA_USER t where t.userid=#{cid}) e
+        where t.cid=c.cid and e.area_code=c.market)f
         where 1=1
         <if test="year!=null">
             and cyear=#{year}
         </if>
         <if test="area_1!=null">
-            and area_name=#{area_1}
+            and MARKETNAME=#{area_1}
         </if>
         <if test="area_2!=null">
-            and district=#{area_2}
+            and SUBMARKETNAME=#{area_2}
         </if>
         <if test="signed!=null">
             and signed=#{signed}
