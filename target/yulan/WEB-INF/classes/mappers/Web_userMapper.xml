@@ -38,6 +38,6 @@
        (select b.descp,a.* from WEBCONTRACTWFMEMBER a,WEBCONTRACTWFROLE b where a.roleid=b.id)c
         where
         c.binduserid=#{cid} and cyear=#{year}
-        group by descp  
+        group by descp
     </select>
 </mapper>

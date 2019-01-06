@@ -345,20 +345,20 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("totalm",df.format(total));
         map.put("rewordpercent",df.format(yLcontract_v2015.getRewordpercent()));
         map.put("rewordpercent2",df.format(yLcontract_v2015.getRewordpercent2()));
-        map.put("Stockpercen",df.format(yLcontract_v2015.getStockpercent()));
-        map.put("人名币",df.format(yLcontract_v2015.getStockpercent() * total));
+        map.put("Stockpercent",df.format(yLcontract_v2015.getStockpercent()));
+        map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
             map.put("State","1");
-            map.put("Account1Name",customerInfoCard.getAccount1Name());
-            map.put("Account1Bank",customerInfoCard.getAccount1Bank());
-            map.put("Account1",customerInfoCard.getAccount1());
-            map.put("Account1Location",customerInfoCard.getAccount1Location());
+            map.put("AccountName",customerInfoCard.getAccount1Name());
+            map.put("AccountBank",customerInfoCard.getAccount1Bank());
+            map.put("Account",customerInfoCard.getAccount1());
+            map.put("AccountLocation",customerInfoCard.getAccount1Location());
         }else{
             map.put("State","0");
-            map.put("Account2Name",customerInfoCard.getAccount2Name());
-            map.put("Account2Bank",customerInfoCard.getAccount2Bank());
-            map.put("Account2",customerInfoCard.getAccount2());
-            map.put("Account2Location",customerInfoCard.getAccount2Location());
+            map.put("AccountName",customerInfoCard.getAccount2Name());
+            map.put("AccountBank",customerInfoCard.getAccount2Bank());
+            map.put("Account",customerInfoCard.getAccount2());
+            map.put("AccountLocation",customerInfoCard.getAccount2Location());
         }
         return map;
     }
