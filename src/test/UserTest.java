@@ -1,7 +1,4 @@
-import com.yulan.dao.AreaRegionDao;
-import com.yulan.dao.CustomerInfoDao;
-import com.yulan.dao.UserDao;
-import com.yulan.dao.YLcontractentryDao;
+import com.yulan.dao.*;
 import com.yulan.pojo.CustomerInfoCard;
 import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
@@ -15,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +42,19 @@ public class UserTest {
     private YLcontractentryService yLcontractentryService;
 
     private YLcontractentry yLcontractentry;
+
+    @Autowired
+    private Web_userDao web_userDao;
+
+    @Test
+    public  void test() throws UnsupportedEncodingException {
+        String position=web_userDao.getPosition("00039",2018);
+        if (position!=null){
+            System.out.println(StringUtil.getUtf8(position));
+        }else {
+            System.out.println("null");
+        }
+    }
 
     @Test
     public void test1() throws Exception {
