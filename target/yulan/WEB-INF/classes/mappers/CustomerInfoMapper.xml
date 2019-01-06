@@ -414,21 +414,36 @@
     )
   </insert>
 
-    <!--<update id="updateYLcontractImg" parameterType="java.util.Map">
+    <update id="updateYLcontract" parameterType="YLcontract_v2015_paa">
         update YLCONTRACT_V2015_PAA
         <set>
+            <if test="name != null">
+                NAME = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="accountBank != null">
+                ACCOUNT_BANK = #{accountBank,jdbcType=VARCHAR},
+            </if>
+            <if test="accout != null">
+                ACCOUT = #{accout,jdbcType=VARCHAR},
+            </if>
+            <if test="accountLocation != null">
+                ACCOUNT_LOCATION = #{accountLocation,jdbcType=VARCHA},
+            </if>
+            <if test="idcardNo != null">
+                IDCARD_NO = #{idcardNo,jdbcType=VARCHAR},
+            </if>
             <if test="authfileIamge != null">
-        AUTHFILE_IAMGE = #{authfileIamge,jdbcType=VARCHAR},
+                AUTHFILE_IAMGE = #{authfileIamge,jdbcType=VARCHAR},
             </if>
             <if test="idcardIamge1 != null">
-        IDCARD_IAMGE1 = #{idcardIamge1,jdbcType=VARCHAR},
+                IDCARD_IAMGE1 = #{idcardIamge1,jdbcType=VARCHAR},
             </if>
             <if test="idcardIamge2 != null">
-        IDCARD_IAMGE2 = #{idcardIamge2,jdbcType=VARCHAR}
+                IDCARD_IAMGE2 = #{idcardIamge2,jdbcType=VARCHAR}
             </if>
         </set>
-        where CCID = #{ccid}
-      </update>-->
+        where CCID = #{ccid} and CCYEAR = #{ccyear}
+      </update>
 
     <!--<update id="updateCustomerImg" parameterType="java.util.Map" >
         update CUSTOMERINFOCARD

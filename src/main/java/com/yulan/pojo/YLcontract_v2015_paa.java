@@ -4,31 +4,40 @@ package com.yulan.pojo;
  */
 public class YLcontract_v2015_paa {
 
-    private Integer ccYear;
-    private String ccID;
+    private Short ccyear;
+
+    private String ccid;
+
     private String name;
+
     private String accountBank;
-    private String account;
+
+    private String accout;
+
     private String accountLocation;
-    private String authFileImage;
-    private String idCardImage1;
-    private String idCardImage2;
-    private String idCardNO;
 
-    public Integer getCcYear() {
-        return ccYear;
+    private String authfileIamge;
+
+    private String idcardIamge1;
+
+    private String idcardIamge2;
+
+    private String idcardNo;
+
+    public Short getCcyear() {
+        return ccyear;
     }
 
-    public void setCcYear(Integer ccYear) {
-        this.ccYear = ccYear;
+    public void setCcyear(Short ccyear) {
+        this.ccyear = ccyear;
     }
 
-    public String getCcID() {
-        return ccID;
+    public String getCcid() {
+        return ccid;
     }
 
-    public void setCcID(String ccID) {
-        this.ccID = ccID;
+    public void setCcid(String ccid) {
+        this.ccid = ccid == null ? null : ccid.trim();
     }
 
     public String getName() {
@@ -36,7 +45,7 @@ public class YLcontract_v2015_paa {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getAccountBank() {
@@ -44,15 +53,15 @@ public class YLcontract_v2015_paa {
     }
 
     public void setAccountBank(String accountBank) {
-        this.accountBank = accountBank;
+        this.accountBank = accountBank == null ? null : accountBank.trim();
     }
 
-    public String getAccount() {
-        return account;
+    public String getAccout() {
+        return accout;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setAccout(String accout) {
+        this.accout = accout == null ? null : accout.trim();
     }
 
     public String getAccountLocation() {
@@ -60,38 +69,38 @@ public class YLcontract_v2015_paa {
     }
 
     public void setAccountLocation(String accountLocation) {
-        this.accountLocation = accountLocation;
+        this.accountLocation = accountLocation == null ? null : accountLocation.trim();
     }
 
-    public String getAuthFileImage() {
-        return authFileImage;
+    public String getAuthfileIamge() {
+        return authfileIamge;
     }
 
-    public void setAuthFileImage(String authFileImage) {
-        this.authFileImage = authFileImage;
+    public void setAuthfileIamge(String authfileIamge) {
+        this.authfileIamge = authfileIamge == null ? null : authfileIamge.trim();
     }
 
-    public String getIdCardImage1() {
-        return idCardImage1;
+    public String getIdcardIamge1() {
+        return idcardIamge1;
     }
 
-    public void setIdCardImage1(String idCardImage1) {
-        this.idCardImage1 = idCardImage1;
+    public void setIdcardIamge1(String idcardIamge1) {
+        this.idcardIamge1 = idcardIamge1 == null ? null : idcardIamge1.trim();
     }
 
-    public String getIdCardImage2() {
-        return idCardImage2;
+    public String getIdcardIamge2() {
+        return idcardIamge2;
     }
 
-    public void setIdCardImage2(String idCardImage2) {
-        this.idCardImage2 = idCardImage2;
+    public void setIdcardIamge2(String idcardIamge2) {
+        this.idcardIamge2 = idcardIamge2 == null ? null : idcardIamge2.trim();
     }
 
-    public String getIdCardNO() {
-        return idCardNO;
+    public String getIdcardNo() {
+        return idcardNo;
     }
 
-    public void setIdCardNO(String idCardNO) {
-        this.idCardNO = idCardNO;
+    public void setIdcardNo(String idcardNo) {
+        this.idcardNo = idcardNo == null ? null : idcardNo.trim();
     }
 }

@@ -50,6 +50,8 @@ public interface CustomerInfoDao {
      */
     boolean insertYLcontract(YLcontract_v2015_paa yLcontract_v2015_paa);
 
+    boolean updateYLcontract(YLcontract_v2015_paa yLcontract_v2015_paa);
+
     String getXAreaDistrictName(@Param("REGION_ID") String xAreaDistrict3);
 
     String getXDistrict(@Param("DISTRICT_ID") String xDistrict);

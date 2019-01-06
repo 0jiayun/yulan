@@ -190,6 +190,22 @@ public class CustomerInfoController {
     }
 
     /**
+     * 修改委托协议书
+     * @param yLcontract_v2015_paa
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "updateYLcontract")
+    @ResponseBody
+    public Map updateYLcontract(@RequestBody YLcontract_v2015_paa yLcontract_v2015_paa)throws IOException{
+        if(customerInfoService.updateYLcontract(yLcontract_v2015_paa)){
+            return Response.getResponseMap(0,"SUCCESS",null);
+        }else{
+            return Response.getResponseMap(1,"更新失败",null);
+        }
+    }
+
+    /**
      * 经销授权书接口
      * @param data
      * @return

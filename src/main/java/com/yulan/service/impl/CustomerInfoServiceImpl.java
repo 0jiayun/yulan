@@ -158,6 +158,23 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     }
 
     @Override
+    public boolean updateYLcontract(YLcontract_v2015_paa yLcontract_v2015_paa) throws IOException {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map = mapUtils.beanToMap(yLcontract_v2015_paa);
+
+        for (Map.Entry<String,Object> entry : map.entrySet()) {
+            if(entry.getValue() instanceof String){
+                String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+                //           System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            }
+        }
+
+        yLcontract_v2015_paa = mapUtils.mapToBean(map,YLcontract_v2015_paa.class);
+        return customerInfoDao.updateYLcontract(yLcontract_v2015_paa);
+    }
+
+    @Override
     public String getXDistrict(String xDistrict) throws IOException {
         if(customerInfoDao.getXDistrict(xDistrict).equals("") || customerInfoDao.getXDistrict(xDistrict) == null){
             return null;
