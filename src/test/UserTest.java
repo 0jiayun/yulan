@@ -1,7 +1,4 @@
-import com.yulan.dao.AreaRegionDao;
-import com.yulan.dao.CustomerInfoDao;
-import com.yulan.dao.UserDao;
-import com.yulan.dao.YLcontractentryDao;
+import com.yulan.dao.*;
 import com.yulan.pojo.CustomerInfoCard;
 import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
@@ -44,6 +41,20 @@ public class UserTest {
     private YLcontractentryService yLcontractentryService;
 
     private YLcontractentry yLcontractentry;
+
+    private Web_userDao web_userDao;
+
+    @Test
+    public void test(){
+        if (web_userDao.getPosition("00294",2018)==null){
+            System.out.println("null");
+        }else{
+            System.out.println(web_userDao.getPosition("00039",2018));
+        }
+
+
+    }
+
 
     @Test
     public void test1() throws Exception {

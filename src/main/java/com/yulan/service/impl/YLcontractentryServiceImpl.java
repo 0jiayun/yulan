@@ -279,6 +279,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(df.format(yLcontract_v2015.getM12()));
         list.add(df.format(total));
         list.add(df.format(yLcontract_v2015.getRewordpercent()));
+        System.out.println(yLcontract_v2015.getRewordpercent2());
         list.add(df.format(yLcontract_v2015.getRewordpercent2()));
         list.add(df.format(yLcontract_v2015.getStockpercent()));
         list.add(df.format(yLcontract_v2015.getStockpercent() * total));
@@ -347,13 +348,13 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("Stockpercen",df.format(yLcontract_v2015.getStockpercent()));
         map.put("人名币",df.format(yLcontract_v2015.getStockpercent() * total));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
-            map.put("State","公司汇款账号信息");
+            map.put("State","1");
             map.put("Account1Name",customerInfoCard.getAccount1Name());
             map.put("Account1Bank",customerInfoCard.getAccount1Bank());
             map.put("Account1",customerInfoCard.getAccount1());
             map.put("Account1Location",customerInfoCard.getAccount1Location());
         }else{
-            map.put("State","个人汇款账号信息");
+            map.put("State","0");
             map.put("Account2Name",customerInfoCard.getAccount2Name());
             map.put("Account2Bank",customerInfoCard.getAccount2Bank());
             map.put("Account2",customerInfoCard.getAccount2());
