@@ -24,7 +24,7 @@ public class Web_userServiceImpl implements Web_userService {
 
             Web_user web_user=web_userDao.login(loginName,password);
             if(web_user!=null){
-                String position=web_userDao.getPosition(web_user.getUserId(),year);
+                String position=web_userDao.getPosition(web_user.getLoginName(),year);
                 web_user.setCompany(StringUtil.getUtf8(web_user.getCompany()));
                 web_user.setRealName(StringUtil.getUtf8(web_user.getRealName()));
                 if(position==null){
