@@ -102,6 +102,22 @@ public class YLcontractentryController {
     }
 
     /**
+     * 修改协议书
+     * @param yLcontract_v2015
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "updateYLcontract")
+    @ResponseBody
+    public Map updateYLcontract(@RequestBody YLcontract_v2015 yLcontract_v2015)throws IOException{
+        if(yLcontractentryService.updateYLcontract_v2015(yLcontract_v2015)){
+            return response.getResponseMap(0,"SUCCESS",null);
+        }else{
+            return response.getResponseMap(1,"更新失败" ,null);
+        }
+    }
+
+    /**
      * 获得协议书的HTML(PC)
      * @param data
      * @return

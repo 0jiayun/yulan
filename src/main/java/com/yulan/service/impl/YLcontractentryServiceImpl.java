@@ -192,6 +192,12 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
     }
 
     @Override
+    public boolean updateYLcontract_v2015(YLcontract_v2015 yLcontract_v2015) throws IOException {
+        yLcontract_v2015.setPreferedbrand(stringUtil.setUtf8(yLcontract_v2015.getPreferedbrand()));
+        return yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015);
+    }
+
+    @Override
     public String getYLcontractHTML(String cid) throws IOException {
         //保留两位小数的方法
         DecimalFormat df = new DecimalFormat("0.00");

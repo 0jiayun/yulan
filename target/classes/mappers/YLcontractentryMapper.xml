@@ -146,6 +146,79 @@
       )
   </insert>
 
+    <update id="updateYLcontract_v2015" parameterType="YLcontract_v2015">
+        update YLCONTRACT_V2015
+        <set>
+            <if test="aRetailing!=null">
+                A_RETAILING = #{aRetailing,jdbcType=DECIMAL} ,
+            </if>
+            <if test="bEngineering!=null">
+                B_ENGINEERING = #{bEngineering,jdbcType=DECIMAL},
+            </if>
+            <if test="cMatching!=null">
+                C_MATCHING = #{cMatching,jdbcType=DECIMAL},
+            </if>
+            <if test="m1!=null">
+                M1 = #{m1,jdbcType=DECIMAL},
+            </if>
+            <if test="m2!=null">
+                M2 = #{m2,jdbcType=DECIMAL},
+            </if>
+            <if test="m3!=null">
+                M3 = #{m3,jdbcType=DECIMAL},
+            </if>
+            <if test="m4!=null">
+                M4 = #{m4,jdbcType=DECIMAL},
+            </if>
+            <if test="m5!=null">
+                M5 = #{m5,jdbcType=DECIMAL},
+            </if>
+            <if test="m6!=null">
+                M6 = #{m6,jdbcType=DECIMAL},
+            </if>
+            <if test="m7!=null">
+                M7 = #{m7,jdbcType=DECIMAL},
+            </if>
+            <if test="m8!=null">
+                M8 = #{m8,jdbcType=DECIMAL},
+            </if>
+            <if test="m9!=null">
+                M9 = #{m9,jdbcType=DECIMAL},
+            </if>
+            <if test="m10!=null">
+                M10 = #{m10,jdbcType=DECIMAL},
+            </if>
+            <if test="m11!=null">
+                M11 = #{m11,jdbcType=DECIMAL},
+            </if>
+            <if test="m12!=null">
+                M12 = #{m12,jdbcType=DECIMAL},
+            </if>
+            <if test="stockpercent!=null">
+                STOCKPERCENT = #{stockpercent,jdbcType=DECIMAL},
+            </if>
+            <if test="rewordpercent!=null">
+                REWORDPERCENT = #{rewordpercent,jdbcType=DECIMAL},
+            </if>
+            <if test="payminimum!=null">
+                PAYMINIMUM = #{payminimum,jdbcType=DECIMAL},
+            </if>
+            <if test="memo2!=null">
+                MEMO2 = #{memo2,jdbcType=VARCHAR},
+            </if>
+            <if test="preferedbrand!=null">
+                PREFEREDBRAND = #{preferedbrand,jdbcType=VARCHAR},
+            </if>
+            <if test="privateAccountAuthed!=null">
+                PRIVATE_ACCOUNT_AUTHED = #{privateAccountAuthed,jdbcType=VARCHAR},
+            </if>
+            <if test="rewordpercent2!=null">
+                REWORDPERCENT2 = #{rewordpercent2,jdbcType=DECIMAL}
+            </if>
+        </set>
+        where CCID = #{ccid} AND  CCYEAR = #{ccyear}
+    </update>
+
     <select id="getYLcontractHTML" parameterType="java.lang.Integer" resultMap="YLcontractHTMLMAP">
         select TEST from YLCONTRACTENTRY_SHOW WHERE ID =#{ID}
     </select>

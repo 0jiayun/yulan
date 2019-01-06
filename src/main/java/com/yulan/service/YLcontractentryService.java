@@ -19,6 +19,8 @@ public interface YLcontractentryService {
 
     boolean createYLcontract_v2015(YLcontract_v2015 yLcontract_v2015)throws IOException;
 
+    boolean updateYLcontract_v2015(YLcontract_v2015 yLcontract_v2015)throws IOException;
+
     String getYLcontractHTML(String cid)throws IOException;
 
     Map<String,Object> getYLcontractAPP(String cid)throws IOException;
