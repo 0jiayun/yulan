@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -42,19 +43,18 @@ public class UserTest {
 
     private YLcontractentry yLcontractentry;
 
+    @Autowired
     private Web_userDao web_userDao;
 
     @Test
-    public void test(){
-        if (web_userDao.getPosition("00294",2018)==null){
+    public  void test() throws UnsupportedEncodingException {
+        String position=web_userDao.getPosition("00039",2018);
+        if (position!=null){
+            System.out.println(position);
+        }else {
             System.out.println("null");
-        }else{
-            System.out.println(web_userDao.getPosition("00039",2018));
         }
-
-
     }
-
 
     @Test
     public void test1() throws Exception {

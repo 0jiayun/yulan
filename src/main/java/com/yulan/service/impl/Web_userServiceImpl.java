@@ -30,7 +30,7 @@ public class Web_userServiceImpl implements Web_userService {
                 if(position==null){
                     map.put("position","");
                 }else{
-                    map.put("position",StringUtil.getUtf8(position));
+                    map.put("position",position);
                 }
 
                 map.put("data",web_user);
