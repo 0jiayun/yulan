@@ -50,7 +50,7 @@ public class UserTest {
     public  void test() throws UnsupportedEncodingException {
         String position=web_userDao.getPosition("00039",2018);
         if (position!=null){
-            System.out.println(StringUtil.getUtf8(position));
+            System.out.println(position);
         }else {
             System.out.println("null");
         }
