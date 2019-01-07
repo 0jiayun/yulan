@@ -44,6 +44,9 @@ public class YLcontractentry {
 
     private String rwUpdate;
 
+    public YLcontractentry() {
+    }
+
     public Integer getCyear() {
         return cyear;
     }

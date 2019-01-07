@@ -1,5 +1,7 @@
 package com.yulan.pojo;
 
+import java.sql.Date;
+
 /*
 *协议任务
  */
@@ -52,6 +54,10 @@ public class YLcontract_v2015 {
     private String privateAccountAuthed;
 
     private Double rewordpercent2;
+
+    private java.sql.Date startDate;
+
+    private java.sql.Date endDate;
 
     public Integer getCcyear() {
         return ccyear;
@@ -245,6 +251,22 @@ public class YLcontract_v2015 {
         this.rewordpercent2 = rewordpercent2;
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
     @Override
     public String toString() {
         return "YLcontract_v2015{" +
@@ -272,6 +294,8 @@ public class YLcontract_v2015 {
                 ", preferedbrand='" + preferedbrand + '\'' +
                 ", privateAccountAuthed='" + privateAccountAuthed + '\'' +
                 ", rewordpercent2=" + rewordpercent2 +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
                 '}';
     }
 }

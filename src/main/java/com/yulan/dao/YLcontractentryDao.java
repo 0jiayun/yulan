@@ -34,6 +34,8 @@ public interface YLcontractentryDao {
 
     boolean createYLcontract_v2015(YLcontract_v2015 yLcontract_v2015);
 
+    boolean createYLcontractentry(YLcontractentry yLcontractentry);
+
     boolean updateYLcontract_v2015(YLcontract_v2015 yLcontract_v2015);
 
     YLcontractentryShow getYLcontractHTML(@Param("ID") Integer ID);

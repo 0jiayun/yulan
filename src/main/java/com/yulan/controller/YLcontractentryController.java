@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -93,7 +94,7 @@ public class YLcontractentryController {
      */
     @RequestMapping(value = "createYLcontract")
     @ResponseBody
-    public Map createYLcontract(@RequestBody YLcontract_v2015 yLcontract_v2015)throws IOException {
+    public Map createYLcontract(@RequestBody YLcontract_v2015 yLcontract_v2015)throws IOException, ParseException {
         if(yLcontractentryService.createYLcontract_v2015(yLcontract_v2015)){
             return response.getResponseMap(0,"SUCCESS",null);
         }else{
@@ -162,6 +163,8 @@ public class YLcontractentryController {
         String signed=m.get("signed").toString();//协议书通过标志
         Integer year=Integer.parseInt(m.get("year").toString());
         String cid=m.get("cid").toString();
+        String position=m.get("position").toString();
+
 
         if(year.equals("")){
             year=null;
@@ -177,7 +180,7 @@ public class YLcontractentryController {
         if(signed.equals("")){
             signed=null;
         }
-        Map map=yLcontractentryService.getAllYlcs(page,lastNum,signed,year,cid);
+        Map map=yLcontractentryService.getAllYlcs(page,lastNum,signed,year,cid,position);
         map.put("code",0);
         map.put("msg","");
 
@@ -196,6 +199,7 @@ public class YLcontractentryController {
     public Map getYlcsbysigned(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
         Integer limit=Integer.parseInt(m.get("limit").toString());
         Integer page=Integer.parseInt(m.get("page").toString());
+        String position=m.get("position").toString();
         Integer signed=null;
         if(m.get("signed")!=null&&!m.get("signed").equals("")){
            signed=Integer.parseInt(m.get("signed").toString());//协议书通过标志
@@ -233,7 +237,7 @@ public class YLcontractentryController {
             lastNum=page+limit-1;
         }
 
-        Map map=yLcontractentryService.getYlcsbySigned(page,lastNum,signed,year,cid,area_1,area_2,find);
+        Map map=yLcontractentryService.getYlcsbySigned(page,lastNum,signed,year,cid,area_1,area_2,find,position);
         map.put("code",0);
         map.put("msg","");
 

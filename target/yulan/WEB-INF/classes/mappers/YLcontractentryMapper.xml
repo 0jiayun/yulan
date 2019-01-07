@@ -146,6 +146,23 @@
       )
   </insert>
 
+    <insert id="createYLcontractentry" parameterType="YLcontractentry">
+    insert into YLCONTRACTENTRY (CYEAR, CID, CNAME,
+      X_DISTRICT, X_AREA_DISTRICT_2, X_AREA_DISTRICT_3,
+      START_DATE, END_DATE, TYPEID,
+      TABLENAME, PAGENAME, STATE,
+      WFMEMO, A_OWNER, SIGNTS,
+      SIGNED, LEGALCHECKED, RW_UPDATE
+      )
+    values (#{cyear,jdbcType=DECIMAL}, #{cid,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR},
+      #{xDistrict,jdbcType=VARCHAR}, #{xAreaDistrict2,jdbcType=VARCHAR}, #{xAreaDistrict3,jdbcType=VARCHAR},
+      #{startDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP}, #{typeid,jdbcType=VARCHAR},
+      #{tablename,jdbcType=VARCHAR}, #{pagename,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
+      #{wfmemo,jdbcType=VARCHAR}, #{aOwner,jdbcType=VARCHAR}, #{signts,jdbcType=TIMESTAMP},
+      #{signed,jdbcType=DECIMAL}, #{legalchecked,jdbcType=DECIMAL}, #{rwUpdate,jdbcType=VARCHAR}
+      )
+  </insert>
+
     <update id="updateYLcontract_v2015" parameterType="YLcontract_v2015">
         update YLCONTRACT_V2015
         <set>
@@ -268,7 +285,7 @@
         (select u.realName Sname,s.* from
         (select w.realname Mname ,f.* from
         (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
-        YLCONTRACTENTRY t,customerinfocard c,(select * from AREA_USER t where t.userid='00294') e
+        YLCONTRACTENTRY t,customerinfocard c,(select * from AREA_USER t where t.userid=#{cid}) e
         where t.cid=c.cid and e.area_code=c.market)f,web_user w
         where
         w.loginname=f.MARKETMANAGER)s,web_user u

@@ -78,6 +78,120 @@ public class CustomerInfoCard {
 
     private String txAgentName;
 
+    private String wlAgentName;
+
+    private String preferedbrand;
+
+    private String currentProduct;
+
+    private Integer shopArea;
+
+    private String invoiceType;
+
+    private String isGeneraltaxpayer;
+
+    private String account1Name;
+
+    private String account1Bank;
+
+    private String account1;
+
+    private String account2Name;
+
+    private String account2Bank;
+
+    private String account2;
+
+    private String account3Name;
+
+    private String account3Bank;
+
+    private String account3;
+
+    private String file1Idcard;
+
+    private String file1Op;
+
+    private String file2Businesslicense;
+
+    private String file2Op;
+
+    private String file3Orgcode;
+
+    private String file3Op;
+
+    private String file4Gtqc;
+
+    private String file4Op;
+
+    private String state;
+
+    private String memo;
+
+    private String file5IdcardBg;
+
+    private String file5Op;
+
+    private String busientType;
+
+    private String account1Location;
+
+    private String account2Location;
+
+    private String file1IdcardNo;
+
+    private String file2BusinesslicenseNo;
+
+    private String file2BusinesslicenseEnd;
+
+    private String file3OrgcodeNo;
+
+    private String file4GtqcNo;
+
+    private String account1Memo;
+
+    private String account2Memo;
+
+    private String flag;
+
+    private Short file2BusinesslicenseNoend;
+
+    private String hasPublicAccount;
+
+    private String updateFlag;
+
+    private String sys2017StateChangeOld;
+
+    private String sys2017StateChangeLog;
+
+    private Date sys2017StateChangeTs;
+
+    private String invAddress;
+
+    private String invTelephone;
+
+    private String invBankname;
+
+    private String invBanmaccount;
+
+    private String invRequirement;
+
+    private Date invRequirementTs;
+
+    private String invRequirementList;
+
+    private Date invNotneedTs;
+
+    private String invNotneedIp;
+
+    private String customerentitytypex;
+
+    private Short legalchecked;
+
+    private String cnameNew;
+
+    private String recipeTargetMb;
+
     public CustomerInfoCard() {
     }
 
@@ -921,218 +1035,16 @@ public class CustomerInfoCard {
         this.recipeTargetMb = recipeTargetMb;
     }
 
-    private String wlAgentName;
-
-    private String preferedbrand;
-
-    private String currentProduct;
-
-    private Integer shopArea;
-
-    private String invoiceType;
-
-    private String isGeneraltaxpayer;
-
-    private String account1Name;
-
-    private String account1Bank;
-
-    private String account1;
-
-    private String account2Name;
-
-    private String account2Bank;
-
-    private String account2;
-
-    private String account3Name;
-
-    private String account3Bank;
-
-    private String account3;
-
-    private String file1Idcard;
-
-    private String file1Op;
-
-    private String file2Businesslicense;
-
-    private String file2Op;
-
-    private String file3Orgcode;
-
-    private String file3Op;
-
-    private String file4Gtqc;
-
-    private String file4Op;
-
-    private String state;
-
-    private String memo;
-
-    private String file5IdcardBg;
-
-    private String file5Op;
-
-    private String busientType;
-
-    private String account1Location;
-
-    private String account2Location;
-
-    private String file1IdcardNo;
-
-    private String file2BusinesslicenseNo;
-
-    private String file2BusinesslicenseEnd;
-
-    private String file3OrgcodeNo;
-
-    private String file4GtqcNo;
-
-    private String account1Memo;
-
-    private String account2Memo;
-
-    private String flag;
-
-    private Short file2BusinesslicenseNoend;
-
-    private String hasPublicAccount;
-
-    private String updateFlag;
-
-    private String sys2017StateChangeOld;
-
-    private String sys2017StateChangeLog;
-
-    private Date sys2017StateChangeTs;
-
-    private String invAddress;
-
-    private String invTelephone;
-
-    private String invBankname;
-
-    private String invBanmaccount;
-
-    private String invRequirement;
-
-    private Date invRequirementTs;
-
-    private String invRequirementList;
-
-    private Date invNotneedTs;
-
-    private String invNotneedIp;
-
-    private String customerentitytypex;
-
-    private Short legalchecked;
-
-    private String cnameNew;
-
-    private String recipeTargetMb;
-
-
-
-   /* @Override
+    @Override
     public String toString() {
         return "CustomerInfoCard{" +
-                "groupID='" + groupID + '\'' +
-                ", deleted=" + deleted +
-                ", erpcopyed=" + erpcopyed +
-                ", contractYear=" + contractYear +
-                ", CID='" + CID + '\'' +
-                ", cName='" + cName + '\'' +
+                "cid='" + cid + '\'' +
+                ", cname='" + cname + '\'' +
                 ", market='" + market + '\'' +
-                ", marketName='" + marketName + '\'' +
-                ", subMarket='" + subMarket + '\'' +
-                ", subMarketName='" + subMarketName + '\'' +
-                ", marketManager='" + marketManager + '\'' +
-                ", marketManagerName='" + marketManagerName + '\'' +
-                ", subMarketManager='" + subMarketManager + '\'' +
-                ", subMarketManagerName='" + subMarketManagerName + '\'' +
-                ", managerPosition='" + managerPosition + '\'' +
+                ", marketname='" + marketname + '\'' +
                 ", xDistrict='" + xDistrict + '\'' +
                 ", xAreaDistrict2='" + xAreaDistrict2 + '\'' +
                 ", xAreaDistrict3='" + xAreaDistrict3 + '\'' +
-                ", districtText='" + districtText + '\'' +
-                ", areaDistrict2Text='" + areaDistrict2Text + '\'' +
-                ", areaDistrict3Text='" + areaDistrict3Text + '\'' +
-                ", xJuridicPerson='" + xJuridicPerson + '\'' +
-                ", juridicPersonHandset='" + juridicPersonHandset + '\'' +
-                ", xOfficeTel='" + xOfficeTel + '\'' +
-                ", xHandset='" + xHandset + '\'' +
-                ", xEmail='" + xEmail + '\'' +
-                ", xFax='" + xFax + '\'' +
-                ", qq='" + qq + '\'' +
-                ", xPostAddress='" + xPostAddress + '\'' +
-                ", xZipCode='" + xZipCode + '\'' +
-                ", xOfficeTel1='" + xOfficeTel1 + '\'' +
-                ", xHandset2='" + xHandset2 + '\'' +
-                ", xDeliveryAddress='" + xDeliveryAddress + '\'' +
-                ", faxWL='" + faxWL + '\'' +
-                ", zipCodeWL='" + zipCodeWL + '\'' +
-                ", txAgentName='" + txAgentName + '\'' +
-                ", wlAgentName='" + wlAgentName + '\'' +
-                ", preferedBrand='" + preferedBrand + '\'' +
-                ", currentProduct='" + currentProduct + '\'' +
-                ", shopArea=" + shopArea +
-                ", invoiceType='" + invoiceType + '\'' +
-                ", isGeneralTaxPayer='" + isGeneralTaxPayer + '\'' +
-                ", account1Name='" + account1Name + '\'' +
-                ", account1Bank='" + account1Bank + '\'' +
-                ", account1='" + account1 + '\'' +
-                ", account2Name='" + account2Name + '\'' +
-                ", account2Bank='" + account2Bank + '\'' +
-                ", account2='" + account2 + '\'' +
-                ", account3Name='" + account3Name + '\'' +
-                ", account3Bank='" + account3Bank + '\'' +
-                ", account3='" + account3 + '\'' +
-                ", file1IDCard='" + file1IDCard + '\'' +
-                ", file1OP='" + file1OP + '\'' +
-                ", file2BusinessLicense='" + file2BusinessLicense + '\'' +
-                ", file2OP='" + file2OP + '\'' +
-                ", file3OrgCode='" + file3OrgCode + '\'' +
-                ", file3OP='" + file3OP + '\'' +
-                ", file4GTQC='" + file4GTQC + '\'' +
-                ", file4OP='" + file4OP + '\'' +
-                ", state='" + state + '\'' +
-                ", memo='" + memo + '\'' +
-                ", file5IDCardBG='" + file5IDCardBG + '\'' +
-                ", file5OP='" + file5OP + '\'' +
-                ", businessType='" + businessType + '\'' +
-                ", account1Location='" + account1Location + '\'' +
-                ", account2Location='" + account2Location + '\'' +
-                ", file1IDCardNO='" + file1IDCardNO + '\'' +
-                ", file2BusinessLicenseNO='" + file2BusinessLicenseNO + '\'' +
-                ", file2BusinessLicenseEnd='" + file2BusinessLicenseEnd + '\'' +
-                ", file3OrgCodeNO='" + file3OrgCodeNO + '\'' +
-                ", file4GTQCNO='" + file4GTQCNO + '\'' +
-                ", account1Memo='" + account1Memo + '\'' +
-                ", accoumt2Memo='" + accoumt2Memo + '\'' +
-                ", flag='" + flag + '\'' +
-                ", file2BusinessLicenseNOEnd=" + file2BusinessLicenseNOEnd +
-                ", hasPublicAccount='" + hasPublicAccount + '\'' +
-                ", updateFlag='" + updateFlag + '\'' +
-                ", sys2017StateChangeOld='" + sys2017StateChangeOld + '\'' +
-                ", sys2017StateChangeLog='" + sys2017StateChangeLog + '\'' +
-                ", sys2017StateChangeTs=" + sys2017StateChangeTs +
-                ", invAddress='" + invAddress + '\'' +
-                ", invTelephone='" + invTelephone + '\'' +
-                ", invBankName='" + invBankName + '\'' +
-                ", invBankAccount='" + invBankAccount + '\'' +
-                ", invRequirement='" + invRequirement + '\'' +
-                ", invRequirementTs=" + invRequirementTs +
-                ", invRequirementList='" + invRequirementList + '\'' +
-                ", invNotNeedTs=" + invNotNeedTs +
-                ", invNotNeedIP='" + invNotNeedIP + '\'' +
-                ", customerEntityTypex='" + customerEntityTypex + '\'' +
-                ", legalChecked=" + legalChecked +
-                ", cNameNew='" + cNameNew + '\'' +
-                ", reciptTargetMB='" + reciptTargetMB + '\'' +
                 '}';
-    }*/
+    }
 }

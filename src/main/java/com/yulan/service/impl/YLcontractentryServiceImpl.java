@@ -187,8 +187,23 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
     @Override
     public boolean createYLcontract_v2015(YLcontract_v2015 yLcontract_v2015) throws IOException {
+        YLcontractentry yLcontractentry = new YLcontractentry();
         yLcontract_v2015.setPreferedbrand(stringUtil.setUtf8(yLcontract_v2015.getPreferedbrand()));
-        return yLcontractentryDao.createYLcontract_v2015(yLcontract_v2015);
+        CustomerInfoCard customerInfoCard = customerInfoService.getCustomerInfo(yLcontract_v2015.getCcid());
+        yLcontractentry.setCyear(yLcontract_v2015.getCcyear());
+        yLcontractentry.setCid(yLcontract_v2015.getCcid());
+        yLcontractentry.setCname(stringUtil.setUtf8(customerInfoCard.getCname()));
+        yLcontractentry.setxDistrict(stringUtil.setUtf8(customerInfoService.getXDistrict(customerInfoCard.getxDistrict())));
+        yLcontractentry.setxAreaDistrict2(stringUtil.setUtf8(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict2())));
+        yLcontractentry.setxAreaDistrict3(stringUtil.setUtf8(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3())));
+        yLcontractentry.setStartDate(yLcontract_v2015.getStartDate());
+        yLcontractentry.setEndDate(yLcontract_v2015.getEndDate());
+        System.out.println(yLcontractentry);
+        if(yLcontractentryDao.createYLcontractentry(yLcontractentry) && yLcontractentryDao.createYLcontract_v2015(yLcontract_v2015)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
@@ -386,7 +401,9 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
     @Override
         public Map getYlcsbySigned(Integer start, Integer number, Integer signed, Integer year, String cid,String area_1,
-                                   String area_2,String find) throws UnsupportedEncodingException {
+                                   String area_2,String find,String position) throws UnsupportedEncodingException {
+        String state="";
+
         Map<String,Object> map=new HashMap<>();
         List<Map<String,Object>> list=yLcontractentryDao.getAllYs(start,number,signed,cid,year,area_1,area_2,find);
         List<Map<String,Object>> data=new ArrayList<>();
@@ -423,11 +440,38 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
      * @throws UnsupportedEncodingException
      */
     @Override
-    public Map getAllYlcs(Integer start, Integer number, String signed,Integer year,String cid) throws UnsupportedEncodingException {
+    public Map getAllYlcs(Integer start, Integer number, String signed,Integer year,String cid,String position) throws UnsupportedEncodingException {
         Map<String,Object> map=new HashMap<>();
         int count =yLcontractentryDao.countYlcs(signed);
         List<YLcontractentry> list=yLcontractentryDao.getAllYlcs(start,number,signed);
         List<YLcontractentry> data=new ArrayList<>();
+        String state="";
+        //通过position决定所看协议书状态
+        switch(position){
+            case "VSMAPPROVEXII"://销售总监确认
+                state="CSA_CHECK";
+                break;
+            case "VSMAPPROVEX"://营销总监批准
+                state="";
+                break;
+            case "LEGALCHECK"://法务专员审核
+                state="";
+                break;
+            case "FINANCEDEP_CHECK"://财务部抽查
+                state="";
+                break;
+
+            case "BILLDEP_APPROVE"://订单部审核
+                state="BIILDEPCHECKING";
+                break;
+
+            case "MARKETCHECKER"://市场部审核
+                state="DEP_MARKET_CHECK";
+                break;
+            case "VSMAPPROVE"://销售副总批准
+                state="ASM_CHECKING";//销售中心经理审核中
+                break;
+        }
         for (YLcontractentry y:list){
             Map<String,Object> m= MapUtils.beanToMap(y);
             for (Map.Entry<String,Object> entry:m.entrySet()){
