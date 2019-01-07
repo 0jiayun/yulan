@@ -163,6 +163,19 @@
       )
   </insert>
 
+    <update id="updateYLcontractentry" parameterType="YLcontractentry">
+        update YLCONTRACTENTRY
+        <set>
+            <if test="startDate!=null">
+                START_DATE = #{startDate,jdbcType=TIMESTAMP} ,
+            </if>
+            <if test="endDate!=null">
+                END_DATE = #{endDate,jdbcType=TIMESTAMP}
+            </if>
+        </set>
+        where CID = #{cid} AND  CYEAR = #{cyear}
+    </update>
+
     <update id="updateYLcontract_v2015" parameterType="YLcontract_v2015">
         update YLCONTRACT_V2015
         <set>

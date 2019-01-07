@@ -198,7 +198,6 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         yLcontractentry.setxAreaDistrict3(stringUtil.setUtf8(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3())));
         yLcontractentry.setStartDate(yLcontract_v2015.getStartDate());
         yLcontractentry.setEndDate(yLcontract_v2015.getEndDate());
-        System.out.println(yLcontractentry);
         if(yLcontractentryDao.createYLcontractentry(yLcontractentry) && yLcontractentryDao.createYLcontract_v2015(yLcontract_v2015)){
             return true;
         }else{
@@ -209,7 +208,16 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
     @Override
     public boolean updateYLcontract_v2015(YLcontract_v2015 yLcontract_v2015) throws IOException {
         yLcontract_v2015.setPreferedbrand(stringUtil.setUtf8(yLcontract_v2015.getPreferedbrand()));
-        return yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015);
+        YLcontractentry yLcontractentry = new YLcontractentry();
+        yLcontractentry.setCyear(yLcontract_v2015.getCcyear());
+        yLcontractentry.setCid(yLcontract_v2015.getCcid());
+        yLcontractentry.setStartDate(yLcontract_v2015.getStartDate());
+        yLcontractentry.setEndDate(yLcontract_v2015.getEndDate());
+        if(yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015) && yLcontractentryDao.updateYLcontractentry(yLcontractentry)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
