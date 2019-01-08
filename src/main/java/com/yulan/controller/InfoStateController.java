@@ -170,7 +170,8 @@ public class InfoStateController {
         String cid = (String) data.get("cid");
         String state = (String) data.get("state");
         String wfmemo = (String) data.get("wfmemo");
-        if (infoStateService.checkYLcontractentryState(cid, state, wfmemo)) {
+        Integer signed = (Integer)data.get("signed");
+        if (infoStateService.checkYLcontractentryState(cid, state, wfmemo,signed)) {
             return response.getResponseMap(0, "SUCCESS", null);
         } else {
             return response.getResponseMap(1, "更新失败", null);
@@ -190,12 +191,13 @@ public class InfoStateController {
         String cid = (String) data.get("cid");
         String yLcontractentryState = (String) data.get("yLcontractentryState");
         String wfmemo = (String) data.get("wfmemo");
+        Integer signed = (Integer) data.get("signed");
         String customerState = (String) data.get("customerState");
         String customerMemo = (String) data.get("customerMemo");
         if (infoStateService.businessCheckCustomerInfoCard(cid, customerState
                 , customerMemo)
                 && infoStateService.checkYLcontractentryState(cid,
-                yLcontractentryState, wfmemo)) {
+                yLcontractentryState, wfmemo,signed)) {
             return response.getResponseMap(0, "SUCCESS", null);
         } else {
             return response.getResponseMap(1, "更新失败", null);

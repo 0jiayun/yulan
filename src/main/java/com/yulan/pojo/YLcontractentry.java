@@ -38,7 +38,7 @@ public class YLcontractentry {
 
     private java.util.Date signts;
 
-    private Short signed;
+    private Integer signed;
 
     private Short legalchecked;
 
@@ -167,11 +167,11 @@ public class YLcontractentry {
         this.signts = signts;
     }
 
-    public Short getSigned() {
+    public Integer getSigned() {
         return signed;
     }
 
-    public void setSigned(Short signed) {
+    public void setSigned(Integer signed) {
         this.signed = signed;
     }
 
