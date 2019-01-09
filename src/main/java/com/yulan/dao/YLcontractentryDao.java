@@ -45,14 +45,26 @@ public interface YLcontractentryDao {
     List<YLcontractentry> getAllYlcs(@Param("start")Integer start,@Param("number") Integer number,@Param("signed")String signed);
     int countYlcs(@Param("signed")String signed);
 
-    //联表查询获取所需协议书集合
+    //联表查询获取所需协议书集合，内部审核人员
     List<Map<String,Object>> getAllYs(@Param("start")Integer start,@Param("number") Integer number,
-                                      @Param("signed")Integer signed,@Param("cid")String cid,
+                                     @Param("cid")String cid,
                                       @Param("year")Integer year,@Param("area_1")String area_1,
-                                      @Param("area_2")String area_2,@Param("find")String find);
-    int countYs(@Param("signed")Integer signed,@Param("cid")String cid,
+                                      @Param("area_2")String area_2,@Param("find")String find,
+                                      @Param("sate")String state);
+    int countYs(@Param("cid")String cid,
                 @Param("year")Integer year,@Param("area_1")String area_1,
-                @Param("area_2")String area_2,@Param("find")String find);
+                @Param("area_2")String area_2,@Param("find")String find, @Param("sate")String state);
+
+    //销售中心经理联表查询获取所需协议书集合
+    List<Map<String,Object>> getAllys_area(@Param("start")Integer start,@Param("number") Integer number,
+                                           @Param("cid")String cid,
+                                           @Param("year")Integer year,@Param("area_1")String area_1,
+                                           @Param("area_2")String area_2,@Param("find")String find,
+                                           @Param("state")String state,@Param("position")String position);
+    int countYs_area(@Param("cid")String cid,
+                @Param("year")Integer year,@Param("area_1")String area_1,
+                @Param("area_2")String area_2,@Param("find")String find, @Param("state")String state,@Param("position")String position);
+
     //协议书执行状态汇总
     List<Map<String,Object>> getAllYLcontractentryState(@Param("CYEAR") String year);
 

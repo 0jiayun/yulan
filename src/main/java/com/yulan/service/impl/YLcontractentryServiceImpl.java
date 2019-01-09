@@ -385,12 +385,44 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
     }
 
     @Override
-        public Map getYlcsbySigned(Integer start, Integer number, Integer signed, Integer year, String cid,String area_1,
-                                   String area_2,String find) throws UnsupportedEncodingException {
+    public Map getYlcsbySigned(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find, String need,String position) throws UnsupportedEncodingException {
         Map<String,Object> map=new HashMap<>();
-        List<Map<String,Object>> list=yLcontractentryDao.getAllYs(start,number,signed,cid,year,area_1,area_2,find);
+        String state="";
+        //通过职位和need确定所需状态协议书
+        if (need.equals("checking")){//待审核
+            switch (position){
+                case "MARKETCHECKER":state="ASM_CHECKING";//销售中心经理审核中
+                    break;
+                case "MANAGER":state="DEP_MARKET_CHECK";//市场部审核中
+                    break;
+                case "VSMAPPROVEXII":state="CSA_CHECK";//销售副总批准中
+                    break;
+                default:state=null;
+            }
+        }else{//当前职位审核通过即下一个状态
+            switch (position){
+                case "MARKETCHECKER":state="DEP_MARKET_CHECK";//市场部审核中
+                    break;
+                case "MANAGER":state="CSA_CHECK";//销售副总批准中
+                    break;
+                case "VSMAPPROVEXII":state="APPROVED";//生效
+                    break;
+                default:state=null;
+            }
+        }
+
+        List<Map<String,Object>> list=new ArrayList<>();
+        if(position.equals("MARKETCHECKER")){
+            String pos=StringUtil.setUtf8("销售中心经理");
+            list=yLcontractentryDao.getAllys_area(start,number,cid,year,area_1,area_2,find,state,pos);
+
+        }else{
+            list=yLcontractentryDao.getAllYs(start,number,cid,year,area_1,area_2,find,state);
+        }
+
+
         List<Map<String,Object>> data=new ArrayList<>();
-        map.put("count",yLcontractentryDao.countYs(signed,cid,year,area_1,area_2,find));
+        map.put("count",yLcontractentryDao.countYs(cid,year,area_1,area_2,find,state));
         for (Map<String,Object> m:list) {
             for (Map.Entry<String, Object> entry : m.entrySet()) {
                 if (entry.getValue() instanceof String) {

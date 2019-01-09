@@ -40,4 +40,8 @@
         c.binduserid=#{cid} and cyear=#{year}
         group by roleid
     </select>
+
+    <select id="getArea_position" resultType="Map">
+        select position from AREA_OWNER t where t.owner=#{cid}
+    </select>
 </mapper>
