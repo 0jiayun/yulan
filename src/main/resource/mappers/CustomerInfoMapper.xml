@@ -366,7 +366,7 @@
             <if test="file1Idcard != null">
         FILE_1_IDCARD = #{file1Idcard,jdbcType=VARCHAR},
             </if>
-            <if test="file1IdcardNo = null">
+            <if test="file1IdcardNo = !null">
                 FILE_1_IDCARD_NO = #{file1IdcardNo,jdbcType=VARCHAR},
             </if>
             <if test="file1Op != null">
