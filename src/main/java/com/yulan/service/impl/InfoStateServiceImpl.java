@@ -129,6 +129,18 @@ public class InfoStateServiceImpl implements InfoStateService {
     }
 
     @Override
+    public boolean lawCheckCustomerInfoCardState(String cid, String state,
+                                                 String memo,
+                                                 Integer legalchecked) throws IOException {
+        return customerInfoDao.lawCheckCustomerInfoCardState(cid,state,memo,legalchecked);
+    }
+
+    @Override
+    public boolean lawCheckYLcontractentryState(String cid, String state, String wfmemo, Integer signed, Integer legalchecked) throws IOException {
+        return yLcontractentryDao.lawCheckYLcontractentryState(cid,state,wfmemo,signed,legalchecked);
+    }
+
+    @Override
     public boolean checkYLcontractentryState(String cid, String state,
                                              String wfmemo,Integer signed) throws IOException {
         state = stringUtil.setUtf8(state);

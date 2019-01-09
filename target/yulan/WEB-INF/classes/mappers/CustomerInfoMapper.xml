@@ -357,11 +357,17 @@
             <if test="account2Location != null">
         ACCOUNT2_LOCATION = #{account2Location,jdbcType=VARCHAR},
             </if>
+            <if test="busientType != null">
+                BUSIENT_TYPE = #{busientType,jdbcType=VARCHAR},
+            </if>
             <if test="customerentitytypex != null">
         CUSTOMERENTITYTYPEX = #{customerentitytypex,jdbcType=CHAR},
             </if>
             <if test="file1Idcard != null">
         FILE_1_IDCARD = #{file1Idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="file1IdcardNo = !null">
+                FILE_1_IDCARD_NO = #{file1IdcardNo,jdbcType=VARCHAR},
             </if>
             <if test="file1Op != null">
         FILE_1_OP = #{file1Op,jdbcType=VARCHAR},
@@ -493,6 +499,22 @@
             </if>
             <if test="MEMO!=null">
         MEMO = MEMO || #{MEMO}
+            </if>
+        </set>
+        where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
+    </update>
+
+    <update id="lawCheckCustomerInfoCardState" parameterType="java.util.Map">
+        update CUSTOMERINFOCARD
+        <set>
+            <if test="STATE!=null">
+                STATE = #{STATE} ,
+            </if>
+            <if test="MEMO!=null">
+                MEMO = MEMO || #{MEMO},
+            </if>
+            <if test="LEGALCHECKED!=null">
+                LEGALCHECKED = #{LEGALCHECKED}
             </if>
         </set>
         where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)

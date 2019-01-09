@@ -190,14 +190,16 @@ public class InfoStateController {
     public Map lawCheckState(@RequestBody Map<String, Object> data) throws IOException {
         String cid = (String) data.get("cid");
         String yLcontractentryState = (String) data.get("yLcontractentryState");
+        Integer legalcheckedYLcontractentry = (Integer) data.get("legalcheckedYLcontractentry");
         String wfmemo = (String) data.get("wfmemo");
         Integer signed = (Integer) data.get("signed");
         String customerState = (String) data.get("customerState");
         String customerMemo = (String) data.get("customerMemo");
-        if (infoStateService.businessCheckCustomerInfoCard(cid, customerState
-                , customerMemo)
-                && infoStateService.checkYLcontractentryState(cid,
-                yLcontractentryState, wfmemo,signed)) {
+        Integer legalcheckedCustomerInfoCard = (Integer) data.get("legalcheckedCustomerInfoCard");
+        if (infoStateService.lawCheckCustomerInfoCardState(cid, customerState
+                , customerMemo,legalcheckedCustomerInfoCard)
+                && infoStateService.lawCheckYLcontractentryState(cid,
+                yLcontractentryState, wfmemo,signed,legalcheckedYLcontractentry)) {
             return response.getResponseMap(0, "SUCCESS", null);
         } else {
             return response.getResponseMap(1, "更新失败", null);
