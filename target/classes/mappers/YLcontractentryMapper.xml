@@ -294,7 +294,6 @@
     <select id="getAllYs" resultType="Map">
         select
         *
-
         from(
         select rownum rm, l.*  from
 
