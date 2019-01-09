@@ -362,7 +362,7 @@
             </if>
             <if test="customerentitytypex != null">
         CUSTOMERENTITYTYPEX = #{customerentitytypex,jdbcType=CHAR},
-            </if>
+            </if>git
             <if test="file1Idcard != null">
         FILE_1_IDCARD = #{file1Idcard,jdbcType=VARCHAR},
             </if>
