@@ -408,28 +408,31 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
     }
 
     @Override
-        public Map getYlcsbySigned(Integer start, Integer number, Integer signed, Integer year, String cid,String area_1,
-                                   String area_2,String find) throws UnsupportedEncodingException {
+    public Map getYlcsbySigned(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find, String need, String position) throws UnsupportedEncodingException {
         Map<String,Object> map=new HashMap<>();
         String state="";
+        List states=new ArrayList();
         //通过职位和need确定所需状态协议书
         if (need.equals("checking")){//待审核
             switch (position){
-                case "MARKETCHECKER":state="ASM_CHECKING";//销售中心经理审核中
+                case "MARKETCHECKER":states.add("ASM_CHECKING");//销售中心经理审核中
                     break;
-                case "MANAGER":state="DEP_MARKET_CHECK";//市场部审核中
+                case "MANAGER":states.add("DEP_MARKET_CHECK");//市场部审核中
                     break;
-                case "VSMAPPROVEXII":state="CSA_CHECK";//销售副总批准中
+                case "VSMAPPROVEXII":states.add("CSA_CHECK");//销售副总批准中
                     break;
                 default:state=null;
             }
-        }else{//当前职位审核通过即下一个状态
+        }else{//当前职位审核通过即下状态
             switch (position){
-                case "MARKETCHECKER":state="DEP_MARKET_CHECK";//市场部审核中
+                case "MARKETCHECKER":states.add("DEP_MARKET_CHECK");
+                    states.add("CSA_CHECK");
+                    states.add("APPROVED");
                     break;
-                case "MANAGER":state="CSA_CHECK";//销售副总批准中
+                case "MANAGER": states.add("CSA_CHECK");
+                    states.add("APPROVED");//销售副总批准中
                     break;
-                case "VSMAPPROVEXII":state="APPROVED";//生效
+                case "VSMAPPROVEXII":states.add("APPROVED");//生效
                     break;
                 default:state=null;
             }
@@ -438,15 +441,20 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         List<Map<String,Object>> list=new ArrayList<>();
         if(position.equals("MARKETCHECKER")){
             String pos=StringUtil.setUtf8("销售中心经理");
-            list=yLcontractentryDao.getAllys_area(start,number,cid,year,area_1,area_2,find,state,pos);
+
+                list=yLcontractentryDao.getAllys_areaOver(start,number,cid,year,area_1,area_2,find,states,pos);
+                map.put("count",yLcontractentryDao.countYs_areaOver(cid,year,area_1,area_2,find,states,pos));
+
+
 
         }else{
-            list=yLcontractentryDao.getAllYs(start,number,cid,year,area_1,area_2,find,state);
+            list=yLcontractentryDao.getAllYs(start,number,cid,year,area_1,area_2,find,states);
+            map.put("count",yLcontractentryDao.countYs(cid,year,area_1,area_2,find,states));
         }
 
 
         List<Map<String,Object>> data=new ArrayList<>();
-        map.put("count",yLcontractentryDao.countYs(cid,year,area_1,area_2,find,state));
+
         for (Map<String,Object> m:list) {
             for (Map.Entry<String, Object> entry : m.entrySet()) {
                 if (entry.getValue() instanceof String) {
@@ -469,6 +477,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
         return map;
     }
+
 
     /**
      * 协议书列表获取

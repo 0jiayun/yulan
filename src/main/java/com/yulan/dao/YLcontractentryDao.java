@@ -54,12 +54,12 @@ public interface YLcontractentryDao {
                                      @Param("cid")String cid,
                                       @Param("year")Integer year,@Param("area_1")String area_1,
                                       @Param("area_2")String area_2,@Param("find")String find,
-                                      @Param("sate")String state);
+                                      @Param("states")List states);
     int countYs(@Param("cid")String cid,
                 @Param("year")Integer year,@Param("area_1")String area_1,
-                @Param("area_2")String area_2,@Param("find")String find, @Param("sate")String state);
+                @Param("area_2")String area_2,@Param("find")String find, @Param("states")List states);
 
-    //销售中心经理联表查询获取所需协议书集合
+    //销售中心经理联表查询获取所需审核协议书集合
     List<Map<String,Object>> getAllys_area(@Param("start")Integer start,@Param("number") Integer number,
                                            @Param("cid")String cid,
                                            @Param("year")Integer year,@Param("area_1")String area_1,
@@ -68,6 +68,17 @@ public interface YLcontractentryDao {
     int countYs_area(@Param("cid")String cid,
                 @Param("year")Integer year,@Param("area_1")String area_1,
                 @Param("area_2")String area_2,@Param("find")String find, @Param("state")String state,@Param("position")String position);
+
+    //销售中心经理联表查询获取所需已经审核协议书集合
+    List<Map<String,Object>> getAllys_areaOver(@Param("start")Integer start,@Param("number") Integer number,
+                                           @Param("cid")String cid,
+                                           @Param("year")Integer year,@Param("area_1")String area_1,
+                                           @Param("area_2")String area_2,@Param("find")String find,
+                                           @Param("states")List states,@Param("position")String position);
+    int countYs_areaOver(@Param("cid")String cid,
+                     @Param("year")Integer year,@Param("area_1")String area_1,
+                     @Param("area_2")String area_2,@Param("find")String find, @Param("states")List states,@Param("position")String position);
+
 
     //协议书执行状态汇总
     List<Map<String,Object>> getAllYLcontractentryState(@Param("CYEAR") String year);
