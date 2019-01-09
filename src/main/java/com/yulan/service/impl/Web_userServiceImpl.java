@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -24,14 +26,35 @@ public class Web_userServiceImpl implements Web_userService {
 
             Web_user web_user=web_userDao.login(loginName,password);
             if(web_user!=null){
-                String position=web_userDao.getPosition(web_user.getLoginName(),year);
+                if(web_user.getType().equals("SALEMAN")){
+                    String position=web_userDao.getPosition(web_user.getLoginName(),year);
+                    if(position==null){
+                        List<Map<String,Object>> list1=web_userDao.getArea_position(loginName);
+                        List<Map<String,Object>> area_positions=new ArrayList<>();
+                        for (Map<String,Object> m:list1){
+                            Map<String,Object> map1=new HashMap<>();
+                            String areap=StringUtil.getUtf8(m.get("POSITION").toString());
+                            if(areap.equals("销售中心经理")){
+                                map1.put("position","MANAGER");
+                            }else{
+                                map1.put("position","SALEMAN");
+                            }
+                            area_positions.add(map1);
+                        }
+                        map.put("pos",area_positions);
+
+                    }else {
+                        List<Map<String,Object>> inters=new ArrayList<>();
+                        Map<String,Object> map2=new HashMap<>();
+                        map2.put("position",position);
+                        inters.add(map2);
+                        map.put("pos",inters);
+                    }
+                }
+
                 web_user.setCompany(StringUtil.getUtf8(web_user.getCompany()));
                 web_user.setRealName(StringUtil.getUtf8(web_user.getRealName()));
-                if(position==null){
-                    map.put("position","");
-                }else{
-                    map.put("position",position);
-                }
+
 
                 map.put("data",web_user);
                 map.put("code",0);

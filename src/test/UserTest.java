@@ -57,6 +57,14 @@ public class UserTest {
     }
 
     @Test
+    public  void test0() throws UnsupportedEncodingException {
+        List<Map<String,Object>> list=web_userDao.getArea_position("00934");
+        for (Map<String,Object> map:list){
+            System.out.println(StringUtil.getUtf8(map.get("POSITION").toString()));
+        }
+    }
+
+    @Test
     public void test1() throws Exception {
         /*List<Map<String,Object>> list=customerInfoDao.getAllArea("00294");
         for (Map m:list){
