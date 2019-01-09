@@ -318,8 +318,8 @@
         <if test="area_2!=null">
             and SUBMARKETNAME=#{area_2}
         </if>
-        <if test="signed!=null">
-            and signed=#{signed}
+        <if test="state!=null">
+            and state=#{state}
         </if>
         <if test="find!=null">
             and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
@@ -343,11 +343,74 @@
         <if test="area_2!=null">
             and SUBMARKETNAME=#{area_2}
         </if>
-        <if test="signed!=null">
-            and signed=#{signed}
+        <if test="state!=null">
+            and state=#{state}
         </if>
+
         <if test="find!=null">
            and f.cid like  '%'||#{find}||'%' or  f.CNAME like  '%'||#{find}||'%'
+        </if>
+
+    </select>
+
+    <select id="getAllys_area" resultType="Map">
+        select
+        *
+
+        from(
+        select rownum rm, l.*  from
+
+        ( select * from
+        (select a.area_belong,f.* from
+        (select c.market, c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        YLCONTRACTENTRY t,customerinfocard c
+        where t.cid=c.cid ) f,AREA_CODE a where f.market=a.area_code)e,(select area from area_owner w where w.owner=#{cid} and w.position=#{position} ) k
+        where e.area_belong=k.area ) l
+
+        where 1=1
+        <if test="year!=null">
+            and cyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+        <if test="find!=null">
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
+        </if>
+
+
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+    </select>
+    <select id="countYs_area" resultType="int">
+        select count (*) from
+        ( select * from
+        (select a.area_belong,f.* from
+        (select c.market, c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        YLCONTRACTENTRY t,customerinfocard c
+        where t.cid=c.cid ) f,AREA_CODE a where f.market=a.area_code)e,(select area from area_owner w where w.owner=#{cid} and w.position=#{position} ) k
+        where e.area_belong=k.area )f
+        where 1=1
+        <if test="year!=null">
+            and cyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and f.cid like  '%'||#{find}||'%' or  f.CNAME like  '%'||#{find}||'%'
         </if>
 
     </select>
