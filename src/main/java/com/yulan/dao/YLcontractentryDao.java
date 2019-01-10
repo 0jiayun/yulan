@@ -46,6 +46,8 @@ public interface YLcontractentryDao {
 
     boolean checkYLcontractentry(@Param("CID") String cid,@Param("STATE") String state,@Param("WFMEMO") String wfmemo,@Param("SIGNED") Integer signed);
 
+    boolean lawCheckYLcontractentryState(@Param("CID") String cid,@Param("STATE") String state,@Param("WFMEMO") String wfmemo,@Param("SIGNED") Integer signed,@Param("LEGALCHECKED")Integer legalchecked);
+
     List<YLcontractentry> getAllYlcs(@Param("start")Integer start,@Param("number") Integer number,@Param("signed")String signed);
     int countYlcs(@Param("signed")String signed);
 

@@ -504,6 +504,22 @@
         where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
     </update>
 
+    <update id="lawCheckCustomerInfoCardState" parameterType="java.util.Map">
+        update CUSTOMERINFOCARD
+        <set>
+            <if test="STATE!=null">
+                STATE = #{STATE} ,
+            </if>
+            <if test="MEMO!=null">
+                MEMO = MEMO || #{MEMO},
+            </if>
+            <if test="LEGALCHECKED!=null">
+                LEGALCHECKED = #{LEGALCHECKED}
+            </if>
+        </set>
+        where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
+    </update>
+
     <select id="getAllCustomerInfoCardState" resultType="Map">
         select STATE,count(STATE) from  CUSTOMERINFOCARD where CONTRACTYEAR = #{CONTRACTYEAR} group by STATE
     </select>

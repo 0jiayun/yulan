@@ -292,6 +292,25 @@
         where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
     </update>
 
+    <update id="lawCheckYLcontractentryState" parameterType="java.util.Map">
+        update YLCONTRACTENTRY
+        <set>
+            <if test="STATE!=null">
+                STATE = #{STATE} ,
+            </if>
+            <if test="WFMEMO!=null">
+                WFMEMO = WFMEMO || #{WFMEMO,jdbcType=VARCHAR},
+            </if>
+            <if test="SIGNED!=null">
+                SIGNED = #{SIGNED},
+            </if>
+            <if test="LEGALCHECKED!=null">
+                LEGALCHECKED = #{LEGALCHECKED}
+            </if>
+        </set>
+        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
+    </update>
+
     <select id="getAllYs" resultType="Map">
         select
         *

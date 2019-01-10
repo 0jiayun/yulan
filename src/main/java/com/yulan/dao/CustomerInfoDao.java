@@ -71,6 +71,8 @@ public interface CustomerInfoDao {
     //业务员审核资料卡
     boolean businessCheckCustomerInfoCard(@Param("CID") String cid ,@Param("STATE") String state,@Param("MEMO") String memo);
 
+    boolean lawCheckCustomerInfoCardState(@Param("CID") String cid ,@Param("STATE") String state,@Param("MEMO") String memo,@Param("LEGALCHECKED")Integer legalchecked);
+
     //资料卡执行状态汇总
     List<Map<String,Object>> getAllCustomerInfoCardState(@Param("CONTRACTYEAR") String year);
 
