@@ -257,6 +257,20 @@
         select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1
     </select>
 
+    <select id="getYLcontractentryLeagalChecked" parameterType="java.util.Map" resultType="YLcontractentry">
+        select * from(
+        select rownum rm, c.*  from
+        (
+        select * from YLCONTRACTENTRY
+        <if test="LEGALCHECKED!=null">
+            where LEGALCHECKED = #{LEGALCHECKED}
+        </if>
+        ) c)tm
+        <if test="start!=null">
+            where rm &gt;= #{start} and rm &lt;= #{number}
+        </if>
+    </select>
+
     <select id="getAllYlcs" resultMap="YlContractentryResultMap">
         select * from(
         select rownum rm, c.*  from YLCONTRACTENTRY c where 1=1

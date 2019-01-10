@@ -86,4 +86,6 @@ public interface YLcontractentryDao {
     List<Map<String,Object>> getAllYLcontractentryState(@Param("CYEAR") String year);
 
     List<Map<String,Object>> getYLcontractentryStateByArea(@Param("CYEAR") String year);
+
+    List<YLcontractentry> getYLcontractentryLeagalChecked(@Param("start") Integer start,@Param("number") Integer number,@Param("LEGALCHECKED") Integer legalChecked);
 }

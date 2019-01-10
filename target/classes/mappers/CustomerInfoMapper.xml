@@ -489,7 +489,7 @@
         <if test="LEGALCHECKED!=null">
         where LEGALCHECKED = #{LEGALCHECKED}
         </if>
-        ) tm
+        ) c)tm
         <if test="start!=null">
             where rm &gt;= #{start} and rm &lt;= #{number}
         </if>

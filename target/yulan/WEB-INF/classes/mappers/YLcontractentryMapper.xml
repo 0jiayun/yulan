@@ -249,22 +249,26 @@
         where CCID = #{ccid} AND  CCYEAR = #{ccyear}
     </update>
 
-    <update id="updateYLcontract_v2015ByCusomerInfoCard" parameterType="YLcontract_v2015">
-        update YLCONTRACT_V2015
-        <set>
-            <if test="privateAccountAuthed!=null">
-                PRIVATE_ACCOUNT_AUTHED = #{privateAccountAuthed,jdbcType=VARCHAR}
-            </if>
-        </set>
-        where CCID = #{ccid} AND  CCYEAR = #{ccyear}
-    </update>
-
     <select id="getYLcontractHTML" parameterType="java.lang.Integer" resultMap="YLcontractHTMLMAP">
         select TEST from YLCONTRACTENTRY_SHOW WHERE ID =#{ID}
     </select>
 
     <select id="getYLcontractentry" parameterType="java.util.Map" resultType="YLcontractentry">
         select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1
+    </select>
+
+    <select id="getYLcontractentryLeagalChecked" parameterType="java.util.Map" resultType="YLcontractentry">
+        select * from(
+        select rownum rm, c.*  from
+        (
+        select * from YLCONTRACTENTRY
+        <if test="LEGALCHECKED!=null">
+            where LEGALCHECKED = #{LEGALCHECKED}
+        </if>
+        ) c)tm
+        <if test="start!=null">
+            where rm &gt;= #{start} and rm &lt;= #{number}
+        </if>
     </select>
 
     <select id="getAllYlcs" resultMap="YlContractentryResultMap">

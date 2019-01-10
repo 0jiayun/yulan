@@ -208,7 +208,7 @@ public class InfoStateController {
     }
 
     /**
-     * 法务员抽查资料卡接口
+     * 获取法务员抽查资料卡接口
      * @param data
      * @return
      * @throws IOException
@@ -228,6 +228,30 @@ public class InfoStateController {
         int lastNum=page+limit-1;
         Map<String, Object> map = new HashMap<>();
         map.put("data",infoStateService.getCustomerInfoCardLeagalChecked(page,lastNum,legalchecked));
+        return map;
+    }
+
+    /**
+     * 获取法务员抽查协议书接口
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("getYLcontractentryLeagalChecked")
+    @ResponseBody
+    public Map getYLcontractentryLeagalChecked(@RequestBody Map<String, Object> data)throws IOException{
+        Integer legalchecked = (Integer) data.get("legalchecked");
+        Integer limit = (Integer)data.get("limit");
+        Integer page = (Integer)data.get("page");
+        if(limit==null||page==null) {
+            page=null;
+            limit=null;
+        } else {
+            page=(page-1)*limit+1;
+        }
+        int lastNum=page+limit-1;
+        Map<String, Object> map = new HashMap<>();
+        map.put("data",infoStateService.getYLcontractentryLeagalChecked(page,lastNum,legalchecked));
         return map;
     }
 }

@@ -154,16 +154,33 @@ public class InfoStateServiceImpl implements InfoStateService {
     @Override
     public List<CustomerInfoCard> getCustomerInfoCardLeagalChecked(Integer start, Integer number, Integer legalChecked) throws IOException {
         List<CustomerInfoCard> list = customerInfoDao.getCustomerInfoCardLeagalChecked(start,number,legalChecked);
-        for(CustomerInfoCard customerInfoCard : list){
+        for(int i=0; i<list.size(); i++){
             Map<String, Object> map = new HashMap<String, Object>();
-            map = mapUtils.beanToMap(customerInfoCard);
+            map = mapUtils.beanToMap(list.get(i));
             for (Map.Entry<String,Object> entry : map.entrySet()) {
                 if(entry.getValue() instanceof String){
                     String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                     entry.setValue(origin);
                 }
             }
-            customerInfoCard =  mapUtils.mapToBean(map,CustomerInfoCard.class);
+            list.set(i,mapUtils.mapToBean(map,CustomerInfoCard.class)) ;
+       }
+        return list;
+    }
+
+    @Override
+    public List<YLcontractentry> getYLcontractentryLeagalChecked(Integer start, Integer number, Integer legalChecked) throws IOException {
+        List<YLcontractentry> list = yLcontractentryDao.getYLcontractentryLeagalChecked(start,number,legalChecked);
+        for(int i=0; i<list.size(); i++){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(list.get(i));
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+            }
+            list.set(i,mapUtils.mapToBean(map,YLcontractentry.class)) ;
         }
         return list;
     }
