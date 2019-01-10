@@ -419,7 +419,10 @@
     </select>
 
     <select id="getXDistrict" parameterType="java.util.Map" resultType="string">
-        select DISTRICT_NAME from AREA_DISTRICT WHERE DISTRICT_ID =#{DISTRICT_ID}
+        select DISTRICT_NAME from AREA_DISTRICT
+        <if test="DISTRICT_ID != null">
+        WHERE DISTRICT_ID =#{DISTRICT_ID,jdbcType=VARCHAR}
+        </if>
     </select>
 
     <select id="getAllArea" resultType="Map">

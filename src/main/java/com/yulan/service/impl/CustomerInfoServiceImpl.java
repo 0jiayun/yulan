@@ -189,6 +189,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     @Override
     public String getXDistrict(String xDistrict) throws IOException {
+        String a = customerInfoDao.getXDistrict(xDistrict);
         if(customerInfoDao.getXDistrict(xDistrict).equals("") || customerInfoDao.getXDistrict(xDistrict) == null){
             return null;
         }else{

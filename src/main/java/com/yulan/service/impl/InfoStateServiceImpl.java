@@ -87,40 +87,47 @@ public class InfoStateServiceImpl implements InfoStateService {
        yLcontractentry = yLcontractentryService.getYLcontractentry(cid);
        String yLcontractentryState = yLcontractentry.getState();
        String yLcontractentryMemo = yLcontractentry.getWfmemo();
-        List<String> memoReplaced = new ArrayList<>();
-        //将原先数据库中的html解析
-        Document doc = Jsoup.parse(yLcontractentryMemo);
-        for (String retval: doc.text().split(";")){
-            memoReplaced.add(retval);
-        }
-        //转换原先审核记录中的特殊字段，可能还有其他的，以后再加
-        Map<String,Object> state = new HashMap();
-        state.put("销售副总","#CSA_CHECK#");
-        state.put("市场部","#DEP_MARKET_CHECK#");
-        state.put("销售中心经理","#ASM_CHECKING#");
 
-        for (Map.Entry<String,Object> entry : state.entrySet()) {
-            memoReplaced = stringUtil.replaceState(memoReplaced,(String)entry.getValue(),entry.getKey());
-        }
+       if(yLcontractentryMemo !=null){
+           List<String> memoReplaced = new ArrayList<>();
+           //将原先数据库中的html解析
+           Document doc = Jsoup.parse(yLcontractentryMemo);
+           for (String retval: doc.text().split(";")){
+               memoReplaced.add(retval);
+           }
+           //转换原先审核记录中的特殊字段，可能还有其他的，以后再加
+           Map<String,Object> state = new HashMap();
+           state.put("销售副总","#CSA_CHECK#");
+           state.put("市场部","#DEP_MARKET_CHECK#");
+           state.put("销售中心经理","#ASM_CHECKING#");
 
-       if( yLcontractentryState.equals("CUSTOMERAFFIRM") ){
-           yLcontractInfo ="客户查看确认协议数据中";
-       }else if(yLcontractentryState.equals("SALEMANFILLING")){
-            yLcontractInfo = "业务员填写中";
-       }else if(yLcontractentryState.equals("SALEMANMODIFYING")){
-           yLcontractInfo = "业务员修改中";
-       }else if(yLcontractentryState.equals("DEP_MARKET_CHECK")){
-           yLcontractInfo = "市场部审核中";
-       }else if(yLcontractentryState.equals("CSA_CHECK")){
-           yLcontractInfo = "销售副总批准中";
-       }else if(yLcontractentryState.equals("APPROVED")){
-            yLcontractInfo = "协议书通过";
+           for (Map.Entry<String,Object> entry : state.entrySet()) {
+               memoReplaced = stringUtil.replaceState(memoReplaced,(String)entry.getValue(),entry.getKey());
+           }
+
+           if( yLcontractentryState.equals("CUSTOMERAFFIRM") ){
+               yLcontractInfo ="客户查看确认协议数据中";
+           }else if(yLcontractentryState.equals("SALEMANFILLING")){
+               yLcontractInfo = "业务员填写中";
+           }else if(yLcontractentryState.equals("SALEMANMODIFYING")){
+               yLcontractInfo = "业务员修改中";
+           }else if(yLcontractentryState.equals("DEP_MARKET_CHECK")){
+               yLcontractInfo = "市场部审核中";
+           }else if(yLcontractentryState.equals("CSA_CHECK")){
+               yLcontractInfo = "销售副总批准中";
+           }else if(yLcontractentryState.equals("APPROVED")){
+               yLcontractInfo = "协议书通过";
+           }else{
+               yLcontractInfo = "暂无最新消息";
+           }
+           map.put("yLcontractInfo",yLcontractInfo);
+           map.put("yLcontractentryMemo",memoReplaced);
        }else{
-           yLcontractInfo = "暂无最新消息";
+           map.put("yLcontractInfo",yLcontractInfo);
+           map.put("yLcontractentryMemo","data does not exist");
        }
-       map.put("yLcontractInfo",yLcontractInfo);
-       map.put("yLcontractentryMemo",memoReplaced);
-       return map;
+
+        return map;
     }
 
     @Override

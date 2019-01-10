@@ -249,12 +249,12 @@
         where CCID = #{ccid} AND  CCYEAR = #{ccyear}
     </update>
 
-    <select id="getYLcontractHTML" parameterType="java.lang.Integer" resultMap="YLcontractHTMLMAP">
+    <select id="getYLcontractHTML" parameterType="java.util.Map" resultMap="YLcontractHTMLMAP">
         select TEST from YLCONTRACTENTRY_SHOW WHERE ID =#{ID}
     </select>
 
     <select id="getYLcontractentry" parameterType="java.util.Map" resultType="YLcontractentry">
-        select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1
+        select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc nulls last)WHERE ROWNUM =1
     </select>
 
     <select id="getYLcontractentryLeagalChecked" parameterType="java.util.Map" resultType="YLcontractentry">
