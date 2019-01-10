@@ -1,9 +1,12 @@
 package com.yulan.service.impl;
 
 import com.yulan.dao.CustomerInfoDao;
+import com.yulan.dao.YLcontractentryDao;
 import com.yulan.pojo.CustomerInfoCard;
+import com.yulan.pojo.YLcontract_v2015;
 import com.yulan.pojo.YLcontract_v2015_paa;
 import com.yulan.service.CustomerInfoService;
+import com.yulan.service.YLcontractentryService;
 import com.yulan.utils.MapUtils;
 import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +23,15 @@ import java.util.Map;
 @Service
 public class CustomerInfoServiceImpl implements CustomerInfoService {
     @Autowired
-
     private CustomerInfoDao customerInfoDao;
 
     private CustomerInfoCard customerInfoCard;
 
     private YLcontract_v2015_paa yLcontract_v2015_paa;
+    @Autowired
+    private YLcontractentryService yLcontractentryService;
+    @Autowired
+    private YLcontractentryDao yLcontractentryDao;
 
     private StringUtil stringUtil;
 
@@ -123,6 +129,10 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     @Override
     public boolean updateCustomerInfo(CustomerInfoCard customerInfoCard) throws IOException{
+        YLcontract_v2015 yLcontract_v2015 = new YLcontract_v2015();
+        yLcontract_v2015.setPrivateAccountAuthed( customerInfoCard.getPrivateAccountAuthed());
+        yLcontract_v2015.setCcid(customerInfoCard.getCid());
+        yLcontract_v2015.setCcyear(customerInfoCard.getContractyear());
         Map<String, Object> map = new HashMap<String, Object>();
         map = mapUtils.beanToMap(customerInfoCard);
 
@@ -134,10 +144,13 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             }
 
         }
-
         customerInfoCard = mapUtils.mapToBean(map,CustomerInfoCard.class);
+        if(yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015) && customerInfoDao.updateCustomerInfo(customerInfoCard)){
+            return true;
+        }else{
+            return  false;
+        }
 
-        return customerInfoDao.updateCustomerInfo(customerInfoCard);
     }
 
     @Override

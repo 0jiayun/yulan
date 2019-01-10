@@ -83,4 +83,6 @@ public interface CustomerInfoDao {
     //获取每个大区下的资料卡执行状态统计
     List<Map<String,Object>> getCustomerInfoCardStateByArea(@Param("CONTRACTYEAR") Integer year);
 
+    List<CustomerInfoCard> getCustomerInfoCardLeagalChecked(@Param("start")Integer start,@Param("number") Integer number,@Param("LEGALCHECKED")Integer legalchecked );
+
 }

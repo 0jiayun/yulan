@@ -7,6 +7,7 @@ import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
 import com.yulan.service.InfoStateService;
 import com.yulan.service.YLcontractentryService;
+import com.yulan.utils.MapUtils;
 import com.yulan.utils.StringUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -35,6 +36,8 @@ public class InfoStateServiceImpl implements InfoStateService {
     private CustomerInfoCard customerInfoCard;
 
     private StringUtil stringUtil;
+
+    private MapUtils mapUtils;
 
     @Override
     public Map getCustomerInfoCardState(String cid) throws IOException {
@@ -146,5 +149,22 @@ public class InfoStateServiceImpl implements InfoStateService {
         state = stringUtil.setUtf8(state);
         wfmemo = stringUtil.setUtf8(wfmemo);
         return yLcontractentryDao.checkYLcontractentry(cid,state,wfmemo,signed);
+    }
+
+    @Override
+    public List<CustomerInfoCard> getCustomerInfoCardLeagalChecked(Integer start, Integer number, Integer legalChecked) throws IOException {
+        List<CustomerInfoCard> list = customerInfoDao.getCustomerInfoCardLeagalChecked(start,number,legalChecked);
+        for(CustomerInfoCard customerInfoCard : list){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(customerInfoCard);
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+            }
+            customerInfoCard =  mapUtils.mapToBean(map,CustomerInfoCard.class);
+        }
+        return list;
     }
 }

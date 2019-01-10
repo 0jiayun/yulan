@@ -67,7 +67,7 @@
     </select>
 
 
-    <resultMap id="BaseResultMap" type="com.yulan.pojo.YLcontract_v2015" >
+    <resultMap id="BaseResultMap" type="YLcontract_v2015" >
         <result column="CCYEAR" property="ccyear" jdbcType="DECIMAL" />
         <result column="CCID" property="ccid" jdbcType="VARCHAR" />
         <result column="A_RETAILING" property="aRetailing" jdbcType="DECIMAL" />

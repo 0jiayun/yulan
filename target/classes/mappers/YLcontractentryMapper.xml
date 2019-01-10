@@ -67,7 +67,7 @@
     </select>
 
 
-    <resultMap id="BaseResultMap" type="com.yulan.pojo.YLcontract_v2015" >
+    <resultMap id="BaseResultMap" type="YLcontract_v2015" >
         <result column="CCYEAR" property="ccyear" jdbcType="DECIMAL" />
         <result column="CCID" property="ccid" jdbcType="VARCHAR" />
         <result column="A_RETAILING" property="aRetailing" jdbcType="DECIMAL" />
@@ -244,6 +244,16 @@
             </if>
             <if test="rewordpercent2!=null">
                 REWORDPERCENT2 = #{rewordpercent2,jdbcType=DECIMAL}
+            </if>
+        </set>
+        where CCID = #{ccid} AND  CCYEAR = #{ccyear}
+    </update>
+
+    <update id="updateYLcontract_v2015ByCusomerInfoCard" parameterType="YLcontract_v2015">
+        update YLCONTRACT_V2015
+        <set>
+            <if test="privateAccountAuthed!=null">
+                PRIVATE_ACCOUNT_AUTHED = #{privateAccountAuthed,jdbcType=VARCHAR}
             </if>
         </set>
         where CCID = #{ccid} AND  CCYEAR = #{ccyear}

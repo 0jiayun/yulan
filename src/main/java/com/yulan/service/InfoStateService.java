@@ -1,6 +1,9 @@
 package com.yulan.service;
 
+import com.yulan.pojo.CustomerInfoCard;
+
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public interface InfoStateService {
@@ -16,4 +19,6 @@ public interface InfoStateService {
     boolean lawCheckYLcontractentryState(String cid, String state, String wfmemo,Integer signed,Integer legalchecked)throws IOException;
 
     boolean checkYLcontractentryState(String cid, String state, String wfmemo,Integer signed)throws IOException;
+
+    List<CustomerInfoCard> getCustomerInfoCardLeagalChecked(Integer start,Integer number,Integer legalChecked)throws IOException;
 }
