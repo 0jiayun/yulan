@@ -401,11 +401,32 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                     String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                     entry.setValue(origin);
                 }
-                System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+           //     System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
             }
             return mapUtils.mapToBean(map,YLcontractentry.class);
         }
     }
+
+    @Override
+    public YLcontractentry getYLcontractentryByYear(String cid, String cyear) throws IOException {
+        if(yLcontractentryDao.getYLcontractentryByYear(cid,cyear) == null){
+            return null;
+        }else{
+            yLcontractentry = yLcontractentryDao.getYLcontractentryByYear(cid,cyear);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(yLcontractentry);
+
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+                //     System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            }
+            return mapUtils.mapToBean(map,YLcontractentry.class);
+        }
+    }
+
 
     @Override
     public Map getYlcsbySigned(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find, String need, String position) throws UnsupportedEncodingException {

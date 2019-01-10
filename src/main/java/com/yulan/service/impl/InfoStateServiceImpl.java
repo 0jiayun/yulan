@@ -79,12 +79,12 @@ public class InfoStateServiceImpl implements InfoStateService {
     }
 
     @Override
-    public Map getYLcontractState(String cid) throws IOException{
+    public Map getYLcontractState(String cid,String cyear) throws IOException{
         Map<String,Object> map = new HashMap<>();
         String yLcontractInfo = null;
 
 
-       yLcontractentry = yLcontractentryService.getYLcontractentry(cid);
+       yLcontractentry = yLcontractentryService.getYLcontractentryByYear(cid,cyear);
        String yLcontractentryState = yLcontractentry.getState();
        String yLcontractentryMemo = yLcontractentry.getWfmemo();
 

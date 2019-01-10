@@ -240,11 +240,11 @@
     </select>
 
     <select id="getCustomerInfo" parameterType="java.util.Map" resultType="CustomerInfoCard">
-        select * from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1
+        select * from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc nulls last)WHERE ROWNUM =1
     </select>
 
     <select id="getYLcontract" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
-        select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} ORDER BY t.ccyear desc )WHERE ROWNUM =1
+        select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
     </select>
 
     <update id="updateCustomerInfo" parameterType="CustomerInfoCard">
@@ -453,7 +453,7 @@
         MEMO = MEMO || #{MEMO}
             </if>
         </set>
-        where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
+        where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc nulls last)WHERE ROWNUM =1)
     </update>
 
     <update id="lawCheckCustomerInfoCardState" parameterType="java.util.Map">
@@ -469,7 +469,7 @@
                 LEGALCHECKED = #{LEGALCHECKED}
             </if>
         </set>
-        where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc )WHERE ROWNUM =1)
+        where CID = #{CID} AND CONTRACTYEAR = (select CONTRACTYEAR from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc nulls last)WHERE ROWNUM =1)
     </update>
 
     <select id="getAllCustomerInfoCardState" resultType="Map">

@@ -257,6 +257,10 @@
         select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc nulls last)WHERE ROWNUM =1
     </select>
 
+    <select id="getYLcontractentryByYear" parameterType="java.util.Map" resultType="YLcontractentry">
+        select * from YLCONTRACTENTRY t where t.cid=#{CID} and t.cyear = #{CYEAR}
+    </select>
+
     <select id="getYLcontractentryLeagalChecked" parameterType="java.util.Map" resultType="YLcontractentry">
         select * from(
         select rownum rm, c.*  from

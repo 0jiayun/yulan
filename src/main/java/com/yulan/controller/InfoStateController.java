@@ -132,8 +132,9 @@ public class InfoStateController {
     @ResponseBody
     public Map getYLcontractentryState(@RequestBody Map<String, Object> data) throws IOException {
         String cid = (String) data.get("cid");
+        String cyear = (String)data.get("cyear");
         Map<String, Object> map = new HashMap<>();
-        map = infoStateService.getYLcontractState(cid);
+        map = infoStateService.getYLcontractState(cid,cyear);
         return map;
     }
 
