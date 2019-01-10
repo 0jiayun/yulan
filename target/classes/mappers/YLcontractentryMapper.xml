@@ -455,7 +455,7 @@
 
         ( select * from
 
-        (select a.area_belong,c.market, c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        (select a.area_belong,c.market, c.marketname,c.marketmanagername,c.submarketname,c.submarketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c,AREA_CODE a
         where t.cid=c.cid and c.market=a.area_code and t.cyear=c.contractyear ) e,(select area from area_owner w where w.owner=#{cid} and w.position=#{position} ) k
         where e.area_belong=k.area) l
