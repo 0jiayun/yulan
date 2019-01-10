@@ -357,11 +357,17 @@
             <if test="account2Location != null">
         ACCOUNT2_LOCATION = #{account2Location,jdbcType=VARCHAR},
             </if>
+            <if test="busientType != null">
+                BUSIENT_TYPE = #{busientType,jdbcType=VARCHAR},
+            </if>
             <if test="customerentitytypex != null">
         CUSTOMERENTITYTYPEX = #{customerentitytypex,jdbcType=CHAR},
             </if>
             <if test="file1Idcard != null">
         FILE_1_IDCARD = #{file1Idcard,jdbcType=VARCHAR},
+            </if>
+            <if test="file1IdcardNo = !null">
+                FILE_1_IDCARD_NO = #{file1IdcardNo,jdbcType=VARCHAR},
             </if>
             <if test="file1Op != null">
         FILE_1_OP = #{file1Op,jdbcType=VARCHAR},
