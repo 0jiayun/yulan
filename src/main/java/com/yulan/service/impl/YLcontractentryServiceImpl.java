@@ -408,7 +408,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
     }
 
     @Override
-    public YLcontractentry getYLcontractentryByYear(String cid, String cyear) throws IOException {
+    public YLcontractentry getYLcontractentryByYear(String cid, Integer cyear) throws IOException {
         if(yLcontractentryDao.getYLcontractentryByYear(cid,cyear) == null){
             return null;
         }else{

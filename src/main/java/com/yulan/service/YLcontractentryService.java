@@ -29,7 +29,7 @@ public interface YLcontractentryService {
 
     YLcontractentry getYLcontractentry(String cid) throws IOException;
 
-    YLcontractentry getYLcontractentryByYear(String cid,String cyear) throws IOException;
+    YLcontractentry getYLcontractentryByYear(String cid,Integer cyear) throws IOException;
 
     //联表获取协议书
     Map getYlcsbySigned(Integer start,Integer number,Integer year,String cid,String area_1,String area_2,String find,String need,String position) throws UnsupportedEncodingException;

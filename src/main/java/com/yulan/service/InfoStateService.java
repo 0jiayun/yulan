@@ -11,7 +11,7 @@ public interface InfoStateService {
 
     Map getCustomerInfoCardState(String cid)throws IOException;
 
-    Map getYLcontractState(String cid,String cyear)throws IOException;
+    Map getYLcontractState(String cid,Integer cyear)throws IOException;
 
     boolean businessCheckCustomerInfoCard(String cid, String state, String memo)throws IOException;
 
