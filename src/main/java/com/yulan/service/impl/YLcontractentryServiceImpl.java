@@ -415,31 +415,31 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         //通过职位和need确定所需状态协议书
         if (need.equals("checking")){//待审核
             switch (position){
-                case "MARKETCHECKER":states.add("ASM_CHECKING");//销售中心经理审核中
+                case "MANAGER":states.add("ASM_CHECKING");//销售中心经理审核中
                     break;
-                case "MANAGER":states.add("DEP_MARKET_CHECK");//市场部审核中
+                case "MARKETCHECKER":states.add("DEP_MARKET_CHECK");//市场部审核中
                     break;
                 case "VSMAPPROVEXII":states.add("CSA_CHECK");//销售副总批准中
                     break;
-                default:state=null;
+                default:states=null;
             }
         }else{//当前职位审核通过即下状态
             switch (position){
-                case "MARKETCHECKER":states.add("DEP_MARKET_CHECK");
+                case "MANAGER":states.add("DEP_MARKET_CHECK");
                     states.add("CSA_CHECK");
                     states.add("APPROVED");
                     break;
-                case "MANAGER": states.add("CSA_CHECK");
+                case "MARKETCHECKER": states.add("CSA_CHECK");
                     states.add("APPROVED");//销售副总批准中
                     break;
                 case "VSMAPPROVEXII":states.add("APPROVED");//生效
                     break;
-                default:state=null;
+                default:states=null;
             }
         }
 
         List<Map<String,Object>> list=new ArrayList<>();
-        if(position.equals("MARKETCHECKER")){
+        if(position.equals("MANAGER")){
             String pos=StringUtil.setUtf8("销售中心经理");
 
                 list=yLcontractentryDao.getAllys_areaOver(start,number,cid,year,area_1,area_2,find,states,pos);

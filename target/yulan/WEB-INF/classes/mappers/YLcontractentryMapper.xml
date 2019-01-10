@@ -330,8 +330,8 @@
         (select u.realName Sname,s.* from
         (select w.realname Mname ,f.* from
         (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
-        YLCONTRACTENTRY t,customerinfocard c,(select * from AREA_USER t where t.userid=#{cid}) e
-        where t.cid=c.cid and e.area_code=c.market)f,web_user w
+        YLCONTRACTENTRY t,customerinfocard c
+        where t.cid=c.cid )f,web_user w
         where
         w.loginname=f.MARKETMANAGER)s,web_user u
         where
@@ -361,8 +361,8 @@
     <select id="countYs" resultType="int">
         select count (*) from
           (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
-        YLCONTRACTENTRY t,customerinfocard c,(select * from AREA_USER t where t.userid=#{cid}) e
-        where t.cid=c.cid and e.area_code=c.market)f
+        YLCONTRACTENTRY t,customerinfocard c
+        where t.cid=c.cid )f
         where 1=1
         <if test="year!=null">
             and cyear=#{year}
