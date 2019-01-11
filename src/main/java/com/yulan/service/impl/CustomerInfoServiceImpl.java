@@ -129,27 +129,45 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     @Override
     public boolean updateCustomerInfo(CustomerInfoCard customerInfoCard) throws IOException{
-        YLcontract_v2015 yLcontract_v2015 = new YLcontract_v2015();
-        yLcontract_v2015.setPrivateAccountAuthed( customerInfoCard.getPrivateAccountAuthed());
-        yLcontract_v2015.setCcid(customerInfoCard.getCid());
-        yLcontract_v2015.setCcyear(customerInfoCard.getContractyear());
-        Map<String, Object> map = new HashMap<String, Object>();
-        map = mapUtils.beanToMap(customerInfoCard);
 
-        for (Map.Entry<String,Object> entry : map.entrySet()) {
-            if(entry.getValue() instanceof String){
-                String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
-                entry.setValue(origin);
-       //         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        if(customerInfoCard.getPrivateAccountAuthed() != null ){
+            YLcontract_v2015 yLcontract_v2015 = new YLcontract_v2015();
+            yLcontract_v2015.setPrivateAccountAuthed( customerInfoCard.getPrivateAccountAuthed());
+            yLcontract_v2015.setCcid(customerInfoCard.getCid());
+            yLcontract_v2015.setCcyear(customerInfoCard.getContractyear());
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(customerInfoCard);
+
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                    //         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                }
+
             }
-
-        }
-        customerInfoCard = mapUtils.mapToBean(map,CustomerInfoCard.class);
-        if(yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015) && customerInfoDao.updateCustomerInfo(customerInfoCard)){
-            return true;
+            customerInfoCard = mapUtils.mapToBean(map,CustomerInfoCard.class);
+            if(yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015) && customerInfoDao.updateCustomerInfo(customerInfoCard)){
+                return true;
+            }else{
+                return  false;
+            }
         }else{
-            return  false;
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(customerInfoCard);
+
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                    //         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                }
+
+            }
+            customerInfoCard = mapUtils.mapToBean(map,CustomerInfoCard.class);
+            return customerInfoDao.updateCustomerInfo(customerInfoCard);
         }
+
 
     }
 
