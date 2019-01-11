@@ -249,16 +249,6 @@
         where CCID = #{ccid} AND  CCYEAR = #{ccyear}
     </update>
 
-    <update id="updateYLcontract_v2015ByCusomerInfoCard" parameterType="YLcontract_v2015">
-        update YLCONTRACT_V2015
-        <set>
-            <if test="privateAccountAuthed!=null">
-                PRIVATE_ACCOUNT_AUTHED = #{privateAccountAuthed,jdbcType=VARCHAR}
-            </if>
-        </set>
-        where CCID = #{ccid} AND  CCYEAR = #{ccyear}
-    </update>
-
     <select id="getYLcontractHTML" parameterType="java.lang.Integer" resultMap="YLcontractHTMLMAP">
         select TEST from YLCONTRACTENTRY_SHOW WHERE ID =#{ID}
     </select>
