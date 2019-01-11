@@ -32,6 +32,8 @@ public interface YLcontractentryDao {
 
     YLcontract_v2015 getYLcontract_v2015(@Param("CCID") String ccid);
 
+    YLcontract_v2015 getYLcontract_v2015ByYear(@Param("CCID") String ccid,@Param("CCYEAR") Integer ccyear);
+
     boolean createYLcontract_v2015(YLcontract_v2015 yLcontract_v2015);
 
     boolean createYLcontractentry(YLcontractentry yLcontractentry);

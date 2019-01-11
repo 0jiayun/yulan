@@ -127,6 +127,10 @@
         select * from ( select * from YLCONTRACT_V2015 t where t.ccid=#{CCID} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
     </select>
 
+    <select id="getYLcontract_v2015ByYear" parameterType="java.util.Map" resultType="YLcontract_v2015">
+        select * from YLCONTRACT_V2015 t where t.ccid=#{CCID} and t.ccyear =#{CCYEAR}
+    </select>
+
     <insert id="createYLcontract_v2015" parameterType="YLcontract_v2015" >
     insert into YLCONTRACT_V2015 (CCYEAR, CCID, A_RETAILING,
       B_ENGINEERING, C_MATCHING, M1,
@@ -296,10 +300,9 @@
     <update id="checkYLcontractentry" parameterType="java.util.Map">
         update YLCONTRACTENTRY
         <set>
-            and state in
-            <foreach collection="states" index="index" item="item" open="(" separator="," close=")">
-                #{item}
-            </foreach>
+            <if test="STATE!=null">
+        STATE = #{STATE,jdbcType=VARCHAR},
+            </if>
             <if test="WFMEMO!=null">
         WFMEMO = WFMEMO || #{WFMEMO,jdbcType=VARCHAR},
             </if>
@@ -307,7 +310,7 @@
         SIGNED = #{SIGNED}
             </if>
         </set>
-        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
+        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc nulls last)WHERE ROWNUM =1)
     </update>
 
     <update id="lawCheckYLcontractentryState" parameterType="java.util.Map">

@@ -2,18 +2,30 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="yulan:war" />
+      <artifact name="yulan:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e49d8f3b-fac9-412c-952d-2f996440b542" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/controller/CustomerController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/dao/Area_ownerDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/pojo/Area_owner.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/service/Area_ownerService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/Area_ownerServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/CustomerInfoServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yulan/dao/YLcontractentryDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yulan/dao/YLcontractentryDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerInfoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resource/mappers/YLcontractentryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resource/mappers/YLcontractentryMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/controller/CustomerInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/controller/CustomerInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/controller/InfoStateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/controller/InfoStateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/dao/YLcontractentryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/dao/YLcontractentryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/InfoStateServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/InfoStateServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/Web_userServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/Web_userServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/YLc_infoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/YLc_infoServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/YLcontractentryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/service/impl/YLcontractentryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/utils/FileUpload.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/utils/FileUpload.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/UserTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/UserTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/yulan.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/yulan/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/yulan/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/com/yulan/controller/CustomerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/com/yulan/controller/CustomerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/com/yulan/controller/CustomerInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/com/yulan/controller/CustomerInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/com/yulan/utils/FileUpload.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/com/yulan/utils/FileUpload.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/mappers/YLcontractentryMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/mappers/YLcontractentryMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -219,22 +231,26 @@
     <session id="-1097093947">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="20" />
+          <entry key="java" value="55" />
+          <entry key="xml" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="20" />
+          <entry key="JAVA" value="55" />
+          <entry key="XML" value="33" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="2" />
+          <entry key="java" value="10" />
+          <entry key="xml" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="2" />
+          <entry key="JAVA" value="10" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -244,56 +260,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="136" column="48" selection-start-line="136" selection-start-column="48" selection-end-line="136" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resource/mappers/YLcontractentryMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="313" column="30" selection-start-line="313" selection-start-column="30" selection-end-line="313" selection-end-column="30" />
+            <state relative-caret-position="188">
+              <caret line="307" column="17" lean-forward="true" selection-start-line="307" selection-start-column="17" selection-end-line="307" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerInfoServiceImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/dao/YLcontractentryDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="83">
+              <caret line="50" column="71" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/InfoStateServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="140">
-              <caret line="91" column="68" selection-start-line="91" selection-start-column="68" selection-end-line="91" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2650#2666#0" expanded="true" />
-                <element signature="e#3512#3528#0" expanded="true" />
-                <element signature="e#4604#4620#0" expanded="true" />
-                <element signature="e#5453#5469#0" expanded="true" />
-                <element signature="e#6263#6279#0" expanded="true" />
-                <element signature="e#7026#7042#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="131" column="47" lean-forward="true" selection-start-line="131" selection-start-column="47" selection-end-line="131" selection-end-column="47" />
+              <caret line="157" column="61" lean-forward="true" selection-start-line="157" selection-start-column="61" selection-end-line="157" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/pojo/CustomerInfoCard.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/InfoStateController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+            <state relative-caret-position="102">
+              <caret line="171" column="46" selection-start-line="171" selection-start-column="46" selection-end-line="171" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -331,6 +338,8 @@
       <find>getAll</find>
       <find>getAllStatisticsInfo</find>
       <find>getCus</find>
+      <find>checkY</find>
+      <find>check</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -380,17 +389,17 @@
         <option value="$PROJECT_DIR$/src/main/resource/mappers/Web_userMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/service/YLcontractentryService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/controller/YLcontractentryController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yulan/dao/YLcontractentryDao.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/page/js/url.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/service/impl/Web_userServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/service/impl/YLcontractentryServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resource/mappers/YLcontractentryMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/service/CustomerInfoService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/dao/CustomerInfoDao.java" />
         <option value="$PROJECT_DIR$/src/main/resource/mappers/CustomerInfoMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerInfoServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yulan/dao/YLcontractentryDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerInfoServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resource/mappers/YLcontractentryMapper.xml" />
       </list>
     </option>
   </component>
@@ -485,6 +494,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="yulan" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yulan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yulan" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="yulan" type="462c0819:PsiDirectoryNode" />
               <item name="pojo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -550,11 +568,6 @@
               <item name="yulan" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yulan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yulan" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -633,7 +646,7 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547151957764" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547207829326" />
     <property name="last_opened_file_path" value="D:/java/electric - 副本" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -949,7 +962,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="512786000" />
+    <option name="totallyTimeSpent" value="515305000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -964,7 +977,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.89099526" visible="true" weight="0.21341956" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.89099526" visible="true" weight="0.21341956" />
       <window_info id="Structure" order="1" sideWeight="0.15433404" side_tool="true" weight="0.25670242" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -975,15 +988,15 @@
       <window_info anchor="bottom" id="Thumbnails" order="0" weight="0.32907802" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49731904" weight="0.53108346" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49731904" visible="true" weight="0.23445825" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.14184397" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49798927" weight="0.3432624" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.32907802" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.26998225" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.20071048" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5020107" side_tool="true" weight="0.3219858" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49798927" visible="true" weight="0.32149202" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49798927" weight="0.32149202" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.32907802" />
       <window_info anchor="bottom" id="Version Control" order="14" show_stripe_button="false" />
@@ -1058,20 +1071,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/page/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="70" column="25" selection-start-line="70" selection-start-column="25" selection-end-line="70" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/InfoStateController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="49" column="71" selection-start-line="49" selection-start-column="53" selection-end-line="49" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/dao/CustomerDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -1206,13 +1205,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/dao/Area_ownerDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="9" column="35" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resource/mappers/Area_owner.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -1290,13 +1282,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/Area_ownerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resource/mappers/Customerinfocardgroup.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1305,24 +1290,10 @@
       </provider>
     </entry>
     <entry file="jar://D:/jdk/lib/src.zip!/java.corba/org/omg/CORBA/Object.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerInfoCardServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/dao/YLcontractentryDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
         </state>
       </provider>
     </entry>
@@ -1347,56 +1318,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resource/mappers/CustomerInfoMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-130">
-          <caret line="579" column="13" selection-start-line="579" selection-start-column="13" selection-end-line="579" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resource/mappers/YLcontractentryMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="313" column="30" selection-start-line="313" selection-start-column="30" selection-end-line="313" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="136" column="48" selection-start-line="136" selection-start-column="48" selection-end-line="136" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/dao/CustomerInfoDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="136" column="16" selection-start-line="136" selection-start-column="8" selection-end-line="136" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/CustomerInfoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="46" column="165" selection-start-line="46" selection-start-column="165" selection-end-line="46" selection-end-column="165" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerInfoServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="91" column="68" selection-start-line="91" selection-start-column="68" selection-end-line="91" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2650#2666#0" expanded="true" />
-            <element signature="e#3512#3528#0" expanded="true" />
-            <element signature="e#4604#4620#0" expanded="true" />
-            <element signature="e#5453#5469#0" expanded="true" />
-            <element signature="e#6263#6279#0" expanded="true" />
-            <element signature="e#7026#7042#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1408,10 +1335,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/dao/Area_ownerDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-53">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/Area_ownerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="48" column="52" lean-forward="true" selection-start-line="48" selection-start-column="52" selection-end-line="48" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="316" column="63" selection-start-line="316" selection-start-column="63" selection-end-line="316" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resource/mappers/CustomerInfoMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="579" column="13" selection-start-line="579" selection-start-column="13" selection-end-line="579" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerInfoServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="237" column="72" lean-forward="true" selection-start-line="237" selection-start-column="72" selection-end-line="237" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/CustomerInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="46" column="8" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="131" column="47" lean-forward="true" selection-start-line="131" selection-start-column="47" selection-end-line="131" selection-end-column="47" />
+        <state relative-caret-position="168">
+          <caret line="124" column="30" lean-forward="true" selection-start-line="124" selection-start-column="30" selection-end-line="124" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/CustomerServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/impl/InfoStateServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="157" column="61" lean-forward="true" selection-start-line="157" selection-start-column="61" selection-end-line="157" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/InfoStateController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="171" column="46" selection-start-line="171" selection-start-column="46" selection-end-line="171" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/dao/YLcontractentryDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="50" column="71" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resource/mappers/YLcontractentryMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="307" column="17" lean-forward="true" selection-start-line="307" selection-start-column="17" selection-end-line="307" selection-end-column="17" />
         </state>
       </provider>
     </entry>
