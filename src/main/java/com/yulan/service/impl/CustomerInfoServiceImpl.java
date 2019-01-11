@@ -403,11 +403,15 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         String a="";
         int count=0;
         if(position.equals("MANAGER")){
+
             list=customerInfoDao.getCustomerinfo_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+
+            Map.put("area",this.getUserArea(cid,position));
         }else if(position.equals("SALEMAN_M")){
             list=customerInfoDao.getCustomerinfo_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            Map.put("area",this.getUserArea(cid,position));
         }else if( position.equals("SALEMAN_S")){
             List<Map<String,Object>> area=customerInfoDao.getArea_Smanager(cid);
 
@@ -418,6 +422,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 }
                 a=m.get("DISTRICT_NAME").toString();
             }
+            Map.put("area",a);
 
             list=customerInfoDao.getCustomerinfo_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
@@ -425,6 +430,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         }else{
             list=customerInfoDao.getAllCustomerinfo(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.countAll(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            Map.put("area","");
 
         }
         for (Map<String, Object> map : list) {
@@ -453,7 +459,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 map.put("FILE_4_GTQC",1);
             }
         }
-        Map.put("area",a);
+
         Map.put("data",list);
         Map.put("count",count);
         return Map;
