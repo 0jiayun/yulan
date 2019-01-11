@@ -129,7 +129,7 @@ public class CustomerController {
         Date date = new Date(System.currentTimeMillis());
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy");
         String value = simpleDateFormat.format(date);
-        Short year = Short.parseShort(value);
+        Integer year = Integer.parseInt(value);
         customerInfoCard.setContractyear(year);
         return customerInfoCard;
     }
