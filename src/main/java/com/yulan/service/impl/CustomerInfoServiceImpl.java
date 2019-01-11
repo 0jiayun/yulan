@@ -1,9 +1,12 @@
 package com.yulan.service.impl;
 
 import com.yulan.dao.CustomerInfoDao;
+import com.yulan.dao.YLcontractentryDao;
 import com.yulan.pojo.CustomerInfoCard;
+import com.yulan.pojo.YLcontract_v2015;
 import com.yulan.pojo.YLcontract_v2015_paa;
 import com.yulan.service.CustomerInfoService;
+import com.yulan.service.YLcontractentryService;
 import com.yulan.utils.MapUtils;
 import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +15,20 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class CustomerInfoServiceImpl implements CustomerInfoService {
     @Autowired
-
     private CustomerInfoDao customerInfoDao;
 
     private CustomerInfoCard customerInfoCard;
 
     private YLcontract_v2015_paa yLcontract_v2015_paa;
+    @Autowired
+    private YLcontractentryService yLcontractentryService;
+    @Autowired
+    private YLcontractentryDao yLcontractentryDao;
 
     private StringUtil stringUtil;
 
@@ -123,21 +126,46 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     @Override
     public boolean updateCustomerInfo(CustomerInfoCard customerInfoCard) throws IOException{
-        Map<String, Object> map = new HashMap<String, Object>();
-        map = mapUtils.beanToMap(customerInfoCard);
 
-        for (Map.Entry<String,Object> entry : map.entrySet()) {
-            if(entry.getValue() instanceof String){
-                String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
-                entry.setValue(origin);
-       //         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        if(customerInfoCard.getPrivateAccountAuthed() != null ){
+            YLcontract_v2015 yLcontract_v2015 = new YLcontract_v2015();
+            yLcontract_v2015.setPrivateAccountAuthed( customerInfoCard.getPrivateAccountAuthed());
+            yLcontract_v2015.setCcid(customerInfoCard.getCid());
+            yLcontract_v2015.setCcyear(customerInfoCard.getContractyear());
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(customerInfoCard);
+
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                    //         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                }
+
             }
+            customerInfoCard = mapUtils.mapToBean(map,CustomerInfoCard.class);
+            if(yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015) && customerInfoDao.updateCustomerInfo(customerInfoCard)){
+                return true;
+            }else{
+                return  false;
+            }
+        }else{
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(customerInfoCard);
 
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.setUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                    //         System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+                }
+
+            }
+            customerInfoCard = mapUtils.mapToBean(map,CustomerInfoCard.class);
+            return customerInfoDao.updateCustomerInfo(customerInfoCard);
         }
 
-        customerInfoCard = mapUtils.mapToBean(map,CustomerInfoCard.class);
 
-        return customerInfoDao.updateCustomerInfo(customerInfoCard);
     }
 
     @Override
@@ -176,6 +204,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     @Override
     public String getXDistrict(String xDistrict) throws IOException {
+        String a = customerInfoDao.getXDistrict(xDistrict);
         if(customerInfoDao.getXDistrict(xDistrict).equals("") || customerInfoDao.getXDistrict(xDistrict) == null){
             return null;
         }else{
@@ -310,6 +339,91 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             }
         }
         return list;
+    }
+
+    @Override
+    public List<Map<String, Object>> getUserArea(String cid,String position) throws UnsupportedEncodingException {
+        List<Map<String,Object>> list=new ArrayList<>();
+        List<Map<String,Object>> areas=new ArrayList<>();
+        if(position.equals("MANAGER")){
+            list=customerInfoDao.getArea_Cmanager(cid);
+        }else if(position.equals("SALEMAN_M")){
+            list=customerInfoDao.getArea_Mmanager(cid);
+        }else{
+            list=customerInfoDao.getArea_Smanager(cid);
+        }
+        if (!position.equals("SALEMAN_S")){
+
+            for (Map<String, Object> map : list) {  //大区
+                Map<String, Object> bigMap=new HashMap<>();
+
+                String bid=map.get("AREA").toString();
+
+                bigMap.put("bname",StringUtil.getUtf8(map.get("AREA_NAME").toString()));
+                bigMap.put("bid",map.get("AREA"));
+                List<Map> datas=new ArrayList<>();
+                for (Map<String, Object> m : list){  //片区
+
+                    if (m.get("AREA").toString().equals(bid)){
+                        Map<String, Object> smallMap=new HashMap<>();
+                        smallMap.put("sname",StringUtil.getUtf8(m.get("DISTRICT_NAME").toString()));
+                        smallMap.put("sid",m.get("DISTRICT_ID"));
+                        datas.add(smallMap);
+                    }
+
+                }
+                bigMap.put("Sarea",datas);
+                areas.add(bigMap);
+
+            }
+            HashSet h = new HashSet(areas);
+            areas.clear();
+            areas.addAll(h);//去重
+        }else{//片区
+            for (Map<String, Object> map : list) {  //大区
+
+
+                Map<String, Object> smallMap=new HashMap<>();
+                smallMap.put("sname",StringUtil.getUtf8(map.get("DISTRICT_NAME").toString()));
+                smallMap.put("sid",map.get("DISTRICT_ID"));
+                areas.add(smallMap);
+            }
+
+        }
+
+
+        return areas;
+    }
+
+    @Override
+    public Map getUserCustomerinfo(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find,String state, String position,String ylcstate) throws UnsupportedEncodingException {
+        List<Map<String, Object>> list=new ArrayList<>();
+        Map<String,Object> Map=new HashMap<>();
+        int count=0;
+        if(position.equals("MANAGER")){
+            list=customerInfoDao.getCustomerinfo_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            count=customerInfoDao.count_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+        }else if(position.equals("SALEMAN_M")){
+            list=customerInfoDao.getCustomerinfo_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            count=customerInfoDao.count_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+        }else if( position.equals("SALEMAN_S")){
+            list=customerInfoDao.getCustomerinfo_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            count=customerInfoDao.count_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+
+        }else{
+            list=customerInfoDao.getAllCustomerinfo(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            count=customerInfoDao.countAll(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+
+        }
+        for (Map<String, Object> map : list) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+            }
+        }
+        Map.put("data",list);
+        Map.put("count",count);
+        return Map;
     }
 
 

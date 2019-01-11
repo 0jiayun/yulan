@@ -36,8 +36,11 @@ public class Web_userServiceImpl implements Web_userService {
                             String areap=StringUtil.getUtf8(m.get("POSITION").toString());
                             if(areap.equals("销售中心经理")){
                                 map1.put("position","MANAGER");
-                            }else{
-                                map1.put("position","SALEMAN");
+                            }else if(areap.equals("大区经理")){
+                                map1.put("position","SALEMAN_M");
+                            }else if(areap.equals("片区经理")){
+                                map1.put("position","SALEMAN_S");
+
                             }
                             area_positions.add(map1);
                         }

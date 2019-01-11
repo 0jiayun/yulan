@@ -132,8 +132,9 @@ public class InfoStateController {
     @ResponseBody
     public Map getYLcontractentryState(@RequestBody Map<String, Object> data) throws IOException {
         String cid = (String) data.get("cid");
+        Integer cyear = (Integer) data.get("cyear");
         Map<String, Object> map = new HashMap<>();
-        map = infoStateService.getYLcontractState(cid);
+        map = infoStateService.getYLcontractState(cid,cyear);
         return map;
     }
 
@@ -205,5 +206,53 @@ public class InfoStateController {
             return response.getResponseMap(1, "更新失败", null);
         }
 
+    }
+
+    /**
+     * 获取法务员抽查资料卡接口
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("getCustomerInfoCardLeagalChecked")
+    @ResponseBody
+    public Map getCustomerInfoCardLeagalChecked(@RequestBody Map<String, Object> data)throws IOException{
+        Integer legalchecked = (Integer) data.get("legalchecked");
+        Integer limit = (Integer)data.get("limit");
+        Integer page = (Integer)data.get("page");
+        if(limit==null||page==null) {
+            page=null;
+            limit=null;
+        } else {
+            page=(page-1)*limit+1;
+        }
+        int lastNum=page+limit-1;
+        Map<String, Object> map = new HashMap<>();
+        map.put("data",infoStateService.getCustomerInfoCardLeagalChecked(page,lastNum,legalchecked));
+        return map;
+    }
+
+    /**
+     * 获取法务员抽查协议书接口
+     * @param data
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("getYLcontractentryLeagalChecked")
+    @ResponseBody
+    public Map getYLcontractentryLeagalChecked(@RequestBody Map<String, Object> data)throws IOException{
+        Integer legalchecked = (Integer) data.get("legalchecked");
+        Integer limit = (Integer)data.get("limit");
+        Integer page = (Integer)data.get("page");
+        if(limit==null||page==null) {
+            page=null;
+            limit=null;
+        } else {
+            page=(page-1)*limit+1;
+        }
+        int lastNum=page+limit-1;
+        Map<String, Object> map = new HashMap<>();
+        map.put("data",infoStateService.getYLcontractentryLeagalChecked(page,lastNum,legalchecked));
+        return map;
     }
 }

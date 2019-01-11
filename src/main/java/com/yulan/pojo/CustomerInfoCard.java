@@ -12,7 +12,7 @@ public class CustomerInfoCard {
 
     private Short erpcopyed;
 
-    private Short contractyear;
+    private Integer contractyear;
 
     private String cid;
 
@@ -192,7 +192,17 @@ public class CustomerInfoCard {
 
     private String recipeTargetMb;
 
+    private String privateAccountAuthed;
+
     public CustomerInfoCard() {
+    }
+
+    public String getPrivateAccountAuthed() {
+        return privateAccountAuthed;
+    }
+
+    public void setPrivateAccountAuthed(String privateAccountAuthed) {
+        this.privateAccountAuthed = privateAccountAuthed;
     }
 
     public String getGroupid() {
@@ -219,11 +229,11 @@ public class CustomerInfoCard {
         this.erpcopyed = erpcopyed;
     }
 
-    public Short getContractyear() {
+    public Integer getContractyear() {
         return contractyear;
     }
 
-    public void setContractyear(Short contractyear) {
+    public void setContractyear(Integer contractyear) {
         this.contractyear = contractyear;
     }
 
@@ -939,7 +949,7 @@ public class CustomerInfoCard {
         this.recipeTargetMb = recipeTargetMb;
     }
 
-    public CustomerInfoCard(String groupid, Short deleted, Short erpcopyed, Short contractyear, String cid, String cname, String market, String marketname, String submarket, String submarketname, String marketmanager, String marketmanagername, String submarketmanager, String submarketmanagername, String managerposition, String xDistrict, String xAreaDistrict2, String xAreaDistrict3, String districtText, String areaDistrict2Text, String areaDistrict3Text, String xJuridicPerson, String juridicPersonHandset, String xOfficeTel, String xHandset, String xEmail, String xFax, String qq, String xPostAddress, String xZipCode, String xOfficeTel1, String xHandset2, String xDeliveryAdress, String faxWl, String zipCodeWl, String txAgentName, String wlAgentName, String preferedbrand, String currentProduct, Integer shopArea, String invoiceType, String isGeneraltaxpayer, String account1Name, String account1Bank, String account1, String account2Name, String account2Bank, String account2, String account3Name, String account3Bank, String account3, String file1Idcard, String file1Op, String file2Businesslicense, String file2Op, String file3Orgcode, String file3Op, String file4Gtqc, String file4Op, String state, String memo, String file5IdcardBg, String file5Op, String busientType, String account1Location, String account2Location, String file1IdcardNo, String file2BusinesslicenseNo, String file2BusinesslicenseEnd, String file3OrgcodeNo, String file4GtqcNo, String account1Memo, String account2Memo, String flag, Short file2BusinesslicenseNoend, String hasPublicAccount, String updateFlag, String sys2017StateChangeOld, String sys2017StateChangeLog, Date sys2017StateChangeTs, String invAddress, String invTelephone, String invBankname, String invBanmaccount, String invRequirement, Date invRequirementTs, String invRequirementList, Date invNotneedTs, String invNotneedIp, String customerentitytypex, Short legalchecked, String cnameNew, String recipeTargetMb) {
+    public CustomerInfoCard(String groupid, Short deleted, Short erpcopyed, Integer contractyear, String cid, String cname, String market, String marketname, String submarket, String submarketname, String marketmanager, String marketmanagername, String submarketmanager, String submarketmanagername, String managerposition, String xDistrict, String xAreaDistrict2, String xAreaDistrict3, String districtText, String areaDistrict2Text, String areaDistrict3Text, String xJuridicPerson, String juridicPersonHandset, String xOfficeTel, String xHandset, String xEmail, String xFax, String qq, String xPostAddress, String xZipCode, String xOfficeTel1, String xHandset2, String xDeliveryAdress, String faxWl, String zipCodeWl, String txAgentName, String wlAgentName, String preferedbrand, String currentProduct, Integer shopArea, String invoiceType, String isGeneraltaxpayer, String account1Name, String account1Bank, String account1, String account2Name, String account2Bank, String account2, String account3Name, String account3Bank, String account3, String file1Idcard, String file1Op, String file2Businesslicense, String file2Op, String file3Orgcode, String file3Op, String file4Gtqc, String file4Op, String state, String memo, String file5IdcardBg, String file5Op, String busientType, String account1Location, String account2Location, String file1IdcardNo, String file2BusinesslicenseNo, String file2BusinesslicenseEnd, String file3OrgcodeNo, String file4GtqcNo, String account1Memo, String account2Memo, String flag, Short file2BusinesslicenseNoend, String hasPublicAccount, String updateFlag, String sys2017StateChangeOld, String sys2017StateChangeLog, Date sys2017StateChangeTs, String invAddress, String invTelephone, String invBankname, String invBanmaccount, String invRequirement, Date invRequirementTs, String invRequirementList, Date invNotneedTs, String invNotneedIp, String customerentitytypex, Short legalchecked, String cnameNew, String recipeTargetMb) {
         this.groupid = groupid;
         this.deleted = deleted;
         this.erpcopyed = erpcopyed;

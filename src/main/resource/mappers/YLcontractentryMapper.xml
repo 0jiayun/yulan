@@ -67,7 +67,7 @@
     </select>
 
 
-    <resultMap id="BaseResultMap" type="com.yulan.pojo.YLcontract_v2015" >
+    <resultMap id="BaseResultMap" type="YLcontract_v2015" >
         <result column="CCYEAR" property="ccyear" jdbcType="DECIMAL" />
         <result column="CCID" property="ccid" jdbcType="VARCHAR" />
         <result column="A_RETAILING" property="aRetailing" jdbcType="DECIMAL" />
@@ -124,7 +124,7 @@
 
 
     <select id="getYLcontract_v2015" parameterType="java.util.Map" resultType="YLcontract_v2015">
-        select * from ( select * from YLCONTRACT_V2015 t where t.ccid=#{CCID} ORDER BY t.ccyear desc )WHERE ROWNUM =1
+        select * from ( select * from YLCONTRACT_V2015 t where t.ccid=#{CCID} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
     </select>
 
     <insert id="createYLcontract_v2015" parameterType="YLcontract_v2015" >
@@ -249,12 +249,30 @@
         where CCID = #{ccid} AND  CCYEAR = #{ccyear}
     </update>
 
-    <select id="getYLcontractHTML" parameterType="java.lang.Integer" resultMap="YLcontractHTMLMAP">
+    <select id="getYLcontractHTML" parameterType="java.util.Map" resultMap="YLcontractHTMLMAP">
         select TEST from YLCONTRACTENTRY_SHOW WHERE ID =#{ID}
     </select>
 
     <select id="getYLcontractentry" parameterType="java.util.Map" resultType="YLcontractentry">
-        select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1
+        select * from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc nulls last)WHERE ROWNUM =1
+    </select>
+
+    <select id="getYLcontractentryByYear" parameterType="java.util.Map" resultType="YLcontractentry">
+        select * from YLCONTRACTENTRY t where t.cid=#{CID} and t.cyear = #{CYEAR}
+    </select>
+
+    <select id="getYLcontractentryLeagalChecked" parameterType="java.util.Map" resultType="YLcontractentry">
+        select * from(
+        select rownum rm, c.*  from
+        (
+        select * from YLCONTRACTENTRY
+        <if test="LEGALCHECKED!=null">
+            where LEGALCHECKED = #{LEGALCHECKED}
+        </if>
+        ) c)tm
+        <if test="start!=null">
+            where rm &gt;= #{start} and rm &lt;= #{number}
+        </if>
     </select>
 
     <select id="getAllYlcs" resultMap="YlContractentryResultMap">
@@ -289,7 +307,7 @@
         SIGNED = #{SIGNED}
             </if>
         </set>
-        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
+        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc nulls last)WHERE ROWNUM =1)
     </update>
 
     <update id="lawCheckYLcontractentryState" parameterType="java.util.Map">
@@ -308,7 +326,7 @@
                 LEGALCHECKED = #{LEGALCHECKED}
             </if>
         </set>
-        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
+        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc nulls last)WHERE ROWNUM =1)
     </update>
 
     <select id="getAllYs" resultType="Map">
@@ -320,8 +338,8 @@
         (select u.realName Sname,s.* from
         (select w.realname Mname ,f.* from
         (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
-        YLCONTRACTENTRY t,customerinfocard c,(select * from AREA_USER t where t.userid=#{cid}) e
-        where t.cid=c.cid and e.area_code=c.market)f,web_user w
+        YLCONTRACTENTRY t,customerinfocard c
+        where t.cid=c.cid )f,web_user w
         where
         w.loginname=f.MARKETMANAGER)s,web_user u
         where
@@ -351,8 +369,8 @@
     <select id="countYs" resultType="int">
         select count (*) from
           (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
-        YLCONTRACTENTRY t,customerinfocard c,(select * from AREA_USER t where t.userid=#{cid}) e
-        where t.cid=c.cid and e.area_code=c.market)f
+        YLCONTRACTENTRY t,customerinfocard c
+        where t.cid=c.cid )f
         where 1=1
         <if test="year!=null">
             and cyear=#{year}
@@ -445,7 +463,7 @@
 
         ( select * from
 
-        (select a.area_belong,c.market, c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        (select a.area_belong,c.market, c.marketname,c.marketmanagername,c.submarketname,c.submarketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c,AREA_CODE a
         where t.cid=c.cid and c.market=a.area_code and t.cyear=c.contractyear ) e,(select area from area_owner w where w.owner=#{cid} and w.position=#{position} ) k
         where e.area_belong=k.area) l

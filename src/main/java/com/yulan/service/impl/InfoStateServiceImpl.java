@@ -7,6 +7,7 @@ import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
 import com.yulan.service.InfoStateService;
 import com.yulan.service.YLcontractentryService;
+import com.yulan.utils.MapUtils;
 import com.yulan.utils.StringUtil;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -35,6 +36,8 @@ public class InfoStateServiceImpl implements InfoStateService {
     private CustomerInfoCard customerInfoCard;
 
     private StringUtil stringUtil;
+
+    private MapUtils mapUtils;
 
     @Override
     public Map getCustomerInfoCardState(String cid) throws IOException {
@@ -76,48 +79,55 @@ public class InfoStateServiceImpl implements InfoStateService {
     }
 
     @Override
-    public Map getYLcontractState(String cid) throws IOException{
+    public Map getYLcontractState(String cid,Integer cyear) throws IOException{
         Map<String,Object> map = new HashMap<>();
         String yLcontractInfo = null;
 
 
-       yLcontractentry = yLcontractentryService.getYLcontractentry(cid);
+       yLcontractentry = yLcontractentryService.getYLcontractentryByYear(cid,cyear);
        String yLcontractentryState = yLcontractentry.getState();
        String yLcontractentryMemo = yLcontractentry.getWfmemo();
-        List<String> memoReplaced = new ArrayList<>();
-        //将原先数据库中的html解析
-        Document doc = Jsoup.parse(yLcontractentryMemo);
-        for (String retval: doc.text().split(";")){
-            memoReplaced.add(retval);
-        }
-        //转换原先审核记录中的特殊字段，可能还有其他的，以后再加
-        Map<String,Object> state = new HashMap();
-        state.put("销售副总","#CSA_CHECK#");
-        state.put("市场部","#DEP_MARKET_CHECK#");
-        state.put("销售中心经理","#ASM_CHECKING#");
 
-        for (Map.Entry<String,Object> entry : state.entrySet()) {
-            memoReplaced = stringUtil.replaceState(memoReplaced,(String)entry.getValue(),entry.getKey());
-        }
+       if(yLcontractentryMemo !=null){
+           List<String> memoReplaced = new ArrayList<>();
+           //将原先数据库中的html解析
+           Document doc = Jsoup.parse(yLcontractentryMemo);
+           for (String retval: doc.text().split(";")){
+               memoReplaced.add(retval);
+           }
+           //转换原先审核记录中的特殊字段，可能还有其他的，以后再加
+           Map<String,Object> state = new HashMap();
+           state.put("销售副总","#CSA_CHECK#");
+           state.put("市场部","#DEP_MARKET_CHECK#");
+           state.put("销售中心经理","#ASM_CHECKING#");
 
-       if( yLcontractentryState.equals("CUSTOMERAFFIRM") ){
-           yLcontractInfo ="客户查看确认协议数据中";
-       }else if(yLcontractentryState.equals("SALEMANFILLING")){
-            yLcontractInfo = "业务员填写中";
-       }else if(yLcontractentryState.equals("SALEMANMODIFYING")){
-           yLcontractInfo = "业务员修改中";
-       }else if(yLcontractentryState.equals("DEP_MARKET_CHECK")){
-           yLcontractInfo = "市场部审核中";
-       }else if(yLcontractentryState.equals("CSA_CHECK")){
-           yLcontractInfo = "销售副总批准中";
-       }else if(yLcontractentryState.equals("APPROVED")){
-            yLcontractInfo = "协议书通过";
+           for (Map.Entry<String,Object> entry : state.entrySet()) {
+               memoReplaced = stringUtil.replaceState(memoReplaced,(String)entry.getValue(),entry.getKey());
+           }
+
+           if( yLcontractentryState.equals("CUSTOMERAFFIRM") ){
+               yLcontractInfo ="客户查看确认协议数据中";
+           }else if(yLcontractentryState.equals("SALEMANFILLING")){
+               yLcontractInfo = "业务员填写中";
+           }else if(yLcontractentryState.equals("SALEMANMODIFYING")){
+               yLcontractInfo = "业务员修改中";
+           }else if(yLcontractentryState.equals("DEP_MARKET_CHECK")){
+               yLcontractInfo = "市场部审核中";
+           }else if(yLcontractentryState.equals("CSA_CHECK")){
+               yLcontractInfo = "销售副总批准中";
+           }else if(yLcontractentryState.equals("APPROVED")){
+               yLcontractInfo = "协议书通过";
+           }else{
+               yLcontractInfo = "暂无最新消息";
+           }
+           map.put("yLcontractInfo",yLcontractInfo);
+           map.put("yLcontractentryMemo",memoReplaced);
        }else{
-           yLcontractInfo = "暂无最新消息";
+           map.put("yLcontractInfo",yLcontractInfo);
+           map.put("yLcontractentryMemo","data does not exist");
        }
-       map.put("yLcontractInfo",yLcontractInfo);
-       map.put("yLcontractentryMemo",memoReplaced);
-       return map;
+
+        return map;
     }
 
     @Override
@@ -146,5 +156,39 @@ public class InfoStateServiceImpl implements InfoStateService {
         state = stringUtil.setUtf8(state);
         wfmemo = stringUtil.setUtf8(wfmemo);
         return yLcontractentryDao.checkYLcontractentry(cid,state,wfmemo,signed);
+    }
+
+    @Override
+    public List<CustomerInfoCard> getCustomerInfoCardLeagalChecked(Integer start, Integer number, Integer legalChecked) throws IOException {
+        List<CustomerInfoCard> list = customerInfoDao.getCustomerInfoCardLeagalChecked(start,number,legalChecked);
+        for(int i=0; i<list.size(); i++){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(list.get(i));
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+            }
+            list.set(i,mapUtils.mapToBean(map,CustomerInfoCard.class)) ;
+       }
+        return list;
+    }
+
+    @Override
+    public List<YLcontractentry> getYLcontractentryLeagalChecked(Integer start, Integer number, Integer legalChecked) throws IOException {
+        List<YLcontractentry> list = yLcontractentryDao.getYLcontractentryLeagalChecked(start,number,legalChecked);
+        for(int i=0; i<list.size(); i++){
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(list.get(i));
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+            }
+            list.set(i,mapUtils.mapToBean(map,YLcontractentry.class)) ;
+        }
+        return list;
     }
 }
