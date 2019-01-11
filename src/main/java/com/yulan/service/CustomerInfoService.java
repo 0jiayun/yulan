@@ -12,6 +12,8 @@ public interface CustomerInfoService {
 
     CustomerInfoCard getCustomerInfo(String cID)throws IOException;
 
+    CustomerInfoCard getCustomerInfoByYear(String cID,Integer year) throws IOException;
+
     Map<String, Object> showStateEchart(String year);
 
     Map getInfobyStateandmarketName(Integer start,Integer number,String year) throws UnsupportedEncodingException;
