@@ -307,7 +307,7 @@
         SIGNED = #{SIGNED}
             </if>
         </set>
-        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc )WHERE ROWNUM =1)
+        where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc nulls last)WHERE ROWNUM =1)
     </update>
 
     <update id="lawCheckYLcontractentryState" parameterType="java.util.Map">

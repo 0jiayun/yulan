@@ -26,8 +26,6 @@ public class CustomerController {
     @Autowired
     private CustomerInfoCardService customerInfoCardService;
     @Autowired
-    private AreaCodeService areaCodeService;
-    @Autowired
     private AreaDistrictService areaDistrictService;
     @Autowired
     private Area_ownerService area_ownerService;
@@ -40,43 +38,38 @@ public class CustomerController {
      */
     @ResponseBody@RequestMapping("createDataCards")
     public Map createDataCard(@RequestBody Map<String,Object> datas) throws UnsupportedEncodingException {
-        try {
-            String customerCode = (String) datas.get("customerCode");
-            String descp = (String) datas.get("descp");
-            List<String> areaCodes = (List<String>) datas.get("areaCodes");
-            List<String> areaDistricts = (List<String>) datas.get("areaDistricts");
-            List<String> customerTypes = (List<String>) datas.get("customerTypes");
-            if(areaCodes!=null) {
-                areaCodes=areaCodes.size()==0?null:areaCodes;
-            }
-            if(areaDistricts!=null) {
-                areaDistricts=areaDistricts.size()==0?null:areaDistricts;
-            }
-            if(customerTypes!=null) {
-                customerTypes=customerTypes.size()==0?null:customerTypes;
-            }
-            List<Customer> customers = customerService.getCustomers(customerCode,areaCodes,areaDistricts,customerTypes);
-            descp = StringUtil.setUtf8(descp);
-            Customerinfocardgroup customerinfocardgroup = customerInfoCardGroupService.getCustomerInfoCardGroupByName(descp);
-            if(customerinfocardgroup==null) {
-                customerinfocardgroup = new Customerinfocardgroup();
-                customerinfocardgroup.setId(StringUtil.createStringID());
-                customerinfocardgroup.setDescp(descp);
-                customerInfoCardGroupService.addCustomerInfoCardGroup(customerinfocardgroup);
-            } else {
-                List<Customer> customersExist = customerService.getCustomersByGroupID(customerinfocardgroup.getId());
-                customers.removeAll(customersExist);
-            }
-            int result = 0;
-            for (Customer customer:customers) {
-                CustomerInfoCard customerInfoCard = integrate(customer,customerinfocardgroup);
-                result += customerInfoCardService.addCustomerInfoCard(customerInfoCard)?1:0;
-            }
-            return Response.getResponseMap(0,"添加成功了"+result+"份资料卡",null);
-        } catch (Exception e) {
-            e.printStackTrace();
+        String customerCode = (String) datas.get("customerCode");
+        String descp = (String) datas.get("descp");
+        List<String> areaCodes = (List<String>) datas.get("areaCodes");
+        List<String> areaDistricts = (List<String>) datas.get("areaDistricts");
+        List<String> customerTypes = (List<String>) datas.get("customerTypes");
+        if(areaCodes!=null) {
+            areaCodes=areaCodes.size()==0?null:areaCodes;
         }
-        return null;
+        if(areaDistricts!=null) {
+            areaDistricts=areaDistricts.size()==0?null:areaDistricts;
+        }
+        if(customerTypes!=null) {
+            customerTypes=customerTypes.size()==0?null:customerTypes;
+        }
+        List<Customer> customers = customerService.getCustomers(customerCode,areaCodes,areaDistricts,customerTypes);
+        descp = StringUtil.setUtf8(descp);
+        Customerinfocardgroup customerinfocardgroup = customerInfoCardGroupService.getCustomerInfoCardGroupByName(descp);
+        if(customerinfocardgroup==null) {
+            customerinfocardgroup = new Customerinfocardgroup();
+            customerinfocardgroup.setId(StringUtil.createStringID());
+            customerinfocardgroup.setDescp(descp);
+            customerInfoCardGroupService.addCustomerInfoCardGroup(customerinfocardgroup);
+        } else {
+            List<Customer> customersExist = customerService.getCustomersByGroupID(customerinfocardgroup.getId());
+            customers.removeAll(customersExist);
+        }
+        int result = 0;
+        for (Customer customer:customers) {
+            CustomerInfoCard customerInfoCard = integrate(customer,customerinfocardgroup);
+            result += customerInfoCardService.addCustomerInfoCard(customerInfoCard)?1:0;
+        }
+        return Response.getResponseMap(0,"添加成功了"+result+"份资料卡",null);
     }
 
     /**

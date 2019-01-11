@@ -47,6 +47,8 @@
 		<property name="maxUploadSize" value="102400000"/>
 	</bean>
 
+	<bean class="com.yulan.controller.ExceptionResolver" />
+
 	<!-- 使用注解的包，包括子集 -->
 	<context:component-scan base-package="com.yulan.controller" />
 </beans>  
