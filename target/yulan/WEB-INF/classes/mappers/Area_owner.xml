@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yulan.dao.Area_ownerDao">
+
+    <select id="getAreaOwnerByAreaCode" parameterType="Map" resultType="Area_owner">
+        select * from AREA_OWNER where AREA_CODE = #{areaCode}
+    </select>
+
     <resultMap id="Area_ownerList" type="Area_owner" >
         <result column="owner" property="owner" />
         <result column="area" property="area" />

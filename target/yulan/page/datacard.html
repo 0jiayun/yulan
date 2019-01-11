@@ -418,6 +418,7 @@
                 },
                 error:function() {
                     layer.closeAll("loading");
+                    layer.alert(res.msg);
                 }
             });
         })
@@ -439,6 +440,7 @@
                 },
                 error:function() {
                     layer.closeAll("loading");
+                    layer.alert(res.msg);
                 }
             });
         });
