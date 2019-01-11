@@ -400,6 +400,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     public Map getUserCustomerinfo(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find,String state, String position,String ylcstate) throws UnsupportedEncodingException {
         List<Map<String, Object>> list=new ArrayList<>();
         Map<String,Object> Map=new HashMap<>();
+        String a="";
         int count=0;
         if(position.equals("MANAGER")){
             list=customerInfoDao.getCustomerinfo_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
@@ -408,6 +409,16 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             list=customerInfoDao.getCustomerinfo_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
         }else if( position.equals("SALEMAN_S")){
+            List<Map<String,Object>> area=customerInfoDao.getArea_Smanager(cid);
+
+            for (Map<String,Object> m:area){
+                for (Map.Entry<String, Object> entry : m.entrySet()) {
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+                a=m.get("DISTRICT_NAME").toString();
+            }
+
             list=customerInfoDao.getCustomerinfo_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
 
@@ -421,7 +432,28 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
             }
+            if(map.get("FILE_1_IDCARD")==null){
+                map.put("FILE_1_IDCARD",0);
+            }else{
+                map.put("FILE_1_IDCARD",1);
+            }
+            if(map.get("FILE_2_BUSINESSLICENSE")==null){
+                map.put("FILE_2_BUSINESSLICENSE",0);
+            }else{
+                map.put("FILE_2_BUSINESSLICENSE",1);
+            }
+            if(map.get("FILE_3_ORGCODE")==null){
+                map.put("FILE_3_ORGCODE",0);
+            }else{
+                map.put("FILE_3_ORGCODE",1);
+            }
+            if(map.get("FILE_4_GTQC")==null){
+                map.put("FILE_4_GTQC",0);
+            }else{
+                map.put("FILE_4_GTQC",1);
+            }
         }
+        Map.put("area",a);
         Map.put("data",list);
         Map.put("count",count);
         return Map;

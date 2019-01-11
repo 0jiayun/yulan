@@ -1,6 +1,6 @@
 //本地服务器
 // var remoteURL="http://localhost:80/yulan";
-// var remoteURL="http://localhost:8080/yulan";
+var remoteURL="http://localhost:8080/yulan";
 var remoteImageURL = "http://localhost:80/upload";
 var remoteURL="http://localhost:8080/yulan";
 //远程服务器

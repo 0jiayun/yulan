@@ -178,4 +178,25 @@ public class Area_owner {
     public void setCenter_manager(String center_manager) {
         this.center_manager = center_manager;
     }
+
+    @Override
+    public String toString() {
+        return "AreaOwner{" +
+                "owner='" + owner + '\'' +
+                ", position='" + position + '\'' +
+                ", area='" + area + '\'' +
+                ", status_id='" + status_id + '\'' +
+                ", creator='" + creator + '\'' +
+                ", date_cre=" + date_cre +
+                ", updater='" + updater + '\'' +
+                ", date_update=" + date_update +
+                ", area_code='" + area_code + '\'' +
+                ", base_pay='" + base_pay + '\'' +
+                ", center_manager='" + center_manager + '\'' +
+                ", name='" + name + '\'' +
+                ", area_codeName='" + area_codeName + '\'' +
+                ", areaName='" + areaName + '\'' +
+                ", center_managerName='" + center_managerName + '\'' +
+                '}';
+    }
 }

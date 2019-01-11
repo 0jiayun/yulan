@@ -19,6 +19,11 @@ public class Area_ownerServiceImpl implements Area_ownerService {
     private Area_ownerDao area_ownerDao;
 
     @Override
+    public List<Area_owner> getAreaOwnerByAreaCode(String areaCode) {
+        return area_ownerDao.getAreaOwnerByAreaCode(areaCode);
+    }
+
+    @Override
     public Map getebcontractwfmemberbyYear(Integer start, Integer number, String owner) throws UnsupportedEncodingException {
         Map map=new HashMap<String,Object>(2);
         List<Area_owner> list=area_ownerDao.getArea_owners(start,number,owner);
