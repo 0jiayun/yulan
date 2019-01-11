@@ -498,4 +498,306 @@
         </if>
     </select>
 
+    <select id="getArea_Cmanager" resultType="Map">
+        select c.area_name,c.area_code area,d.district_name,d.district_id from
+             (select d.area from area_owner d where d.owner=#{cid}) o,area_code c,area_district d where
+        c.area_belong=o.area and c.area_code=d.area_code
+    </select>
+
+    <select id="getArea_Mmanager" resultType="Map">
+        select o.area,c.area_name,d.district_id,d.district_name from
+           (select d.area from area_owner d where d.owner=#{cid}) o,area_district d,area_code c
+        where o.area=d.area_code and c.area_code=o.area
+    </select>
+
+    <select id="getArea_Smanager" resultType="Map">
+        select t.district_name,t.district_id  from
+          AREA_DISTRICT t,(select d.area from area_owner d where d.owner=#{cid}) o
+        where t.district_id=o.area
+    </select>
+
+    <select id="getCustomerinfo_Cmanager" resultType="Map">
+        select
+        *
+
+        from(
+        select rownum rm, l.*  from
+
+        ( select y.state ylcstate,u.* from
+        ( select c.area_code area,d.district_id from
+        (select d.area from area_owner d where d.owner=#{cid}) o,area_code c,area_district d where
+        c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u,ylcontractentry y
+        where
+        g.area=u.market and g.district_id=u.submarket and u.cid=y.cid and u.contractyear =y.cyear) l
+
+        where 1=1
+        <if test="year!=null">
+            and contractyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKET=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKET=#{area_2}
+        </if>
+
+        <if test="ylcstate!=null">
+            and ylcstate=#{ylcstate}
+        </if>
+
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
+        </if>
+
+
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+    </select>
+
+    <select id="getCustomerinfo_Mmanager" resultType="Map">
+        select
+        *
+
+        from(
+        select rownum rm, l.*  from
+
+        (select y.state ylcstate,u.* from
+        ( select o.area,c.area_name,d.district_id,d.district_name from
+        (select d.area from area_owner d where d.owner=#{cid}) o,area_district d,area_code c
+        where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u,ylcontractentry y
+        where
+        g.area=u.market and g.district_id=u.submarket and u.cid=y.cid and u.contractyear =y.cyear) l
+
+        where 1=1
+        <if test="year!=null">
+            and contractyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+
+        <if test="ylcstate!=null">
+            and ylcstate=#{ylcstate}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
+        </if>
+
+
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+    </select>
+
+    <select id="getCustomerinfo_Smanager" resultType="Map">
+        select
+        *
+
+        from(
+        select rownum rm, l.*  from
+
+        (select y.state ylcstate,u.* from
+        ( select d.area from area_owner d where d.owner=#{cid})g,customerinfocard u,ylcontractentry y
+        where
+        g.area=u.submarket and u.cid=y.cid and u.contractyear =y.cyear) l
+
+        where 1=1
+        <if test="year!=null">
+            and contractyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+
+        <if test="ylcstate!=null">
+            and ylcstate=#{ylcstate}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
+        </if>
+
+
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+    </select>
+
+    <select id="getAllCustomerinfo" resultType="Map">
+        select
+        *
+
+        from(
+        select rownum rm, l.*  from
+
+        (select y.state ylcstate,u.* from
+        customerinfocard u,ylcontractentry y
+        where
+        u.cid=y.cid and u.contractyear =y.cyear) l
+
+        where 1=1
+        <if test="year!=null">
+            and contractyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+        <if test="ylcstate!=null">
+            and ylcstate=#{ylcstate}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
+        </if>
+
+
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+    </select>
+
+    <select id="count_Cmanager" resultType="int">
+        select count (*) from
+
+
+        (select y.state ylcstate,u.* from
+        ( select c.area_code area,d.district_id from
+        (select d.area from area_owner d where d.owner=#{cid}) o,area_code c,area_district d where
+        c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u,ylcontractentry y
+        where
+        g.area=u.market and g.district_id=u.submarket and u.cid=y.cid and u.contractyear =y.cyear)f
+        where 1=1
+        <if test="year!=null">
+            and contractyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+        <if test="ylcstate!=null">
+            and ylcstate=#{ylcstate}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and f.cid like  '%'||#{find}||'%' or  f.CNAME like  '%'||#{find}||'%'
+        </if>
+
+    </select>
+
+    <select id="count_Mmanager" resultType="int">
+        select count (*) from
+
+
+        (select y.state ylcstate,u.* from
+        ( select o.area,c.area_name,d.district_id,d.district_name from
+        (select d.area from area_owner d where d.owner=#{cid}) o,area_district d,area_code c
+        where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u,ylcontractentry y
+        where
+        g.area=u.market and g.district_id=u.submarket and u.cid=y.cid and u.contractyear =y.cyear)f
+        where 1=1
+        <if test="year!=null">
+            and contractyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+        <if test="ylcstate!=null">
+            and ylcstate=#{ylcstate}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and f.cid like  '%'||#{find}||'%' or  f.CNAME like  '%'||#{find}||'%'
+        </if>
+
+    </select>
+
+    <select id="count_Smanager" resultType="int">
+        select count (*) from
+
+
+        ( select y.state ylcstate,u.* from
+        ( select d.area from area_owner d where d.owner=#{cid})g,customerinfocard u,ylcontractentry y
+        where
+        g.area=u.submarket and u.cid=y.cid and u.contractyear =y.cyear)f
+        where 1=1
+        <if test="year!=null">
+            and contractyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+        <if test="ylcstate!=null">
+            and ylcstate=#{ylcstate}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and f.cid like  '%'||#{find}||'%' or  f.CNAME like  '%'||#{find}||'%'
+        </if>
+
+    </select>
+
+    <select id="countAll" resultType="int">
+        select count (*) from
+
+
+        (select y.state ylcstate,u.* from
+        customerinfocard u,ylcontractentry y
+        where
+        u.cid=y.cid and u.contractyear =y.cyear)f
+        where 1=1
+        <if test="year!=null">
+            and contractyear=#{year}
+        </if>
+        <if test="area_1!=null">
+            and MARKETNAME=#{area_1}
+        </if>
+        <if test="area_2!=null">
+            and SUBMARKETNAME=#{area_2}
+        </if>
+        <if test="ylcstate!=null">
+            and ylcstate=#{ylcstate}
+        </if>
+        <if test="state!=null">
+            and state=#{state}
+        </if>
+
+        <if test="find!=null">
+            and f.cid like  '%'||#{find}||'%' or  f.CNAME like  '%'||#{find}||'%'
+        </if>
+
+    </select>
+
 </mapper>

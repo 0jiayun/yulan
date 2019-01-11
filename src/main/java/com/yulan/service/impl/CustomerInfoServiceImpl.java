@@ -15,10 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class CustomerInfoServiceImpl implements CustomerInfoService {
@@ -324,6 +321,91 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             }
         }
         return list;
+    }
+
+    @Override
+    public List<Map<String, Object>> getUserArea(String cid,String position) throws UnsupportedEncodingException {
+        List<Map<String,Object>> list=new ArrayList<>();
+        List<Map<String,Object>> areas=new ArrayList<>();
+        if(position.equals("MANAGER")){
+            list=customerInfoDao.getArea_Cmanager(cid);
+        }else if(position.equals("SALEMAN_M")){
+            list=customerInfoDao.getArea_Mmanager(cid);
+        }else{
+            list=customerInfoDao.getArea_Smanager(cid);
+        }
+        if (!position.equals("SALEMAN_S")){
+
+            for (Map<String, Object> map : list) {  //大区
+                Map<String, Object> bigMap=new HashMap<>();
+
+                String bid=map.get("AREA").toString();
+
+                bigMap.put("bname",StringUtil.getUtf8(map.get("AREA_NAME").toString()));
+                bigMap.put("bid",map.get("AREA"));
+                List<Map> datas=new ArrayList<>();
+                for (Map<String, Object> m : list){  //片区
+
+                    if (m.get("AREA").toString().equals(bid)){
+                        Map<String, Object> smallMap=new HashMap<>();
+                        smallMap.put("sname",StringUtil.getUtf8(m.get("DISTRICT_NAME").toString()));
+                        smallMap.put("sid",m.get("DISTRICT_ID"));
+                        datas.add(smallMap);
+                    }
+
+                }
+                bigMap.put("Sarea",datas);
+                areas.add(bigMap);
+
+            }
+            HashSet h = new HashSet(areas);
+            areas.clear();
+            areas.addAll(h);//去重
+        }else{//片区
+            for (Map<String, Object> map : list) {  //大区
+
+
+                Map<String, Object> smallMap=new HashMap<>();
+                smallMap.put("sname",StringUtil.getUtf8(map.get("DISTRICT_NAME").toString()));
+                smallMap.put("sid",map.get("DISTRICT_ID"));
+                areas.add(smallMap);
+            }
+
+        }
+
+
+        return areas;
+    }
+
+    @Override
+    public Map getUserCustomerinfo(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find,String state, String position,String ylcstate) throws UnsupportedEncodingException {
+        List<Map<String, Object>> list=new ArrayList<>();
+        Map<String,Object> Map=new HashMap<>();
+        int count=0;
+        if(position.equals("MANAGER")){
+            list=customerInfoDao.getCustomerinfo_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            count=customerInfoDao.count_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+        }else if(position.equals("SALEMAN_M")){
+            list=customerInfoDao.getCustomerinfo_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            count=customerInfoDao.count_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+        }else if( position.equals("SALEMAN_S")){
+            list=customerInfoDao.getCustomerinfo_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            count=customerInfoDao.count_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+
+        }else{
+            list=customerInfoDao.getAllCustomerinfo(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            count=customerInfoDao.countAll(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+
+        }
+        for (Map<String, Object> map : list) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
+                String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                entry.setValue(origin);
+            }
+        }
+        Map.put("data",list);
+        Map.put("count",count);
+        return Map;
     }
 
 

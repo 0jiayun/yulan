@@ -85,4 +85,61 @@ public interface CustomerInfoDao {
 
     List<CustomerInfoCard> getCustomerInfoCardLeagalChecked(@Param("start")Integer start,@Param("number") Integer number,@Param("LEGALCHECKED")Integer legalchecked );
 
+
+    List<Map<String, Object>> getArea_Cmanager(@Param("cid")String cid);//销售中心经理获取管理地区
+
+    List<Map<String, Object>> getArea_Mmanager(@Param("cid")String cid);//大区经理获取管理地区
+
+    List<Map<String, Object>> getArea_Smanager(@Param("cid")String cid);//片区经理获取管理地区
+
+    List<Map<String, Object>> getCustomerinfo_Cmanager(@Param("start")Integer start,@Param("number") Integer number,
+                                                       @Param("cid")String cid,@Param("state")String state,
+                                                       @Param("year")Integer year,@Param("area_1")String area_1,
+                                                       @Param("area_2")String area_2,@Param("find")String find,
+                                                       @Param("ylcstate")String ylcstate);//销售中心经理获取管理地区的资料卡
+
+    List<Map<String, Object>> getCustomerinfo_Mmanager(@Param("start")Integer start,@Param("number") Integer number,
+                                                       @Param("cid")String cid,@Param("state")String state,
+                                                       @Param("year")Integer year,@Param("area_1")String area_1,
+                                                       @Param("area_2")String area_2,@Param("find")String find,
+                                                       @Param("ylcstate")String ylcstate);//大区经理获取管理地区的资料卡
+
+    List<Map<String, Object>> getCustomerinfo_Smanager(@Param("start")Integer start,@Param("number") Integer number,
+                                                       @Param("cid")String cid,@Param("state")String state,
+                                                       @Param("year")Integer year,@Param("area_1")String area_1,
+                                                       @Param("area_2")String area_2,@Param("find")String find,
+                                                       @Param("ylcstate")String ylcstate);//片区经理获取管理地区的资料卡
+
+    List<Map<String, Object>> getAllCustomerinfo(@Param("start")Integer start,@Param("number") Integer number,
+                                                 @Param("cid")String cid,@Param("state")String state,
+                                                 @Param("year")Integer year,@Param("area_1")String area_1,
+                                                 @Param("area_2")String area_2,@Param("find")String find,
+                                                 @Param("ylcstate")String ylcstate);//内部审核获取的资料卡所有地区
+
+    int count_Cmanager(@Param("start")Integer start,@Param("number") Integer number,
+                       @Param("cid")String cid,@Param("state")String state,
+                       @Param("year")Integer year,@Param("area_1")String area_1,
+                       @Param("area_2")String area_2,@Param("find")String find,
+                       @Param("ylcstate")String ylcstate);
+
+    int count_Mmanager(@Param("start")Integer start,@Param("number") Integer number,
+                      @Param("cid")String cid,@Param("state")String state,
+                      @Param("year")Integer year,@Param("area_1")String area_1,
+                      @Param("area_2")String area_2,@Param("find")String find,
+                      @Param("ylcstate")String ylcstate);
+
+    int count_Smanager(@Param("start")Integer start,@Param("number") Integer number,
+                       @Param("cid")String cid,@Param("state")String state,
+                       @Param("year")Integer year,@Param("area_1")String area_1,
+                       @Param("area_2")String area_2,@Param("find")String find,
+                       @Param("ylcstate")String ylcstate);
+
+    int countAll(@Param("start")Integer start,@Param("number") Integer number,
+                 @Param("cid")String cid,@Param("state")String state,
+                 @Param("year")Integer year,@Param("area_1")String area_1,
+                 @Param("area_2")String area_2,@Param("find")String find,
+                 @Param("ylcstate")String ylcstate);
+
+
+
 }

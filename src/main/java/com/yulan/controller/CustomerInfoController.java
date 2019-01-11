@@ -5,6 +5,7 @@ import com.yulan.pojo.YLcontract_v2015_paa;
 import com.yulan.service.CustomerInfoService;
 import com.yulan.utils.FileUpload;
 import com.yulan.utils.Response;
+import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -255,5 +256,70 @@ public class CustomerInfoController {
         List<Map<String,Object>> list = customerInfoService.getCustomerInfoCardStateByArea(year);
         return  list;
     }
+
+    /**
+     *获取登录用户所管地区
+     */
+    @RequestMapping("getAreas")
+    @ResponseBody
+    public List<Map<String,Object>> getAreas(@RequestBody Map<String,Object> data) throws UnsupportedEncodingException {
+        String cid=data.get("cid").toString();
+        String position=data.get("position").toString();
+        return customerInfoService.getUserArea(cid,position);
+    }
+
+    /**
+     * 增加了协议书修改筛选的资料卡列表
+     * @param m
+     * @return
+     * @throws UnsupportedEncodingException
+     */
+    @RequestMapping("getNcustomerinfo")
+    @ResponseBody
+    public Map getUserCustomerinfo(@RequestBody Map<String,Object> m) throws UnsupportedEncodingException {
+        Integer limit=Integer.parseInt(m.get("limit").toString());
+        Integer page=Integer.parseInt(m.get("page").toString());
+        String position=m.get("position").toString();
+        String ylcstate=m.get("ylcstate").toString();
+        String state=m.get("state").toString();
+        Integer year=null;
+        if (m.get("year")!=null&&!m.get("year").equals("")){
+            year=Integer.parseInt(m.get("year").toString());
+        }
+        String cid=m.get("cid").toString();
+        String area_1=m.get("area_1").toString();
+        String area_2=m.get("area_2").toString();
+        String find= StringUtil.setUtf8(m.get("find").toString());
+        if(state.equals("")){
+            state=null;
+        }
+        if(ylcstate.equals("")){
+            ylcstate=null;
+        }
+        if(area_1.equals("")){
+            area_1=null;
+        }else{
+            area_1=StringUtil.setUtf8(area_1);
+        }
+        if(area_2.equals("")){
+            area_2=null;
+        }else{
+            area_2=StringUtil.setUtf8(area_2);
+        }
+        Integer lastNum=null;
+        if(limit==null||page==null) {
+            page=null;
+            limit=null;
+        } else {
+            page=(page-1)*limit+1;
+            lastNum=page+limit-1;
+        }
+        Map<String,Object> map=customerInfoService.getUserCustomerinfo(page,lastNum,year,cid,area_1,area_2,find,state,position,ylcstate);
+        map.put("msg","");
+        map.put("code",0);
+
+        return map;
+    }
+
 
 }
