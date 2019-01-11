@@ -243,6 +243,10 @@
         select * from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc nulls last)WHERE ROWNUM =1
     </select>
 
+    <select id="getCustomerInfoByYear" parameterType="java.util.Map" resultType="CustomerInfoCard">
+        select * from CUSTOMERINFOCARD t where t.cid=#{CID} and t.contractyear = #{YEAR}
+    </select>
+
     <select id="getYLcontract" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
         select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
     </select>

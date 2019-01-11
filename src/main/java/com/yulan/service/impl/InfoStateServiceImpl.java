@@ -40,10 +40,10 @@ public class InfoStateServiceImpl implements InfoStateService {
     private MapUtils mapUtils;
 
     @Override
-    public Map getCustomerInfoCardState(String cid) throws IOException {
+    public Map getCustomerInfoCardState(String cid,Integer year) throws IOException {
         Map<String,Object> map = new HashMap<>();
         String customerInfo = null;
-        customerInfoCard = customerInfoService.getCustomerInfo(cid);
+        customerInfoCard = customerInfoService.getCustomerInfoByYear(cid,year);
         String customerInfoCardState = customerInfoCard.getState();
         String memo = customerInfoCard.getMemo();
 

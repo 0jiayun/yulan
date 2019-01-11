@@ -105,6 +105,27 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     }
 
+    public CustomerInfoCard getCustomerInfoByYear(String cID,Integer year) throws IOException {
+        if(customerInfoDao.getCustomerInfoByYear(cID,year) == null){
+            return null;
+        }else{
+            customerInfoCard = customerInfoDao.getCustomerInfoByYear(cID,year);
+            customerInfoCard.setPrivateAccountAuthed(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()).getPrivateAccountAuthed());
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(customerInfoCard);
+
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+                //          System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            }
+            return mapUtils.mapToBean(map,CustomerInfoCard.class);
+        }
+
+    }
+
     @Override
     public YLcontract_v2015_paa getYLcontract(String cCID) throws  IOException{
         if(customerInfoDao.getYLcontract(cCID)== null){
