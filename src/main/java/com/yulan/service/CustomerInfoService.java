@@ -40,5 +40,11 @@ public interface CustomerInfoService {
 
     List<Map<String,Object>> getCustomerInfoCardStateByArea(String year)throws IOException;
 
+    //获取登录用户管理地区
+    List<Map<String,Object>> getUserArea(String cid,String position) throws UnsupportedEncodingException;
+
+    //获取登录用户管理资料卡
+    Map getUserCustomerinfo(Integer start,Integer number,Integer year,String cid,String area_1,String area_2,String find,String state,String position,String ylcstate) throws UnsupportedEncodingException;
+
 
 }
