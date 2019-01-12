@@ -89,7 +89,10 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             return null;
         }else{
             customerInfoCard = customerInfoDao.getCustomerInfo(cID);
-            customerInfoCard.setPrivateAccountAuthed(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()).getPrivateAccountAuthed());
+            //判断数据库中数据是否存在
+            if(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()) != null) {
+                customerInfoCard.setPrivateAccountAuthed(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()).getPrivateAccountAuthed());
+            }
             Map<String, Object> map = new HashMap<String, Object>();
             map = mapUtils.beanToMap(customerInfoCard);
 
@@ -105,12 +108,35 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     }
 
-    @Override
-    public YLcontract_v2015_paa getYLcontract(String cCID) throws  IOException{
-        if(customerInfoDao.getYLcontract(cCID)== null){
+    public CustomerInfoCard getCustomerInfoByYear(String cID,Integer year) throws IOException {
+        if(customerInfoDao.getCustomerInfoByYear(cID,year) == null){
             return null;
         }else{
-            yLcontract_v2015_paa = customerInfoDao.getYLcontract(cCID);
+            customerInfoCard = customerInfoDao.getCustomerInfoByYear(cID,year);
+            if(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()) != null) {
+                customerInfoCard.setPrivateAccountAuthed(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()).getPrivateAccountAuthed());
+            }
+            Map<String, Object> map = new HashMap<String, Object>();
+            map = mapUtils.beanToMap(customerInfoCard);
+
+            for (Map.Entry<String,Object> entry : map.entrySet()) {
+                if(entry.getValue() instanceof String){
+                    String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
+                    entry.setValue(origin);
+                }
+                //          System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+            }
+            return mapUtils.mapToBean(map,CustomerInfoCard.class);
+        }
+
+    }
+
+    @Override
+    public YLcontract_v2015_paa getYLcontract(String cCID,Integer ccyear) throws  IOException{
+        if(customerInfoDao.getYLcontractByYear(cCID,ccyear)== null){
+            return null;
+        }else{
+            yLcontract_v2015_paa = customerInfoDao.getYLcontractByYear(cCID,ccyear);
             Map<String, Object> map = new HashMap<String, Object>();
             map = mapUtils.beanToMap(yLcontract_v2015_paa);
 
@@ -403,11 +429,15 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         String a="";
         int count=0;
         if(position.equals("MANAGER")){
+
             list=customerInfoDao.getCustomerinfo_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+
+            Map.put("area",this.getUserArea(cid,position));
         }else if(position.equals("SALEMAN_M")){
             list=customerInfoDao.getCustomerinfo_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            Map.put("area",this.getUserArea(cid,position));
         }else if( position.equals("SALEMAN_S")){
             List<Map<String,Object>> area=customerInfoDao.getArea_Smanager(cid);
 
@@ -418,6 +448,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 }
                 a=m.get("DISTRICT_NAME").toString();
             }
+            Map.put("area",a);
 
             list=customerInfoDao.getCustomerinfo_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
@@ -425,12 +456,19 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         }else{
             list=customerInfoDao.getAllCustomerinfo(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.countAll(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            Map.put("area","");
 
         }
         for (Map<String, Object> map : list) {
             for (Map.Entry<String, Object> entry : map.entrySet()) {
                 String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
+            }
+            String ylc=customerInfoDao.getYlcstate(map.get("CID").toString(),Integer.parseInt(map.get("CONTRACTYEAR").toString()));
+            if (ylc==null){
+                map.put("YLCSTATE","SALEMANFILLING");
+            }else{
+                map.put("YLCSTATE",ylc);
             }
             if(map.get("FILE_1_IDCARD")==null){
                 map.put("FILE_1_IDCARD",0);
@@ -453,7 +491,17 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 map.put("FILE_4_GTQC",1);
             }
         }
-        Map.put("area",a);
+        if(ylcstate!=null){
+            Iterator<Map<String,Object>> it = list.iterator();
+            while(it.hasNext()){
+                Map<String,Object> x = it.next();
+                System.out.println(x.get("YLCSTATE"));
+                if(!x.get("YLCSTATE").equals(ylcstate)){
+                    it.remove();
+                }
+            }
+        }
+
         Map.put("data",list);
         Map.put("count",count);
         return Map;

@@ -116,8 +116,9 @@ public class InfoStateController {
     @ResponseBody
     public Map getCustomerInfoCardState(@RequestBody Map<String, Object> data) throws IOException {
         String cid = (String) data.get("cid");
+        Integer year = (Integer)data.get("year");
         Map<String, Object> map = new HashMap<>();
-        map = infoStateService.getCustomerInfoCardState(cid);
+        map = infoStateService.getCustomerInfoCardState(cid,year);
         return map;
     }
 

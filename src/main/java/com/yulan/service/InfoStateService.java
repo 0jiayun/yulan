@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface InfoStateService {
 
-    Map getCustomerInfoCardState(String cid)throws IOException;
+    Map getCustomerInfoCardState(String cid,Integer year)throws IOException;
 
     Map getYLcontractState(String cid,Integer cyear)throws IOException;
 

@@ -11,6 +11,8 @@ public interface CustomerInfoDao {
 
     CustomerInfoCard getCustomerInfo(@Param("CID") String cID);
 
+    CustomerInfoCard getCustomerInfoByYear(@Param("CID") String cid,@Param("YEAR") Integer year);
+
     List<Map<String,Object>> getInfobyStateandmarketName(@Param("start")Integer start, @Param("number") Integer number,@Param("year")String year);
 
     List<Map> getInfoBySate(@Param("year")String year);
@@ -42,6 +44,8 @@ public interface CustomerInfoDao {
      * @return
      */
     YLcontract_v2015_paa getYLcontract(@Param("CCID") String cCID);
+
+    YLcontract_v2015_paa getYLcontractByYear(@Param("CCID") String cCID,@Param("CCYEAR") Integer ccyear);
 
     /**
      *
@@ -91,6 +95,9 @@ public interface CustomerInfoDao {
     List<Map<String, Object>> getArea_Mmanager(@Param("cid")String cid);//大区经理获取管理地区
 
     List<Map<String, Object>> getArea_Smanager(@Param("cid")String cid);//片区经理获取管理地区
+
+
+    String getYlcstate(@Param("cid")String cid,@Param("year")int year);//获取资料卡cid相应的协议书状态
 
     List<Map<String, Object>> getCustomerinfo_Cmanager(@Param("start")Integer start,@Param("number") Integer number,
                                                        @Param("cid")String cid,@Param("state")String state,

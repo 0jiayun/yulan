@@ -134,7 +134,7 @@
 
         ) tm
         <if test="start!=null">
-          where rm &gt;= #{start} and rm &lt;= #{number }
+          where rm &gt;= #{start} and rm &lt;= #{number}
         </if>
     </select>
     
@@ -240,11 +240,19 @@
     </select>
 
     <select id="getCustomerInfo" parameterType="java.util.Map" resultType="CustomerInfoCard">
-        select * from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc nulls last)WHERE ROWNUM =1
+        select * from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID,jdbcType=VARCHAR} ORDER BY t.contractyear desc nulls last)WHERE ROWNUM =1
+    </select>
+
+    <select id="getCustomerInfoByYear" parameterType="java.util.Map" resultType="CustomerInfoCard">
+        select * from CUSTOMERINFOCARD t where t.cid=#{CID,jdbcType=VARCHAR} and t.contractyear = #{YEAR}
     </select>
 
     <select id="getYLcontract" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
-        select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
+        select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID,jdbcType=VARCHAR} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
+    </select>
+
+    <select id="getYLcontractByYear" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
+        select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID,jdbcType=VARCHAR} and t.ccyear = #{CCYEAR}
     </select>
 
     <update id="updateCustomerInfo" parameterType="CustomerInfoCard">
@@ -516,6 +524,14 @@
         where t.district_id=o.area
     </select>
 
+    <select id="getYlcstate" resultType="String">
+        select state from ylcontractentry y where y.cid=#{cid}
+        <if test="year!=null">
+            and y.cyear=#{year}
+        </if>
+
+    </select>
+
     <select id="getCustomerinfo_Cmanager" resultType="Map">
         select
         *
@@ -523,12 +539,12 @@
         from(
         select rownum rm, l.*  from
 
-        ( select y.state ylcstate,u.* from
+        ( select u.* from
         ( select c.area_code area,d.district_id from
         (select d.area from area_owner d where d.owner=#{cid}) o,area_code c,area_district d where
-        c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u,ylcontractentry y
+        c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u
         where
-        g.area=u.market and g.district_id=u.submarket and u.cid=y.cid and u.contractyear =y.cyear) l
+        g.area=u.market and g.district_id=u.submarket ) l
 
         where 1=1
         <if test="year!=null">
@@ -541,9 +557,7 @@
             and SUBMARKET=#{area_2}
         </if>
 
-        <if test="ylcstate!=null">
-            and ylcstate=#{ylcstate}
-        </if>
+
 
         <if test="state!=null">
             and state=#{state}
@@ -564,12 +578,12 @@
         from(
         select rownum rm, l.*  from
 
-        (select y.state ylcstate,u.* from
+        (select u.* from
         ( select o.area,c.area_name,d.district_id,d.district_name from
         (select d.area from area_owner d where d.owner=#{cid}) o,area_district d,area_code c
-        where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u,ylcontractentry y
+        where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u
         where
-        g.area=u.market and g.district_id=u.submarket and u.cid=y.cid and u.contractyear =y.cyear) l
+        g.area=u.market and g.district_id=u.submarket ) l
 
         where 1=1
         <if test="year!=null">
@@ -582,9 +596,7 @@
             and SUBMARKETNAME=#{area_2}
         </if>
 
-        <if test="ylcstate!=null">
-            and ylcstate=#{ylcstate}
-        </if>
+
         <if test="state!=null">
             and state=#{state}
         </if>
@@ -604,10 +616,10 @@
         from(
         select rownum rm, l.*  from
 
-        (select y.state ylcstate,u.* from
-        ( select d.area from area_owner d where d.owner=#{cid})g,customerinfocard u,ylcontractentry y
+        (select u.* from
+        ( select d.area from area_owner d where d.owner=#{cid})g,customerinfocard u
         where
-        g.area=u.submarket and u.cid=y.cid and u.contractyear =y.cyear) l
+        g.area=u.submarket ) l
 
         where 1=1
         <if test="year!=null">
@@ -620,9 +632,7 @@
             and SUBMARKETNAME=#{area_2}
         </if>
 
-        <if test="ylcstate!=null">
-            and ylcstate=#{ylcstate}
-        </if>
+
         <if test="state!=null">
             and state=#{state}
         </if>
@@ -642,10 +652,8 @@
         from(
         select rownum rm, l.*  from
 
-        (select y.state ylcstate,u.* from
-        customerinfocard u,ylcontractentry y
-        where
-        u.cid=y.cid and u.contractyear =y.cyear) l
+        (select u.* from
+        customerinfocard u) l
 
         where 1=1
         <if test="year!=null">
@@ -657,9 +665,7 @@
         <if test="area_2!=null">
             and SUBMARKETNAME=#{area_2}
         </if>
-        <if test="ylcstate!=null">
-            and ylcstate=#{ylcstate}
-        </if>
+
         <if test="state!=null">
             and state=#{state}
         </if>
@@ -676,12 +682,12 @@
         select count (*) from
 
 
-        (select y.state ylcstate,u.* from
+        (select u.* from
         ( select c.area_code area,d.district_id from
         (select d.area from area_owner d where d.owner=#{cid}) o,area_code c,area_district d where
-        c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u,ylcontractentry y
+        c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u
         where
-        g.area=u.market and g.district_id=u.submarket and u.cid=y.cid and u.contractyear =y.cyear)f
+        g.area=u.market and g.district_id=u.submarket )f
         where 1=1
         <if test="year!=null">
             and contractyear=#{year}
@@ -692,9 +698,7 @@
         <if test="area_2!=null">
             and SUBMARKETNAME=#{area_2}
         </if>
-        <if test="ylcstate!=null">
-            and ylcstate=#{ylcstate}
-        </if>
+
         <if test="state!=null">
             and state=#{state}
         </if>
@@ -709,12 +713,12 @@
         select count (*) from
 
 
-        (select y.state ylcstate,u.* from
+        (select u.* from
         ( select o.area,c.area_name,d.district_id,d.district_name from
         (select d.area from area_owner d where d.owner=#{cid}) o,area_district d,area_code c
-        where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u,ylcontractentry y
+        where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u
         where
-        g.area=u.market and g.district_id=u.submarket and u.cid=y.cid and u.contractyear =y.cyear)f
+        g.area=u.market and g.district_id=u.submarket )f
         where 1=1
         <if test="year!=null">
             and contractyear=#{year}
@@ -725,9 +729,7 @@
         <if test="area_2!=null">
             and SUBMARKETNAME=#{area_2}
         </if>
-        <if test="ylcstate!=null">
-            and ylcstate=#{ylcstate}
-        </if>
+
         <if test="state!=null">
             and state=#{state}
         </if>
@@ -742,10 +744,10 @@
         select count (*) from
 
 
-        ( select y.state ylcstate,u.* from
-        ( select d.area from area_owner d where d.owner=#{cid})g,customerinfocard u,ylcontractentry y
+        ( select u.* from
+        ( select d.area from area_owner d where d.owner=#{cid})g,customerinfocard u
         where
-        g.area=u.submarket and u.cid=y.cid and u.contractyear =y.cyear)f
+        g.area=u.submarket )f
         where 1=1
         <if test="year!=null">
             and contractyear=#{year}
@@ -756,9 +758,7 @@
         <if test="area_2!=null">
             and SUBMARKETNAME=#{area_2}
         </if>
-        <if test="ylcstate!=null">
-            and ylcstate=#{ylcstate}
-        </if>
+
         <if test="state!=null">
             and state=#{state}
         </if>
@@ -773,10 +773,9 @@
         select count (*) from
 
 
-        (select y.state ylcstate,u.* from
-        customerinfocard u,ylcontractentry y
-        where
-        u.cid=y.cid and u.contractyear =y.cyear)f
+        (select u.* from
+        customerinfocard u
+        )f
         where 1=1
         <if test="year!=null">
             and contractyear=#{year}
@@ -787,9 +786,7 @@
         <if test="area_2!=null">
             and SUBMARKETNAME=#{area_2}
         </if>
-        <if test="ylcstate!=null">
-            and ylcstate=#{ylcstate}
-        </if>
+
         <if test="state!=null">
             and state=#{state}
         </if>
