@@ -1,12 +1,12 @@
 package com.yulan.utils;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONObject;
+import io.jsonwebtoken.*;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+import java.security.Key;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +18,8 @@ public class Token {
     /**
      * JWT的签发者
      */
-    private static final String ISSURE="蔡荣镔";
+    private static final String ISSURER="C.A.T 工作室";
+    private static final Long CONTINUE_TIME=3600000L;
     private static Map<String,Object> header=new HashMap<String,Object>(2);
     private static final String KEY="aslkdjflaskjdfiozjxkvnwolketuo2i3u54r32094ufrjdzilkcjnazoise78u908q22ejhfkdlzncvo2w835r4yhnds";
 
@@ -27,41 +28,58 @@ public class Token {
         header.put("alg","HS256");
     }
 
-    public static String createToken(Object object) {
-        JSONObject json = JSONObject.fromObject(object);
+    /**
+     * 生成token
+     * @param object
+     * @param continueTime
+     * @return
+     */
+    public static String createToken(Object object,Long continueTime) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(KEY);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes,signatureAlgorithm.getJcaName());
 
-        JwtBuilder builder = Jwts.builder()
-                .setHeader(header)
-                .setPayload(json.toString())
-                .signWith(signatureAlgorithm,apiKeySecretBytes);
+        Object json = JSONObject.toJSON(object);
+        System.out.println(json.toString());
 
+        JwtBuilder builder = Jwts.builder().setId(object.hashCode()+"")
+                .setIssuedAt(now)
+                .setSubject(json.toString())
+                .setIssuer(ISSURER)
+                .signWith(signatureAlgorithm,signingKey);
+
+        Long ttlMillis = continueTime;
+        if(ttlMillis==null||ttlMillis <= 0) {
+            ttlMillis = CONTINUE_TIME;
+        }
+        long expMillis = nowMillis + ttlMillis;
+        Date exp = new Date(expMillis);
+        builder.setExpiration(exp);
         return builder.compact();
     }
 
-    public static Object parseToken(String jwt,Class className) {
-        Claims claims;
-        try{
+    /**
+     * 对token进行转码
+     * @param token
+     * @return
+     */
+    public static Map<String,Object> parseToken(String token) {
+        Map<String,Object> result = Response.getResponseMap(0,"",null);
+        Claims claims = null;
+        try {
             claims = Jwts.parser()
                     .setSigningKey(DatatypeConverter.parseBase64Binary(KEY))
-                    .parseClaimsJws(jwt).getBody();
-        } catch (Exception e) {
-            return null;
+                    .parseClaimsJws(token).getBody();
+            String jsonString = claims.getSubject();
+            Map<String,Object> datas = JSONObject.parseObject(jsonString);
+            result.put("data",datas);
+        } catch (ExpiredJwtException e) {
+            return Response.getResponseMap(1,"token失效，请重新登录",null);
         }
-        String origin = claims.toString();
-
-        Map<String,String> properties = new HashMap<>();
-        origin = origin.replaceAll(" ","");
-        if(origin.length()<=2)
-            return null;
-        origin = origin.substring(1,origin.length()-1);
-        String[] proverbs = origin.split(",");
-        for(String proverb:proverbs) {
-            String[] entry = proverb.split("=");
-            properties.put(entry[0],entry[1]);
-        }
-        return com.alibaba.fastjson.JSONObject.parseObject(com.alibaba.fastjson.JSONObject.toJSONString(properties),className);
+        return result;
     }
-
 }
