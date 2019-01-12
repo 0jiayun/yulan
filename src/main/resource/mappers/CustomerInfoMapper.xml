@@ -251,6 +251,10 @@
         select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
     </select>
 
+    <select id="getYLcontractByYear" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
+        select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} and t.ccyear = #{CCYEAR}
+    </select>
+
     <update id="updateCustomerInfo" parameterType="CustomerInfoCard">
         update CUSTOMERINFOCARD
         <set>

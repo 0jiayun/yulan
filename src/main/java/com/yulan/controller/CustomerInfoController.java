@@ -166,11 +166,12 @@ public class CustomerInfoController {
     @RequestMapping(value = "getYLcontract")
     @ResponseBody
     public Map getYLcontract(@RequestBody Map<String,Object> data)throws IOException {
-        String ccID = (String)data.get("CCID");
-        if(customerInfoService.getYLcontract(ccID) == null){
-            return response.getResponseMap(1,"用户数据不存在" ,customerInfoService.getYLcontract(ccID));
+        String ccID = (String)data.get("ccid");
+        Integer ccyear = (Integer)data.get("ccyear");
+        if(customerInfoService.getYLcontract(ccID,ccyear) == null){
+            return response.getResponseMap(1,"用户数据不存在" ,customerInfoService.getYLcontract(ccID,ccyear));
         }else{
-            return response.getResponseMap(0,"SUCCESS" ,customerInfoService.getYLcontract(ccID));
+            return response.getResponseMap(0,"SUCCESS" ,customerInfoService.getYLcontract(ccID,ccyear));
         }
     }
 

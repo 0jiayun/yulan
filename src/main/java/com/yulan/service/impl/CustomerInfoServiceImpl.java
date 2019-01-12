@@ -127,11 +127,11 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     }
 
     @Override
-    public YLcontract_v2015_paa getYLcontract(String cCID) throws  IOException{
-        if(customerInfoDao.getYLcontract(cCID)== null){
+    public YLcontract_v2015_paa getYLcontract(String cCID,Integer ccyear) throws  IOException{
+        if(customerInfoDao.getYLcontractByYear(cCID,ccyear)== null){
             return null;
         }else{
-            yLcontract_v2015_paa = customerInfoDao.getYLcontract(cCID);
+            yLcontract_v2015_paa = customerInfoDao.getYLcontractByYear(cCID,ccyear);
             Map<String, Object> map = new HashMap<String, Object>();
             map = mapUtils.beanToMap(yLcontract_v2015_paa);
 

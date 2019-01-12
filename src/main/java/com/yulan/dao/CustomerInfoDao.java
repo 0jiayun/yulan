@@ -45,6 +45,8 @@ public interface CustomerInfoDao {
      */
     YLcontract_v2015_paa getYLcontract(@Param("CCID") String cCID);
 
+    YLcontract_v2015_paa getYLcontractByYear(@Param("CCID") String cCID,@Param("CCYEAR") Integer ccyear);
+
     /**
      *
      * @param yLcontract_v2015_paa
