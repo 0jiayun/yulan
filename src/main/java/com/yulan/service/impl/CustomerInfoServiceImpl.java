@@ -459,6 +459,12 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
             }
+            String ylc=customerInfoDao.getYlcstate(map.get("CID").toString(),Integer.parseInt(map.get("CONTRACTYEAR").toString()));
+            if (ylc==null){
+                map.put("YLCSTATE","SALEMANFILLING");
+            }else{
+                map.put("YLCSTATE",ylc);
+            }
             if(map.get("FILE_1_IDCARD")==null){
                 map.put("FILE_1_IDCARD",0);
             }else{
@@ -478,6 +484,16 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 map.put("FILE_4_GTQC",0);
             }else{
                 map.put("FILE_4_GTQC",1);
+            }
+        }
+        if(ylcstate!=null){
+            Iterator<Map<String,Object>> it = list.iterator();
+            while(it.hasNext()){
+                Map<String,Object> x = it.next();
+                System.out.println(x.get("YLCSTATE"));
+                if(!x.get("YLCSTATE").equals(ylcstate)){
+                    it.remove();
+                }
             }
         }
 

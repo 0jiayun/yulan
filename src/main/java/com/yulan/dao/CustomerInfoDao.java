@@ -94,6 +94,9 @@ public interface CustomerInfoDao {
 
     List<Map<String, Object>> getArea_Smanager(@Param("cid")String cid);//片区经理获取管理地区
 
+
+    String getYlcstate(@Param("cid")String cid,@Param("year")int year);//获取资料卡cid相应的协议书状态
+
     List<Map<String, Object>> getCustomerinfo_Cmanager(@Param("start")Integer start,@Param("number") Integer number,
                                                        @Param("cid")String cid,@Param("state")String state,
                                                        @Param("year")Integer year,@Param("area_1")String area_1,
