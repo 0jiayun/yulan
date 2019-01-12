@@ -48,6 +48,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             simpleDateFormat.format(new Date(System.currentTimeMillis()));
             writer.append(simpleDateFormat.toString()+"\r\n");
             writer.append(ex.getStackTrace().toString());
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
