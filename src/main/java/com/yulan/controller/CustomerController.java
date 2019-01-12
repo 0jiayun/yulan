@@ -98,6 +98,9 @@ public class CustomerController {
         customerInfoCard.setTxAgentName(customer.getCustomerAgent());
         customerInfoCard.setWlAgentName(customer.getCustomerAgent1());
 
+        //设置资料卡状态
+        customerInfoCard.setState("CUSTOMERPORCESSING");
+
 //        customerInfoCard.setMarketname(areaCodeService.getAreaCodeByAreaCode(customer.getAreaCode()).getAreaName());
 //        AreaDistrict areaDistrict = areaDistrictService.getAreaDistrictByDistrictID(customer.getAreaDistrict());
 //        if(areaDistrict!=null)
