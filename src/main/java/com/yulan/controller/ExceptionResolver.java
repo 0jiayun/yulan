@@ -43,11 +43,16 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             }
         }
         try {
-            Writer writer = new FileWriter(file);
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-            simpleDateFormat.format(new Date(System.currentTimeMillis()));
-            writer.append(simpleDateFormat.toString()+"\r\n");
-            writer.append(ex.getStackTrace().toString());
+            Writer writer = new FileWriter(file,true);
+            BufferedWriter bw = new BufferedWriter(writer);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+            bw.append(simpleDateFormat.format(new Date(System.currentTimeMillis()))+"\r\n");
+            StackTraceElement[] errors = ex.getStackTrace();
+            for (StackTraceElement error:errors) {
+                bw.append(error.toString()+"\r\n");
+            }
+            bw.append("\r\n");
+            bw.close();
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
