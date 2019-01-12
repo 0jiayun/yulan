@@ -340,7 +340,7 @@
 
         (select u.realName Sname,s.* from
         (select w.realname Mname ,f.* from
-        (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c
         where t.cid=c.cid )f,web_user w
         where
@@ -371,7 +371,7 @@
     </select>
     <select id="countYs" resultType="int">
         select count (*) from
-          (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+          (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c
         where t.cid=c.cid )f
         where 1=1
@@ -404,7 +404,7 @@
 
         ( select * from
         (select a.area_belong,f.* from
-        (select c.market, c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        (select c.market, c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c
         where t.cid=c.cid ) f,AREA_CODE a where f.market=a.area_code)e,(select area from area_owner w where w.owner=#{cid} and w.position=#{position} ) k
         where e.area_belong=k.area ) l
@@ -433,7 +433,7 @@
         select count (*) from
         ( select * from
         (select a.area_belong,f.* from
-        (select c.market, c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,t.* from
+        (select c.market, c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c
         where t.cid=c.cid ) f,AREA_CODE a where f.market=a.area_code)e,(select area from area_owner w where w.owner=#{cid} and w.position=#{position} ) k
         where e.area_belong=k.area )f
