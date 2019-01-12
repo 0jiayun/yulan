@@ -113,7 +113,9 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             return null;
         }else{
             customerInfoCard = customerInfoDao.getCustomerInfoByYear(cID,year);
-            customerInfoCard.setPrivateAccountAuthed(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()).getPrivateAccountAuthed());
+            if(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()) != null) {
+                customerInfoCard.setPrivateAccountAuthed(yLcontractentryDao.getYLcontract_v2015ByYear(customerInfoCard.getCid(),customerInfoCard.getContractyear()).getPrivateAccountAuthed());
+            }
             Map<String, Object> map = new HashMap<String, Object>();
             map = mapUtils.beanToMap(customerInfoCard);
 
