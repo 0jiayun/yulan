@@ -213,6 +213,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         yLcontractentry.setCid(yLcontract_v2015.getCcid());
         yLcontractentry.setStartDate(yLcontract_v2015.getStartDate());
         yLcontractentry.setEndDate(yLcontract_v2015.getEndDate());
+
         if(yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015) && yLcontractentryDao.updateYLcontractentry(yLcontractentry)){
             return true;
         }else{

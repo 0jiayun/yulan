@@ -26,7 +26,7 @@ public interface CustomerInfoService {
 
     //   boolean customer(String cID);
     // 更新客户资料卡
-    boolean updateCustomerInfo(CustomerInfoCard customerInfoCard)throws IOException;
+    Map updateCustomerInfo(CustomerInfoCard customerInfoCard)throws IOException;
 
     boolean createYLcontract(YLcontract_v2015_paa yLcontract_v2015_paa) throws IOException;
 

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -35,19 +36,20 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         response.setHeader("Cache-Control", "no-cache, must-revalidate");
         ex.printStackTrace();
         File file = Paths.get("C:\\玉兰异常错误.txt").toFile();
-        if(!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
         try {
-            Writer writer = new FileWriter(file);
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-            simpleDateFormat.format(new Date(System.currentTimeMillis()));
-            writer.append(simpleDateFormat.toString()+"\r\n");
-            writer.append(ex.getStackTrace().toString());
+            Files.deleteIfExists(Paths.get("C:\\玉兰异常错误.txt"));
+            file.createNewFile();
+            Writer writer = new FileWriter(file,true);
+            BufferedWriter bw = new BufferedWriter(writer);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+            bw.append(simpleDateFormat.format(new Date(System.currentTimeMillis()))+"\r\n");
+            StackTraceElement[] errors = ex.getStackTrace();
+            for (StackTraceElement error:errors) {
+                bw.append(error.toString()+"\r\n");
+            }
+            bw.append("\r\n");
+            bw.close();
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

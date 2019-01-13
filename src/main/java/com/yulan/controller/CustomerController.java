@@ -29,6 +29,8 @@ public class CustomerController {
     private AreaDistrictService areaDistrictService;
     @Autowired
     private Area_ownerService area_ownerService;
+    @Autowired
+    private AreaCodeService areaCodeService;
 
     /**
      * 批量创建资料卡
@@ -52,7 +54,12 @@ public class CustomerController {
         if(customerTypes!=null) {
             customerTypes=customerTypes.size()==0?null:customerTypes;
         }
-        List<Customer> customers = customerService.getCustomers(customerCode,areaCodes,areaDistricts,customerTypes);
+        List<Customer> customers;
+        if(areaCodes==null&&areaDistricts==null&&customerTypes==null) {
+            customers = new ArrayList<>();
+        } else {
+            customers = customerService.getCustomers(customerCode,areaCodes,areaDistricts,customerTypes);
+        }
         descp = StringUtil.setUtf8(descp);
         Customerinfocardgroup customerinfocardgroup = customerInfoCardGroupService.getCustomerInfoCardGroupByName(descp);
         if(customerinfocardgroup==null) {
@@ -65,6 +72,7 @@ public class CustomerController {
             customers.removeAll(customersExist);
         }
         int result = 0;
+        customers=customers==null?new ArrayList<Customer>():customers;
         for (Customer customer:customers) {
             CustomerInfoCard customerInfoCard = integrate(customer,customerinfocardgroup);
             result += customerInfoCardService.addCustomerInfoCard(customerInfoCard)?1:0;
@@ -81,6 +89,7 @@ public class CustomerController {
     private CustomerInfoCard integrate(Customer customer,Customerinfocardgroup customerInfoCardGroup) throws UnsupportedEncodingException {
         CustomerInfoCard customerInfoCard = new CustomerInfoCard();
         customerInfoCard.setGroupid(customerInfoCardGroup.getId());
+        customerInfoCard.setDeleted((short)0);
         customerInfoCard.setCid(customer.getCustomerCode());
         customerInfoCard.setCname(customer.getCustomerName());
         customerInfoCard.setMarket(customer.getAreaCode());
@@ -98,25 +107,41 @@ public class CustomerController {
         customerInfoCard.setTxAgentName(customer.getCustomerAgent());
         customerInfoCard.setWlAgentName(customer.getCustomerAgent1());
 
+        //设置资料卡状态
+        customerInfoCard.setState("CUSTOMERPORCESSING");
+        //设置法务员审查状态
+        customerInfoCard.setLegalchecked((short)0);
+
 //        customerInfoCard.setMarketname(areaCodeService.getAreaCodeByAreaCode(customer.getAreaCode()).getAreaName());
 //        AreaDistrict areaDistrict = areaDistrictService.getAreaDistrictByDistrictID(customer.getAreaDistrict());
 //        if(areaDistrict!=null)
 //            customerInfoCard.setSubmarketname(areaDistrict.getDistrictName());
 
+        //设置大区
+        AreaCode areaCode = areaCodeService.getAreaCodeByAreaCode(customer.getAreaCode());
+        if(areaCode!=null) {
+            customerInfoCard.setMarketname(areaCode.getAreaName());
+        }
+
+        //设置大区，片区经理
         List<Area_owner> managers = area_ownerService.getAreaOwnerByAreaCode(customer.getAreaCode());
         String market = StringUtil.setUtf8("大区经理");
         String subMarket = StringUtil.setUtf8("片区经理");
         managers = managers != null?managers:new ArrayList<Area_owner>();
         for (Area_owner manager:managers) {
-            if(manager.getPosition().equals(market))
+            if(manager.getPosition().equals(market)) {
                 customerInfoCard.setMarketmanager(manager.getOwner());
-            else if(manager.getPosition().equals(subMarket))
+                customerInfoCard.setManagerposition(market);
+            }
+            else if(manager.getPosition().equals(subMarket)) {
                 customerInfoCard.setSubmarketmanager(manager.getOwner());
+            }
         }
 
         AreaDistrict areaDistrict = areaDistrictService.getAreaDistrictByDistrictID(customer.getAreaDistrict());
-        if(areaDistrict!=null)
+        if(areaDistrict!=null) {
             customerInfoCard.setSubmarketname(areaDistrict.getDistrictName());
+        }
 
         customerInfoCard.setIsGeneraltaxpayer(customer.getGeneraltaxpayerStatus());
         Date date = new Date(System.currentTimeMillis());

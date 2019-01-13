@@ -134,7 +134,7 @@
 
         ) tm
         <if test="start!=null">
-          where rm &gt;= #{start} and rm &lt;= #{number }
+          where rm &gt;= #{start} and rm &lt;= #{number}
         </if>
     </select>
     
@@ -240,19 +240,19 @@
     </select>
 
     <select id="getCustomerInfo" parameterType="java.util.Map" resultType="CustomerInfoCard">
-        select * from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID} ORDER BY t.contractyear desc nulls last)WHERE ROWNUM =1
+        select * from ( select * from CUSTOMERINFOCARD t where t.cid=#{CID,jdbcType=VARCHAR} ORDER BY t.contractyear desc nulls last)WHERE ROWNUM =1
     </select>
 
     <select id="getCustomerInfoByYear" parameterType="java.util.Map" resultType="CustomerInfoCard">
-        select * from CUSTOMERINFOCARD t where t.cid=#{CID} and t.contractyear = #{YEAR}
+        select * from CUSTOMERINFOCARD t where t.cid=#{CID,jdbcType=VARCHAR} and t.contractyear = #{YEAR}
     </select>
 
     <select id="getYLcontract" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
-        select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
+        select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID,jdbcType=VARCHAR} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
     </select>
 
     <select id="getYLcontractByYear" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
-        select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID} and t.ccyear = #{CCYEAR}
+        select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID,jdbcType=VARCHAR} and t.ccyear = #{CCYEAR}
     </select>
 
     <update id="updateCustomerInfo" parameterType="CustomerInfoCard">

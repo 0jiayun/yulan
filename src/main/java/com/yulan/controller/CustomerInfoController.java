@@ -137,7 +137,6 @@ public class CustomerInfoController {
             return response.getResponseMap(1,"用户数据不存在" ,customerInfoService.getCustomerInfo(cID));
         }else{
             return response.getResponseMap(0,"SUCCESS" ,customerInfoService.getCustomerInfo(cID));
-
         }
     }
 
@@ -150,11 +149,12 @@ public class CustomerInfoController {
     @RequestMapping(value = "updateCustomerInfo")
     @ResponseBody
     public Map updateCustomerInfo(@RequestBody CustomerInfoCard customerInfoCard)throws Exception{
-        if(customerInfoService.updateCustomerInfo(customerInfoCard)){
-            return Response.getResponseMap(0,"更新成功",null);
-        }else{
-            return Response.getResponseMap(1,"更新失败",null);
-        }
+
+        Map map = new HashMap();
+
+        map = customerInfoService.updateCustomerInfo(customerInfoCard);
+            return map;
+
     }
 
     /**
