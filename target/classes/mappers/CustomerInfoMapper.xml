@@ -403,7 +403,7 @@
                 ACCOUT = #{accout,jdbcType=VARCHAR},
             </if>
             <if test="accountLocation != null">
-                ACCOUNT_LOCATION = #{accountLocation,jdbcType=VARCHA},
+                ACCOUNT_LOCATION = #{accountLocation,jdbcType=VARCHAR},
             </if>
             <if test="idcardNo != null">
                 IDCARD_NO = #{idcardNo,jdbcType=VARCHAR},

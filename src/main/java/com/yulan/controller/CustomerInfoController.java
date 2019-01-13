@@ -151,7 +151,6 @@ public class CustomerInfoController {
     public Map updateCustomerInfo(@RequestBody CustomerInfoCard customerInfoCard)throws Exception{
 
         Map map = new HashMap();
-
         map = customerInfoService.updateCustomerInfo(customerInfoCard);
             return map;
 
