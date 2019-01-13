@@ -170,6 +170,9 @@
     <update id="updateYLcontractentry" parameterType="YLcontractentry">
         update YLCONTRACTENTRY
         <set>
+            <if test="cyear!=null">
+                CYEAR = #{cyear} ,
+            </if>
             <if test="startDate!=null">
                 START_DATE = #{startDate,jdbcType=TIMESTAMP} ,
             </if>
