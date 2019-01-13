@@ -137,7 +137,6 @@ public class CustomerInfoController {
             return response.getResponseMap(1,"用户数据不存在" ,customerInfoService.getCustomerInfo(cID));
         }else{
             return response.getResponseMap(0,"SUCCESS" ,customerInfoService.getCustomerInfo(cID));
-
         }
     }
 
