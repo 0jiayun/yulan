@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -35,14 +36,9 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         response.setHeader("Cache-Control", "no-cache, must-revalidate");
         ex.printStackTrace();
         File file = Paths.get("C:\\玉兰异常错误.txt").toFile();
-        if(!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
         try {
+            Files.deleteIfExists(Paths.get("C:\\玉兰异常错误.txt"));
+            file.createNewFile();
             Writer writer = new FileWriter(file,true);
             BufferedWriter bw = new BufferedWriter(writer);
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
