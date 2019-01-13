@@ -105,7 +105,7 @@
                         仅用于2018年网络协议签订<br>
                         <input type="CHECKBOX" checked="" name="CHECK_EXAMINE_FLAG">限已核对客户	<br>
                         本批次说明：<br>
-                        <input type="TEXT" name="$1DESCP" id="$1DESCP" style="width:80%" value="2018年网络协议客户分组"><br>
+                        <input type="TEXT" name="$1DESCP" id="$1DESCP" style="width:80%" value="2019年网络协议客户分组"><br>
                         <button onclick="createDataCards()">执行创建</button>
                         <input type="RESET" value="重置输入">
 
@@ -117,8 +117,7 @@
                             </td></tr><tr><td colspan="3">
                                 <select id="WCWFCustomerCard_GROUPID">
                                     <option value="0">--------请选择所属分组，如无请先创建----------</option>
-                                    <option value="731a0f53-9a4e-42ab-a7cd-5ef171f66eab">2018年网络协议客户分组</option>
-
+                                    <option value="2019年网络协议客户分组">2019年网络协议客户分组</option>
                                 </select>
                             </td></tr></tbody></table>
 
@@ -425,7 +424,7 @@
     }
     function createDataCardByCustomerCode() {
         var all = {customerCode:document.getElementById("WCWFCustomerCard_SINGLEID").value};
-        all.descp = document.getElementById("$1DESCP").value;
+        all.descp = $("#WCWFCustomerCard_GROUPID").val();
         layui.use('layer',function() {
             layer.load();
             $.ajax({

@@ -65,6 +65,7 @@ public class CustomerController {
             customers.removeAll(customersExist);
         }
         int result = 0;
+        customers=customers==null?new ArrayList<Customer>():customers;
         for (Customer customer:customers) {
             CustomerInfoCard customerInfoCard = integrate(customer,customerinfocardgroup);
             result += customerInfoCardService.addCustomerInfoCard(customerInfoCard)?1:0;
@@ -100,6 +101,8 @@ public class CustomerController {
 
         //设置资料卡状态
         customerInfoCard.setState("CUSTOMERPORCESSING");
+        //设置法务员审查状态
+        customerInfoCard.setLegalchecked((short)0);
 
 //        customerInfoCard.setMarketname(areaCodeService.getAreaCodeByAreaCode(customer.getAreaCode()).getAreaName());
 //        AreaDistrict areaDistrict = areaDistrictService.getAreaDistrictByDistrictID(customer.getAreaDistrict());
