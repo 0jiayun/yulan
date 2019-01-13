@@ -116,7 +116,7 @@
                             </td><td><input type="BUTTON" value="创建资料卡" onclick="javascript:createDataCardByCustomerCode();">
                             </td></tr><tr><td colspan="3">
                                 <select id="WCWFCustomerCard_GROUPID">
-                                    <option value="0">--------请选择所属分组，如无请先创建----------</option>
+                                    <option value="">--------请选择所属分组，如无请先创建----------</option>
                                     <option value="2019年网络协议客户分组">2019年网络协议客户分组</option>
                                 </select>
                             </td></tr></tbody></table>
@@ -425,24 +425,36 @@
     function createDataCardByCustomerCode() {
         var all = {customerCode:document.getElementById("WCWFCustomerCard_SINGLEID").value};
         all.descp = $("#WCWFCustomerCard_GROUPID").val();
-        layui.use('layer',function() {
-            layer.load();
-            $.ajax({
-                type: "POST",
-                url:  remoteURL+"/customer/createDataCards.do",
-                data: JSON.stringify(all),
-                contentType : "application/json",
-                dataType: "json",
-                success: function(res){
-                    layer.closeAll("loading");
-                    layer.alert(res.msg);
-                },
-                error:function() {
-                    layer.closeAll("loading");
-                    layer.alert(res.msg);
-                }
-            });
-        });
+        if(all.descp == "") {
+            layui.use('layer',function() {
+                layer.alert("请选择所属分组")
+            })
+        } else {
+            if(all.customerCode==null||all.customerCode == "") {
+                layui.use('layer',function() {
+                    layer.alert("请输入客户号");
+                })
+            } else {
+                layui.use('layer',function() {
+                    layer.load();
+                    $.ajax({
+                        type: "POST",
+                        url:  remoteURL+"/customer/createDataCards.do",
+                        data: JSON.stringify(all),
+                        contentType : "application/json",
+                        dataType: "json",
+                        success: function(res){
+                            layer.closeAll("loading");
+                            layer.alert(res.msg);
+                        },
+                        error:function() {
+                            layer.closeAll("loading");
+                            layer.alert(res.msg);
+                        }
+                    });
+                });
+            }
+        }
     }
     function selectAll(checkClass,name) {
         var areasCodeElems = document.getElementsByName(name);
