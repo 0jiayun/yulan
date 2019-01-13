@@ -551,10 +551,10 @@
             and contractyear=#{year}
         </if>
         <if test="area_1!=null">
-            and MARKET=#{area_1}
+            and MARKETNAME=#{area_1}
         </if>
         <if test="area_2!=null">
-            and SUBMARKET=#{area_2}
+            and SUBMARKETNAME=#{area_2}
         </if>
 
 
@@ -668,6 +668,9 @@
 
         <if test="state!=null">
             and state=#{state}
+        </if>
+        <if test="legalchecked!=null">
+            and legalchecked=#{legalchecked}
         </if>
 
         <if test="find!=null">
@@ -789,6 +792,9 @@
 
         <if test="state!=null">
             and state=#{state}
+        </if>
+        <if test="legalchecked!=null">
+            and legalchecked=#{legalchecked}
         </if>
 
         <if test="find!=null">

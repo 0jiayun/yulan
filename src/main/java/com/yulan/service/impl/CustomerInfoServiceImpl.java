@@ -418,7 +418,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     }
 
     @Override
-    public Map getUserCustomerinfo(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find,String state, String position,String ylcstate) throws UnsupportedEncodingException {
+    public Map getUserCustomerinfo(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find,String state, String position,String ylcstate,Integer legalchecked) throws UnsupportedEncodingException {
         List<Map<String, Object>> list=new ArrayList<>();
         Map<String,Object> Map=new HashMap<>();
         String a="";
@@ -429,7 +429,8 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             count=customerInfoDao.count_Cmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
 
             Map.put("area",this.getUserArea(cid,position));
-        }else if(position.equals("SALEMAN_M")){
+        }
+        else if(position.equals("SALEMAN_M")){
             list=customerInfoDao.getCustomerinfo_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Mmanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             Map.put("area",this.getUserArea(cid,position));
@@ -449,8 +450,8 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             count=customerInfoDao.count_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
 
         }else{
-            list=customerInfoDao.getAllCustomerinfo(start,number,cid,state,year,area_1,area_2,find,ylcstate);
-            count=customerInfoDao.countAll(start,number,cid,state,year,area_1,area_2,find,ylcstate);
+            list=customerInfoDao.getAllCustomerinfo(start,number,cid,state,year,area_1,area_2,find,ylcstate,legalchecked);
+            count=customerInfoDao.countAll(start,number,cid,state,year,area_1,area_2,find,ylcstate,legalchecked);
             Map.put("area","");
 
         }
@@ -459,6 +460,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
             }
+            System.out.println(map.get("CID").toString());
             String ylc=customerInfoDao.getYlcstate(map.get("CID").toString(),Integer.parseInt(map.get("CONTRACTYEAR").toString()));
             if (ylc==null){
                 map.put("YLCSTATE","SALEMANFILLING");

@@ -284,6 +284,10 @@ public class CustomerInfoController {
         String ylcstate=m.get("ylcstate").toString();
         String state=m.get("state").toString();
         Integer year=null;
+        Integer legalchecked=null;
+        if (m.get("legalchecked")!=null&&!m.get("legalchecked").equals("")){
+            legalchecked=Integer.parseInt(m.get("legalchecked").toString());
+        }
         if (m.get("year")!=null&&!m.get("year").equals("")){
             year=Integer.parseInt(m.get("year").toString());
         }
@@ -315,7 +319,7 @@ public class CustomerInfoController {
             page=(page-1)*limit+1;
             lastNum=page+limit-1;
         }
-        Map<String,Object> map=customerInfoService.getUserCustomerinfo(page,lastNum,year,cid,area_1,area_2,find,state,position,ylcstate);
+        Map<String,Object> map=customerInfoService.getUserCustomerinfo(page,lastNum,year,cid,area_1,area_2,find,state,position,ylcstate,legalchecked);
         map.put("msg","");
         map.put("code",0);
 

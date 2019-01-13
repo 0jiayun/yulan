@@ -342,7 +342,7 @@
         (select w.realname Mname ,f.* from
         (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c
-        where t.cid=c.cid )f,web_user w
+        where t.cid=c.cid and t.cyear=c.contractyear )f,web_user w
         where
         w.loginname=f.MARKETMANAGER)s,web_user u
         where
@@ -369,11 +369,74 @@
 
         ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
     </select>
+    <select id="getAllys_LEGALCHECK " resultType="Map">
+        select
+        *
+
+        from(
+        select rownum rm, l.*  from
+
+        (select u.realName Sname,s.* from
+        (select w.realname Mname ,f.* from
+        (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
+        YLCONTRACTENTRY t,customerinfocard c
+        where t.cid=c.cid )f,web_user w
+        where
+        w.loginname=f.MARKETMANAGER)s,web_user u
+        where
+        u.loginName=s.SUBMARKETMANAGER ) l
+
+        where 1=1
+        <if test="year!=null">
+            and cyear=#{year}
+        </if>
+
+
+        <if test="legalchecked!=null">
+            and legalchecked=#{legalchecked}
+        </if>
+
+
+
+        <if test="find!=null">
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
+        </if>
+
+
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+
+    </select>
+    <select id="count_LEGALCHECK" resultType="int">
+        select count (*) from
+        (select u.realName Sname,s.* from
+        (select w.realname Mname ,f.* from
+        (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
+        YLCONTRACTENTRY t,customerinfocard c
+        where t.cid=c.cid )f,web_user w
+        where
+        w.loginname=f.MARKETMANAGER)s,web_user u
+        where
+        u.loginName=s.SUBMARKETMANAGER )l
+        where 1=1
+        <if test="year!=null">
+            and cyear=#{year}
+        </if>
+        <if test="legalchecked!=null">
+            and legalchecked=#{legalchecked}
+        </if>
+
+        <if test="find!=null">
+            and l.cid like  '%'||#{find}||'%' or  l.CNAME like  '%'||#{find}||'%'
+        </if>
+
+
+    </select>
+
     <select id="countYs" resultType="int">
         select count (*) from
           (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c
-        where t.cid=c.cid )f
+        where t.cid=c.cid and t.cyear=c.contractyear)f
         where 1=1
         <if test="year!=null">
             and cyear=#{year}
@@ -470,6 +533,7 @@
         YLCONTRACTENTRY t,customerinfocard c,AREA_CODE a
         where t.cid=c.cid and c.market=a.area_code and t.cyear=c.contractyear ) e,(select area from area_owner w where w.owner=#{cid} and w.position=#{position} ) k
         where e.area_belong=k.area) l
+
 
         where 1=1
         <if test="year!=null">

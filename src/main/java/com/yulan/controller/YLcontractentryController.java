@@ -202,7 +202,10 @@ public class YLcontractentryController {
 //        }
         String need=m.get("need").toString();
         String position=m.get("position").toString();
-
+            Integer legalchecked=null;
+            if (m.get("legalchecked")!=null&&!m.get("legalchecked").equals("")){
+                legalchecked=Integer.parseInt(m.get("legalchecked").toString());
+            }
         Integer year=null;
         if (m.get("year")!=null&&!m.get("year").equals("")){
             year=Integer.parseInt(m.get("year").toString());
@@ -235,7 +238,7 @@ public class YLcontractentryController {
             lastNum=page+limit-1;
         }
 
-        Map map=yLcontractentryService.getYlcsbySigned(page,lastNum,year,cid,area_1,area_2,find,need,position);
+        Map map=yLcontractentryService.getYlcsbySigned(page,lastNum,year,cid,area_1,area_2,find,need,position,legalchecked);
         map.put("code",0);
         map.put("msg","");
 

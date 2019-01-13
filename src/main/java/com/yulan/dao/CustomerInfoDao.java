@@ -121,7 +121,7 @@ public interface CustomerInfoDao {
                                                  @Param("cid")String cid,@Param("state")String state,
                                                  @Param("year")Integer year,@Param("area_1")String area_1,
                                                  @Param("area_2")String area_2,@Param("find")String find,
-                                                 @Param("ylcstate")String ylcstate);//内部审核获取的资料卡所有地区
+                                                 @Param("ylcstate")String ylcstate,@Param("legalchecked")Integer legalchecked);//内部审核获取的资料卡所有地区
 
     int count_Cmanager(@Param("start")Integer start,@Param("number") Integer number,
                        @Param("cid")String cid,@Param("state")String state,
@@ -145,7 +145,7 @@ public interface CustomerInfoDao {
                  @Param("cid")String cid,@Param("state")String state,
                  @Param("year")Integer year,@Param("area_1")String area_1,
                  @Param("area_2")String area_2,@Param("find")String find,
-                 @Param("ylcstate")String ylcstate);
+                 @Param("ylcstate")String ylcstate,@Param("legalchecked")Integer legalchecked);
 
 
 

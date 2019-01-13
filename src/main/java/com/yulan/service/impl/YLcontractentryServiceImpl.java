@@ -429,7 +429,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
 
     @Override
-    public Map getYlcsbySigned(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find, String need, String position) throws UnsupportedEncodingException {
+    public Map getYlcsbySigned(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find, String need, String position ,Integer legalchecked) throws UnsupportedEncodingException {
         Map<String,Object> map=new HashMap<>();
         String state="";
         List states=new ArrayList();
@@ -468,6 +468,9 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
 
 
+        }else if(position.equals("LEGALCHECK")){
+                list=yLcontractentryDao.getAllys_LEGALCHECK(start,number,cid,year,find,legalchecked);
+            map.put("count",yLcontractentryDao.count_LEGALCHECK(cid,year,find,legalchecked));
         }else{
             list=yLcontractentryDao.getAllYs(start,number,cid,year,area_1,area_2,find,states);
             map.put("count",yLcontractentryDao.countYs(cid,year,area_1,area_2,find,states));
@@ -485,7 +488,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             }
             if(m.get("WFMEMO")!=null){
                 m.put("MARKET",StringUtil.getName(m.get("WFMEMO").toString(),"#DEP_MARKET_CHECK#(.*?)#DEP_MARKET_CHECK#","#DEP_MARKET_CHECK#"));//获取市场部审核人员
-                m.put("CSA",StringUtil.getName(m.get("WFMEMO").toString(),"#CSA_CHECK#(.*?)#CSA_CHECK#","#CSA_CHECK#"));//营销部
+                m.put("CSA",StringUtil.getName(m.get("WFMEMO").toString(),"#CSA_CHECK#(.*?)#CSA_CHECK#","#CSA_CHECK#"));//营销部总监
             }else{
                 m.put("MARKET","");//获取市场部审核人员
                 m.put("CSA","");//营销部

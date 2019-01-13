@@ -76,11 +76,21 @@ public interface YLcontractentryDao {
                 @Param("area_2")String area_2,@Param("find")String find, @Param("state")String state,@Param("position")String position);
 
     //销售中心经理联表查询获取所需已经审核协议书集合
+
+    //法务员审核
     List<Map<String,Object>> getAllys_areaOver(@Param("start")Integer start,@Param("number") Integer number,
                                            @Param("cid")String cid,
                                            @Param("year")Integer year,@Param("area_1")String area_1,
                                            @Param("area_2")String area_2,@Param("find")String find,
                                            @Param("states")List states,@Param("position")String position);
+
+    List<Map<String,Object>> getAllys_LEGALCHECK(@Param("start")Integer start,@Param("number") Integer number,
+                                                 @Param("cid")String cid,@Param("year")Integer year,
+                                                 @Param("find")String find,@Param("legalchecked")Integer legalchecked);
+
+    int count_LEGALCHECK(@Param("cid")String cid,@Param("year")Integer year,
+                         @Param("find")String find,@Param("legalchecked")Integer legalchecked);
+
     int countYs_areaOver(@Param("cid")String cid,
                      @Param("year")Integer year,@Param("area_1")String area_1,
                      @Param("area_2")String area_2,@Param("find")String find, @Param("states")List states,@Param("position")String position);
