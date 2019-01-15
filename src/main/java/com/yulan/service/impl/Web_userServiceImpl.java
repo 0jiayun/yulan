@@ -34,11 +34,14 @@ public class Web_userServiceImpl implements Web_userService {
                         for (Map<String,Object> m:list1){
                             Map<String,Object> map1=new HashMap<>();
                             String areap=StringUtil.getUtf8(m.get("POSITION").toString());
-                            if(areap.equals("销售中心经理")){
+                            /**
+                             * 销售中心经理>>中心总经理，大区经理>>办事处经理，片区经理>>业务经理
+                             */
+                            if(areap.equals("中心总经理")){
                                 map1.put("position","MANAGER");
-                            }else if(areap.equals("大区经理")){
+                            }else if(areap.equals("办事处经理")){
                                 map1.put("position","SALEMAN_M");
-                            }else if(areap.equals("片区经理")){
+                            }else if(areap.equals("业务经理")){
                                 map1.put("position","SALEMAN_S");
 
                             }
