@@ -326,7 +326,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         }
         //   list.add(yLcontract_v2015.getPrivateAccountAuthed());
 
-        String test = yLcontractentryDao.getYLcontractHTML(3).getTest();
+        String test = yLcontractentryDao.getYLcontractHTML(4).getTest();
         test = StringUtil.getUtf8(test);
 
         String html = stringUtil.replace(test,"AAAA",list);
