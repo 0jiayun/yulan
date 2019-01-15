@@ -336,7 +336,7 @@
             <if test="file1Idcard != null">
         FILE_1_IDCARD = #{file1Idcard,jdbcType=VARCHAR},
             </if>
-            <if test="file1IdcardNo = !null">
+            <if test="file1IdcardNo != null">
                 FILE_1_IDCARD_NO = #{file1IdcardNo,jdbcType=VARCHAR},
             </if>
             <if test="file1Op != null">
@@ -423,7 +423,7 @@
 
 
     <select id="getXAreaDistrictName" parameterType="java.util.Map" resultType="string">
-        select REGION_NAME from AREA_REGION WHERE REGION_ID =#{REGION_ID}
+        select REGION_NAME from AREA_REGION WHERE REGION_ID =#{REGION_ID,jdbcType=VARCHAR}
     </select>
 
     <select id="getXDistrict" parameterType="java.util.Map" resultType="string">

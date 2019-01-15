@@ -272,22 +272,30 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
 
     @Override
     public String getXDistrict(String xDistrict) throws IOException {
-        String a = customerInfoDao.getXDistrict(xDistrict);
-        if(customerInfoDao.getXDistrict(xDistrict).equals("") || customerInfoDao.getXDistrict(xDistrict) == null){
-            return null;
-        }else{
-            xDistrict = stringUtil.getUtf8(customerInfoDao.getXDistrict(xDistrict));
-            return xDistrict;
+        if(xDistrict == null){
+            return "";
+        }else {
+            String a = customerInfoDao.getXDistrict(xDistrict);
+            if (customerInfoDao.getXDistrict(xDistrict).equals("") || customerInfoDao.getXDistrict(xDistrict) == null) {
+                return null;
+            } else {
+                xDistrict = stringUtil.getUtf8(customerInfoDao.getXDistrict(xDistrict));
+                return xDistrict;
+            }
         }
     }
 
     @Override
     public String getXAreaDistrictName(String getXAreaDistrict3Name) throws IOException {
-        if(customerInfoDao.getXAreaDistrictName(getXAreaDistrict3Name).equals("") || customerInfoDao.getXAreaDistrictName(getXAreaDistrict3Name) == null){
-            return null;
-        }else{
-            getXAreaDistrict3Name = stringUtil.getUtf8(customerInfoDao.getXAreaDistrictName(getXAreaDistrict3Name));
-            return getXAreaDistrict3Name;
+        if(getXAreaDistrict3Name == null){
+            return "";
+        }else {
+            if (customerInfoDao.getXAreaDistrictName(getXAreaDistrict3Name).equals("") || customerInfoDao.getXAreaDistrictName(getXAreaDistrict3Name) == null) {
+                return null;
+            } else {
+                getXAreaDistrict3Name = stringUtil.getUtf8(customerInfoDao.getXAreaDistrictName(getXAreaDistrict3Name));
+                return getXAreaDistrict3Name;
+            }
         }
     }
 
