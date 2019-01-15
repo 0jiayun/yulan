@@ -90,7 +90,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                     x.add(m.get("NUMS"));
                     break;
                 case "ASM_CHECKING":
-                    y.add("销售中心经理审核中");
+                    y.add("中心总经理审核中");
                     x.add(m.get("NUMS"));
                     break;
                 default:break;
@@ -163,7 +163,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                     map.put("name","业务员填写中");
                     break;
                 case "ASM_CHECKING":
-                    map.put("name","销售中心经理审核中");
+                    map.put("name","中心总经理审核中");
                     break;
                 default:break;
             }
@@ -462,7 +462,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
         List<Map<String,Object>> list=new ArrayList<>();
         if(position.equals("MANAGER")){
-            String pos=StringUtil.setUtf8("销售中心经理");
+            String pos=StringUtil.setUtf8("中心总经理");
 
                 list=yLcontractentryDao.getAllys_areaOver(start,number,cid,year,area_1,area_2,find,states,pos);
                 map.put("count",yLcontractentryDao.countYs_areaOver(cid,year,area_1,area_2,find,states,pos));
