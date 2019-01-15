@@ -70,6 +70,8 @@ public class InfoStateServiceImpl implements InfoStateService {
             customerInfo = "业务员审核中";
         }else if(customerInfoCardState.equals("APPROVED")){
             customerInfo = "资料卡通过";
+        }else if(customerInfoCardState.equals("BIILDEPCHECKING")){
+            customerInfo = "订单部审核中";
         }else{
             customerInfo = "暂无最新消息";
         }
@@ -114,10 +116,13 @@ public class InfoStateServiceImpl implements InfoStateService {
            }else if(yLcontractentryState.equals("DEP_MARKET_CHECK")){
                yLcontractInfo = "市场部审核中";
            }else if(yLcontractentryState.equals("CSA_CHECK")){
-               yLcontractInfo = "销售副总批准中";
+               yLcontractInfo = "销售总监审核中";
            }else if(yLcontractentryState.equals("APPROVED")){
                yLcontractInfo = "协议书通过";
-           }else{
+           }else if(yLcontractentryState.equals("ASM_CHECKING")){
+               yLcontractInfo = "销售中心经理审核中";
+           }
+           else{
                yLcontractInfo = "暂无最新消息";
            }
            map.put("yLcontractInfo",yLcontractInfo);

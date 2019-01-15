@@ -7,6 +7,7 @@ import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
 import com.yulan.service.YLcontractentryService;
 import com.yulan.utils.MapUtils;
+import com.yulan.utils.NumToChinese;
 import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,8 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
     private CustomerInfoCard customerInfoCard;
 
     private MapUtils mapUtils;
+
+    private NumToChinese numToChinese;
 
     @Override
     public Map<String, Object> showStateEchartYCl(String year) {
@@ -90,7 +93,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                     x.add(m.get("NUMS"));
                     break;
                 case "ASM_CHECKING":
-                    y.add("销售中心经理审核中");
+                    y.add("中心总经理审核中");
                     x.add(m.get("NUMS"));
                     break;
                 default:break;
@@ -163,7 +166,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                     map.put("name","业务员填写中");
                     break;
                 case "ASM_CHECKING":
-                    map.put("name","销售中心经理审核中");
+                    map.put("name","中心总经理审核中");
                     break;
                 default:break;
             }
@@ -213,6 +216,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         yLcontractentry.setCid(yLcontract_v2015.getCcid());
         yLcontractentry.setStartDate(yLcontract_v2015.getStartDate());
         yLcontractentry.setEndDate(yLcontract_v2015.getEndDate());
+
         if(yLcontractentryDao.updateYLcontract_v2015(yLcontract_v2015) && yLcontractentryDao.updateYLcontractentry(yLcontractentry)){
             return true;
         }else{
@@ -230,7 +234,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         cname
         X_POST_ADDRESS
         X_DISTRICT、X_AREA_DISTRICT_2、X_AREA_DISTRICT_3
-        preferedbrand
+
         account1Name //公司开户名
         account2Name //个人开户名
         account1Bank //公司银行
@@ -250,6 +254,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         /*
         YLCONTRACT_V2015
         总任务 = 玉兰+尚居
+        preferedbrand
         A_RETAILING 玉兰
         C_MATCHING 尚居
         M1
@@ -285,7 +290,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(sdf.format(yLcontractentry.getStartDate()));
         list.add(sdf.format(yLcontractentry.getEndDate()));
         list.add(yLcontract_v2015.getPreferedbrand());
-        list.add(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
+        list.add("人民币"+numToChinese.transfrom(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()))+"整");
         list.add(df.format(yLcontract_v2015.getaRetailing()));
         list.add(df.format(yLcontract_v2015.getcMatching()));
         list.add(df.format(yLcontract_v2015.getM1()));
@@ -305,7 +310,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         System.out.println(yLcontract_v2015.getRewordpercent2());
         list.add(df.format(yLcontract_v2015.getRewordpercent2()));
         list.add(df.format(yLcontract_v2015.getStockpercent()));
-        list.add(df.format(yLcontract_v2015.getStockpercent() * total));
+        list.add("人民币"+numToChinese.transfrom(df.format(yLcontract_v2015.getStockpercent() * total))+"整");
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
             list.add("公司汇款账号信息");
             list.add(customerInfoCard.getAccount1Name());
@@ -321,7 +326,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         }
         //   list.add(yLcontract_v2015.getPrivateAccountAuthed());
 
-        String test = yLcontractentryDao.getYLcontractHTML(3).getTest();
+        String test = yLcontractentryDao.getYLcontractHTML(4).getTest();
         test = StringUtil.getUtf8(test);
 
         String html = stringUtil.replace(test,"AAAA",list);
@@ -429,7 +434,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
 
     @Override
-    public Map getYlcsbySigned(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find, String need, String position) throws UnsupportedEncodingException {
+    public Map getYlcsbySigned(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find, String need, String position ,Integer legalchecked) throws UnsupportedEncodingException {
         Map<String,Object> map=new HashMap<>();
         String state="";
         List states=new ArrayList();
@@ -461,13 +466,16 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
         List<Map<String,Object>> list=new ArrayList<>();
         if(position.equals("MANAGER")){
-            String pos=StringUtil.setUtf8("销售中心经理");
+            String pos=StringUtil.setUtf8("中心总经理");
 
                 list=yLcontractentryDao.getAllys_areaOver(start,number,cid,year,area_1,area_2,find,states,pos);
                 map.put("count",yLcontractentryDao.countYs_areaOver(cid,year,area_1,area_2,find,states,pos));
 
 
 
+        }else if(position.equals("LEGALCHECK")){
+                list=yLcontractentryDao.getAllys_LEGALCHECK(start,number,cid,year,find,legalchecked);
+            map.put("count",yLcontractentryDao.count_LEGALCHECK(cid,year,find,legalchecked));
         }else{
             list=yLcontractentryDao.getAllYs(start,number,cid,year,area_1,area_2,find,states);
             map.put("count",yLcontractentryDao.countYs(cid,year,area_1,area_2,find,states));
@@ -485,7 +493,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             }
             if(m.get("WFMEMO")!=null){
                 m.put("MARKET",StringUtil.getName(m.get("WFMEMO").toString(),"#DEP_MARKET_CHECK#(.*?)#DEP_MARKET_CHECK#","#DEP_MARKET_CHECK#"));//获取市场部审核人员
-                m.put("CSA",StringUtil.getName(m.get("WFMEMO").toString(),"#CSA_CHECK#(.*?)#CSA_CHECK#","#CSA_CHECK#"));//营销部
+                m.put("CSA",StringUtil.getName(m.get("WFMEMO").toString(),"#CSA_CHECK#(.*?)#CSA_CHECK#","#CSA_CHECK#"));//营销部总监
             }else{
                 m.put("MARKET","");//获取市场部审核人员
                 m.put("CSA","");//营销部

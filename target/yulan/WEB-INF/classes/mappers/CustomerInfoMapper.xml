@@ -336,7 +336,7 @@
             <if test="file1Idcard != null">
         FILE_1_IDCARD = #{file1Idcard,jdbcType=VARCHAR},
             </if>
-            <if test="file1IdcardNo = !null">
+            <if test="file1IdcardNo != null">
                 FILE_1_IDCARD_NO = #{file1IdcardNo,jdbcType=VARCHAR},
             </if>
             <if test="file1Op != null">
@@ -403,7 +403,7 @@
                 ACCOUT = #{accout,jdbcType=VARCHAR},
             </if>
             <if test="accountLocation != null">
-                ACCOUNT_LOCATION = #{accountLocation,jdbcType=VARCHA},
+                ACCOUNT_LOCATION = #{accountLocation,jdbcType=VARCHAR},
             </if>
             <if test="idcardNo != null">
                 IDCARD_NO = #{idcardNo,jdbcType=VARCHAR},
@@ -423,7 +423,7 @@
 
 
     <select id="getXAreaDistrictName" parameterType="java.util.Map" resultType="string">
-        select REGION_NAME from AREA_REGION WHERE REGION_ID =#{REGION_ID}
+        select REGION_NAME from AREA_REGION WHERE REGION_ID =#{REGION_ID,jdbcType=VARCHAR}
     </select>
 
     <select id="getXDistrict" parameterType="java.util.Map" resultType="string">
@@ -551,10 +551,10 @@
             and contractyear=#{year}
         </if>
         <if test="area_1!=null">
-            and MARKET=#{area_1}
+            and MARKETNAME=#{area_1}
         </if>
         <if test="area_2!=null">
-            and SUBMARKET=#{area_2}
+            and SUBMARKETNAME=#{area_2}
         </if>
 
 
@@ -668,6 +668,9 @@
 
         <if test="state!=null">
             and state=#{state}
+        </if>
+        <if test="legalchecked!=null">
+            and legalchecked=#{legalchecked}
         </if>
 
         <if test="find!=null">
@@ -789,6 +792,9 @@
 
         <if test="state!=null">
             and state=#{state}
+        </if>
+        <if test="legalchecked!=null">
+            and legalchecked=#{legalchecked}
         </if>
 
         <if test="find!=null">

@@ -55,7 +55,7 @@ public class CustomerController {
             customerTypes=customerTypes.size()==0?null:customerTypes;
         }
         List<Customer> customers;
-        if(areaCodes==null&&areaDistricts==null&&customerTypes==null) {
+        if(areaCodes==null&&areaDistricts==null&&customerTypes==null&&customerCode==null) {
             customers = new ArrayList<>();
         } else {
             customers = customerService.getCustomers(customerCode,areaCodes,areaDistricts,customerTypes);
