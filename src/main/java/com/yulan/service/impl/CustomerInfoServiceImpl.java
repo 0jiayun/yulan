@@ -276,10 +276,10 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             return "";
         }else {
             String a = customerInfoDao.getXDistrict(xDistrict);
-            if (customerInfoDao.getXDistrict(xDistrict).equals("") || customerInfoDao.getXDistrict(xDistrict) == null) {
-                return null;
+            if ( a == null || a.equals("")) {
+                return "";
             } else {
-                xDistrict = stringUtil.getUtf8(customerInfoDao.getXDistrict(xDistrict));
+                xDistrict = stringUtil.getUtf8(a);
                 return xDistrict;
             }
         }

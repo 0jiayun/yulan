@@ -38,7 +38,6 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
     private MapUtils mapUtils;
 
-    private NumToChinese numToChinese;
 
     @Override
     public Map<String, Object> showStateEchartYCl(String year) {
@@ -226,8 +225,10 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
     @Override
     public String getYLcontractHTML(String cid) throws IOException {
+        NumToChinese numToChinese = new NumToChinese();
         //保留两位小数的方法
         DecimalFormat df = new DecimalFormat("0.00");
+        DecimalFormat dfInt = new DecimalFormat("0");
         List<Object> list = new ArrayList<Object>();
         /*
         CustomerInfoCard
@@ -290,7 +291,10 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(sdf.format(yLcontractentry.getStartDate()));
         list.add(sdf.format(yLcontractentry.getEndDate()));
         list.add(yLcontract_v2015.getPreferedbrand());
-        list.add("人民币"+numToChinese.transfrom(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()))+"整");
+ //       list.add(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
+        System.out.println(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
+        System.out.println(numToChinese.transfrom(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching())));
+        list.add("人民币"+numToChinese.transfrom(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()))+"整");
         list.add(df.format(yLcontract_v2015.getaRetailing()));
         list.add(df.format(yLcontract_v2015.getcMatching()));
         list.add(df.format(yLcontract_v2015.getM1()));
@@ -307,10 +311,10 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(df.format(yLcontract_v2015.getM12()));
         list.add(df.format(total));
         list.add(df.format(yLcontract_v2015.getRewordpercent()));
-        System.out.println(yLcontract_v2015.getRewordpercent2());
         list.add(df.format(yLcontract_v2015.getRewordpercent2()));
         list.add(df.format(yLcontract_v2015.getStockpercent()));
-        list.add("人民币"+numToChinese.transfrom(df.format(yLcontract_v2015.getStockpercent() * total))+"整");
+ //       list.add(df.format(yLcontract_v2015.getStockpercent() * total));
+        list.add("人民币"+numToChinese.transfrom((dfInt.format(yLcontract_v2015.getStockpercent() * total)))+"整");
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
             list.add("公司汇款账号信息");
             list.add(customerInfoCard.getAccount1Name());
