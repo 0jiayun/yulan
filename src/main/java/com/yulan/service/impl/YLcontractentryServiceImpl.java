@@ -7,6 +7,7 @@ import com.yulan.pojo.YLcontractentry;
 import com.yulan.service.CustomerInfoService;
 import com.yulan.service.YLcontractentryService;
 import com.yulan.utils.MapUtils;
+import com.yulan.utils.NumToChinese;
 import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,8 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
     private CustomerInfoCard customerInfoCard;
 
     private MapUtils mapUtils;
+
+    private NumToChinese numToChinese;
 
     @Override
     public Map<String, Object> showStateEchartYCl(String year) {
@@ -231,7 +234,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         cname
         X_POST_ADDRESS
         X_DISTRICT、X_AREA_DISTRICT_2、X_AREA_DISTRICT_3
-        preferedbrand
+
         account1Name //公司开户名
         account2Name //个人开户名
         account1Bank //公司银行
@@ -251,6 +254,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         /*
         YLCONTRACT_V2015
         总任务 = 玉兰+尚居
+        preferedbrand
         A_RETAILING 玉兰
         C_MATCHING 尚居
         M1
@@ -286,7 +290,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(sdf.format(yLcontractentry.getStartDate()));
         list.add(sdf.format(yLcontractentry.getEndDate()));
         list.add(yLcontract_v2015.getPreferedbrand());
-        list.add(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
+        list.add("人民币"+numToChinese.transfrom(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()))+"整");
         list.add(df.format(yLcontract_v2015.getaRetailing()));
         list.add(df.format(yLcontract_v2015.getcMatching()));
         list.add(df.format(yLcontract_v2015.getM1()));
@@ -306,7 +310,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         System.out.println(yLcontract_v2015.getRewordpercent2());
         list.add(df.format(yLcontract_v2015.getRewordpercent2()));
         list.add(df.format(yLcontract_v2015.getStockpercent()));
-        list.add(df.format(yLcontract_v2015.getStockpercent() * total));
+        list.add("人民币"+numToChinese.transfrom(df.format(yLcontract_v2015.getStockpercent() * total))+"整");
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
             list.add("公司汇款账号信息");
             list.add(customerInfoCard.getAccount1Name());
@@ -322,7 +326,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         }
         //   list.add(yLcontract_v2015.getPrivateAccountAuthed());
 
-        String test = yLcontractentryDao.getYLcontractHTML(3).getTest();
+        String test = yLcontractentryDao.getYLcontractHTML(4).getTest();
         test = StringUtil.getUtf8(test);
 
         String html = stringUtil.replace(test,"AAAA",list);
