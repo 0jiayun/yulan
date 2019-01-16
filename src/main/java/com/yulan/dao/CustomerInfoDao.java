@@ -100,6 +100,8 @@ public interface CustomerInfoDao {
 
     List<Map<String, Object>> getArea_Smanager(@Param("cid")String cid);//片区经理获取管理地区
 
+    List<Map<String, Object>> gatArea_All() ;//所有区域（内部审核人员）
+
 
     String getYlcstate(@Param("cid")String cid,@Param("year")int year);//获取资料卡cid相应的协议书状态
 
