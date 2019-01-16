@@ -181,8 +181,24 @@ public class InfoStateServiceImpl implements InfoStateService {
     }
 
     @Override
-    public List<YLcontractentry> getYLcontractentryLeagalChecked(Integer start, Integer number, Integer legalChecked) throws IOException {
-        List<YLcontractentry> list = yLcontractentryDao.getYLcontractentryLeagalChecked(start,number,legalChecked);
+    public List<YLcontractentry> getYLcontractentryLeagalChecked(Integer start, Integer number, Integer legalChecked,String market, String submarket, String state,Integer year) throws IOException {
+        List<YLcontractentry> list = new ArrayList<YLcontractentry>();
+        if(market == null || market.equals("")){
+             list = yLcontractentryDao.getYLcontractentryLegalChecked(start,number,legalChecked,year,state);
+
+        }else{
+            List<CustomerInfoCard> customerInfoList = customerInfoDao.getCustomerInfoByMarketName(year,stringUtil.setUtf8(market),stringUtil.setUtf8(submarket));
+            for(CustomerInfoCard customerInfoCard : customerInfoList){
+                   YLcontractentry yLcontractentry = yLcontractentryDao.getYLcontractentryLegalCheckedSingle(start,number,legalChecked,year,customerInfoCard.getCid(),state);
+                   if(yLcontractentryDao.getYLcontractentryLegalCheckedSingle(start,number,legalChecked,year,customerInfoCard.getCid(),state) == null){
+                       continue;
+                   }
+                       yLcontractentry.setMarketname(stringUtil.getUtf8(customerInfoCard.getMarketname()));
+                       yLcontractentry.setSubmarketname(stringUtil.getUtf8(customerInfoCard.getSubmarketname()));
+                       list.add(yLcontractentry);
+
+            }
+        }
         for(int i=0; i<list.size(); i++){
             Map<String, Object> map = new HashMap<String, Object>();
             map = mapUtils.beanToMap(list.get(i));
@@ -195,5 +211,7 @@ public class InfoStateServiceImpl implements InfoStateService {
             list.set(i,mapUtils.mapToBean(map,YLcontractentry.class)) ;
         }
         return list;
+
+
     }
 }

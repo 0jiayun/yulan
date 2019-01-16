@@ -44,7 +44,27 @@ public class YLcontractentry {
 
     private String rwUpdate;
 
+    private String marketname;
+
+    private String submarketname;
+
     public YLcontractentry() {
+    }
+
+    public String getMarketname() {
+        return marketname;
+    }
+
+    public void setMarketname(String marketname) {
+        this.marketname = marketname;
+    }
+
+    public String getSubmarketname() {
+        return submarketname;
+    }
+
+    public void setSubmarketname(String submarketname) {
+        this.submarketname = submarketname;
     }
 
     public Integer getCyear() {
