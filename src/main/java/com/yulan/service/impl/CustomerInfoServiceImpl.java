@@ -425,8 +425,10 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
             list=customerInfoDao.getArea_Cmanager(cid);
         }else if(position.equals("SALEMAN_M")){
             list=customerInfoDao.getArea_Mmanager(cid);
-        }else{
+        }else if(position.equals("SALEMAN_S")){
             list=customerInfoDao.getArea_Smanager(cid);
+        }else {
+            list=customerInfoDao.gatArea_All();
         }
         if (!position.equals("SALEMAN_S")){
 
@@ -498,7 +500,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 }
                 a=m.get("DISTRICT_NAME").toString();
             }
-            Map.put("area",a);
+            Map.put("area",this.getUserArea(cid,position));
 
             list=customerInfoDao.getCustomerinfo_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
             count=customerInfoDao.count_Smanager(start,number,cid,state,year,area_1,area_2,find,ylcstate);
@@ -506,7 +508,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
         }else{
             list=customerInfoDao.getAllCustomerinfo(start,number,cid,state,year,area_1,area_2,find,ylcstate,legalchecked);
             count=customerInfoDao.countAll(start,number,cid,state,year,area_1,area_2,find,ylcstate,legalchecked);
-            Map.put("area","");
+            Map.put("area",this.getUserArea(cid,position));
 
         }
         for (Map<String, Object> map : list) {

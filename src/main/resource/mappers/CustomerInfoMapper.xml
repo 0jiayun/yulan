@@ -518,6 +518,12 @@
         where o.area=d.area_code and c.area_code=o.area
     </select>
 
+    <select id="gatArea_All" resultType="Map">
+        select o.area,c.area_name,d.district_id,d.district_name from
+           (select d.area from area_owner d ) o,area_district d,area_code c
+        where o.area=d.area_code and c.area_code=o.area
+    </select>
+
     <select id="getArea_Smanager" resultType="Map">
         select t.district_name,t.district_id  from
           AREA_DISTRICT t,(select d.area from area_owner d where d.owner=#{cid}) o
