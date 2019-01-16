@@ -268,14 +268,36 @@
         select * from YLCONTRACTENTRY t where t.cid=#{CID} and t.cyear = #{CYEAR}
     </select>
 
-    <select id="getYLcontractentryLeagalChecked" parameterType="java.util.Map" resultType="YLcontractentry">
+    <select id="getYLcontractentryLegalChecked" parameterType="java.util.Map" resultType="YLcontractentry">
         select * from(
         select rownum rm, c.*  from
         (
         select * from YLCONTRACTENTRY
-        <if test="LEGALCHECKED!=null">
+        <if test="LEGALCHECKED !=null">
             where LEGALCHECKED = #{LEGALCHECKED}
         </if>
+        <if test="STATE !=null">
+            and STATE = #{STATE,jdbcType=VARCHAR}
+        </if>
+            and CYEAR = #{CYEAR}
+        ) c)tm
+        <if test="start!=null">
+            where rm &gt;= #{start} and rm &lt;= #{number}
+        </if>
+    </select>
+
+    <select id="getYLcontractentryLegalCheckedSingle" parameterType="java.util.Map" resultType="YLcontractentry">
+        select * from(
+        select rownum rm, c.*  from
+        (
+        select * from YLCONTRACTENTRY
+        <if test="LEGALCHECKED !=null">
+            where LEGALCHECKED = #{LEGALCHECKED}
+        </if>
+        <if test="STATE !=null">
+            and STATE = #{STATE,jdbcType=VARCHAR}
+        </if>
+        and CYEAR = #{CYEAR} and CID = #{CID}
         ) c)tm
         <if test="start!=null">
             where rm &gt;= #{start} and rm &lt;= #{number}

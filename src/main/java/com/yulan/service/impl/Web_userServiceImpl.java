@@ -26,7 +26,7 @@ public class Web_userServiceImpl implements Web_userService {
 
             Web_user web_user=web_userDao.login(loginName,password);
             if(web_user!=null){
-                if(web_user.getType().equals("SALEMAN")){
+                if(web_user.getType().equals("SALEMAN")||web_user.getType().equals("USER")){//后做修改
                     String position=web_userDao.getPosition(web_user.getLoginName(),year);
                     if(position==null){
                         List<Map<String,Object>> list1=web_userDao.getArea_position(loginName);

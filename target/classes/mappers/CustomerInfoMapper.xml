@@ -247,6 +247,17 @@
         select * from CUSTOMERINFOCARD t where t.cid=#{CID,jdbcType=VARCHAR} and t.contractyear = #{YEAR}
     </select>
 
+    <select id="getCustomerInfoByMarketName" parameterType="java.util.Map" resultType="CustomerInfoCard">
+        select * from CUSTOMERINFOCARD t
+        <if test="marketname != null">
+        where t.marketname=#{marketname,jdbcType=VARCHAR}
+        </if>
+        <if test="submarketname != null">
+            and t.submarketname = #{submarketname,jdbcType=VARCHAR}
+        </if>
+        and t.contractyear = #{YEAR}
+    </select>
+
     <select id="getYLcontract" parameterType="java.util.Map" resultType="YLcontract_v2015_paa">
         select * from ( select * from YLCONTRACT_V2015_PAA t where t.ccid=#{CCID,jdbcType=VARCHAR} ORDER BY t.ccyear desc nulls last)WHERE ROWNUM =1
     </select>
@@ -370,7 +381,7 @@
         FILE_5_OP = #{file5Op,jdbcType=VARCHAR}
             </if>
         </set>
-        where CID = #{cid} AND CONTRACTYEAR = #{contractyear}
+        where CID = #{cid,jdbcType=VARCHAR} AND CONTRACTYEAR = #{contractyear}
   </update>
 
     <insert id="insertYLcontract" parameterType="YLcontract_v2015_paa">

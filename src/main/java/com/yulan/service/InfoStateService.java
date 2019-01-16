@@ -23,5 +23,5 @@ public interface InfoStateService {
 
     List<CustomerInfoCard> getCustomerInfoCardLeagalChecked(Integer start,Integer number,Integer legalChecked)throws IOException;
 
-    List<YLcontractentry> getYLcontractentryLeagalChecked(Integer start, Integer number, Integer legalChecked)throws IOException;
+    List<YLcontractentry> getYLcontractentryLeagalChecked(Integer start, Integer number, Integer legalChecked, String market, String submarket, String state,Integer year)throws IOException;
 }
