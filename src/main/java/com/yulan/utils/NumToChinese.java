@@ -8,22 +8,22 @@ public class NumToChinese {
 
     public String transfrom( String x )
     {
-        /*if( null==x )
+        if( null==x )
         {
-            return "您输入的字符串地址为null！";
+            System.out.println("您输入的字符串地址为null！");
         }
         if( 0==x.length() )
         {
-            return "您输入的字符串长度为0，请输入要转换的数字！";
+            System.out.println("您输入的字符串长度为0，请输入要转换的数字！");
         }
-        if( false==checkIsNumbers(x) )
+        /*if( false==checkIsNumbers(x) )
         {
             return "您输入的字符不都为数字，无法转换！";
-        }
+        }*/
         if( x.length()>16 )
         {
-            return "您输入的字符串长度大于16，无法转换！";
-        }*/
+            System.out.println( "您输入的字符串长度大于16，无法转换！");
+        }
         //去除字符串首部的0，例如：0010->10
         int fm;
         for( fm=0 ; fm<x.length() ; fm++ )

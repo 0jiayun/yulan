@@ -32,5 +32,7 @@ public interface Area_ownerDao {
     //获取区域经理名
     String getManageName(String center_manager);
 
+    //是否
+
 
 }
