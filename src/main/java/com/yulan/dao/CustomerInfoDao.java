@@ -13,6 +13,10 @@ public interface CustomerInfoDao {
 
     CustomerInfoCard getCustomerInfoByYear(@Param("CID") String cid,@Param("YEAR") Integer year);
 
+    List<CustomerInfoCard> getCustomerInfoByMarketName(@Param("YEAR")Integer year,
+                                                       @Param("marketname")String marketname,
+                                                       @Param("submarketname")String submarketname);
+
     List<Map<String,Object>> getInfobyStateandmarketName(@Param("start")Integer start, @Param("number") Integer number,@Param("year")String year);
 
     List<Map> getInfoBySate(@Param("year")String year);

@@ -101,5 +101,16 @@ public interface YLcontractentryDao {
 
     List<Map<String,Object>> getYLcontractentryStateByArea(@Param("CYEAR") String year);
 
-    List<YLcontractentry> getYLcontractentryLeagalChecked(@Param("start") Integer start,@Param("number") Integer number,@Param("LEGALCHECKED") Integer legalChecked);
+    List<YLcontractentry> getYLcontractentryLegalChecked(@Param("start") Integer start,
+                                                          @Param("number") Integer number,
+                                                          @Param("LEGALCHECKED") Integer legalChecked,
+                                                          @Param("CYEAR")Integer year,
+                                                          @Param("STATE")String state);
+
+    YLcontractentry getYLcontractentryLegalCheckedSingle(@Param("start") Integer start,
+                                                         @Param("number") Integer number,
+                                                         @Param("LEGALCHECKED") Integer legalChecked,
+                                                         @Param("CYEAR")Integer year,
+                                                         @Param("CID")String cid,
+                                                         @Param("STATE")String state);
 }

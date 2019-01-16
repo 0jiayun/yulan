@@ -273,7 +273,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     @Override
     public String getXDistrict(String xDistrict) throws IOException {
         if(xDistrict == null){
-            return "";
+            return "--";
         }else {
             String a = customerInfoDao.getXDistrict(xDistrict);
             if ( a == null || a.equals("")) {
@@ -288,7 +288,7 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     @Override
     public String getXAreaDistrictName(String getXAreaDistrict3Name) throws IOException {
         if(getXAreaDistrict3Name == null){
-            return "";
+            return "--";
         }else {
             if (customerInfoDao.getXAreaDistrictName(getXAreaDistrict3Name).equals("") || customerInfoDao.getXAreaDistrictName(getXAreaDistrict3Name) == null) {
                 return null;

@@ -221,6 +221,9 @@ public class InfoStateController {
         Integer legalchecked = (Integer) data.get("legalchecked");
         Integer limit = (Integer)data.get("limit");
         Integer page = (Integer)data.get("page");
+        String market = (String) data.get("market");
+        String submarket = (String)data.get("submarket");
+        String state = (String)data.get("state");
         if(limit==null||page==null) {
             page=null;
             limit=null;
@@ -235,16 +238,21 @@ public class InfoStateController {
 
     /**
      * 获取法务员抽查协议书接口
+     * 可以按大区和片区查找
      * @param data
      * @return
      * @throws IOException
      */
-    @RequestMapping("getYLcontractentryLeagalChecked")
+    @RequestMapping("getYLcontractentryLegalChecked")
     @ResponseBody
-    public Map getYLcontractentryLeagalChecked(@RequestBody Map<String, Object> data)throws IOException{
+    public Map getYLcontractentryLegalChecked(@RequestBody Map<String, Object> data)throws IOException{
         Integer legalchecked = (Integer) data.get("legalchecked");
         Integer limit = (Integer)data.get("limit");
         Integer page = (Integer)data.get("page");
+        String market = (String) data.get("market");
+        String submarket = (String)data.get("submarket");
+        String state = (String)data.get("state");
+        Integer year = (Integer)data.get("year");
         if(limit==null||page==null) {
             page=null;
             limit=null;
@@ -253,7 +261,7 @@ public class InfoStateController {
         }
         int lastNum=page+limit-1;
         Map<String, Object> map = new HashMap<>();
-        map.put("data",infoStateService.getYLcontractentryLeagalChecked(page,lastNum,legalchecked));
+        map.put("data",infoStateService.getYLcontractentryLeagalChecked(page,lastNum,legalchecked,market,submarket,state,year));
         return map;
     }
 }
