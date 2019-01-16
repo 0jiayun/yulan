@@ -328,7 +328,7 @@
         ACCOUNT2_LOCATION = #{account2Location,jdbcType=VARCHAR},
             </if>
             <if test="busientType != null">
-                BUSIENT_TYPE = #{busientType,jdbcType=VARCgHAR},
+                BUSIENT_TYPE = #{busientType,jdbcType=VARCHAR},
             </if>
             <if test="customerentitytypex != null">
         CUSTOMERENTITYTYPEX = #{customerentitytypex,jdbcType=CHAR},

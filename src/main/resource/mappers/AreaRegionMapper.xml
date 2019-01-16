@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yulan.dao.AreaRegionDao">
+
+    <select id="getAreaRegionByID" parameterType="String" resultType="AreaRegion">
+        select * from AREA_REGION where region_id = #{areaRegionID}
+    </select>
+
     <resultMap id="BaseResultMap" type="com.yulan.pojo.AreaRegion" >
         <id column="REGION_ID" property="regionId" jdbcType="VARCHAR" />
         <result column="REGION_NAME" property="regionName" jdbcType="VARCHAR" />
