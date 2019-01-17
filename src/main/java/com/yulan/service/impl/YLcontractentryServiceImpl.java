@@ -181,6 +181,9 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             yLcontract_v2015 = yLcontractentryDao.getYLcontract_v2015(ccid);
             String preferedbrand = stringUtil.getUtf8(yLcontract_v2015.getPreferedbrand());
             yLcontract_v2015.setPreferedbrand(preferedbrand);
+            YLcontractentry yLcontractentry = yLcontractentryDao.getYLcontractentryByYear(ccid,yLcontract_v2015.getCcyear());
+            yLcontract_v2015.setStartDate(yLcontractentry.getStartDate());
+            yLcontract_v2015.setEndDate(yLcontractentry.getEndDate());
             return yLcontract_v2015;
         }
 

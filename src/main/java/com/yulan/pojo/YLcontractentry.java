@@ -20,9 +20,9 @@ public class YLcontractentry {
 
     private String xAreaDistrict3;
 
-    private java.util.Date startDate;
+    private java.sql.Date startDate;
 
-    private java.util.Date endDate;
+    private java.sql.Date endDate;
 
     private String typeid;
 
@@ -115,19 +115,19 @@ public class YLcontractentry {
         this.xAreaDistrict3 = xAreaDistrict3 == null ? null : xAreaDistrict3.trim();
     }
 
-    public java.util.Date getStartDate() {
+    public java.sql.Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(java.util.Date startDate) {
+    public void setStartDate(java.sql.Date startDate) {
         this.startDate = startDate;
     }
 
-    public java.util.Date getEndDate() {
+    public java.sql.Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(java.util.Date endDate) {
+    public void setEndDate(java.sql.Date endDate) {
         this.endDate = endDate;
     }
 
