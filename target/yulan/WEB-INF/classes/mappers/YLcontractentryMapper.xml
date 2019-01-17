@@ -335,7 +335,7 @@
         SIGNED = #{SIGNED},
             </if>
             <if test="market!=null">
-        MARKET = #{market,jdbcType=VARCHAR},
+        MARKETCHECK = #{market,jdbcType=VARCHAR},
             </if>
             <if test="csa!=null">
         CSA = #{csa,jdbcType=VARCHAR},
