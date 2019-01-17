@@ -157,10 +157,12 @@ public class InfoStateServiceImpl implements InfoStateService {
 
     @Override
     public boolean checkYLcontractentryState(String cid, String state,
-                                             String wfmemo,Integer signed) throws IOException {
+                                             String wfmemo,Integer signed,String market, String csa) throws IOException {
         state = stringUtil.setUtf8(state);
         wfmemo = stringUtil.setUtf8(wfmemo);
-        return yLcontractentryDao.checkYLcontractentry(cid,state,wfmemo,signed);
+        market = stringUtil.setUtf8(market);
+        csa = stringUtil.setUtf8(csa);
+        return yLcontractentryDao.checkYLcontractentry(cid,state,wfmemo,signed,market,csa);
     }
 
     @Override

@@ -48,7 +48,27 @@ public class YLcontractentry {
 
     private String submarketname;
 
+    private String market;
+
+    private String csa;
+
     public YLcontractentry() {
+    }
+
+    public String getMarket() {
+        return market;
+    }
+
+    public void setMarket(String market) {
+        this.market = market;
+    }
+
+    public String getCsa() {
+        return csa;
+    }
+
+    public void setCsa(String csa) {
+        this.csa = csa;
     }
 
     public String getMarketname() {

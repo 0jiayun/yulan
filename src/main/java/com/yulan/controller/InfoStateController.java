@@ -173,7 +173,9 @@ public class InfoStateController {
         String state = (String) data.get("state");
         String wfmemo = (String) data.get("wfmemo");
         Integer signed = (Integer)data.get("signed");
-        if (infoStateService.checkYLcontractentryState(cid, state, wfmemo,signed)) {
+        String market = (String)data.get("market");
+        String csa = (String)data.get("csa");
+        if (infoStateService.checkYLcontractentryState(cid, state, wfmemo,signed,market,csa)) {
             return response.getResponseMap(0, "SUCCESS", null);
         } else {
             return response.getResponseMap(1, "更新失败", null);
