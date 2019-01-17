@@ -31,6 +31,10 @@ public class CustomerController {
     private Area_ownerService area_ownerService;
     @Autowired
     private AreaCodeService areaCodeService;
+    @Autowired
+    private AreaRegionService areaRegionService;
+    @Autowired
+    private HesEmployeeService hesEmployeeService;
 
     /**
      * 批量创建资料卡
@@ -106,16 +110,36 @@ public class CustomerController {
         customerInfoCard.setxDeliveryAdress(customer.getDeliveryAdress());
         customerInfoCard.setTxAgentName(customer.getCustomerAgent());
         customerInfoCard.setWlAgentName(customer.getCustomerAgent1());
+        customerInfoCard.setQq(customer.getQqD());
+        customerInfoCard.setxFax(customer.getFax());
+        customerInfoCard.setxEmail(customer.getEmail());
+        customerInfoCard.setxZipCode(customer.getZipCode());
+        customerInfoCard.setFaxWl(customer.getFaxWlD());
+        customerInfoCard.setZipCodeWl(customer.getZipCodeWlD());
+
+        //设置资料卡的地区
+        customerInfoCard.setxDistrict(customer.getAreaDistrict());
+        customerInfoCard.setxAreaDistrict2(customer.getAreaDistrict2());
+        customerInfoCard.setxAreaDistrict3(customer.getAreaDistrict3());
+        if(customer.getAreaDistrict2()!=null) {
+            String areaDistrict2 = customer.getAreaDistrict2();
+            AreaRegion areaRegion = areaRegionService.getAreaRegionByID(areaDistrict2);
+            if(areaRegion!=null) {
+                customerInfoCard.setAreaDistrict2Text(areaRegion.getRegionName());
+            }
+        }
+        if(customer.getAreaDistrict3()!=null) {
+            String areaDistrict3 = customer.getAreaDistrict3();
+            AreaRegion areaRegion = areaRegionService.getAreaRegionByID(areaDistrict3);
+            if(areaRegion!=null) {
+                customerInfoCard.setAreaDistrict3Text(areaRegion.getRegionName());
+            }
+        }
 
         //设置资料卡状态
         customerInfoCard.setState("CUSTOMERPORCESSING");
         //设置法务员审查状态
         customerInfoCard.setLegalchecked((short)0);
-
-//        customerInfoCard.setMarketname(areaCodeService.getAreaCodeByAreaCode(customer.getAreaCode()).getAreaName());
-//        AreaDistrict areaDistrict = areaDistrictService.getAreaDistrictByDistrictID(customer.getAreaDistrict());
-//        if(areaDistrict!=null)
-//            customerInfoCard.setSubmarketname(areaDistrict.getDistrictName());
 
         //设置大区
         AreaCode areaCode = areaCodeService.getAreaCodeByAreaCode(customer.getAreaCode());
@@ -125,16 +149,18 @@ public class CustomerController {
 
         //设置大区，片区经理
         List<Area_owner> managers = area_ownerService.getAreaOwnerByAreaCode(customer.getAreaCode());
-        String market = StringUtil.setUtf8("大区经理");
-        String subMarket = StringUtil.setUtf8("片区经理");
+        String market = StringUtil.setUtf8("办事处经理");
+        String subMarket = StringUtil.setUtf8("业务经理");
         managers = managers != null?managers:new ArrayList<Area_owner>();
         for (Area_owner manager:managers) {
             if(manager.getPosition().equals(market)) {
                 customerInfoCard.setMarketmanager(manager.getOwner());
                 customerInfoCard.setManagerposition(market);
+                customerInfoCard.setMarketmanagername(hesEmployeeService.getHesEmployeeNameByNO(manager.getOwner()));
             }
             else if(manager.getPosition().equals(subMarket)) {
                 customerInfoCard.setSubmarketmanager(manager.getOwner());
+                customerInfoCard.setSubmarketmanagername(hesEmployeeService.getHesEmployeeNameByNO(manager.getOwner()));
             }
         }
 

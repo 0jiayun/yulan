@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface AreaRegionService {
 
+    AreaRegion getAreaRegionByID(String areaRegionID);
+
     List<AreaRegion> getProvince()throws IOException;
 
     List<AreaRegion> getCity(String parentProvince)throws IOException;

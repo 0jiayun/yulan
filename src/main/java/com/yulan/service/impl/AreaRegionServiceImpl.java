@@ -16,6 +16,12 @@ public class AreaRegionServiceImpl implements AreaRegionService {
     private AreaRegionDao areaRegionDao;
 
     private StringUtil stringUtil;
+
+    @Override
+    public AreaRegion getAreaRegionByID(String areaRegionID) {
+        return areaRegionDao.getAreaRegionByID(areaRegionID);
+    }
+
     @Override
     public List<AreaRegion> getProvince() throws IOException {
         List<AreaRegion> areaList = areaRegionDao.getProvince();

@@ -15,4 +15,8 @@
         select * from area_district where DISTRICT_ID=#{districtID}
     </select>
 
+    <select id="getAreaDistrictByName" parameterType="String" resultMap="AreaDistrictMap">
+        select * from area_district where DISTRICT_NAME = #{districtName}
+    </select>
+
 </mapper>

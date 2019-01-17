@@ -5,25 +5,15 @@ import java.util.Date;
 public class AreaRegion {
 
     private String regionId;
-
     private String regionName;
-
     private String parentCity;
-
     private String parentArea;
-
     private String parentProvince;
-
     private Short regionLevel;
-
     private String country;
-
     private Date dateCre;
-
     private Date dateUpdate;
-
     private String cityType;
-
     private String parentDistrict;
 
     public String getRegionId() {

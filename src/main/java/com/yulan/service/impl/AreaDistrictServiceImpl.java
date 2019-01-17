@@ -14,4 +14,9 @@ public class AreaDistrictServiceImpl implements AreaDistrictService {
     public AreaDistrict getAreaDistrictByDistrictID(String districtID) {
         return areaDistrictDao.getAreaDistrictByDistrictID(districtID);
     }
+
+    @Override
+    public AreaDistrict getAreaDistrictByName(String districtName) {
+        return areaDistrictDao.getAreaDistrictByName(districtName);
+    }
 }
