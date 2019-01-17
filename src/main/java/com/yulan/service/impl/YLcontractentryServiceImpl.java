@@ -511,7 +511,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             if(m.get("CSA")==null){
                 m.put("CSA","");
             }
-            if (m.get("MARKET")==null){
+            if (m.get("MARKETCHECK")==null){
                 m.put("MARKET","");
             }
 
