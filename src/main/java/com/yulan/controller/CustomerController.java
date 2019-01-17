@@ -110,6 +110,12 @@ public class CustomerController {
         customerInfoCard.setxDeliveryAdress(customer.getDeliveryAdress());
         customerInfoCard.setTxAgentName(customer.getCustomerAgent());
         customerInfoCard.setWlAgentName(customer.getCustomerAgent1());
+        customerInfoCard.setQq(customer.getQqD());
+        customerInfoCard.setxFax(customer.getFax());
+        customerInfoCard.setxEmail(customer.getEmail());
+        customerInfoCard.setxZipCode(customer.getZipCode());
+        customerInfoCard.setFaxWl(customer.getFaxWlD());
+        customerInfoCard.setZipCodeWl(customer.getZipCodeWlD());
 
         //设置资料卡的地区
         customerInfoCard.setxDistrict(customer.getAreaDistrict());
