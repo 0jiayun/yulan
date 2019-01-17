@@ -38,7 +38,6 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
     private MapUtils mapUtils;
 
-
     @Override
     public Map<String, Object> showStateEchartYCl(String year) {
         String Y="全部年份";
@@ -440,6 +439,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
     @Override
     public Map getYlcsbySigned(Integer start, Integer number, Integer year, String cid, String area_1, String area_2, String find, String need, String position ,Integer legalchecked) throws UnsupportedEncodingException {
         Map<String,Object> map=new HashMap<>();
+        map.put("area",customerInfoService.getUserArea(cid,position));
         String state="";
         List states=new ArrayList();
         //通过职位和need确定所需状态协议书
@@ -447,7 +447,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             switch (position){
                 case "MANAGER":states.add("ASM_CHECKING");//销售中心经理审核中
                     break;
-                case "MARKETCHECKER":states.add("DEP_MARKET_CHECK");//市场部审核中
+                case "MARKETCHECKER":states.add("DEP_MARKET_CHECK");//市场部审核中DEP_MARKET_CHECK
                     break;
                 case "VSMAPPROVEXII":states.add("CSA_CHECK");//销售副总批准中
                     break;
@@ -470,15 +470,18 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
 
         List<Map<String,Object>> list=new ArrayList<>();
         if(position.equals("MANAGER")){
+
             String pos=StringUtil.setUtf8("中心总经理");
 
                 list=yLcontractentryDao.getAllys_areaOver(start,number,cid,year,area_1,area_2,find,states,pos);
+
                 map.put("count",yLcontractentryDao.countYs_areaOver(cid,year,area_1,area_2,find,states,pos));
 
 
 
+
         }else if(position.equals("LEGALCHECK")){
-                list=yLcontractentryDao.getAllys_LEGALCHECK(start,number,cid,year,find,legalchecked);
+            list=yLcontractentryDao.getAllys_LEGALCHECK(start,number,cid,year,find,legalchecked);
             map.put("count",yLcontractentryDao.count_LEGALCHECK(cid,year,find,legalchecked));
         }else{
             list=yLcontractentryDao.getAllYs(start,number,cid,year,area_1,area_2,find,states);

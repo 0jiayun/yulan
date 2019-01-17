@@ -362,16 +362,13 @@
         *
         from(
         select rownum rm, l.*  from
-
-        (select u.realName Sname,s.* from
+        /*没有片区经理面名字submarketmanagername*/
         (select w.realname Mname ,f.* from
         (select c.marketname,c.marketmanager,c.submarketname,c.submarketmanager,c.submarketmanagername, c.marketmanagername,t.* from
         YLCONTRACTENTRY t,customerinfocard c
         where t.cid=c.cid and t.cyear=c.contractyear )f,web_user w
         where
-        w.loginname=f.MARKETMANAGER)s,web_user u
-        where
-        u.loginName=s.SUBMARKETMANAGER ) l
+        w.loginname=f.MARKETMANAGER) l
 
         where 1=1
         <if test="year!=null">

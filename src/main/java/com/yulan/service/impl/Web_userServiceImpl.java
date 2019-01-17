@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class Web_userServiceImpl implements Web_userService {
@@ -47,6 +44,10 @@ public class Web_userServiceImpl implements Web_userService {
                             }
                             area_positions.add(map1);
                         }
+                        HashSet h = new HashSet(area_positions);
+                        area_positions.clear();
+                        area_positions.addAll(h);
+
                         map.put("pos",area_positions);
 
                     }else {
@@ -54,6 +55,10 @@ public class Web_userServiceImpl implements Web_userService {
                         Map<String,Object> map2=new HashMap<>();
                         map2.put("position",position);
                         inters.add(map2);
+                        HashSet h = new HashSet(inters);
+                        inters.clear();
+                        inters.addAll(h);
+
                         map.put("pos",inters);
                     }
                 }
