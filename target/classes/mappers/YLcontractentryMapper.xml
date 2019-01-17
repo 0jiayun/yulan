@@ -332,7 +332,13 @@
         WFMEMO = WFMEMO || #{WFMEMO,jdbcType=VARCHAR},
             </if>
             <if test="SIGNED!=null">
-        SIGNED = #{SIGNED}
+        SIGNED = #{SIGNED},
+            </if>
+            <if test="market!=null">
+        MARKET = #{market,jdbcType=VARCHAR},
+            </if>
+            <if test="csa!=null">
+        CSA = #{csa,jdbcType=VARCHAR},
             </if>
         </set>
         where CID = #{CID} AND CYEAR = (select CYEAR from ( select * from YLCONTRACTENTRY t where t.cid=#{CID} ORDER BY t.cyear desc nulls last)WHERE ROWNUM =1)
