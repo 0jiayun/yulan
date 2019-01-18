@@ -383,11 +383,43 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
             map.put("State","1");
+            if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
+            {
+                customerInfoCard.setAccount1Name("--");
+            }
+            if(customerInfoCard.getAccount1Bank() == null || customerInfoCard.getAccount1Bank().equals(""))
+            {
+                customerInfoCard.setAccount1Bank("--");
+            }
+            if(customerInfoCard.getAccount1() == null || customerInfoCard.getAccount1().equals(""))
+            {
+                customerInfoCard.setAccount1("--");
+            }
+            if(customerInfoCard.getAccount1Location() == null || customerInfoCard.getAccount1Location().equals(""))
+            {
+                customerInfoCard.setAccount1Location("--");
+            }
             map.put("Account1Name",customerInfoCard.getAccount1Name());
             map.put("Account1Bank",customerInfoCard.getAccount1Bank());
             map.put("Account1",customerInfoCard.getAccount1());
             map.put("Account1Location",customerInfoCard.getAccount1Location());
         }else{
+            if(customerInfoCard.getAccount2Name() == null || customerInfoCard.getAccount2Name().equals(""))
+            {
+                customerInfoCard.setAccount2Name("--");
+            }
+            if(customerInfoCard.getAccount2Bank() == null || customerInfoCard.getAccount2Bank().equals(""))
+            {
+                customerInfoCard.setAccount2Bank("--");
+            }
+            if(customerInfoCard.getAccount2() == null || customerInfoCard.getAccount2().equals(""))
+            {
+                customerInfoCard.setAccount2("--");
+            }
+            if(customerInfoCard.getAccount2Location() == null || customerInfoCard.getAccount2Location().equals(""))
+            {
+                customerInfoCard.setAccount2Location("--");
+            }
             map.put("State","0");
             map.put("Account2Name",customerInfoCard.getAccount2Name());
             map.put("Account2Bank",customerInfoCard.getAccount2Bank());
