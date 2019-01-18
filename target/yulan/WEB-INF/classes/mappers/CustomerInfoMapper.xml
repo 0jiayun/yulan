@@ -362,6 +362,9 @@
             <if test="file2BusinesslicenseEnd != null">
         FILE_2_BUSINESSLICENSE_END = #{file2BusinesslicenseEnd,jdbcType=VARCHAR},
             </if>
+            <if test="file2BusinesslicenseNoend != null">
+        FILE_2_BUSINESSLICENSE_NOEND  = #{file2BusinesslicenseNoend},
+            </if>
             <if test="file2Op != null">
         FILE_2_OP = #{file2Op,jdbcType=VARCHAR},
             </if>
@@ -519,25 +522,25 @@
 
     <select id="getArea_Cmanager" resultType="Map">
         select c.area_name,c.area_code area,d.district_name,d.district_id from
-             (select d.area from area_owner d where d.owner=#{cid}) o,area_code c,area_district d where
+             (select d.area from area_owner d where d.owner=#{cid} group by d.area) o,area_code c,area_district d where
         c.area_belong=o.area and c.area_code=d.area_code
     </select>
 
     <select id="getArea_Mmanager" resultType="Map">
         select o.area,c.area_name,d.district_id,d.district_name from
-           (select d.area from area_owner d where d.owner=#{cid}) o,area_district d,area_code c
+           (select d.area from area_owner d where d.owner=#{cid} group by d.area) o,area_district d,area_code c
         where o.area=d.area_code and c.area_code=o.area
     </select>
 
     <select id="gatArea_All" resultType="Map">
         select o.area,c.area_name,d.district_id,d.district_name from
-           (select d.area from area_owner d ) o,area_district d,area_code c
+           (select d.area from area_owner d group by d.area ) o,area_district d,area_code c
         where o.area=d.area_code and c.area_code=o.area
     </select>
 
     <select id="getArea_Smanager" resultType="Map">
         select t.district_name,t.district_id  from
-          AREA_DISTRICT t,(select d.area from area_owner d where d.owner=#{cid}) o
+          AREA_DISTRICT t,(select d.area from area_owner d where d.owner=#{cid} group by d.area) o
         where t.district_id=o.area
     </select>
 
@@ -558,7 +561,7 @@
 
         ( select u.* from
         ( select c.area_code area,d.district_id from
-        (select d.area from area_owner d where d.owner=#{cid}) o,area_code c,area_district d where
+        (select d.area from area_owner d where d.owner=#{cid} group by d.area) o,area_code c,area_district d where
         c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u
         where
         g.area=u.market and g.district_id=u.submarket ) l
@@ -597,7 +600,7 @@
 
         (select u.* from
         ( select o.area,c.area_name,d.district_id,d.district_name from
-        (select d.area from area_owner d where d.owner=#{cid}) o,area_district d,area_code c
+        (select d.area from area_owner d where d.owner=#{cid} group by d.area) o,area_district d,area_code c
         where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u
         where
         g.area=u.market and g.district_id=u.submarket ) l
@@ -634,7 +637,7 @@
         select rownum rm, l.*  from
 
         (select u.* from
-        ( select d.area from area_owner d where d.owner=#{cid})g,customerinfocard u
+        ( select d.area from area_owner d where d.owner=#{cid} group by d.area)g,customerinfocard u
         where
         g.area=u.submarket ) l
 
@@ -704,7 +707,7 @@
 
         (select u.* from
         ( select c.area_code area,d.district_id from
-        (select d.area from area_owner d where d.owner=#{cid}) o,area_code c,area_district d where
+        (select d.area from area_owner d where d.owner=#{cid} group by d.area) o,area_code c,area_district d where
         c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u
         where
         g.area=u.market and g.district_id=u.submarket )f
@@ -735,7 +738,7 @@
 
         (select u.* from
         ( select o.area,c.area_name,d.district_id,d.district_name from
-        (select d.area from area_owner d where d.owner=#{cid}) o,area_district d,area_code c
+        (select d.area from area_owner d where d.owner=#{cid} group by d.area) o,area_district d,area_code c
         where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u
         where
         g.area=u.market and g.district_id=u.submarket )f
@@ -765,7 +768,7 @@
 
 
         ( select u.* from
-        ( select d.area from area_owner d where d.owner=#{cid})g,customerinfocard u
+        ( select d.area from area_owner d where d.owner=#{cid} group by d.area)g,customerinfocard u
         where
         g.area=u.submarket )f
         where 1=1

@@ -48,7 +48,12 @@ public interface YLcontractentryDao {
 
     YLcontractentry getYLcontractentryByYear(@Param("CID") String cid,@Param("CYEAR") Integer cyear);
 
-    boolean checkYLcontractentry(@Param("CID") String cid,@Param("STATE") String state,@Param("WFMEMO") String wfmemo,@Param("SIGNED") Integer signed);
+    boolean checkYLcontractentry(@Param("CID") String cid,
+                                 @Param("STATE") String state,
+                                 @Param("WFMEMO") String wfmemo,
+                                 @Param("SIGNED") Integer signed,
+                                 @Param("market")String market,
+                                 @Param("csa")String csa);
 
     boolean lawCheckYLcontractentryState(@Param("CID") String cid,@Param("STATE") String state,@Param("WFMEMO") String wfmemo,@Param("SIGNED") Integer signed,@Param("LEGALCHECKED")Integer legalchecked);
 

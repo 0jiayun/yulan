@@ -181,6 +181,9 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             yLcontract_v2015 = yLcontractentryDao.getYLcontract_v2015(ccid);
             String preferedbrand = stringUtil.getUtf8(yLcontract_v2015.getPreferedbrand());
             yLcontract_v2015.setPreferedbrand(preferedbrand);
+            YLcontractentry yLcontractentry = yLcontractentryDao.getYLcontractentryByYear(ccid,yLcontract_v2015.getCcyear());
+            yLcontract_v2015.setStartDate(yLcontractentry.getStartDate());
+            yLcontract_v2015.setEndDate(yLcontractentry.getEndDate());
             return yLcontract_v2015;
         }
 
@@ -376,15 +379,47 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("totalm",df.format(total));
         map.put("rewordpercent",df.format(yLcontract_v2015.getRewordpercent()));
         map.put("rewordpercent2",df.format(yLcontract_v2015.getRewordpercent2()));
-        map.put("Stockpercen",df.format(yLcontract_v2015.getStockpercent()));
-        map.put("人名币",df.format(yLcontract_v2015.getStockpercent() * total));
+        map.put("Stockpercent",df.format(yLcontract_v2015.getStockpercent()));
+        map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
             map.put("State","1");
+            if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
+            {
+                customerInfoCard.setAccount1Name("--");
+            }
+            if(customerInfoCard.getAccount1Bank() == null || customerInfoCard.getAccount1Bank().equals(""))
+            {
+                customerInfoCard.setAccount1Bank("--");
+            }
+            if(customerInfoCard.getAccount1() == null || customerInfoCard.getAccount1().equals(""))
+            {
+                customerInfoCard.setAccount1("--");
+            }
+            if(customerInfoCard.getAccount1Location() == null || customerInfoCard.getAccount1Location().equals(""))
+            {
+                customerInfoCard.setAccount1Location("--");
+            }
             map.put("Account1Name",customerInfoCard.getAccount1Name());
             map.put("Account1Bank",customerInfoCard.getAccount1Bank());
             map.put("Account1",customerInfoCard.getAccount1());
             map.put("Account1Location",customerInfoCard.getAccount1Location());
         }else{
+            if(customerInfoCard.getAccount2Name() == null || customerInfoCard.getAccount2Name().equals(""))
+            {
+                customerInfoCard.setAccount2Name("--");
+            }
+            if(customerInfoCard.getAccount2Bank() == null || customerInfoCard.getAccount2Bank().equals(""))
+            {
+                customerInfoCard.setAccount2Bank("--");
+            }
+            if(customerInfoCard.getAccount2() == null || customerInfoCard.getAccount2().equals(""))
+            {
+                customerInfoCard.setAccount2("--");
+            }
+            if(customerInfoCard.getAccount2Location() == null || customerInfoCard.getAccount2Location().equals(""))
+            {
+                customerInfoCard.setAccount2Location("--");
+            }
             map.put("State","0");
             map.put("Account2Name",customerInfoCard.getAccount2Name());
             map.put("Account2Bank",customerInfoCard.getAccount2Bank());
@@ -498,14 +533,19 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                     entry.setValue(origin);
                 }
             }
-            if(m.get("WFMEMO")!=null){
-                m.put("MARKET",StringUtil.getName(m.get("WFMEMO").toString(),"#DEP_MARKET_CHECK#(.*?)#DEP_MARKET_CHECK#","#DEP_MARKET_CHECK#"));//获取市场部审核人员
-                m.put("CSA",StringUtil.getName(m.get("WFMEMO").toString(),"#CSA_CHECK#(.*?)#CSA_CHECK#","#CSA_CHECK#"));//营销部总监
-            }else{
-                m.put("MARKET","");//获取市场部审核人员
-                m.put("CSA","");//营销部
+//            if(m.get("WFMEMO")!=null){
+//                m.put("MARKET",StringUtil.getName(m.get("WFMEMO").toString(),"#DEP_MARKET_CHECK#(.*?)#DEP_MARKET_CHECK#","#DEP_MARKET_CHECK#"));//获取市场部审核人员
+//                m.put("CSA",StringUtil.getName(m.get("WFMEMO").toString(),"#CSA_CHECK#(.*?)#CSA_CHECK#","#CSA_CHECK#"));//营销部总监
+//            }else{
+//                m.put("MARKET","");//获取市场部审核人员
+//                m.put("CSA","");//营销部
+//            }
+            if(m.get("CSA")==null){
+                m.put("CSA","");
             }
-
+            if (m.get("MARKETCHECK")==null){
+                m.put("MARKET","");
+            }
 
             data.add(m);
         }

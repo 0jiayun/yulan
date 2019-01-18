@@ -19,7 +19,7 @@ public interface InfoStateService {
 
     boolean lawCheckYLcontractentryState(String cid, String state, String wfmemo,Integer signed,Integer legalchecked)throws IOException;
 
-    boolean checkYLcontractentryState(String cid, String state, String wfmemo,Integer signed)throws IOException;
+    boolean checkYLcontractentryState(String cid, String state, String wfmemo,Integer signed,String market, String csa)throws IOException;
 
     List<CustomerInfoCard> getCustomerInfoCardLeagalChecked(Integer start,Integer number,Integer legalChecked)throws IOException;
 
