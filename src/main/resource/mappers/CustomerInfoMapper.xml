@@ -363,7 +363,7 @@
         FILE_2_BUSINESSLICENSE_END = #{file2BusinesslicenseEnd,jdbcType=VARCHAR},
             </if>
             <if test="file2BusinesslicenseNoend != null">
-        FILE_2_BUSINESSLICENSE_NOEND  = #{file2BusinesslicenseNoend，jdbcType=VARCHA},
+        FILE_2_BUSINESSLICENSE_NOEND  = #{file2BusinesslicenseNoend},
             </if>
             <if test="file2Op != null">
         FILE_2_OP = #{file2Op,jdbcType=VARCHAR},
