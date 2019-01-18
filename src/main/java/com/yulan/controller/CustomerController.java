@@ -116,6 +116,8 @@ public class CustomerController {
         customerInfoCard.setxZipCode(customer.getZipCode());
         customerInfoCard.setFaxWl(customer.getFaxWlD());
         customerInfoCard.setZipCodeWl(customer.getZipCodeWlD());
+        customerInfoCard.setAccount1Name(customer.getCustomerName());
+        customerInfoCard.setAccount2Name(customer.getJuridicPerson());
 
         //设置资料卡的地区
         customerInfoCard.setxDistrict(customer.getAreaDistrict());
