@@ -296,7 +296,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
  //       list.add(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
         System.out.println(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
         System.out.println(numToChinese.transfrom(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching())));
-        list.add("人民币"+numToChinese.transfrom(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()))+"整");
+        list.add("人民币"+numToChinese.transfrom(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching())));
         list.add(df.format(yLcontract_v2015.getaRetailing()));
         list.add(df.format(yLcontract_v2015.getcMatching()));
         list.add(df.format(yLcontract_v2015.getM1()));
@@ -316,7 +316,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(df.format(yLcontract_v2015.getRewordpercent2()));
         list.add(df.format(yLcontract_v2015.getStockpercent()));
  //       list.add(df.format(yLcontract_v2015.getStockpercent() * total));
-        list.add("人民币"+numToChinese.transfrom((dfInt.format(yLcontract_v2015.getStockpercent() * total)))+"整");
+        list.add("人民币"+numToChinese.transfrom((dfInt.format(yLcontract_v2015.getStockpercent() * total))));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
             if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
             {
