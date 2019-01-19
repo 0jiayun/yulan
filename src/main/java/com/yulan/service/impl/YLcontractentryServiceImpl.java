@@ -318,12 +318,44 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
  //       list.add(df.format(yLcontract_v2015.getStockpercent() * total));
         list.add("人民币"+numToChinese.transfrom((dfInt.format(yLcontract_v2015.getStockpercent() * total)))+"整");
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
+            if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
+            {
+                customerInfoCard.setAccount1Name("--");
+            }
+            if(customerInfoCard.getAccount1Bank() == null || customerInfoCard.getAccount1Bank().equals(""))
+            {
+                customerInfoCard.setAccount1Bank("--");
+            }
+            if(customerInfoCard.getAccount1() == null || customerInfoCard.getAccount1().equals(""))
+            {
+                customerInfoCard.setAccount1("--");
+            }
+            if(customerInfoCard.getAccount1Location() == null || customerInfoCard.getAccount1Location().equals(""))
+            {
+                customerInfoCard.setAccount1Location("--");
+            }
             list.add("公司汇款账号信息");
             list.add(customerInfoCard.getAccount1Name());
             list.add(customerInfoCard.getAccount1Bank());
             list.add(customerInfoCard.getAccount1());
             list.add(customerInfoCard.getAccount1Location());
         }else{
+            if(customerInfoCard.getAccount2Name() == null || customerInfoCard.getAccount2Name().equals(""))
+            {
+                customerInfoCard.setAccount2Name("--");
+            }
+            if(customerInfoCard.getAccount2Bank() == null || customerInfoCard.getAccount2Bank().equals(""))
+            {
+                customerInfoCard.setAccount2Bank("--");
+            }
+            if(customerInfoCard.getAccount2() == null || customerInfoCard.getAccount2().equals(""))
+            {
+                customerInfoCard.setAccount2("--");
+            }
+            if(customerInfoCard.getAccount2Location() == null || customerInfoCard.getAccount2Location().equals(""))
+            {
+                customerInfoCard.setAccount2Location("--");
+            }
             list.add("个人汇款账号信息");
             list.add(customerInfoCard.getAccount2Name());
             list.add(customerInfoCard.getAccount2Bank());
@@ -382,7 +414,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("Stockpercent",df.format(yLcontract_v2015.getStockpercent()));
         map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
-            map.put("State","1");
+
             if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
             {
                 customerInfoCard.setAccount1Name("--");
@@ -399,6 +431,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             {
                 customerInfoCard.setAccount1Location("--");
             }
+            map.put("State","1");
             map.put("Account1Name",customerInfoCard.getAccount1Name());
             map.put("Account1Bank",customerInfoCard.getAccount1Bank());
             map.put("Account1",customerInfoCard.getAccount1());
