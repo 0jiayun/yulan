@@ -287,7 +287,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                 +yLcontract_v2015.getM10()+yLcontract_v2015.getM11()+yLcontract_v2015.getM12());
         list.add(customerInfoCard.getCname());
         list.add(customerInfoCard.getxPostAddress());
-        list.add(customerInfoService.getXDistrict(customerInfoCard.getxDistrict()));
+        list.add(stringUtil.getUtf8(customerInfoCard.getDistrictText()));
         list.add(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict2()));
         list.add(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3()));
         list.add(sdf.format(yLcontractentry.getStartDate()));
