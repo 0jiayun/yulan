@@ -19,7 +19,7 @@ public class Web_userServiceImpl implements Web_userService {
     @Override
     public Map login(String loginName, String password,Integer year) throws UnsupportedEncodingException {
         Map map=new HashMap();
-        if (password.equals("123456")){
+
 
             Web_user web_user=web_userDao.login(loginName,password);
             if(web_user!=null){
@@ -64,6 +64,7 @@ public class Web_userServiceImpl implements Web_userService {
                 }
 
                 web_user.setCompany(StringUtil.getUtf8(web_user.getCompany()));
+
                 web_user.setRealName(StringUtil.getUtf8(web_user.getRealName()));
 
 
@@ -72,11 +73,9 @@ public class Web_userServiceImpl implements Web_userService {
                 return map;
             }
 
-
-
-        }
-
         return null;
+
+
     }
 
     @Override
