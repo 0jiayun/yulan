@@ -9,7 +9,7 @@
           LOGINNAME,PASSWORD,REALNAME,COMPANY, TEL
           ,EMAIL,MEMO,to_char(TS,'yyyy-mm-dd'),USERID,to_char(MODIFYDATE,'yyyy-mm-dd')
           ,MACADDRESS,TYPE,PASSWORDX,STOPPED,CREATADMIN,USERSTATE
-        from WEB_USER where LOGINNAME = #{loginName}
+        from WEB_USER where LOGINNAME = #{loginName} and PASSWORD=#{password}
     </select>
 
     <select id="check" resultType="String" parameterType="String">
