@@ -410,7 +410,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("rewordpercent",df.format(yLcontract_v2015.getRewordpercent()));
         map.put("rewordpercent2",df.format(yLcontract_v2015.getRewordpercent2()));
         map.put("Stockpercent",df.format(yLcontract_v2015.getStockpercent()));
-        map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total));
+        map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total * 100));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
 
             if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
