@@ -316,7 +316,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(df.format(yLcontract_v2015.getRewordpercent()));
         list.add(df.format(yLcontract_v2015.getRewordpercent2()));
         list.add(df.format(yLcontract_v2015.getStockpercent()));
-       list.add(df.format(yLcontract_v2015.getStockpercent()* 0.01 * total));
+       list.add(df.format(yLcontract_v2015.getStockpercent()* 100 * total));
 //        list.add("人民币"+numToChinese.transfrom((dfInt.format(yLcontract_v2015.getStockpercent() * total))));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
             if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
@@ -413,7 +413,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("rewordpercent",df.format(yLcontract_v2015.getRewordpercent()));
         map.put("rewordpercent2",df.format(yLcontract_v2015.getRewordpercent2()));
         map.put("Stockpercent",df.format(yLcontract_v2015.getStockpercent()));
-        map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total));
+        map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total * 100));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
 
             if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
