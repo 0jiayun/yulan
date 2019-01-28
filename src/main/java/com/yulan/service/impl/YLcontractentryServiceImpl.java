@@ -388,6 +388,9 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                 +yLcontract_v2015.getM10()+yLcontract_v2015.getM11()+yLcontract_v2015.getM12());
         map.put("cname",customerInfoCard.getCname());
         map.put("xPostAddress",customerInfoCard.getxPostAddress());
+        if(customerInfoCard.getDistrictText() == null || customerInfoCard.getDistrictText().equals("")){
+            customerInfoCard.setDistrictText("--");
+        }
         map.put("xDistrict",stringUtil.getUtf8(customerInfoCard.getDistrictText()));
         map.put("xAreaDistrict2",customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict2()));
         map.put("xAreaDistrict3",customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3()));
