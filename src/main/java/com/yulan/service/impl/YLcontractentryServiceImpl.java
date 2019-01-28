@@ -287,6 +287,9 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                 +yLcontract_v2015.getM10()+yLcontract_v2015.getM11()+yLcontract_v2015.getM12());
         list.add(customerInfoCard.getCname());
         list.add(customerInfoCard.getxPostAddress());
+        if(customerInfoCard.getDistrictText() == null || customerInfoCard.getDistrictText().equals("")){
+            customerInfoCard.setDistrictText("--");
+        }
         list.add(stringUtil.getUtf8(customerInfoCard.getDistrictText()));
         list.add(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict2()));
         list.add(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3()));
@@ -385,7 +388,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                 +yLcontract_v2015.getM10()+yLcontract_v2015.getM11()+yLcontract_v2015.getM12());
         map.put("cname",customerInfoCard.getCname());
         map.put("xPostAddress",customerInfoCard.getxPostAddress());
-        map.put("xDistrict",customerInfoService.getXDistrict(customerInfoCard.getxDistrict()));
+        map.put("xDistrict",stringUtil.getUtf8(customerInfoCard.getDistrictText()));
         map.put("xAreaDistrict2",customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict2()));
         map.put("xAreaDistrict3",customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3()));
         map.put("startDate",sdf.format(yLcontractentry.getStartDate()));
