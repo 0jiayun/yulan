@@ -287,16 +287,17 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                 +yLcontract_v2015.getM10()+yLcontract_v2015.getM11()+yLcontract_v2015.getM12());
         list.add(customerInfoCard.getCname());
         list.add(customerInfoCard.getxPostAddress());
-        list.add(customerInfoService.getXDistrict(customerInfoCard.getxDistrict()));
+        if(customerInfoCard.getDistrictText() == null || customerInfoCard.getDistrictText().equals("")){
+            customerInfoCard.setDistrictText("--");
+        }
+        list.add(stringUtil.getUtf8(customerInfoCard.getDistrictText()));
         list.add(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict2()));
         list.add(customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3()));
         list.add(sdf.format(yLcontractentry.getStartDate()));
         list.add(sdf.format(yLcontractentry.getEndDate()));
         list.add(yLcontract_v2015.getPreferedbrand());
- //       list.add(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
-        System.out.println(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
-        System.out.println(numToChinese.transfrom(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching())));
-        list.add("人民币"+numToChinese.transfrom(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()))+"整");
+        list.add(df.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching()));
+ //       list.add("人民币"+numToChinese.transfrom(dfInt.format(yLcontract_v2015.getaRetailing() + yLcontract_v2015.getcMatching())));
         list.add(df.format(yLcontract_v2015.getaRetailing()));
         list.add(df.format(yLcontract_v2015.getcMatching()));
         list.add(df.format(yLcontract_v2015.getM1()));
@@ -315,15 +316,47 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         list.add(df.format(yLcontract_v2015.getRewordpercent()));
         list.add(df.format(yLcontract_v2015.getRewordpercent2()));
         list.add(df.format(yLcontract_v2015.getStockpercent()));
- //       list.add(df.format(yLcontract_v2015.getStockpercent() * total));
-        list.add("人民币"+numToChinese.transfrom((dfInt.format(yLcontract_v2015.getStockpercent() * total)))+"整");
+//       list.add(df.format(yLcontract_v2015.getStockpercent() * total));
+      list.add("人民币"+(dfInt.format(yLcontract_v2015.getStockpercent() * total*100)));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
+            if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
+            {
+                customerInfoCard.setAccount1Name("--");
+            }
+            if(customerInfoCard.getAccount1Bank() == null || customerInfoCard.getAccount1Bank().equals(""))
+            {
+                customerInfoCard.setAccount1Bank("--");
+            }
+            if(customerInfoCard.getAccount1() == null || customerInfoCard.getAccount1().equals(""))
+            {
+                customerInfoCard.setAccount1("--");
+            }
+            if(customerInfoCard.getAccount1Location() == null || customerInfoCard.getAccount1Location().equals(""))
+            {
+                customerInfoCard.setAccount1Location("--");
+            }
             list.add("公司汇款账号信息");
             list.add(customerInfoCard.getAccount1Name());
             list.add(customerInfoCard.getAccount1Bank());
             list.add(customerInfoCard.getAccount1());
             list.add(customerInfoCard.getAccount1Location());
         }else{
+            if(customerInfoCard.getAccount2Name() == null || customerInfoCard.getAccount2Name().equals(""))
+            {
+                customerInfoCard.setAccount2Name("--");
+            }
+            if(customerInfoCard.getAccount2Bank() == null || customerInfoCard.getAccount2Bank().equals(""))
+            {
+                customerInfoCard.setAccount2Bank("--");
+            }
+            if(customerInfoCard.getAccount2() == null || customerInfoCard.getAccount2().equals(""))
+            {
+                customerInfoCard.setAccount2("--");
+            }
+            if(customerInfoCard.getAccount2Location() == null || customerInfoCard.getAccount2Location().equals(""))
+            {
+                customerInfoCard.setAccount2Location("--");
+            }
             list.add("个人汇款账号信息");
             list.add(customerInfoCard.getAccount2Name());
             list.add(customerInfoCard.getAccount2Bank());
@@ -355,7 +388,10 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
                 +yLcontract_v2015.getM10()+yLcontract_v2015.getM11()+yLcontract_v2015.getM12());
         map.put("cname",customerInfoCard.getCname());
         map.put("xPostAddress",customerInfoCard.getxPostAddress());
-        map.put("xDistrict",customerInfoService.getXDistrict(customerInfoCard.getxDistrict()));
+        if(customerInfoCard.getDistrictText() == null || customerInfoCard.getDistrictText().equals("")){
+            customerInfoCard.setDistrictText("--");
+        }
+        map.put("xDistrict",stringUtil.getUtf8(customerInfoCard.getDistrictText()));
         map.put("xAreaDistrict2",customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict2()));
         map.put("xAreaDistrict3",customerInfoService.getXAreaDistrictName(customerInfoCard.getxAreaDistrict3()));
         map.put("startDate",sdf.format(yLcontractentry.getStartDate()));
@@ -380,9 +416,9 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
         map.put("rewordpercent",df.format(yLcontract_v2015.getRewordpercent()));
         map.put("rewordpercent2",df.format(yLcontract_v2015.getRewordpercent2()));
         map.put("Stockpercent",df.format(yLcontract_v2015.getStockpercent()));
-        map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total));
+        map.put("RMB",df.format(yLcontract_v2015.getStockpercent() * total * 100));
         if(customerInfoCard.getHasPublicAccount().equals("Y")){
-            map.put("State","1");
+
             if(customerInfoCard.getAccount1Name() == null || customerInfoCard.getAccount1Name().equals(""))
             {
                 customerInfoCard.setAccount1Name("--");
@@ -399,6 +435,7 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             {
                 customerInfoCard.setAccount1Location("--");
             }
+            map.put("State","1");
             map.put("Account1Name",customerInfoCard.getAccount1Name());
             map.put("Account1Bank",customerInfoCard.getAccount1Bank());
             map.put("Account1",customerInfoCard.getAccount1());
@@ -545,6 +582,8 @@ public class YLcontractentryServiceImpl implements YLcontractentryService {
             }
             if (m.get("MARKETCHECK")==null){
                 m.put("MARKET","");
+            }else{
+                m.put("MARKET",m.get("MARKETCHECK"));
             }
 
             data.add(m);

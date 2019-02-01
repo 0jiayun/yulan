@@ -18,6 +18,7 @@
 	<mvc:annotation-driven/>
 	<!--<mvc:resources mapping="/static/**" location="/static/"/>-->
 
+
 	<!--自定义消息转换器的编码,解决后台传输json回前台时，中文乱码问题-->
 	<mvc:annotation-driven >
 		<mvc:message-converters register-defaults="true">
@@ -34,6 +35,7 @@
 			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" ></bean>
 		</mvc:message-converters>
 	</mvc:annotation-driven>
+
 
 	<!-- 视图解析器 -->
 	<bean id="viewResolver"

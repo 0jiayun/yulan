@@ -564,7 +564,8 @@
         (select d.area from area_owner d where d.owner=#{cid} group by d.area) o,area_code c,area_district d where
         c.area_belong=o.area and c.area_code=d.area_code)g,customerinfocard u
         where
-        g.area=u.market and g.district_id=u.submarket ) l
+        g.area=u.market and g.district_id=u.submarket
+        order by decode(u.state,'BUSINESSCHECKING',1), u.state) l
 
         where 1=1
         <if test="year!=null">
@@ -603,7 +604,8 @@
         (select d.area from area_owner d where d.owner=#{cid} group by d.area) o,area_district d,area_code c
         where o.area=d.area_code and c.area_code=o.area)g,customerinfocard u
         where
-        g.area=u.market and g.district_id=u.submarket ) l
+        g.area=u.market and g.district_id=u.submarket
+        order by decode(u.state,'BUSINESSCHECKING',1), u.state) l
 
         where 1=1
         <if test="year!=null">
@@ -639,7 +641,8 @@
         (select u.* from
         ( select d.area from area_owner d where d.owner=#{cid} group by d.area)g,customerinfocard u
         where
-        g.area=u.submarket ) l
+        g.area=u.submarket
+        order by decode(u.state,'BUSINESSCHECKING',1), u.state) l
 
         where 1=1
         <if test="year!=null">
@@ -673,7 +676,8 @@
         select rownum rm, l.*  from
 
         (select u.* from
-        customerinfocard u) l
+        customerinfocard u
+        order by decode(u.state,'BIILDEPCHECKING',1), u.state) l
 
         where 1=1
         <if test="year!=null">
