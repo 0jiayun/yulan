@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="yulan:war" />
+      <artifact name="yulan:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
@@ -231,8 +231,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="107" column="51" lean-forward="true" selection-start-line="107" selection-start-column="51" selection-end-line="107" selection-end-column="51" />
+            <state relative-caret-position="99">
+              <caret line="111" column="57" lean-forward="true" selection-start-line="111" selection-start-column="57" selection-end-line="111" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -551,7 +551,7 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550156688893" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550156881966" />
     <property name="last_opened_file_path" value="D:/java/electric - 副本" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -864,7 +864,7 @@
       <workItem from="1549811514359" duration="598000" />
       <workItem from="1549963330315" duration="1192000" />
       <workItem from="1549975429627" duration="1218000" />
-      <workItem from="1550155217354" duration="1252000" />
+      <workItem from="1550155217354" duration="1509000" />
     </task>
     <servers />
   </component>
@@ -901,7 +901,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="629606000" />
+    <option name="totallyTimeSpent" value="629863000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -914,9 +914,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.89099526" visible="true" weight="0.3177041" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.89099526" visible="true" weight="0.3177041" />
       <window_info id="Structure" order="1" sideWeight="0.15433404" side_tool="true" weight="0.25670242" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -927,13 +926,13 @@
       <window_info anchor="bottom" id="Thumbnails" order="0" weight="0.32907802" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4966488" weight="0.09769094" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4966488" weight="0.42806393" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.121985815" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49798927" weight="0.3432624" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.32907802" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.08703375" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.41385436" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5033512" side_tool="true" weight="0.42553192" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49731904" weight="0.3197158" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
@@ -1357,8 +1356,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="107" column="51" lean-forward="true" selection-start-line="107" selection-start-column="51" selection-end-line="107" selection-end-column="51" />
+        <state relative-caret-position="99">
+          <caret line="111" column="57" lean-forward="true" selection-start-line="111" selection-start-column="57" selection-end-line="111" selection-end-column="57" />
         </state>
       </provider>
     </entry>
