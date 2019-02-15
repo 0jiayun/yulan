@@ -7,8 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e49d8f3b-fac9-412c-952d-2f996440b542" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yulan/pojo/ItemType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yulan/utils/FileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yulan/utils/FileUpload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yulan/pojo/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yulan/pojo/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/yulan/utils/FileUpload.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/yulan/utils/FileUpload.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/yulan.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/yulan.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/com/yulan/utils/FileUpload.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/yulan/WEB-INF/classes/com/yulan/utils/FileUpload.class" afterDir="false" />
@@ -47,27 +48,27 @@
     <session id="-1097093947">
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="27" />
+          <entry key="java" value="29" />
           <entry key="properties" value="1" />
           <entry key="xml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="27" />
+          <entry key="JAVA" value="29" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="889" />
+          <entry key="java" value="899" />
           <entry key="xml" value="78" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="889" />
+          <entry key="JAVA" value="899" />
           <entry key="SQL" value="4" />
           <entry key="XML" value="74" />
         </counts>
@@ -152,26 +153,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2584">
-              <caret line="154" selection-start-line="154" selection-end-line="154" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/utils/FileUpload.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="20" column="71" selection-start-line="20" selection-start-column="71" selection-end-line="20" selection-end-column="71" />
+            <state relative-caret-position="361">
+              <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resource/mappers/CustomerInfoMapper.xml">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/pojo/ItemType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="386" column="46" lean-forward="true" selection-start-line="386" selection-start-column="46" selection-end-line="386" selection-end-column="46" />
+            <state relative-caret-position="190">
+              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/pojo/Item.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="297" column="19" lean-forward="true" selection-start-line="297" selection-start-column="19" selection-end-line="297" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -228,7 +229,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/yulan/dao/CustomerDao.java" />
         <option value="$PROJECT_DIR$/src/test/YLcontractentryDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/pojo/CustomerInfoCard.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerinfocardgroupController.java" />
@@ -276,9 +276,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/service/impl/Web_userServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resource/mappers/Web_userMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/service/impl/YLcontractentryServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/yulan/pojo/Item.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/yulan/utils/FileUpload.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yulan/pojo/Item.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/yulan/pojo/ItemType.java" />
       </list>
     </option>
   </component>
@@ -446,17 +447,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="yulan" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="yulan" type="b2602c69:ProjectViewProjectNode" />
-              <item name="yulan" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="yulan" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="yulan" type="b2602c69:ProjectViewProjectNode" />
@@ -509,7 +500,7 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550223445776" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550240742843" />
     <property name="last_opened_file_path" value="D:/java/electric - 副本" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -823,7 +814,7 @@
       <workItem from="1549963330315" duration="1192000" />
       <workItem from="1549975429627" duration="1218000" />
       <workItem from="1550155217354" duration="1509000" />
-      <workItem from="1550222946734" duration="456000" />
+      <workItem from="1550222946734" duration="3943000" />
     </task>
     <servers />
   </component>
@@ -860,7 +851,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="631782000" />
+    <option name="totallyTimeSpent" value="635229000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -872,10 +863,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.89099526" visible="true" weight="0.35084882" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.89099526" visible="true" weight="0.35084882" />
       <window_info id="Structure" order="1" sideWeight="0.15433404" side_tool="true" weight="0.25670242" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -886,13 +877,13 @@
       <window_info anchor="bottom" id="Thumbnails" order="0" weight="0.32907802" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32907802" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4966488" weight="0.5168739" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4966488" weight="0.54174066" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.121985815" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49798927" weight="0.3432624" />
       <window_info anchor="bottom" id="Spring" order="8" weight="0.32907802" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.12611012" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.044404972" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5033512" side_tool="true" weight="0.42553192" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49731904" weight="0.3197158" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
@@ -976,13 +967,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/service/InfoStateService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="15" column="95" lean-forward="true" selection-start-line="15" selection-start-column="95" selection-end-line="15" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/pojo/YLcontractentry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -1244,13 +1228,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/pojo/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/InfoStateController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
@@ -1262,13 +1239,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="49">
           <caret line="224" column="39" selection-start-line="224" selection-start-column="39" selection-end-line="224" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2584">
-          <caret line="154" selection-start-line="154" selection-end-line="154" />
         </state>
       </provider>
     </entry>
@@ -1284,8 +1254,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/utils/FileUpload.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/controller/CustomerInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/pojo/ItemType.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="20" column="71" selection-start-line="20" selection-start-column="71" selection-end-line="20" selection-end-column="71" />
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/yulan/pojo/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="297" column="19" lean-forward="true" selection-start-line="297" selection-start-column="19" selection-end-line="297" selection-end-column="19" />
         </state>
       </provider>
     </entry>
