@@ -98,6 +98,7 @@
         <result column="LEGALCHECKED" property="legalchecked" jdbcType="DECIMAL" />
         <result column="CNAME_NEW" property="cnameNew" jdbcType="VARCHAR" />
         <result column="RECIPE_TARGET_MB" property="recipeTargetMb" jdbcType="VARCHAR" />
+        <result column="VAT_INVOICE_FLAG" property="vatInvoiceFlag" jdbcType="VARCHAR" />
     </resultMap>
     <resultMap id="YLcontractMap" type="com.yulan.pojo.YLcontract_v2015_paa" >
         <result column="CCYEAR" property="ccyear" jdbcType="DECIMAL" />
@@ -381,7 +382,10 @@
         FILE_5_IDCARD_BG = #{file5IdcardBg,jdbcType=VARCHAR},
             </if>
             <if test="file5Op != null">
-        FILE_5_OP = #{file5Op,jdbcType=VARCHAR}
+        FILE_5_OP = #{file5Op,jdbcType=VARCHAR},
+            </if>
+            <if test="vatInvoiceFlag != null">
+        VAT_INVOICE_FLAG = #{vatInvoiceFlag,jdbcType=VARCHAR}
             </if>
         </set>
         where CID = #{cid,jdbcType=VARCHAR} AND CONTRACTYEAR = #{contractyear}

@@ -95,7 +95,9 @@
         <result column="LEGALCHECKED" property="legalchecked" jdbcType="DECIMAL" />
         <result column="CNAME_NEW" property="cnameNew" jdbcType="VARCHAR" />
         <result column="RECIPE_TARGET_MB" property="recipeTargetMb" jdbcType="VARCHAR" />
+        <result column="VAT_INVOICE_FLAG" property="vatInvoiceFlag" jdbcType="VARCHAR" />
     </resultMap>
+
     <insert id="addCustomerInfoCard" parameterType="CustomerInfoCard">
     insert into CUSTOMERINFOCARD (GROUPID, DELETED, ERPCOPYED,
       CONTRACTYEAR, CID, CNAME,
