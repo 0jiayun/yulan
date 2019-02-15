@@ -26,7 +26,7 @@ public class FileUpload {
 
     public static Map<String,Object> copyFile(MultipartFile file, String path,String fileName) {
         String type = file.getContentType();
-  //      String typeValue = type.substring(type.lastIndexOf('/')+1);
+       String typeValue = type.substring(type.lastIndexOf('/')+1);
   //      String fileName = System.currentTimeMillis()+"-"+file.hashCode()+"-"+(int)(100000000000000000L*Math.random())+"."+typeValue;
    //     String fileName = file.getOriginalFilename();
         String filePath = path+fileName;
@@ -65,7 +65,7 @@ public class FileUpload {
 
         Map<String,Object> result = new HashMap<>(4);
         result.put("code",code);
-        result.put("fileName",fileName);
+        result.put("fileName",fileName + "." + typeValue);
         result.put("filePath",filePath);
         result.put("fileTypecopyCustomerImg",type);
         return result;
