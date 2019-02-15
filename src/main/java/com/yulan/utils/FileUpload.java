@@ -15,12 +15,12 @@ import java.util.Map;
 public class FileUpload {
 
     private final static int LENGTH=1024;
-//    private final static String PATH = "D:/Application/apache-tomcat-main/upload";
+//   private final static String PATH = "D:/Application/apache-tomcat-main/upload";
 //    private final static String PATH = "C:/rongbin-tomcat/apache-tomcat-main/upload";
 //   private final static String PATH = "E:/服务器目录/apache-tomcat-first/upload";
- //   private final static String PATH = "D:/tomcat/apache-tomcat-8.0.0/upload";
+    private final static String PATH = "D:/tomcat/apache-tomcat-8.0.0/upload";
     //服务器路径
-    private final static String PATH = "D:\\Application\\servers\\apache-tomcat-9.0.14\\upload";
+ //   private final static String PATH = "D:\\Application\\servers\\apache-tomcat-9.0.14\\upload";
     private final static String CUSTOMER_IMAGE_PATH = "/customer-image/";
     private final static String YLCONTRACT_IMAGE_PATH = "/YLcontract-image/";
 
@@ -29,7 +29,7 @@ public class FileUpload {
        String typeValue = type.substring(type.lastIndexOf('/')+1);
   //      String fileName = System.currentTimeMillis()+"-"+file.hashCode()+"-"+(int)(100000000000000000L*Math.random())+"."+typeValue;
    //     String fileName = file.getOriginalFilename();
-        String filePath = path+fileName;
+        String filePath = path+fileName + "."+ typeValue;
         String code = "SUCCESS";
 
         InputStream is = null;
