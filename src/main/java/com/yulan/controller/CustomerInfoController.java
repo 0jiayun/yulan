@@ -93,13 +93,14 @@ public class CustomerInfoController {
      */
     @RequestMapping("upload")
     @ResponseBody
-    public Map uploadImg(@RequestParam("file") MultipartFile file, @RequestParam("imgType") String imgType){
+    public Map uploadImg(@RequestParam("file") MultipartFile file, @RequestParam("imgType") String imgType ,
+                         @RequestParam("fileName")String fileName){
         int code = 0;
         String msg = null;
         Map<String,Object> data = new HashMap<>(2);
 
         if(imgType.equals("Customer")){
-            Map<String,Object> value = FileUpload.copyCustomerImg(file);
+            Map<String,Object> value = FileUpload.copyCustomerImg(file,fileName);
             String name = (String) value.get("fileName");
             msg = value.get("code").equals("SUCCESS")?"":"上传失败";
             code = value.get("code").equals("SUCCESS")?0:1;
@@ -107,7 +108,7 @@ public class CustomerInfoController {
             data.put("type",value.get("fileType"));
 
         }else if(imgType.equals("YLcontract")){
-            Map<String,Object> value = FileUpload.copyYLcontractImg(file);
+            Map<String,Object> value = FileUpload.copyYLcontractImg(file, fileName);
             String name = (String) value.get("fileName");
             msg = value.get("code").equals("SUCCESS")?"":"上传失败";
             code = value.get("code").equals("SUCCESS")?0:1;

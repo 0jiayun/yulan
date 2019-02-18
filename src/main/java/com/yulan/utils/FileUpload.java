@@ -15,21 +15,21 @@ import java.util.Map;
 public class FileUpload {
 
     private final static int LENGTH=1024;
-//    private final static String PATH = "D:/Application/apache-tomcat-main/upload";
+//   private final static String PATH = "D:/Application/apache-tomcat-main/upload";
 //    private final static String PATH = "C:/rongbin-tomcat/apache-tomcat-main/upload";
 //   private final static String PATH = "E:/服务器目录/apache-tomcat-first/upload";
  //   private final static String PATH = "D:/tomcat/apache-tomcat-8.0.0/upload";
     //服务器路径
-    private final static String PATH = "D:\\Application\\servers\\apache-tomcat-9.0.14\\upload";
+   private final static String PATH = "D:\\Application\\servers\\apache-tomcat-9.0.14\\upload";
     private final static String CUSTOMER_IMAGE_PATH = "/customer-image/";
     private final static String YLCONTRACT_IMAGE_PATH = "/YLcontract-image/";
 
-    public static Map<String,Object> copyFile(MultipartFile file, String path) {
+    public static Map<String,Object> copyFile(MultipartFile file, String path,String fileName) {
         String type = file.getContentType();
-  //      String typeValue = type.substring(type.lastIndexOf('/')+1);
+       String typeValue = type.substring(type.lastIndexOf('/')+1);
   //      String fileName = System.currentTimeMillis()+"-"+file.hashCode()+"-"+(int)(100000000000000000L*Math.random())+"."+typeValue;
-        String fileName = file.getOriginalFilename();
-        String filePath = path+fileName;
+   //     String fileName = file.getOriginalFilename();
+        String filePath = path+fileName + "."+ typeValue;
         String code = "SUCCESS";
 
         InputStream is = null;
@@ -65,20 +65,20 @@ public class FileUpload {
 
         Map<String,Object> result = new HashMap<>(4);
         result.put("code",code);
-        result.put("fileName",fileName);
+        result.put("fileName",fileName + "." + typeValue);
         result.put("filePath",filePath);
-        result.put("fileType",type);
+        result.put("fileTypecopyCustomerImg",type);
         return result;
     }
 
-    public static Map<String,Object> copyCustomerImg(MultipartFile file) {
-        Map<String,Object> result = copyFile(file,PATH + CUSTOMER_IMAGE_PATH );
+    public static Map<String,Object> copyCustomerImg(MultipartFile file,String fileName) {
+        Map<String,Object> result = copyFile(file,PATH + CUSTOMER_IMAGE_PATH ,fileName);
         result.put("relativePath" , CUSTOMER_IMAGE_PATH );
         return result;
     }
 
-    public static Map<String,Object> copyYLcontractImg(MultipartFile file) {
-        Map<String,Object> result = copyFile(file,PATH + YLCONTRACT_IMAGE_PATH);
+    public static Map<String,Object> copyYLcontractImg(MultipartFile file, String fileName) {
+        Map<String,Object> result = copyFile(file,PATH + YLCONTRACT_IMAGE_PATH ,fileName);
         result.put("relativePath" , YLCONTRACT_IMAGE_PATH);
         return result;
     }

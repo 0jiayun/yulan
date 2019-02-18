@@ -194,7 +194,17 @@ public class CustomerInfoCard {
 
     private String privateAccountAuthed;
 
+    private String vatInvoiceFlag;
+
     public CustomerInfoCard() {
+    }
+
+    public String getVatInvoiceFlag() {
+        return vatInvoiceFlag;
+    }
+
+    public void setVatInvoiceFlag(String vatInvoiceFlag) {
+        this.vatInvoiceFlag = vatInvoiceFlag;
     }
 
     public String getPrivateAccountAuthed() {
