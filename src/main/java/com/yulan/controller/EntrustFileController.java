@@ -3,9 +3,6 @@ package com.yulan.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,9 +11,12 @@ import java.net.URLEncoder;
 
 @RequestMapping("file")
 @Controller
+/**
+ * 委托书下载
+ */
 
 public class EntrustFileController {
-    @RequestMapping(value="/upload",method= RequestMethod.POST)
+   /* @RequestMapping(value="/upload",method= RequestMethod.POST)
     @ResponseBody
     public String upload(MultipartFile file, HttpServletRequest request) throws IOException {
         String path = request.getSession().getServletContext().getRealPath("upload");
@@ -28,7 +28,7 @@ public class EntrustFileController {
 
         file.transferTo(dir);
         return fileName;
-    }
+    }*/
 
     @RequestMapping("/down")
     public void down(HttpServletRequest request,HttpServletResponse response) throws Exception{
