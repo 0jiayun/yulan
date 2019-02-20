@@ -35,13 +35,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     private static MapUtils mapUtils;
 
 
-
-
-
-
-
-
-
     @Override
     public List<Map<String,Object>> getAllStates() {
         List<Map<String,Object>> list=customerInfoDao.getAllStates();
