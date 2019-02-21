@@ -10,4 +10,6 @@ public interface ItemDao {
     String getProductVersion(@Param("itemVersion") String itemVersion);
 
     String getProductBrand(@Param("productBrand") String productBrand);
+    //客户品牌查询权限
+    String userBrandAuthority(@Param("CID") String cid, @Param("ITEM_NO") String itemNo);
 }

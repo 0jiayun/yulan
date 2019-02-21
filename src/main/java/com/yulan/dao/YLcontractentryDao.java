@@ -118,4 +118,6 @@ public interface YLcontractentryDao {
                                                          @Param("CYEAR")Integer year,
                                                          @Param("CID")String cid,
                                                          @Param("STATE")String state);
+
+    boolean getAPPVersion(@Param("VERSION") String version);
 }
