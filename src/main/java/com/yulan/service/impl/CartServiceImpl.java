@@ -3,10 +3,9 @@ package com.yulan.service.impl;
 import com.yulan.dao.CartDao;
 import com.yulan.pojo.Cart;
 import com.yulan.service.CartService;
+import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -16,6 +15,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public boolean addCart(Cart cart) {
+		cart.setCartId(StringUtil.createStringID());
 		return cartDao.addCart(cart)>0;
 	}
 
@@ -30,8 +30,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<Cart> getCarts(String cartId,String customerId) {
-		return cartDao.getCarts(cartId,customerId);
+	public Cart getCartByCustomerID(String customerId) {
+		return cartDao.getCartByCustomerID(customerId);
 	}
 
 	@Override

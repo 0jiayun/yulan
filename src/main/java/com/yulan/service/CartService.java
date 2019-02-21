@@ -2,8 +2,6 @@ package com.yulan.service;
 
 import com.yulan.pojo.Cart;
 
-import java.util.List;
-
 public interface CartService {
 
 	boolean addCart(Cart cart);
@@ -12,7 +10,7 @@ public interface CartService {
 
 	Cart getCartByID(int cartID);
 
-	List<Cart> getCarts(String cartId, String customerId);
+	Cart getCartByCustomerID(String customerId);
 
 	boolean updateCart(Cart cart);
 

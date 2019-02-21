@@ -3,7 +3,6 @@ package com.yulan.dao;
 import com.yulan.pojo.CartItem;
 import org.apache.ibatis.annotations.Param;
 
-import java.math.BigInteger;
 import java.util.List;
 
 public interface CartItemDao {
@@ -14,7 +13,7 @@ public interface CartItemDao {
 
 	CartItem getCartItemByID(int cartItemID);
 
-	List<CartItem> getCartItems(@Param("cartItemId") String cartItemId, @Param("commodityId") String commodityId, @Param("quantity") BigInteger quantity);
+	List<CartItem> getCartItems(@Param("itemId") String itemId,@Param("cartID") String cartID);
 
 	int updateCartItem(CartItem cartItem);
 

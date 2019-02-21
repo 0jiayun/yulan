@@ -3,10 +3,10 @@ package com.yulan.service.impl;
 import com.yulan.dao.CartItemDao;
 import com.yulan.pojo.CartItem;
 import com.yulan.service.CartItemService;
+import com.yulan.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -17,6 +17,7 @@ public class CartItemServiceImpl implements CartItemService {
 
 	@Override
 	public boolean addCartItem(CartItem cartItem) {
+		cartItem.setCartItemId(StringUtil.createStringID());
 		return cartItemDao.addCartItem(cartItem)>0;
 	}
 
@@ -31,8 +32,8 @@ public class CartItemServiceImpl implements CartItemService {
 	}
 
 	@Override
-	public List<CartItem> getCartItems(String cartItemId, String commodityId, BigInteger quantity) {
-		return cartItemDao.getCartItems(cartItemId,commodityId,quantity);
+	public List<CartItem> getCartItems(String itemId,String cartID) {
+		return cartItemDao.getCartItems(itemId,cartID);
 	}
 
 	@Override

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -46,12 +45,13 @@ public class CartItemController{
 
 	@ResponseBody@RequestMapping("getCartItems")
 	public List<CartItem> getCartItems() {
-		return cartItemService.getCartItems(null,null,null);
+		return cartItemService.getCartItems(null,null);
 	}
 
 	@ResponseBody@RequestMapping("getCartItemsDeal")
-	public Map<String,Object> getCartItemsDeal(@RequestParam(value = "cartItemId",required=false)String cartItemId,@RequestParam(value = "commodityId",required=false)String commodityId,@RequestParam(value = "quantity",required=false) BigInteger quantity) {
-		return Response.getResponseMap(0,"",cartItemService.getCartItems(cartItemId,commodityId,quantity));
+	public Map<String,Object> getCartItemsDeal(@RequestParam(value = "itemId",required=false)String itemId,
+											   @RequestParam(value = "cartID",required=false)String cartID) {
+		return Response.getResponseMap(0,"",cartItemService.getCartItems(itemId,cartID));
 	}
 
 	@ResponseBody@RequestMapping("updateCartItem")

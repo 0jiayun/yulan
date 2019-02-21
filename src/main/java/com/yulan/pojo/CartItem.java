@@ -1,12 +1,14 @@
 package com.yulan.pojo;
 
 import java.math.BigInteger;
+import java.util.Objects;
 
 public class CartItem {
 
 	private String cartItemId;
-	private String commodityId;
+	private Item item;
 	private BigInteger quantity;
+	private String cartID;
 
 	public String getCartItemId() {
 		return this.cartItemId;
@@ -16,12 +18,12 @@ public class CartItem {
 		this.cartItemId=cartItemId;
 	}
 
-	public String getCommodityId() {
-		return this.commodityId;
+	public Item getItem() {
+		return item;
 	}
 
-	public void setCommodityId(String commodityId) {
-		this.commodityId=commodityId;
+	public void setItem(Item item) {
+		this.item = item;
 	}
 
 	public BigInteger getQuantity() {
@@ -32,25 +34,27 @@ public class CartItem {
 		this.quantity=quantity;
 	}
 
+	public String getCartID() {
+		return cartID;
+	}
+
+	public void setCartID(String cartID) {
+		this.cartID = cartID;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
+		if (!(o instanceof CartItem)) return false;
 		CartItem cartItem = (CartItem) o;
-
-		if(cartItemId != null ? !cartItemId.equals(cartItem.cartItemId) : cartItem.cartItemId !=null) return false;
-		if(commodityId != null ? !commodityId.equals(cartItem.commodityId) : cartItem.commodityId !=null) return false;
-        if(quantity != null ? !quantity.equals(cartItem.quantity) : cartItem.quantity !=null) return false;
-
-		return true;
+		return Objects.equals(getCartItemId(), cartItem.getCartItemId()) &&
+				Objects.equals(getItem(), cartItem.getItem()) &&
+				Objects.equals(getQuantity(), cartItem.getQuantity()) &&
+				Objects.equals(getCartID(), cartItem.getCartID());
 	}
 
 	@Override
 	public int hashCode() {
-		int result = cartItemId!=null ? cartItemId.hashCode() : 0;
-		result = 31 * result + (commodityId!=null ? commodityId.hashCode() : 0);
-		result = 31 * result + (quantity!=null ? quantity.hashCode() : 0);
-		return result;
+		return Objects.hash(getCartItemId(), getItem(), getQuantity(), getCartID());
 	}
 }

@@ -2,7 +2,6 @@ package com.yulan.service;
 
 import com.yulan.pojo.CartItem;
 
-import java.math.BigInteger;
 import java.util.List;
 
 public interface CartItemService {
@@ -13,7 +12,7 @@ public interface CartItemService {
 
 	CartItem getCartItemByID(int cartItemID);
 
-	List<CartItem> getCartItems(String cartItemId, String commodityId, BigInteger quantity);
+	List<CartItem> getCartItems(String itemId,String cartID);
 
 	boolean updateCartItem(CartItem cartItem);
 

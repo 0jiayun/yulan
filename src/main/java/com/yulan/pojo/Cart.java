@@ -9,6 +9,14 @@ public class Cart {
 	private List<CartItem> cartItems;
 	private String customerId;
 
+	public Cart() {
+
+	}
+
+	public Cart(String customerId) {
+		this.customerId = customerId;
+	}
+
 	public String getCartId() {
 		return this.cartId;
 	}
