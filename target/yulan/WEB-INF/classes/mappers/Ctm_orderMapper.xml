@@ -8,8 +8,8 @@
         (select * from
         (select b.brand_name,h.* from
         (select t.note,c.*  from
-        (select o.*,i.product_type,i.product_brand from (select * from  CTM_ORDER o  where customer_code='C10131') o,ctm_order_detail d, item i
-        where o.order_no=d.order_no and d.item_no=i.item_no)c,item_type t
+        (select o.*,i.product_type,i.product_brand from ctm_order_detail d,CTM_ORDER o, item i
+        where o.order_no=d.order_no and d.item_no=i.item_no and o.customer_code=#{cid})c,item_type t
         where c.product_type=t.item_type)h,BRAND_TYPE b
         where h.product_brand=b.brand_id)p
 
@@ -27,15 +27,52 @@
 
     </select>
 
+    <select id="getOrdersH" resultType="Map">
+        select * from (
+        select rownum rn,l.* from
+        (select * from CTM_ORDER t where t.customer_code=#{cid}
+            <if test="state_id!=null">
+                and STATUS_ID=#{state_id}
+            </if>
+            <if test="find!=null">
+                and order_no like  '%'||#{find}||'%'
+            </if>
+        ) l
+        where rownum &lt;= #{number})
+        where rn &gt;=#{start}
+
+    </select>
+
+    <select id="getOrdersB" resultType="Map">
+        select b.brand_name,h.* from
+        (select t.note,c.*  from
+        (select d.*,i.product_type,i.product_brand from ctm_order_detail d ,item i
+        where d.order_no=#{order_no} and d.item_no=i.item_no )c,item_type t
+        where c.product_type=t.item_type)h,BRAND_TYPE b
+        where h.product_brand=b.brand_id
+
+    </select>
+
     <select id="countOrders" resultType="Integer">
         select count(*) from
-        (select o.*,d.item_no from CTM_ORDER o,ctm_order_detail d where o.customer_code=#{cid} and o.order_no=d.order_no) c
+        (select o.*,d.item_no from ctm_order_detail d,CTM_ORDER o where o.order_no=d.order_no and o.customer_code=#{cid} ) c
         where 1=1
         <if test="state_id!=null">
             and c.STATUS_ID=#{state_id}
         </if>
         <if test="find!=null">
             and c.order_no like  '%'||#{find}||'%'
+        </if>
+
+    </select>
+
+    <select id="countOrdersH" resultType="Integer">
+        select count(*) from CTM_ORDER t where t.customer_code=#{cid}
+        <if test="state_id!=null">
+            and STATUS_ID=#{state_id}
+        </if>
+        <if test="find!=null">
+            and order_no like  '%'||#{find}||'%'
         </if>
 
     </select>
