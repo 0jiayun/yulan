@@ -1,28 +1,27 @@
-import com.yulan.utils.StringUtil;
+import com.yulan.dao.Ctm_orderDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class UserTest {
+    @Autowired
+    private Ctm_orderDao ctm_orderDao;
 
     @Test
     public void test1() throws UnsupportedEncodingException {
-//        DecimalFormat df = new DecimalFormat("0");
-//        NumToChinese numToChinese = new NumToChinese();
-//        System.out.println(numToChinese.transfrom(df.format(10000000000.00)));
-       /* SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-        System.out.println(simpleDateFormat.format(new Date(System.currentTimeMillis())));*/
-//       String test="2019-1-17 16:02  郭远飞提交;2019-1-17 16:04  湖南小全家居商贸有限公司退回协议书，原因是 [tuhu];2019-1-17 16:06  郭远飞重新提交;2019-1-17 16:07  湖南小全家居商贸有限公司通过协议文本;2019-01-17 16:07  被中心总经理袁海亮 审核批准协议文本;2019-01-17 16:10  被#DEP_MARKET_CHECK#肖伟#DEP_MARKET_CHECK# 审核批准协议文本;2019-01-17 16:10  被#DEP_MARKET_CHECK#肖伟#DEP_MARKET_CHECK# 审核批准协议文本;2019-01-17 16:10  被#DEP_MARKET_CHECK#肖伟#DEP_MARKET_CHECK# 审核批准协议文本;2019-01-17 16:10  被#DEP_MARKET_CHECK#肖伟#DEP_MARKET_CHECK# 审核批准协议文本;2019-01-17 16:10  被#DEP_MARKET_CHECK#肖伟#DEP_MARKET_CHECK# 审核批准协议文本;2019-01-17 16:10  被#DEP_MARKET_CHECK#肖伟#DEP_MARKET_CHECK# 审核批准协议文本;2019-01-17 16:10  被#DEP_MARKET_CHECK#肖伟#DEP_MARKET_CHECK# 审核批准协议文本;";
-//
-//       System.out.println(StringUtil.getName(test,"#DEP_MARKET_CHECK#(.*?)#DEP_MARKET_CHECK#","#DEP_MARKET_CHECK#"));
-
-        System.out.println(StringUtil.getUtf8("????????°?×°??????????"));
-        System.out.println(StringUtil.getUtf8("弥勒市新澳装饰有限公司"));
+        List<Map<String,Object>> list=ctm_orderDao.getOrders(1,10,"C10110",null,null);
+        for (Map<String,Object> m:list){
+            System.out.println(m.get("ORDER_NO"));
+        }
+//       System.out.println(ctm_orderDao.countOrders("C10110",null,null));
 
     }
 
