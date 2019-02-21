@@ -22,16 +22,22 @@ public class ItemServiceImpl implements ItemService {
     private MapUtils mapUtils;
 
     @Override
-    public Map getWallpaperInfo(String paperType) throws IOException {
+    public Map getWallpaperInfo(String cid, String paperType) throws IOException {
         Map<String,Object> map = new HashMap<>();
         Item item = new Item();
         item = itemDao.getWallpaperInfo(paperType);
         if (item != null) {
-            item.getItemType().setNote(stringUtil.getUtf8(item.getItemType().getNote()));
-            item.setItemVersion(stringUtil.getUtf8(itemDao.getProductVersion(item.getItemVersion())));
-            item.setProductBrand(stringUtil.getUtf8(itemDao.getProductBrand(item.getProductBrand())));
-            map.put("data",item);
-            map.put("code",0);
+            if(itemDao.userBrandAuthority(cid,item.getItemNo()) == null ||itemDao.userBrandAuthority(cid,item.getItemNo()).equals("")){
+                map.put("data","没有查询权限");
+                map.put("code",1);
+            }else{
+                item.getItemType().setNote(stringUtil.getUtf8(item.getItemType().getNote()));
+                item.setItemVersion(stringUtil.getUtf8(itemDao.getProductVersion(item.getItemVersion())));
+                item.setProductBrand(stringUtil.getUtf8(itemDao.getProductBrand(item.getProductBrand())));
+                map.put("data",item);
+                map.put("code",0);
+            }
+
 
         }else{
             map.put("data","没有找到相关产品");

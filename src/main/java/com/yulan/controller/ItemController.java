@@ -26,7 +26,7 @@ public class ItemController {
     public Map getWallpaperInfo(@RequestBody Map<String,Object> data)throws IOException {
         String paperType = (String)data.get("paperType");
         String cid = (String)data.get("cid");
-        return itemService.getWallpaperInfo(paperType);
+        return itemService.getWallpaperInfo(cid, paperType);
     }
 
 

@@ -58,5 +58,12 @@
         select t.brand_name from BRAND_TYPE t where t.brand_id = #{productBrand}
     </select>
 
+    <select id="userBrandAuthority" resultType="String">
+        select 'Y' from v_customer_brand a,item b  where a.brand = b.product_brand
+        and a.customer_code = #{CID}
+        and b.item_no = #{ITEM_NO}
+
+    </select>
+
 
 </mapper>

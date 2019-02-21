@@ -15,6 +15,6 @@ public class ItemTest {
     private ItemService itemService;
     @Test
     public void test()throws Exception{
-      System.out.println(itemService.getWallpaperInfo("111"));
+      System.out.println(itemService.getWallpaperInfo("C01613","111"));
     }
 }
