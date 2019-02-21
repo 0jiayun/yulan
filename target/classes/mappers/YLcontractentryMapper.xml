@@ -431,7 +431,7 @@
         </if>
 
 
-        ) tm      where rm &gt;= #{start} and rm &lt;= #{number }
+        ) tm      where rm &gt;= #{start} and rm &lt;= #{number}
 
     </select>
     <select id="count_LEGALCHECK" resultType="int">

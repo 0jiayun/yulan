@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yulan.dao.Ctm_orderDao">
+
+    <select id="getOrders" resultType="Map">
+        select * from (
+        select rownum rn,l.* from
+        (select * from
+        (select b.brand_name,h.* from
+        (select t.note,c.*  from
+        (select o.*,i.product_type,i.product_brand from (select * from  CTM_ORDER o  where customer_code='C10131') o,ctm_order_detail d, item i
+        where o.order_no=d.order_no and d.item_no=i.item_no)c,item_type t
+        where c.product_type=t.item_type)h,BRAND_TYPE b
+        where h.product_brand=b.brand_id)p
+
+        where 1=1
+        <if test="state_id!=null">
+            and STATUS_ID=#{state_id}
+        </if>
+        <if test="find!=null">
+            and order_no like  '%'||#{find}||'%'
+        </if>
+
+        ) l
+        where rownum &lt;= #{number})
+        where rn &gt;=#{start}
+
+    </select>
+
+    <select id="countOrders" resultType="Integer">
+        select count(*) from
+        (select o.*,d.item_no from CTM_ORDER o,ctm_order_detail d where o.customer_code=#{cid} and o.order_no=d.order_no) c
+        where 1=1
+        <if test="state_id!=null">
+            and c.STATUS_ID=#{state_id}
+        </if>
+        <if test="find!=null">
+            and c.order_no like  '%'||#{find}||'%'
+        </if>
+
+    </select>
+
+</mapper>
