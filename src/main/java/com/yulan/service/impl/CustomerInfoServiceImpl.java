@@ -35,13 +35,6 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
     private static MapUtils mapUtils;
 
 
-
-
-
-
-
-
-
     @Override
     public List<Map<String,Object>> getAllStates() {
         List<Map<String,Object>> list=customerInfoDao.getAllStates();
@@ -516,13 +509,13 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 String origin = stringUtil.getUtf8(String.valueOf(entry.getValue()));
                 entry.setValue(origin);
             }
-            System.out.println(map.get("CID").toString());
-            String ylc=customerInfoDao.getYlcstate(map.get("CID").toString(),Integer.parseInt(map.get("CONTRACTYEAR").toString()));
-            if (ylc==null){
-                map.put("YLCSTATE","SALEMANFILLING");
-            }else{
-                map.put("YLCSTATE",ylc);
-            }
+//            System.out.println(map.get("CID").toString());
+//            String ylc=customerInfoDao.getYlcstate(map.get("CID").toString(),Integer.parseInt(map.get("CONTRACTYEAR").toString()));
+//            if (ylc==null){
+//                map.put("YLCSTATE","SALEMANFILLING");
+//            }else{
+//                map.put("YLCSTATE",ylc);
+//            }
             if(map.get("FILE_1_IDCARD")==null){
                 map.put("FILE_1_IDCARD",0);
             }else{
@@ -544,16 +537,17 @@ public class CustomerInfoServiceImpl implements CustomerInfoService {
                 map.put("FILE_4_GTQC",1);
             }
         }
-        if(ylcstate!=null){
-            Iterator<Map<String,Object>> it = list.iterator();
-            while(it.hasNext()){
-                Map<String,Object> x = it.next();
-                System.out.println(x.get("YLCSTATE"));
-                if(!x.get("YLCSTATE").equals(ylcstate)){
-                    it.remove();
-                }
-            }
-        }
+//        if(ylcstate!=null){
+//            Iterator<Map<String,Object>> it = list.iterator();
+//            while(it.hasNext()){
+//                Map<String,Object> x = it.next();
+//                System.out.println(x.get("YLCSTATE"));
+//                if(!x.get("YLCSTATE").equals(ylcstate)){
+//                    it.remove();
+//                }
+//            }
+//        }
+
 
         Map.put("data",list);
         Map.put("count",count);

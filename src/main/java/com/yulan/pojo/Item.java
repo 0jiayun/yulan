@@ -61,7 +61,16 @@ public class Item {
 
     private String groupType;
 
+    private ItemType itemType;
 
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
+    }
 
     public String getItemNo() {
         return itemNo;
