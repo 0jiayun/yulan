@@ -12,4 +12,20 @@ public interface Ctm_orderDao {
 
     Integer countOrders(@Param("cid")String cid,@Param("state_id")String state_id,
                         @Param("find")String find);
+
+
+    /**
+     * 新需求
+     */
+    //获取订单头
+    List<Map<String,Object>> getOrdersH(@Param("start")Integer start, @Param("number") Integer number,
+                                       @Param("cid")String cid, @Param("state_id")String state_id,
+                                       @Param("find")String find);
+
+    //获取订单具体内容
+    List<Map<String,Object>> getOrdersB(@Param("order_no")String order_no);
+
+
+    Integer countOrdersH(@Param("cid")String cid,@Param("state_id")String state_id,
+                        @Param("find")String find);
 }

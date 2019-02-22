@@ -1,5 +1,6 @@
 package com.yulan.controller;
 
+import com.yulan.dao.YLcontractentryDao;
 import com.yulan.pojo.YLcontract_v2015;
 import com.yulan.service.YLcontractentryService;
 import com.yulan.utils.Response;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +23,8 @@ import java.util.Map;
 public class YLcontractentryController {
     @Autowired
     private YLcontractentryService yLcontractentryService;
+    @Autowired
+    private YLcontractentryDao yLcontractentryDao;
 
     private YLcontract_v2015 yLcontract_v2015;
 
@@ -270,6 +274,33 @@ public class YLcontractentryController {
         String year = (String)data.get("year");
         List<Map<String,Object>> list = yLcontractentryService.getYLcontractentryStateByArea(year);
         return list;
+    }
+
+    /**
+     * APP版本号更新接口
+     * @return
+     */
+    @RequestMapping(value = "updateAPPVersion")
+    @ResponseBody
+    public Map getAPPVersion(@RequestBody Map<String,Object> data){
+        String version = (String)data.get("version");
+        if(yLcontractentryDao.getAPPVersion(version)){
+            return response.getResponseMap(0,"SUCCESS",null);
+        }else{
+            return response.getResponseMap(1,"更新失败" ,null);
+        }
+    }
+
+    /**
+     * 获取APP版本号
+     * @return
+     */
+    @RequestMapping(value = "getAPPVersionPresent")
+    @ResponseBody
+    public Map getAPPVersionPresent(){
+       Map map = new HashMap();
+       map.put("data",yLcontractentryDao.getAPPVersionPresent());
+       return map;
     }
 
 }

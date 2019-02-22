@@ -42,6 +42,13 @@
             <result column="PRO_TYPE" property="proType" jdbcType="VARCHAR" />
     </resultMap>
 
+    <resultMap id="StockShowMap" type="com.yulan.pojo.StockShow">
+        <id column="STOCK_NO" property="stockNo" jdbcType="VARCHAR" />
+        <result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+        <result column="QTY" property="qty" jdbcType="DECIMAL" />
+        <result column="ITEM_NO" property="itemNo" jdbcType="VARCHAR" />
+    </resultMap>
+
 
     <select id="getWallpaperInfo" resultMap="ItemMap">
         select a.*, b.item_type, b.note bnote, b.pro_type from ITEM a,ITEM_TYPE b where a.product_type = b.item_type
@@ -58,5 +65,47 @@
         select t.brand_name from BRAND_TYPE t where t.brand_id = #{productBrand}
     </select>
 
+    <select id="userBrandAuthority" resultType="String">
+        select 'Y' from v_customer_brand a,item b  where a.brand = b.product_brand
+        and a.customer_code = #{CID}
+        and b.item_no = #{ITEM_NO}
+
+    </select>
+
+    <select id="getStockShow" resultMap="StockShowMap">
+      select sf.stock_no,sf.batch_no,sf.qty,sf.item_no from stock_floor sf
+      where sf.item_no = #{ITEM_NO}
+      and sf.stock_no in (
+      select t.stock_no from stock_customer t where t.flag = 1 )
+      and sf.qty >0
+    </select>
+
+     <select id="getMLInfo" resultMap="ItemMap">
+         select * from item t where t.product_type in ('ML' , 'MLP')
+     </select>
+
+    <select id="getXHBInfo" resultMap="ItemMap">
+        select * from item t where t.product_type in ('XHB')
+    </select>
+
+    <select id="getPJBInfo" resultMap="ItemMap">
+        select * from item t where t.product_type in ('PJB')
+    </select>
+
+    <select id="getBZInfo" resultMap="ItemMap">
+        select * from item t where t.product_type in ('BZ')
+    </select>
+
+    <select id="getGHInfo" resultMap="ItemMap">
+        select * from item t where t.product_type in ('GH')
+    </select>
+
+    <select id="getTCInfo" resultMap="ItemMap">
+        select * from item t where t.product_type in ('TC')
+    </select>
+
+    <select id="getOtherInfo" resultMap="ItemMap">
+        select * from item t where t.product_type in ('TU','DT')
+    </select>
 
 </mapper>

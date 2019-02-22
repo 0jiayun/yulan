@@ -625,4 +625,18 @@
         where contractyear=#{CYEAR} group by marketname,marketmanagername,state
     </select>
 
+    <update id="getAPPVersion" parameterType="String">
+        update YLCONTRACTENTRY_SHOW t
+        <set>
+            <if test="VERSION!=null">
+                NAME = #{VERSION,jdbcType=VARCHAR}
+            </if>
+        </set>
+        where ID = 2
+    </update>
+
+    <select id="getAPPVersionPresent" resultType="String">
+        select t.name from YLCONTRACTENTRY_SHOW t where ID = 2
+    </select>
+
 </mapper>
