@@ -9,5 +9,7 @@ public interface ItemService {
 
     Map getStockShow(String itemNo);
 
+    Map getSoftDecorationInfo(String itemType);
+
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -39,6 +40,20 @@ public class ItemController {
     public Map getStockShow(@RequestBody Map<String,Object> data){
         String itemNo = (String)data.get("itemNo");
         return itemService.getStockShow(itemNo);
+    }
+
+    /**
+     * 软装总信息查询接口
+     * @param data
+     * @return
+     */
+    @RequestMapping(value = "getSoftDecorationInfo")
+    @ResponseBody
+    public Map getSoftDecorationInfo(@RequestBody Map<String,Object> data){
+        Map map = new HashMap();
+        String itemType = (String)data.get("itemType");
+
+        return map;
     }
 
 

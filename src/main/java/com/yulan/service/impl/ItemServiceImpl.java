@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,37 @@ public class ItemServiceImpl implements ItemService {
             map.put("code",1);
         }else{
             map.put("data",stockList);
+            map.put("code",0);
+        }
+        return map;
+    }
+
+    @Override
+    public Map getSoftDecorationInfo(String itemType){
+        Map<String,Object> map = new HashMap<>();
+        List<Item> itemList = new ArrayList<>();
+        if(itemType.equals("ML")){
+            itemList = itemDao.getMLInfo();
+
+        }else if(itemType.equals("XHB")){
+            itemList = itemDao.getXHBInfo();
+        }else if(itemType.equals("PJB")){
+
+        }else if(itemType.equals("BZ")){
+
+        }else if(itemType.equals("GH")){
+
+        }else if(itemType.equals("TC")){
+
+        }else if(itemType.equals("other")){
+
+        }
+
+        if(null == itemList || itemList.size() == 0){
+            map.put("data","没有查询到数据");
+            map.put("code",1);
+        }else{
+            map.put("data",itemList);
             map.put("code",0);
         }
         return map;

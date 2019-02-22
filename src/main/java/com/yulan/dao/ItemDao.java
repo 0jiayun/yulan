@@ -17,4 +17,18 @@ public interface ItemDao {
     String userBrandAuthority(@Param("CID") String cid, @Param("ITEM_NO") String itemNo);
 
     List<StockShow> getStockShow(@Param("ITEM_NO")String itemNo);
+    //面料
+    List<Item> getMLInfo();
+    //花边
+    List<Item> getXHBInfo();
+    //挂带/配件包
+    List<Item> getPJBInfo();
+    //抱枕
+    List<Item> getBZInfo();
+    //挂画
+    List<Item> getGHInfo();
+    //陶瓷
+    List<Item> getTCInfo();
+    //其他
+    List<Item> getOtherInfo();
 }
