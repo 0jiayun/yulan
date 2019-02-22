@@ -24,6 +24,7 @@ public class Ctm_orderServiceImpl implements Ctm_orderService {
         List<Map<String,Object>> list=ctm_orderDao.getOrdersH(start,number,cid,state_id,find);
         List<Map<String,Object>> data=new ArrayList<>();
         for (Map<String,Object> m:list) {
+
             for (Map.Entry<String, Object> entry : m.entrySet()) {//将订单头内容转码
                 if (entry.getValue() instanceof String) {
                     String origin = StringUtil.getUtf8(String.valueOf(entry.getValue()));

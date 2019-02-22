@@ -6,6 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +16,17 @@ public class UserTest {
     @Autowired
     private Ctm_orderDao ctm_orderDao;
 
+
     @Test
     public void test1() throws UnsupportedEncodingException {
-        List<Map<String,Object>> list=ctm_orderDao.getOrders(1,10,"C10110",null,null);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        List<Map<String,Object>> list=ctm_orderDao.getOrdersH(1,10,"C10110",null,null);
         for (Map<String,Object> m:list){
-            System.out.println(m.get("ORDER_NO"));
+            System.out.println(formatter.format(m.get("WEB_TJ_TIME")));
         }
 //       System.out.println(ctm_orderDao.countOrders("C10110",null,null));
+
+
 
     }
 
