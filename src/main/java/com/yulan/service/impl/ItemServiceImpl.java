@@ -2,6 +2,7 @@ package com.yulan.service.impl;
 
 import com.yulan.dao.ItemDao;
 import com.yulan.pojo.Item;
+import com.yulan.pojo.StockShow;
 import com.yulan.service.ItemService;
 import com.yulan.utils.MapUtils;
 import com.yulan.utils.StringUtil;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -45,4 +47,20 @@ public class ItemServiceImpl implements ItemService {
         }
         return map;
     }
+
+    @Override
+    public Map getStockShow(String itemNo) {
+        Map<String,Object> map = new HashMap<>();
+        List<StockShow> stockList = itemDao.getStockShow(itemNo);
+        if(null == stockList || stockList.size() == 0){
+            map.put("data","没有查询到数据");
+            map.put("code",1);
+        }else{
+            map.put("data",stockList);
+            map.put("code",0);
+        }
+        return map;
+    }
+
+
 }

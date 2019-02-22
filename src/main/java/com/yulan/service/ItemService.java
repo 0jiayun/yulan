@@ -7,5 +7,7 @@ public interface ItemService {
 
     Map getWallpaperInfo(String cid ,String paperType)throws IOException;
 
+    Map getStockShow(String itemNo);
+
 
 }

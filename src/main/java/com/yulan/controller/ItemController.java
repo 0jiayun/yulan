@@ -29,6 +29,18 @@ public class ItemController {
         return itemService.getWallpaperInfo(cid, paperType);
     }
 
+    /**
+     * 客户墙纸库房查询接口
+     * @param data
+     * @return
+     */
+    @RequestMapping(value = "getStockShow")
+    @ResponseBody
+    public Map getStockShow(@RequestBody Map<String,Object> data){
+        String itemNo = (String)data.get("itemNo");
+        return itemService.getStockShow(itemNo);
+    }
+
 
 
 }
