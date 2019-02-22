@@ -49,10 +49,10 @@ public class ItemController {
      */
     @RequestMapping(value = "getSoftDecorationInfo")
     @ResponseBody
-    public Map getSoftDecorationInfo(@RequestBody Map<String,Object> data){
+    public Map getSoftDecorationInfo(@RequestBody Map<String,Object> data)throws IOException{
         Map map = new HashMap();
         String itemType = (String)data.get("itemType");
-
+        map = itemService.getSoftDecorationInfo(itemType);
         return map;
     }
 

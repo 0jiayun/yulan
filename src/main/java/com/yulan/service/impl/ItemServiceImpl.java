@@ -64,26 +64,31 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public Map getSoftDecorationInfo(String itemType){
+    public Map getSoftDecorationInfo(String itemType)throws IOException{
         Map<String,Object> map = new HashMap<>();
         List<Item> itemList = new ArrayList<>();
         if(itemType.equals("ML")){
             itemList = itemDao.getMLInfo();
-
         }else if(itemType.equals("XHB")){
             itemList = itemDao.getXHBInfo();
         }else if(itemType.equals("PJB")){
-
+            itemList = itemDao.getPJBInfo();
         }else if(itemType.equals("BZ")){
-
+            itemList = itemDao.getBZInfo();
         }else if(itemType.equals("GH")){
-
+            itemList = itemDao.getGHInfo();
         }else if(itemType.equals("TC")){
-
+            itemList = itemDao.getTCInfo();
         }else if(itemType.equals("other")){
-
+            itemList = itemDao.getOtherInfo();
         }
+        for(int i=0 ; i<itemList.size() ; i++){
+            Item item = itemList.get(i);
+            if(null != item.getNote()){
+                item.setNote(stringUtil.getUtf8(item.getNote()));
 
+            }
+        }
         if(null == itemList || itemList.size() == 0){
             map.put("data","没有查询到数据");
             map.put("code",1);
