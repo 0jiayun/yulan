@@ -635,4 +635,8 @@
         where ID = 2
     </update>
 
+    <select id="getAPPVersionPresent" resultType="String">
+        select t.name from YLCONTRACTENTRY_SHOW t where ID = 2
+    </select>
+
 </mapper>

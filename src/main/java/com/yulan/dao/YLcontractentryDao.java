@@ -120,4 +120,6 @@ public interface YLcontractentryDao {
                                                          @Param("STATE")String state);
 
     boolean getAPPVersion(@Param("VERSION") String version);
+
+    String getAPPVersionPresent();
 }

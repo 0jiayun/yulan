@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -279,7 +280,7 @@ public class YLcontractentryController {
      * APP版本号更新接口
      * @return
      */
-    @RequestMapping(value = "getAPPVersion")
+    @RequestMapping(value = "updateAPPVersion")
     @ResponseBody
     public Map getAPPVersion(@RequestBody Map<String,Object> data){
         String version = (String)data.get("version");
@@ -288,6 +289,18 @@ public class YLcontractentryController {
         }else{
             return response.getResponseMap(1,"更新失败" ,null);
         }
+    }
+
+    /**
+     * 获取APP版本号
+     * @return
+     */
+    @RequestMapping(value = "getAPPVersionPresent")
+    @ResponseBody
+    public Map getAPPVersionPresent(){
+       Map map = new HashMap();
+       map.put("data",yLcontractentryDao.getAPPVersionPresent());
+       return map;
     }
 
 }
