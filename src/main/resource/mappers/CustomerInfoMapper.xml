@@ -569,7 +569,7 @@
         c.area_belong=o.area and c.area_code=d.area_code)g,(  select  NVL(y.state,'SALEMANFILLING') YLCSTATE,t.* from CUSTOMERINFOCARD t,YLCONTRACTENTRY y where t.cid=y.cid(+) and t.contractyear=y.cyear(+)) u
         where
         g.area=u.market and g.district_id=u.submarket
-        order by decode(u.state,'BUSINESSCHECKING',1,'APPROVED',2), decode(u.ylcstate,'SALEMANFILLING',1)) l
+        order by decode(u.state,'BUSINESSCHECKING',1,'APPROVED',2,'CUSTOMERPORCESSING2',3,'CUSTOMERPORCESSING',4), decode(u.ylcstate,'SALEMANFILLING',1)) l
 
         where 1=1
         <if test="year!=null">
@@ -612,7 +612,7 @@
         where o.area=d.area_code and c.area_code=o.area)g,(  select  NVL(y.state,'SALEMANFILLING') YLCSTATE,t.* from CUSTOMERINFOCARD t,YLCONTRACTENTRY y where t.cid=y.cid(+) and t.contractyear=y.cyear(+)) u
         where
         g.area=u.market and g.district_id=u.submarket
-        order by decode(u.state,'BUSINESSCHECKING',1,'APPROVED',2), decode(u.ylcstate,'SALEMANFILLING',1)) l
+        order by decode(u.state,'BUSINESSCHECKING',1,'APPROVED',2,'CUSTOMERPORCESSING2',3,'CUSTOMERPORCESSING',4), decode(u.ylcstate,'SALEMANFILLING',1)) l
 
         where 1=1
         <if test="year!=null">
@@ -651,7 +651,7 @@
         ( select d.area from area_owner d where d.owner=#{cid} group by d.area)g,(  select  NVL(y.state,'SALEMANFILLING') YLCSTATE,t.* from CUSTOMERINFOCARD t,YLCONTRACTENTRY y where t.cid=y.cid(+) and t.contractyear=y.cyear(+)) u
         where
         g.area=u.submarket
-        order by decode(u.state,'BUSINESSCHECKING',1,'APPROVED',2), decode(u.ylcstate,'SALEMANFILLING',1)) l
+        order by decode(u.state,'BUSINESSCHECKING',1,'APPROVED',2,'CUSTOMERPORCESSING2',3,'CUSTOMERPORCESSING',4), decode(u.ylcstate,'SALEMANFILLING',1)) l
 
         where 1=1
         <if test="year!=null">
@@ -688,7 +688,7 @@
 
         (select u.* from
         (  select  NVL(y.state,'SALEMANFILLING') YLCSTATE,t.* from CUSTOMERINFOCARD t,YLCONTRACTENTRY y where t.cid=y.cid(+) and t.contractyear=y.cyear(+)) u
-        order by decode(u.state,'BIILDEPCHECKING',1,'APPROVED',2), decode(u.ylcstate,'SALEMANFILLING',1)) l
+        order by decode(u.state,'BIILDEPCHECKING',1,'APPROVED',2,'CUSTOMERPORCESSING2',3,'CUSTOMERPORCESSING',4), decode(u.ylcstate,'SALEMANFILLING',1)) l
 
         where 1=1
         <if test="year!=null">

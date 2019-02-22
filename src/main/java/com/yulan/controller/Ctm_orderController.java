@@ -44,7 +44,7 @@ public class Ctm_orderController {
         Map map=ctm_orderService.getOrders(page,lastNum,cid,state_id,find);
         map.put("code",0);
         map.put("msg","");
-        System.out.println("hi");
+
 
 
         return map;
