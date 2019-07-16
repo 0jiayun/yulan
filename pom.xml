@@ -33,6 +33,14 @@
     </properties>
 
     <dependencies>
+
+        <!-- 换一个数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.1.19</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -427,9 +435,9 @@
             <artifactId>jsoup</artifactId>
             <version>1.10.2</version>
         </dependency>
-
-
     </dependencies>
+
+
     <build>
         <finalName>yulan</finalName>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
