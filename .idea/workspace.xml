@@ -521,11 +521,11 @@
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="Unnamed_yulan_3" />
       </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="63545" />
       </RunnerSettings>
@@ -582,12 +582,12 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Tomcat Server.yulan" />
       <item itemvalue="JUnit.Web_userTest.test1" />
       <item itemvalue="JUnit.UserTest.test1" />
       <item itemvalue="JUnit.CustomerinfocardgroupTest.test5" />
       <item itemvalue="JUnit.UserTest.test" />
       <item itemvalue="JUnit.UserTest.test0" />
-      <item itemvalue="Tomcat Server.yulan" />
     </list>
     <recent_temporary>
       <list>
